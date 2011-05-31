@@ -1,0 +1,4 @@
+def clear(self):
+    'Extract all children.'
+    for child in self.contents[:]:
+        child.extract()

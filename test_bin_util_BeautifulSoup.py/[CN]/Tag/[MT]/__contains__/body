@@ -1,0 +1,2 @@
+def __contains__(self, x):
+    return (x in self.contents)

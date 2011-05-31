@@ -1,0 +1,3 @@
+def __ne__(self, other):
+    'Returns true iff this tag is not identical to the other tag,\n        as defined in __eq__.'
+    return (not (self == other))

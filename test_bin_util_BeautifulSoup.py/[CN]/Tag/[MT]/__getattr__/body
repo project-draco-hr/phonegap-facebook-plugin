@@ -1,0 +1,6 @@
+def __getattr__(self, tag):
+    if ((len(tag) > 3) and (tag.rfind('Tag') == (len(tag) - 3))):
+        return self.find(tag[:(-3)])
+    elif (tag.find('__') != 0):
+        return self.find(tag)
+    raise AttributeError, ("'%s' object has no attribute '%s'" % (self.__class__, tag))

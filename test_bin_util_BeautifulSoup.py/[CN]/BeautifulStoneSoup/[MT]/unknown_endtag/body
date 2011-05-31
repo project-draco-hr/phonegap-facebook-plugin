@@ -1,0 +1,9 @@
+def unknown_endtag(self, name):
+    if (self.quoteStack and (self.quoteStack[(-1)] != name)):
+        self.handle_data(('</%s>' % name))
+        return
+    self.endData()
+    self._popToTag(name)
+    if (self.quoteStack and (self.quoteStack[(-1)] == name)):
+        self.quoteStack.pop()
+        self.literal = (len(self.quoteStack) > 0)

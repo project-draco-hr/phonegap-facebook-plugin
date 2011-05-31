@@ -1,0 +1,10 @@
+def _codec(self, charset):
+    if (not charset):
+        return charset
+    codec = None
+    try:
+        codecs.lookup(charset)
+        codec = charset
+    except (LookupError, ValueError):
+        pass
+    return codec

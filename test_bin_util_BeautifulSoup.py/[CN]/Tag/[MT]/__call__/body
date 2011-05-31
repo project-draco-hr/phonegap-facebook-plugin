@@ -1,0 +1,3 @@
+def __call__(self, *args, **kwargs):
+    "Calling a tag like a function is the same as calling its\n        findAll() method. Eg. tag('a') returns a list of all the A tags\n        found within this tag."
+    return apply(self.findAll, args, kwargs)

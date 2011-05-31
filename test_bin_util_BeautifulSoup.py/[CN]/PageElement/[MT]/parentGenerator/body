@@ -1,0 +1,5 @@
+def parentGenerator(self):
+    i = self
+    while (i is not None):
+        i = i.parent
+        yield i

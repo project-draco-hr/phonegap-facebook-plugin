@@ -1,0 +1,15 @@
+def _convertFrom(self, proposed):
+    proposed = self.find_codec(proposed)
+    if ((not proposed) or (proposed in self.triedEncodings)):
+        return None
+    self.triedEncodings.append(proposed)
+    markup = self.markup
+    if (self.smartQuotesTo and (proposed.lower() in ('windows-1252', 'iso-8859-1', 'iso-8859-2'))):
+        markup = re.compile('([\x80-\x9f])').sub((lambda x: self._subMSChar(x.group(1))), markup)
+    try:
+        u = self._toUnicode(markup, proposed)
+        self.markup = u
+        self.originalEncoding = proposed
+    except Exception as e:
+        return None
+    return self.markup

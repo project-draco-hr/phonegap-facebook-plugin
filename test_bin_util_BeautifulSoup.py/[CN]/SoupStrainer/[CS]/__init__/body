@@ -1,0 +1,13 @@
+def __init__(self, name=None, attrs={}, text=None, **kwargs):
+    self.name = name
+    if isinstance(attrs, basestring):
+        kwargs['class'] = _match_css_class(attrs)
+        attrs = None
+    if kwargs:
+        if attrs:
+            attrs = attrs.copy()
+            attrs.update(kwargs)
+        else:
+            attrs = kwargs
+    self.attrs = attrs
+    self.text = text

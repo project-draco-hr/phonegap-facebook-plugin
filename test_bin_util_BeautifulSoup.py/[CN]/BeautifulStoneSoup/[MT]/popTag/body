@@ -1,0 +1,5 @@
+def popTag(self):
+    tag = self.tagStack.pop()
+    if self.tagStack:
+        self.currentTag = self.tagStack[(-1)]
+    return self.currentTag

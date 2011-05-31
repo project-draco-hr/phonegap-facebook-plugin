@@ -1,0 +1,13 @@
+def buildTagMap(default, *args):
+    'Turns a list of maps, lists, or scalars into a single map.\n    Used to build the SELF_CLOSING_TAGS, NESTABLE_TAGS, and\n    NESTING_RESET_TAGS maps out of lists and partial maps.'
+    built = {}
+    for portion in args:
+        if hasattr(portion, 'items'):
+            for (k, v) in portion.items():
+                built[k] = v
+        elif hasattr(portion, '__iter__'):
+            for k in portion:
+                built[k] = default
+        else:
+            built[portion] = default
+    return built

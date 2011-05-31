@@ -1,0 +1,5 @@
+def __str__(self, encoding=DEFAULT_OUTPUT_ENCODING):
+    output = self
+    if ('%SOUP-ENCODING%' in output):
+        output = self.substituteEncoding(output, encoding)
+    return ('<?%s?>' % self.toEncoding(output, encoding))

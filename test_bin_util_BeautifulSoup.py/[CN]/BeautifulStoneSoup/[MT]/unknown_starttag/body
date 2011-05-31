@@ -1,0 +1,21 @@
+def unknown_starttag(self, name, attrs, selfClosing=0):
+    if self.quoteStack:
+        attrs = ''.join([(' %s="%s"' % (x, y)) for (x, y) in attrs])
+        self.handle_data(('<%s%s>' % (name, attrs)))
+        return
+    self.endData()
+    if ((not self.isSelfClosingTag(name)) and (not selfClosing)):
+        self._smartPop(name)
+    if (self.parseOnlyThese and (len(self.tagStack) <= 1) and (self.parseOnlyThese.text or (not self.parseOnlyThese.searchTag(name, attrs)))):
+        return
+    tag = Tag(self, name, attrs, self.currentTag, self.previous)
+    if self.previous:
+        self.previous.next = tag
+    self.previous = tag
+    self.pushTag(tag)
+    if (selfClosing or self.isSelfClosingTag(name)):
+        self.popTag()
+    if (name in self.QUOTE_TAGS):
+        self.quoteStack.append(name)
+        self.literal = 1
+    return tag

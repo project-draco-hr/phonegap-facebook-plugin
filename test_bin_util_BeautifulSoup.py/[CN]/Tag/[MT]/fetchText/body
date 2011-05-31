@@ -1,0 +1,2 @@
+def fetchText(self, text=None, recursive=True, limit=None):
+    return self.findAll(text=text, recursive=recursive, limit=limit)

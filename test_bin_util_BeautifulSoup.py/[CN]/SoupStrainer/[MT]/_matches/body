@@ -1,0 +1,25 @@
+def _matches(self, markup, matchAgainst):
+    result = False
+    if (matchAgainst is True):
+        result = (markup is not None)
+    elif callable(matchAgainst):
+        result = matchAgainst(markup)
+    else:
+        if isinstance(markup, Tag):
+            markup = markup.name
+        if (markup and (not isinstance(markup, basestring))):
+            markup = unicode(markup)
+        if hasattr(matchAgainst, 'match'):
+            result = (markup and matchAgainst.search(markup))
+        elif hasattr(matchAgainst, '__iter__'):
+            result = (markup in matchAgainst)
+        elif hasattr(matchAgainst, 'items'):
+            result = markup.has_key(matchAgainst)
+        elif (matchAgainst and isinstance(markup, basestring)):
+            if isinstance(markup, unicode):
+                matchAgainst = unicode(matchAgainst)
+            else:
+                matchAgainst = str(matchAgainst)
+        if (not result):
+            result = (matchAgainst == markup)
+    return result

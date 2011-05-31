@@ -1,0 +1,2 @@
+def prettify(self, encoding=DEFAULT_OUTPUT_ENCODING):
+    return self.__str__(encoding, True)

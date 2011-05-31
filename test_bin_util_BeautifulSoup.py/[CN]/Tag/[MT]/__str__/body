@@ -1,0 +1,50 @@
+def __str__(self, encoding=DEFAULT_OUTPUT_ENCODING, prettyPrint=False, indentLevel=0):
+    "Returns a string or Unicode representation of this tag and\n        its contents. To get Unicode, pass None for encoding.\n\n        NOTE: since Python's HTML parser consumes whitespace, this\n        method is not certain to reproduce the whitespace present in\n        the original string."
+    encodedName = self.toEncoding(self.name, encoding)
+    attrs = []
+    if self.attrs:
+        for (key, val) in self.attrs:
+            fmt = '%s="%s"'
+            if isinstance(val, basestring):
+                if (self.containsSubstitutions and ('%SOUP-ENCODING%' in val)):
+                    val = self.substituteEncoding(val, encoding)
+                if ('"' in val):
+                    fmt = "%s='%s'"
+                    if ("'" in val):
+                        val = val.replace("'", '&squot;')
+                val = self.BARE_AMPERSAND_OR_BRACKET.sub(self._sub_entity, val)
+            attrs.append((fmt % (self.toEncoding(key, encoding), self.toEncoding(val, encoding))))
+    close = ''
+    closeTag = ''
+    if self.isSelfClosing:
+        close = ' /'
+    else:
+        closeTag = ('</%s>' % encodedName)
+    (indentTag, indentContents) = (0, 0)
+    if prettyPrint:
+        indentTag = indentLevel
+        space = (' ' * (indentTag - 1))
+        indentContents = (indentTag + 1)
+    contents = self.renderContents(encoding, prettyPrint, indentContents)
+    if self.hidden:
+        s = contents
+    else:
+        s = []
+        attributeString = ''
+        if attrs:
+            attributeString = (' ' + ' '.join(attrs))
+        if prettyPrint:
+            s.append(space)
+        s.append(('<%s%s%s>' % (encodedName, attributeString, close)))
+        if prettyPrint:
+            s.append('\n')
+        s.append(contents)
+        if (prettyPrint and contents and (contents[(-1)] != '\n')):
+            s.append('\n')
+        if (prettyPrint and closeTag):
+            s.append(space)
+        s.append(closeTag)
+        if (prettyPrint and closeTag and self.nextSibling):
+            s.append('\n')
+        s = ''.join(s)
+    return s

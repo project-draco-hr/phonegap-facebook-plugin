@@ -1,0 +1,3 @@
+def append(self, tag):
+    'Appends the given tag to the contents of this tag.'
+    self.insert(len(self.contents), tag)

@@ -1,0 +1,5 @@
+def previousSiblingGenerator(self):
+    i = self
+    while (i is not None):
+        i = i.previousSibling
+        yield i

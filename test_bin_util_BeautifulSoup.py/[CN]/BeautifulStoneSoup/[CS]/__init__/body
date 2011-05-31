@@ -1,0 +1,35 @@
+def __init__(self, markup='', parseOnlyThese=None, fromEncoding=None, markupMassage=True, smartQuotesTo=XML_ENTITIES, convertEntities=None, selfClosingTags=None, isHTML=False):
+    "The Soup object is initialized as the 'root tag', and the\n        provided markup (which can be a string or a file-like object)\n        is fed into the underlying parser.\n\n        sgmllib will process most bad HTML, and the BeautifulSoup\n        class has some tricks for dealing with some HTML that kills\n        sgmllib, but Beautiful Soup can nonetheless choke or lose data\n        if your data uses self-closing tags or declarations\n        incorrectly.\n\n        By default, Beautiful Soup uses regexes to sanitize input,\n        avoiding the vast majority of these problems. If the problems\n        don't apply to you, pass in False for markupMassage, and\n        you'll get better performance.\n\n        The default parser massage techniques fix the two most common\n        instances of invalid HTML that choke sgmllib:\n\n         <br/> (No space between name of closing tag and tag close)\n         <! --Comment--> (Extraneous whitespace in declaration)\n\n        You can pass in a custom list of (RE object, replace method)\n        tuples to get Beautiful Soup to scrub your input the way you\n        want."
+    self.parseOnlyThese = parseOnlyThese
+    self.fromEncoding = fromEncoding
+    self.smartQuotesTo = smartQuotesTo
+    self.convertEntities = convertEntities
+    if self.convertEntities:
+        self.smartQuotesTo = None
+        if (convertEntities == self.HTML_ENTITIES):
+            self.convertXMLEntities = False
+            self.convertHTMLEntities = True
+            self.escapeUnrecognizedEntities = True
+        elif (convertEntities == self.XHTML_ENTITIES):
+            self.convertXMLEntities = True
+            self.convertHTMLEntities = True
+            self.escapeUnrecognizedEntities = False
+        elif (convertEntities == self.XML_ENTITIES):
+            self.convertXMLEntities = True
+            self.convertHTMLEntities = False
+            self.escapeUnrecognizedEntities = False
+    else:
+        self.convertXMLEntities = False
+        self.convertHTMLEntities = False
+        self.escapeUnrecognizedEntities = False
+    self.instanceSelfClosingTags = buildTagMap(None, selfClosingTags)
+    SGMLParser.__init__(self)
+    if hasattr(markup, 'read'):
+        markup = markup.read()
+    self.markup = markup
+    self.markupMassage = markupMassage
+    try:
+        self._feed(isHTML=isHTML)
+    except StopParsing:
+        pass
+    self.markup = None

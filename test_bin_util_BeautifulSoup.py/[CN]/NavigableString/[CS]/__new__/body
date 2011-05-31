@@ -1,0 +1,5 @@
+def __new__(cls, value):
+    "Create a new NavigableString.\n\n        When unpickling a NavigableString, this method is called with\n        the string in DEFAULT_OUTPUT_ENCODING. That encoding needs to be\n        passed in to the superclass's __new__ or the superclass won't know\n        how to handle non-ASCII characters.\n        "
+    if isinstance(value, unicode):
+        return unicode.__new__(cls, value)
+    return unicode.__new__(cls, value, DEFAULT_OUTPUT_ENCODING)

@@ -1,0 +1,3 @@
+def getString(self):
+    if ((len(self.contents) == 1) and isinstance(self.contents[0], NavigableString)):
+        return self.contents[0]

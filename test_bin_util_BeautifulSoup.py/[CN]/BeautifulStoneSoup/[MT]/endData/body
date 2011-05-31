@@ -1,0 +1,17 @@
+def endData(self, containerClass=NavigableString):
+    if self.currentData:
+        currentData = u''.join(self.currentData)
+        if ((currentData.translate(self.STRIP_ASCII_SPACES) == '') and (not set([tag.name for tag in self.tagStack]).intersection(self.PRESERVE_WHITESPACE_TAGS))):
+            if ('\n' in currentData):
+                currentData = '\n'
+            else:
+                currentData = ' '
+        self.currentData = []
+        if (self.parseOnlyThese and (len(self.tagStack) <= 1) and ((not self.parseOnlyThese.text) or (not self.parseOnlyThese.search(currentData)))):
+            return
+        o = containerClass(currentData)
+        o.setup(self.currentTag, self.previous)
+        if self.previous:
+            self.previous.next = o
+        self.previous = o
+        self.currentTag.contents.append(o)

@@ -1,0 +1,3 @@
+def __repr__(self, encoding=DEFAULT_OUTPUT_ENCODING):
+    'Renders this tag as a string.'
+    return self.__str__(encoding)

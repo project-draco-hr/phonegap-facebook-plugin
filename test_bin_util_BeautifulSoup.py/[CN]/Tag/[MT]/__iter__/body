@@ -1,0 +1,3 @@
+def __iter__(self):
+    'Iterating over a tag iterates over its contents.'
+    return iter(self.contents)

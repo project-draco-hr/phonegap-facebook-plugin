@@ -1,0 +1,27 @@
+def _findAll(self, name, attrs, text, limit, generator, **kwargs):
+    'Iterates over a generator looking for things that match.'
+    if isinstance(name, SoupStrainer):
+        strainer = name
+    elif ((text is None) and (not limit) and (not attrs) and (not kwargs)):
+        if (name is True):
+            return [element for element in generator() if isinstance(element, Tag)]
+        elif isinstance(name, basestring):
+            return [element for element in generator() if (isinstance(element, Tag) and (element.name == name))]
+        else:
+            strainer = SoupStrainer(name, attrs, text, **kwargs)
+    else:
+        strainer = SoupStrainer(name, attrs, text, **kwargs)
+    results = ResultSet(strainer)
+    g = generator()
+    while True:
+        try:
+            i = g.next()
+        except StopIteration:
+            break
+        if i:
+            found = strainer.search(i)
+            if found:
+                results.append(found)
+                if (limit and (len(results) >= limit)):
+                    break
+    return results

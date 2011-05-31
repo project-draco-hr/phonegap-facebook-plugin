@@ -1,0 +1,2 @@
+def find_codec(self, charset):
+    return (self._codec(self.CHARSET_ALIASES.get(charset, charset)) or (charset and self._codec(charset.replace('-', ''))) or (charset and self._codec(charset.replace('-', '_'))) or charset)

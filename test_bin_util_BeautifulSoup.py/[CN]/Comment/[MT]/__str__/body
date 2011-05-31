@@ -1,0 +1,2 @@
+def __str__(self, encoding=DEFAULT_OUTPUT_ENCODING):
+    return ('<!--%s-->' % NavigableString.__str__(self, encoding))

@@ -1,0 +1,6 @@
+def __getattr__(self, attr):
+    'text.string gives you text. This is for backwards\n        compatibility for Navigable*String, but for CData* it lets you\n        get the string without the CData wrapper.'
+    if (attr == 'string'):
+        return self
+    else:
+        raise AttributeError, ("'%s' object has no attribute '%s'" % (self.__class__.__name__, attr))

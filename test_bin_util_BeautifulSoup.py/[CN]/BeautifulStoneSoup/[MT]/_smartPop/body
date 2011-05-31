@@ -1,0 +1,19 @@
+def _smartPop(self, name):
+    "We need to pop up to the previous tag of this type, unless\n        one of this tag's nesting reset triggers comes between this\n        tag and the previous tag of this type, OR unless this tag is a\n        generic nesting trigger and another generic nesting trigger\n        comes between this tag and the previous tag of this type.\n\n        Examples:\n         <p>Foo<b>Bar *<p>* should pop to 'p', not 'b'.\n         <p>Foo<table>Bar *<p>* should pop to 'table', not 'p'.\n         <p>Foo<table><tr>Bar *<p>* should pop to 'tr', not 'p'.\n\n         <li><ul><li> *<li>* should pop to 'ul', not the first 'li'.\n         <tr><table><tr> *<tr>* should pop to 'table', not the first 'tr'\n         <td><tr><td> *<td>* should pop to 'tr', not the first 'td'\n        "
+    nestingResetTriggers = self.NESTABLE_TAGS.get(name)
+    isNestable = (nestingResetTriggers != None)
+    isResetNesting = self.RESET_NESTING_TAGS.has_key(name)
+    popTo = None
+    inclusive = True
+    for i in range((len(self.tagStack) - 1), 0, (-1)):
+        p = self.tagStack[i]
+        if (((not p) or (p.name == name)) and (not isNestable)):
+            popTo = name
+            break
+        if (((nestingResetTriggers is not None) and (p.name in nestingResetTriggers)) or ((nestingResetTriggers is None) and isResetNesting and self.RESET_NESTING_TAGS.has_key(p.name))):
+            popTo = p.name
+            inclusive = False
+            break
+        p = p.parent
+    if popTo:
+        self._popToTag(popTo, inclusive)

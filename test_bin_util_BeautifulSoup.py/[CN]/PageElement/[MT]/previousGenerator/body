@@ -1,0 +1,5 @@
+def previousGenerator(self):
+    i = self
+    while (i is not None):
+        i = i.previous
+        yield i

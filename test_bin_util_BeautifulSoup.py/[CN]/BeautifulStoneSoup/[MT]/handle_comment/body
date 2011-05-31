@@ -1,0 +1,3 @@
+def handle_comment(self, text):
+    'Handle comments as Comment objects.'
+    self._toStringSubclass(text, Comment)
