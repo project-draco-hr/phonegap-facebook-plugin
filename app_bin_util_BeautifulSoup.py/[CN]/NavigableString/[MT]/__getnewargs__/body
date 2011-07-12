@@ -1,2 +1,0 @@
-def __getnewargs__(self):
-    return (NavigableString.__str__(self),)

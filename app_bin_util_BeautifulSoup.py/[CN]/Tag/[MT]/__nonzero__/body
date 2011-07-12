@@ -1,3 +1,0 @@
-def __nonzero__(self):
-    'A tag is non-None even if it has no contents.'
-    return True

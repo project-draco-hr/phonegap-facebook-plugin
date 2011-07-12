@@ -1,8 +1,0 @@
-def __getattr__(self, methodName):
-    'This method routes method call requests to either the SGMLParser\n        superclass or the Tag superclass, depending on the method name.'
-    if (methodName.startswith('start_') or methodName.startswith('end_') or methodName.startswith('do_')):
-        return SGMLParser.__getattr__(self, methodName)
-    elif (not methodName.startswith('__')):
-        return Tag.__getattr__(self, methodName)
-    else:
-        raise AttributeError

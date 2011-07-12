@@ -1,3 +1,0 @@
-def __init__(self, source):
-    list.__init__([])
-    self.source = source

@@ -1,3 +1,0 @@
-def get(self, key, default=None):
-    "Returns the value of the 'key' attribute for the tag, or\n        the value given for 'default' if it doesn't have that\n        attribute."
-    return self._getAttrMap().get(key, default)

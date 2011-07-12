@@ -1,2 +1,0 @@
-def firstText(self, text=None, recursive=True):
-    return self.find(text=text, recursive=recursive)

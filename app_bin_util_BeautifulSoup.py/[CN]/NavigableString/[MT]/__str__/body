@@ -1,5 +1,0 @@
-def __str__(self, encoding=DEFAULT_OUTPUT_ENCODING):
-    if encoding:
-        return self.encode(encoding)
-    else:
-        return self

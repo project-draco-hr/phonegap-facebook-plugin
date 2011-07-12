@@ -1,2 +1,0 @@
-def __unicode__(self):
-    return str(self).decode(DEFAULT_OUTPUT_ENCODING)

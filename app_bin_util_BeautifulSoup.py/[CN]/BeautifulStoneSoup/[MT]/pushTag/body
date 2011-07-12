@@ -1,5 +1,0 @@
-def pushTag(self, tag):
-    if self.currentTag:
-        self.currentTag.contents.append(tag)
-    self.tagStack.append(tag)
-    self.currentTag = self.tagStack[(-1)]

@@ -1,5 +1,0 @@
-def __init__(self, *args, **kwargs):
-    if (not kwargs.has_key('smartQuotesTo')):
-        kwargs['smartQuotesTo'] = self.HTML_ENTITIES
-    kwargs['isHTML'] = True
-    BeautifulStoneSoup.__init__(self, *args, **kwargs)

@@ -1,3 +1,0 @@
-def _sub_entity(self, x):
-    'Used with a regular expression to substitute the\n        appropriate XML entity for an XML special character.'
-    return (('&' + self.XML_SPECIAL_CHARS_TO_ENTITIES[x.group(0)[0]]) + ';')

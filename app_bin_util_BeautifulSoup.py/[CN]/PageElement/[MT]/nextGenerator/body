@@ -1,5 +1,0 @@
-def nextGenerator(self):
-    i = self
-    while (i is not None):
-        i = i.next
-        yield i

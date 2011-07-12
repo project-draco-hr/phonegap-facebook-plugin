@@ -1,3 +1,0 @@
-def __getitem__(self, key):
-    "tag[key] returns the value of the 'key' attribute for the tag,\n        and throws an exception if it's not there."
-    return self._getAttrMap()[key]

@@ -1,3 +1,0 @@
-def substituteEncoding(self, str, encoding=None):
-    encoding = (encoding or 'utf-8')
-    return str.replace('%SOUP-ENCODING%', encoding)

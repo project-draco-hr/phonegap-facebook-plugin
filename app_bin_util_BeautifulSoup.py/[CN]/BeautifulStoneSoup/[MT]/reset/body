@@ -1,9 +1,0 @@
-def reset(self):
-    Tag.__init__(self, self, self.ROOT_TAG_NAME)
-    self.hidden = 1
-    SGMLParser.reset(self)
-    self.currentData = []
-    self.currentTag = None
-    self.tagStack = []
-    self.quoteStack = []
-    self.pushTag(self)

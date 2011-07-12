@@ -1,7 +1,0 @@
-def findParent(self, name=None, attrs={}, **kwargs):
-    'Returns the closest parent of this Tag that matches the given\n        criteria.'
-    r = None
-    l = self.findParents(name, attrs, 1)
-    if l:
-        r = l[0]
-    return r

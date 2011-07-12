@@ -1,6 +1,0 @@
-def _findOne(self, method, name, attrs, text, **kwargs):
-    r = None
-    l = method(name, attrs, text, 1, **kwargs)
-    if l:
-        r = l[0]
-    return r

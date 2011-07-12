@@ -1,4 +1,0 @@
-def setString(self, string):
-    'Replace the contents of the tag with a string'
-    self.clear()
-    self.append(string)

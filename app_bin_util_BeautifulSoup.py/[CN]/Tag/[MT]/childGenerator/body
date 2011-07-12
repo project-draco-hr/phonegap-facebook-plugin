@@ -1,2 +1,0 @@
-def childGenerator(self):
-    return iter(self.contents)

@@ -1,8 +1,0 @@
-def recursiveChildGenerator(self):
-    if (not len(self.contents)):
-        raise StopIteration
-    stopNode = self._lastRecursiveChild().next
-    current = self.contents[0]
-    while (current is not stopNode):
-        yield current
-        current = current.next

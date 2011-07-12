@@ -1,8 +1,0 @@
-def popTag(self):
-    if (len(self.tagStack) > 1):
-        tag = self.tagStack[(-1)]
-        parent = self.tagStack[(-2)]
-        parent._getAttrMap()
-        if (isinstance(tag, Tag) and (len(tag.contents) == 1) and isinstance(tag.contents[0], NavigableString) and (not parent.attrMap.has_key(tag.name))):
-            parent[tag.name] = tag.contents[0]
-    BeautifulStoneSoup.popTag(self)

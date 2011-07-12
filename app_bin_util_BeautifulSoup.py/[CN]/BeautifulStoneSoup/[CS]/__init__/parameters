@@ -1,9 +1,0 @@
-self
-markup
-parseOnlyThese
-fromEncoding
-markupMassage
-smartQuotesTo
-convertEntities
-selfClosingTags
-isHTML

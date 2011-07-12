@@ -1,8 +1,0 @@
-def __delitem__(self, key):
-    "Deleting tag[key] deletes all 'key' attributes for the tag."
-    for item in self.attrs:
-        if (item[0] == key):
-            self.attrs.remove(item)
-        self._getAttrMap()
-        if self.attrMap.has_key(key):
-            del self.attrMap[key]

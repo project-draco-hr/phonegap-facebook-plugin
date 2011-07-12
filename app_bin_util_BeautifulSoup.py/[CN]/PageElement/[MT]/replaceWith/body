@@ -1,9 +1,0 @@
-def replaceWith(self, replaceWith):
-    oldParent = self.parent
-    myIndex = self.parent.index(self)
-    if (hasattr(replaceWith, 'parent') and (replaceWith.parent is self.parent)):
-        index = replaceWith.parent.index(replaceWith)
-        if (index and (index < myIndex)):
-            myIndex = (myIndex - 1)
-    self.extract()
-    oldParent.insert(myIndex, replaceWith)

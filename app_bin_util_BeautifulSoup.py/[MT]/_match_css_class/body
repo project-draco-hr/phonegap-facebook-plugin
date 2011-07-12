@@ -1,3 +1,0 @@
-def _match_css_class(str):
-    'Build a RE to match the given CSS class.'
-    return re.compile(('(^|.*\\s)%s($|\\s)' % str))
