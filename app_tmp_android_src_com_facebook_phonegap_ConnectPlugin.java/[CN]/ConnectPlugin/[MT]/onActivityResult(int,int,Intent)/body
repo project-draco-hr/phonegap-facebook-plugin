@@ -1,0 +1,4 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  facebook.authorizeCallback(requestCode,resultCode,data);
+}
