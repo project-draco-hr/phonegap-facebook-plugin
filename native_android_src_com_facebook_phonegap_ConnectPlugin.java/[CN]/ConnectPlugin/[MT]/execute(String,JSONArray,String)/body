@@ -33,7 +33,20 @@
         this.facebook.authorize(this.ctx,permissions,1234567890,new DialogListener(){
           @Override public void onComplete(          Bundle values){
             Log.d("FB","authorized");
-            me.success(getResponse(),callbackId);
+            try {
+              JSONObject o=new JSONObject(me.facebook.request("/me"));
+              me.userId=o.getString("id");
+              me.success(getResponse(),callbackId);
+            }
+ catch (            MalformedURLException e) {
+              e.printStackTrace();
+            }
+catch (            IOException e) {
+              e.printStackTrace();
+            }
+catch (            JSONException e) {
+              e.printStackTrace();
+            }
           }
           @Override public void onFacebookError(          FacebookError error){
             Log.d("FB","facebook error");
