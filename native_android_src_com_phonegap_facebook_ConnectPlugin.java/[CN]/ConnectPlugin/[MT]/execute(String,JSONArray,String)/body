@@ -4,11 +4,16 @@
   if (action.equals("init")) {
     try {
       facebook=new Facebook(args.getString(0));
+      appSecret=this.ctx.getPackageManager().getApplicationInfo(this.ctx.getPackageName(),PackageManager.GET_META_DATA).metaData.getString("app_secret");
       return new PluginResult(PluginResult.Status.OK);
     }
  catch (    JSONException e) {
       e.printStackTrace();
       return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. expected a string as the first arg.");
+    }
+catch (    NameNotFoundException e) {
+      e.printStackTrace();
+      return new PluginResult(PluginResult.Status.ERROR,"You need to define the app_secret in your Android Manifest like this.");
     }
   }
  else   if (action.equals("login")) {
