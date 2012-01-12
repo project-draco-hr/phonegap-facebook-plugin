@@ -4,7 +4,12 @@
   if (action.equals("init")) {
     try {
       String appId=args.getString(0);
-      secret=this.ctx.getPackageManager().getApplicationInfo(this.ctx.getPackageName(),PackageManager.GET_META_DATA).metaData.getString("app_secret");
+      try {
+        secret=this.ctx.getPackageManager().getApplicationInfo(this.ctx.getPackageName(),PackageManager.GET_META_DATA).metaData.getString("app_secret");
+      }
+ catch (      NameNotFoundException e) {
+        return new PluginResult(PluginResult.Status.ERROR,"No app-secret <meta-data> element found in Android Manifest! Please read the README");
+      }
       facebook=new Facebook(appId);
       Log.d(TAG,"init: Initializing plugin.");
       SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx);
