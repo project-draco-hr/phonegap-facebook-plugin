@@ -3,23 +3,46 @@
   pr.setKeepCallback(true);
   if (action.equals("init")) {
     try {
-      facebook=new Facebook(args.getString(0));
-      appSecret=this.ctx.getPackageManager().getApplicationInfo(this.ctx.getPackageName(),PackageManager.GET_META_DATA).metaData.getString("app_secret");
-      return new PluginResult(PluginResult.Status.OK);
+      String appId=args.getString(0);
+      secret=this.ctx.getPackageManager().getApplicationInfo(this.ctx.getPackageName(),PackageManager.GET_META_DATA).metaData.getString("app_secret");
+      facebook=new Facebook(appId);
+      Log.d(TAG,"init: Initializing plugin.");
+      SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx);
+      String access_token=prefs.getString("access_token",null);
+      Long expires=prefs.getLong("access_expires",-1);
+      if (access_token != null && expires != -1) {
+        this.facebook.setAccessToken(access_token);
+        this.facebook.setAccessExpires(expires);
+        try {
+          JSONObject o=new JSONObject(this.facebook.request("/me"));
+          this.userId=o.getString("id");
+        }
+ catch (        MalformedURLException e) {
+          e.printStackTrace();
+        }
+catch (        IOException e) {
+          e.printStackTrace();
+        }
+catch (        JSONException e) {
+          e.printStackTrace();
+        }
+      }
+      if (facebook.isSessionValid() && this.userId != null) {
+        return new PluginResult(PluginResult.Status.OK,this.getResponse());
+      }
+ else {
+        return new PluginResult(PluginResult.Status.NO_RESULT);
+      }
     }
  catch (    JSONException e) {
       e.printStackTrace();
       return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. expected a string as the first arg.");
     }
-catch (    NameNotFoundException e) {
-      e.printStackTrace();
-      return new PluginResult(PluginResult.Status.ERROR,"You need to define the app_secret in your Android Manifest like this.");
-    }
   }
  else   if (action.equals("login")) {
     if (facebook != null) {
       if (facebook.isSessionValid()) {
-        Log.d("FB","Session already valid");
+        Log.d(TAG,"login: Session already valid.");
         pr=new PluginResult(PluginResult.Status.OK,getResponse());
       }
  else {
@@ -35,48 +58,28 @@ catch (    NameNotFoundException e) {
           return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. Expected a string array of permissions.");
         }
         this.ctx.setActivityResultCallback(this);
-        this.facebook.authorize(this.ctx,permissions,1234567890,new DialogListener(){
-          @Override public void onComplete(          Bundle values){
-            Log.d("FB","authorized");
-            try {
-              JSONObject o=new JSONObject(me.facebook.request("/me"));
-              me.userId=o.getString("id");
-              me.success(getResponse(),callbackId);
-            }
- catch (            MalformedURLException e) {
-              e.printStackTrace();
-            }
-catch (            IOException e) {
-              e.printStackTrace();
-            }
-catch (            JSONException e) {
-              e.printStackTrace();
-            }
-          }
-          @Override public void onFacebookError(          FacebookError error){
-            Log.d("FB","facebook error");
-            me.error("Facebook error: " + error.getMessage(),callbackId);
-          }
-          @Override public void onError(          DialogError e){
-            Log.d("FB","other error");
-            me.error("Dialog error: " + e.getMessage(),callbackId);
-          }
-          @Override public void onCancel(){
-            Log.d("FB","cancel");
-            me.error("Cancelled",callbackId);
+        this.permissions=permissions;
+        this.callbackId=callbackId;
+        Runnable runnable=new Runnable(){
+          public void run(){
+            me.facebook.authorize((Activity)me.ctx,me.permissions,new AuthorizeListener(me));
           }
         }
-);
+;
+        this.ctx.runOnUiThread(runnable);
       }
     }
  else {
-      pr=new PluginResult(PluginResult.Status.ERROR,"Must call FB.init before FB.login");
+      pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before login.");
     }
   }
  else   if (action.equals("logout")) {
     if (facebook != null) {
       try {
         facebook.logout(this.ctx);
+        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx);
+        prefs.edit().putLong("access_expires",-1).commit();
+        prefs.edit().putString("access_token",null).commit();
       }
  catch (      MalformedURLException e) {
         e.printStackTrace();

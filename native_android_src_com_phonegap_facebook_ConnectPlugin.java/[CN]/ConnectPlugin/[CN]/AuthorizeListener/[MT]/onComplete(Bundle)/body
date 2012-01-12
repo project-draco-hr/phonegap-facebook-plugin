@@ -1,0 +1,23 @@
+{
+  String token=this.fba.facebook.getAccessToken();
+  long token_expires=this.fba.facebook.getAccessExpires();
+  SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.fba.ctx);
+  prefs.edit().putLong("access_expires",token_expires).commit();
+  prefs.edit().putString("access_token",token).commit();
+  Log.d(TAG,"authorized");
+  Log.d(TAG,values.toString());
+  try {
+    JSONObject o=new JSONObject(this.fba.facebook.request("/me"));
+    this.fba.userId=o.getString("id");
+    this.fba.success(getResponse(),this.fba.callbackId);
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+catch (  JSONException e) {
+    e.printStackTrace();
+  }
+}
