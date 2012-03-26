@@ -6,7 +6,7 @@
       String appId=args.getString(0);
       facebook=new Facebook(appId);
       Log.d(TAG,"init: Initializing plugin.");
-      SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx);
+      SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx.getContext());
       String access_token=prefs.getString("access_token",null);
       Long expires=prefs.getLong("access_expires",-1);
       if (access_token != null && expires != -1) {
@@ -75,8 +75,8 @@ catch (        JSONException e) {
  else   if (action.equals("logout")) {
     if (facebook != null) {
       try {
-        facebook.logout(this.ctx);
-        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx);
+        facebook.logout(this.ctx.getContext());
+        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx.getContext());
         prefs.edit().putLong("access_expires",-1).commit();
         prefs.edit().putString("access_token",null).commit();
       }
@@ -100,6 +100,50 @@ catch (      IOException e) {
     }
  else {
       pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before getLoginStatus.");
+    }
+  }
+ else   if (action.equals("showDialog")) {
+    if (facebook != null) {
+      Bundle collect=new Bundle();
+      JSONObject params=null;
+      try {
+        params=args.getJSONObject(0);
+      }
+ catch (      JSONException e) {
+        params=new JSONObject();
+      }
+      final ConnectPlugin me=this;
+      Iterator<String> iter=params.keys();
+      while (iter.hasNext()) {
+        String key=iter.next();
+        if (key.equals("method")) {
+          try {
+            this.method=params.getString(key);
+          }
+ catch (          JSONException e) {
+            Log.w(TAG,"Nonstring method parameter provided to dialog");
+          }
+        }
+ else {
+          try {
+            collect.putString(key,params.getString(key));
+          }
+ catch (          JSONException e) {
+            Log.w(TAG,"Nonstring parameter provided to dialog discarded");
+          }
+        }
+      }
+      this.paramBundle=new Bundle(collect);
+      Runnable runnable=new Runnable(){
+        public void run(){
+          me.facebook.dialog(me.ctx.getContext(),me.method,me.paramBundle,new UIDialogListener(me));
+        }
+      }
+;
+      this.ctx.runOnUiThread(runnable);
+    }
+ else {
+      pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before showDialog.");
     }
   }
   return pr;
