@@ -1,0 +1,10 @@
+{
+  String response="{" + "\"status\": \"" + (facebook.isSessionValid() ? "connected" : "unknown") + "\","+ "\"authResponse\": {"+ "\"accessToken\": \""+ facebook.getAccessToken()+ "\","+ "\"expiresIn\": \""+ facebook.getAccessExpires()+ "\","+ "\"session_key\": true,"+ "\"sig\": \"...\","+ "\"userId\": \""+ this.userId+ "\""+ "}"+ "}";
+  try {
+    return new JSONObject(response);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return new JSONObject();
+}
