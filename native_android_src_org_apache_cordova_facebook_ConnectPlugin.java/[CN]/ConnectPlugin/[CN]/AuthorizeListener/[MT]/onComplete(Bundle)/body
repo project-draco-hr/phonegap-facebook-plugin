@@ -1,7 +1,7 @@
 {
   String token=this.fba.facebook.getAccessToken();
   long token_expires=this.fba.facebook.getAccessExpires();
-  SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.fba.ctx);
+  SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.fba.ctx.getContext());
   prefs.edit().putLong("access_expires",token_expires).commit();
   prefs.edit().putString("access_token",token).commit();
   Log.d(TAG,"authorized");

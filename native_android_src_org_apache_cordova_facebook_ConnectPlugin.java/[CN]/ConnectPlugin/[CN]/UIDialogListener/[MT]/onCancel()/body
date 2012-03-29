@@ -1,0 +1,4 @@
+{
+  Log.d(TAG,"cancel");
+  this.fba.error("Cancelled",this.fba.callbackId);
+}
