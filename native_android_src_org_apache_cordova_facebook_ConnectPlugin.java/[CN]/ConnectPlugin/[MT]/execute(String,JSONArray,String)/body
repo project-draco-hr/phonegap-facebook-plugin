@@ -6,7 +6,7 @@
       String appId=args.getString(0);
       facebook=new Facebook(appId);
       Log.d(TAG,"init: Initializing plugin.");
-      SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx.getContext());
+      SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(cordova.getActivity());
       String access_token=prefs.getString("access_token",null);
       Long expires=prefs.getLong("access_expires",-1);
       if (access_token != null && expires != -1) {
@@ -51,16 +51,16 @@ catch (        JSONException e) {
         e1.printStackTrace();
         return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. Expected a string array of permissions.");
       }
-      this.ctx.setActivityResultCallback(this);
+      cordova.setActivityResultCallback(this);
       this.permissions=permissions;
       this.callbackId=callbackId;
       Runnable runnable=new Runnable(){
         public void run(){
-          me.facebook.authorize((Activity)me.ctx,me.permissions,new AuthorizeListener(me));
+          me.facebook.authorize(cordova.getActivity(),me.permissions,new AuthorizeListener(me));
         }
       }
 ;
-      this.ctx.runOnUiThread(runnable);
+      cordova.getActivity().runOnUiThread(runnable);
     }
  else {
       pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before login.");
@@ -69,8 +69,8 @@ catch (        JSONException e) {
  else   if (action.equals("logout")) {
     if (facebook != null) {
       try {
-        facebook.logout(this.ctx.getContext());
-        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.ctx.getContext());
+        facebook.logout(cordova.getActivity());
+        SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity());
         prefs.edit().putLong("access_expires",-1).commit();
         prefs.edit().putString("access_token",null).commit();
       }
@@ -131,11 +131,11 @@ catch (      IOException e) {
       this.callbackId=callbackId;
       Runnable runnable=new Runnable(){
         public void run(){
-          me.facebook.dialog(me.ctx.getContext(),me.method,me.paramBundle,new UIDialogListener(me));
+          me.facebook.dialog(me.cordova.getActivity(),me.method,me.paramBundle,new UIDialogListener(me));
         }
       }
 ;
-      this.ctx.runOnUiThread(runnable);
+      cordova.getActivity().runOnUiThread(runnable);
     }
  else {
       pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before showDialog.");
