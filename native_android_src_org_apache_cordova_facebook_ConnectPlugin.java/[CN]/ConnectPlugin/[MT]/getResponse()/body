@@ -1,5 +1,11 @@
 {
-  String response="{" + "\"status\": \"" + (facebook.isSessionValid() ? "connected" : "unknown") + "\","+ "\"authResponse\": {"+ "\"accessToken\": \""+ facebook.getAccessToken()+ "\","+ "\"expiresIn\": \""+ facebook.getAccessExpires()+ "\","+ "\"session_key\": true,"+ "\"sig\": \"...\","+ "\"userId\": \""+ this.userId+ "\""+ "}"+ "}";
+  String response;
+  if (facebook.isSessionValid()) {
+    response="{" + "\"status\": \"connected\"," + "\"authResponse\": {"+ "\"accessToken\": \"" + facebook.getAccessToken() + "\","+ "\"expiresIn\": \""+ facebook.getAccessExpires()+ "\","+ "\"session_key\": true,"+ "\"sig\": \"...\","+ "\"userId\": \""+ this.userId+ "\""+ "}"+ "}";
+  }
+ else {
+    response="{" + "\"status\": \"unknown\"" + "}";
+  }
   try {
     return new JSONObject(response);
   }
