@@ -1,4 +1,4 @@
 {
   Log.d(TAG,"cancel");
-  this.fba.error("Cancelled",this.fba.callbackId);
+  this.fba.success(new PluginResult(PluginResult.Status.NO_RESULT),this.fba.dialogCallbackId);
 }
