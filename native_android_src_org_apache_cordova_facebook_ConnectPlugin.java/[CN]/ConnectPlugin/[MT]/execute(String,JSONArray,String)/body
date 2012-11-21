@@ -5,7 +5,6 @@
     try {
       Log.d(TAG,"init: Initializing plugin.");
       applicationId=args.getString(0);
-      facebook=new Facebook(applicationId);
       this.loginCallbackId=callbackId;
       Session session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
       if (session.getState() == SessionState.CREATED_TOKEN_LOADED) {
@@ -107,48 +106,59 @@
     pr=new PluginResult(PluginResult.Status.OK,getResponse());
   }
  else   if (action.equals("showDialog")) {
-    if (facebook != null) {
-      Bundle collect=new Bundle();
-      JSONObject params=null;
-      try {
-        params=args.getJSONObject(0);
-      }
- catch (      JSONException e) {
-        params=new JSONObject();
-      }
-      final ConnectPlugin me=this;
-      Iterator<?> iter=params.keys();
-      while (iter.hasNext()) {
-        String key=(String)iter.next();
-        if (key.equals("method")) {
-          try {
-            this.method=params.getString(key);
-          }
- catch (          JSONException e) {
-            Log.w(TAG,"Nonstring method parameter provided to dialog");
-          }
+    Bundle collect=new Bundle();
+    JSONObject params=null;
+    try {
+      params=args.getJSONObject(0);
+    }
+ catch (    JSONException e) {
+      params=new JSONObject();
+    }
+    final ConnectPlugin me=this;
+    Iterator<?> iter=params.keys();
+    while (iter.hasNext()) {
+      String key=(String)iter.next();
+      if (key.equals("method")) {
+        try {
+          this.method=params.getString(key);
         }
+ catch (        JSONException e) {
+          Log.w(TAG,"Nonstring method parameter provided to dialog");
+        }
+      }
  else {
-          try {
-            collect.putString(key,params.getString(key));
-          }
- catch (          JSONException e) {
-            Log.w(TAG,"Nonstring parameter provided to dialog discarded");
-          }
+        try {
+          collect.putString(key,params.getString(key));
+        }
+ catch (        JSONException e) {
+          Log.w(TAG,"Nonstring parameter provided to dialog discarded");
         }
       }
-      this.paramBundle=new Bundle(collect);
-      this.dialogCallbackId=callbackId;
+    }
+    this.paramBundle=new Bundle(collect);
+    this.dialogCallbackId=callbackId;
+    if (this.method.equals(FEED_DIALOG)) {
       Runnable runnable=new Runnable(){
         public void run(){
-          me.facebook.dialog(me.cordova.getActivity(),me.method,me.paramBundle,new UIDialogListener(me));
+          WebDialog feedDialog=(new WebDialog.FeedDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(me)).build();
+          feedDialog.show();
+        }
+      }
+;
+      cordova.getActivity().runOnUiThread(runnable);
+    }
+ else     if (this.method.equals(APPREQUESTS_DIALOG)) {
+      Runnable runnable=new Runnable(){
+        public void run(){
+          WebDialog requestsDialog=(new WebDialog.RequestsDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(me)).build();
+          requestsDialog.show();
         }
       }
 ;
       cordova.getActivity().runOnUiThread(runnable);
     }
  else {
-      pr=new PluginResult(PluginResult.Status.ERROR,"Must call init before showDialog.");
+      pr=new PluginResult(PluginResult.Status.ERROR,"Unsupported dialog method.");
     }
   }
   return pr;

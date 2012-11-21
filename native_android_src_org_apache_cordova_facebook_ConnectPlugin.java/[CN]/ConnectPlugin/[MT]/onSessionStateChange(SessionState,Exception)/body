@@ -2,6 +2,5 @@
   final Session session=Session.getActiveSession();
   if (state.isOpened()) {
     getUserInfo(session);
-    facebook.setSession(session);
   }
 }
