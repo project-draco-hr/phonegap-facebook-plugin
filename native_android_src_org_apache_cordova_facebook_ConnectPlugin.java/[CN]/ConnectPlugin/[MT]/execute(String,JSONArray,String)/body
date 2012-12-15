@@ -9,7 +9,14 @@
       Session session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
       if (session.getState() == SessionState.CREATED_TOKEN_LOADED) {
         Session.setActiveSession(session);
-        session.open();
+        Session.OpenRequest openRequest=new Session.OpenRequest(cordova.getActivity());
+        openRequest.setCallback(new Session.StatusCallback(){
+          @Override public void call(          Session session,          SessionState state,          Exception exception){
+            onSessionStateChange(state,exception);
+          }
+        }
+);
+        session.openForRead(openRequest);
       }
       if (session != null && session.isOpened()) {
         onSessionStateChange(session.getState(),null);
@@ -61,13 +68,13 @@
         pr=new PluginResult(PluginResult.Status.ERROR,"Cannot ask for both read and publish permissions.");
       }
  else {
-        Session.ReauthorizeRequest reauthorizeRequest=new Session.ReauthorizeRequest(cordova.getActivity(),permissions);
+        Session.NewPermissionsRequest newPermissionsRequest=new Session.NewPermissionsRequest(cordova.getActivity(),permissions);
         cordova.setActivityResultCallback(this);
         if (publishPermissions) {
-          session.reauthorizeForPublish(reauthorizeRequest);
+          session.requestNewPublishPermissions(newPermissionsRequest);
         }
  else {
-          session.reauthorizeForRead(reauthorizeRequest);
+          session.requestNewReadPermissions(newPermissionsRequest);
         }
       }
     }
