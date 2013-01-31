@@ -1,0 +1,8 @@
+{
+  if (user != null) {
+    this.fba.userId=user.getId();
+  }
+  PluginResult result=new PluginResult(PluginResult.Status.OK,this.fba.getResponse());
+  result.setKeepCallback(false);
+  this.fba.success(result,this.fba.loginCallbackId);
+}
