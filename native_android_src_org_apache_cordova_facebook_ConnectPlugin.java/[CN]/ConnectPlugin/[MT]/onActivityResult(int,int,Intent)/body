@@ -1,0 +1,7 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  Session session=Session.getActiveSession();
+  if (session != null) {
+    session.onActivityResult(cordova.getActivity(),requestCode,resultCode,data);
+  }
+}
