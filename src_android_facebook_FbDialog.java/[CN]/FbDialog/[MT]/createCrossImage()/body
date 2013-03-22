@@ -1,0 +1,14 @@
+{
+  mCrossImage=new ImageView(getContext());
+  mCrossImage.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      mListener.onCancel();
+      FbDialog.this.dismiss();
+    }
+  }
+);
+  int id=getContext().getResources().getIdentifier("close","drawable",getContext().getPackageName());
+  Drawable crossDrawable=getContext().getResources().getDrawable(id);
+  mCrossImage.setImageDrawable(crossDrawable);
+  mCrossImage.setVisibility(View.INVISIBLE);
+}

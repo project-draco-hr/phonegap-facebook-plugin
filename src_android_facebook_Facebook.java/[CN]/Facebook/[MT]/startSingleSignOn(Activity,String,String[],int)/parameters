@@ -1,0 +1,4 @@
+Activity activity
+String applicationId
+String[] permissions
+int activityCode

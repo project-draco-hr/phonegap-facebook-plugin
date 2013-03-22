@@ -1,0 +1,3 @@
+String accessToken
+long accessExpires
+long lastAccessUpdate

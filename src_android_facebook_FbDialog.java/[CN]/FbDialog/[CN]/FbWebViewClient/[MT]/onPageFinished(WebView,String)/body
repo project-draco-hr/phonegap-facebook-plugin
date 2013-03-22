@@ -1,0 +1,7 @@
+{
+  super.onPageFinished(view,url);
+  mSpinner.dismiss();
+  mContent.setBackgroundColor(Color.TRANSPARENT);
+  mWebView.setVisibility(View.VISIBLE);
+  mCrossImage.setVisibility(View.VISIBLE);
+}

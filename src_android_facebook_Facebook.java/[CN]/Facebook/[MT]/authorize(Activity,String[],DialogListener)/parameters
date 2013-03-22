@@ -1,0 +1,3 @@
+Activity activity
+String[] permissions
+DialogListener listener

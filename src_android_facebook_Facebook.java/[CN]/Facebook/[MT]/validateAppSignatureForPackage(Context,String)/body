@@ -1,0 +1,15 @@
+{
+  PackageInfo packageInfo;
+  try {
+    packageInfo=context.getPackageManager().getPackageInfo(packageName,PackageManager.GET_SIGNATURES);
+  }
+ catch (  NameNotFoundException e) {
+    return false;
+  }
+  for (  Signature signature : packageInfo.signatures) {
+    if (signature.toCharsString().equals(FB_APP_SIGNATURE)) {
+      return true;
+    }
+  }
+  return false;
+}

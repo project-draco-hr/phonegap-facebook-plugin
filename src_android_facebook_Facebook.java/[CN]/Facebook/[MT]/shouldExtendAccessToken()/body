@@ -1,0 +1,3 @@
+{
+  return isSessionValid() && (System.currentTimeMillis() - mLastAccessUpdate >= REFRESH_TOKEN_BARRIER);
+}

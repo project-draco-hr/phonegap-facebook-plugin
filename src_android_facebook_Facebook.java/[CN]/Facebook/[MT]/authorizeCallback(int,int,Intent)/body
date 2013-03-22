@@ -1,0 +1,49 @@
+{
+  if (requestCode == mAuthActivityCode) {
+    if (resultCode == Activity.RESULT_OK) {
+      String error=data.getStringExtra("error");
+      if (error == null) {
+        error=data.getStringExtra("error_type");
+      }
+      if (error != null) {
+        if (error.equals(SINGLE_SIGN_ON_DISABLED) || error.equals("AndroidAuthKillSwitchException")) {
+          Util.logd("Facebook-authorize","Hosted auth currently " + "disabled. Retrying dialog auth...");
+          startDialogAuth(mAuthActivity,mAuthPermissions);
+        }
+ else         if (error.equals("access_denied") || error.equals("OAuthAccessDeniedException")) {
+          Util.logd("Facebook-authorize","Login canceled by user.");
+          mAuthDialogListener.onCancel();
+        }
+ else {
+          String description=data.getStringExtra("error_description");
+          if (description != null) {
+            error=error + ":" + description;
+          }
+          Util.logd("Facebook-authorize","Login failed: " + error);
+          mAuthDialogListener.onFacebookError(new FacebookError(error));
+        }
+      }
+ else {
+        setAccessToken(data.getStringExtra(TOKEN));
+        setAccessExpiresIn(data.getStringExtra(EXPIRES));
+        if (isSessionValid()) {
+          Util.logd("Facebook-authorize","Login Success! access_token=" + getAccessToken() + " expires="+ getAccessExpires());
+          mAuthDialogListener.onComplete(data.getExtras());
+        }
+ else {
+          mAuthDialogListener.onFacebookError(new FacebookError("Failed to receive access token."));
+        }
+      }
+    }
+ else     if (resultCode == Activity.RESULT_CANCELED) {
+      if (data != null) {
+        Util.logd("Facebook-authorize","Login failed: " + data.getStringExtra("error"));
+        mAuthDialogListener.onError(new DialogError(data.getStringExtra("error"),data.getIntExtra("error_code",-1),data.getStringExtra("failing_url")));
+      }
+ else {
+        Util.logd("Facebook-authorize","Login canceled by user.");
+        mAuthDialogListener.onCancel();
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  String attributionId=Facebook.getAttributionId(context.getContentResolver());
+  SharedPreferences preferences=context.getSharedPreferences(ATTRIBUTION_PREFERENCES,Context.MODE_PRIVATE);
+  String pingKey=applicationId + "ping";
+  long lastPing=preferences.getLong(pingKey,0);
+  if (lastPing == 0 && attributionId != null) {
+    Bundle supportsAttributionParams=new Bundle();
+    supportsAttributionParams.putString(APPLICATION_FIELDS,SUPPORTS_ATTRIBUTION);
+    JSONObject supportResponse=Util.parseJson(fb.request(applicationId,supportsAttributionParams));
+    Object doesSupportAttribution=(Boolean)supportResponse.get(SUPPORTS_ATTRIBUTION);
+    if (!(doesSupportAttribution instanceof Boolean)) {
+      throw new JSONException(String.format("%s contains %s instead of a Boolean",SUPPORTS_ATTRIBUTION,doesSupportAttribution));
+    }
+    if ((Boolean)doesSupportAttribution) {
+      Bundle publishParams=new Bundle();
+      publishParams.putString(ANALYTICS_EVENT,MOBILE_INSTALL_EVENT);
+      publishParams.putString(ATTRIBUTION_KEY,attributionId);
+      String publishUrl=String.format(PUBLISH_ACTIVITY_PATH,applicationId);
+      fb.request(publishUrl,publishParams,"POST");
+      SharedPreferences.Editor editor=preferences.edit();
+      editor.putLong(pingKey,System.currentTimeMillis());
+      editor.commit();
+    }
+  }
+}

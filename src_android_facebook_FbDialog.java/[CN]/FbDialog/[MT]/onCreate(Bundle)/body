@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  mSpinner=new ProgressDialog(getContext());
+  mSpinner.requestWindowFeature(Window.FEATURE_NO_TITLE);
+  mSpinner.setMessage("Loading...");
+  requestWindowFeature(Window.FEATURE_NO_TITLE);
+  mContent=new FrameLayout(getContext());
+  createCrossImage();
+  int crossWidth=mCrossImage.getDrawable().getIntrinsicWidth();
+  setUpWebView(crossWidth / 2);
+  mContent.addView(mCrossImage,new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+  addContentView(mContent,new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT));
+}

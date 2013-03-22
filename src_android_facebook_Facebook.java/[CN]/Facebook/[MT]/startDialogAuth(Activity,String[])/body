@@ -1,0 +1,34 @@
+{
+  Bundle params=new Bundle();
+  if (permissions.length > 0) {
+    params.putString("scope",TextUtils.join(",",permissions));
+  }
+  CookieSyncManager.createInstance(activity);
+  dialog(activity,LOGIN,params,new DialogListener(){
+    public void onComplete(    Bundle values){
+      CookieSyncManager.getInstance().sync();
+      setAccessToken(values.getString(TOKEN));
+      setAccessExpiresIn(values.getString(EXPIRES));
+      if (isSessionValid()) {
+        Util.logd("Facebook-authorize","Login Success! access_token=" + getAccessToken() + " expires="+ getAccessExpires());
+        mAuthDialogListener.onComplete(values);
+      }
+ else {
+        mAuthDialogListener.onFacebookError(new FacebookError("Failed to receive access token."));
+      }
+    }
+    public void onError(    DialogError error){
+      Util.logd("Facebook-authorize","Login failed: " + error);
+      mAuthDialogListener.onError(error);
+    }
+    public void onFacebookError(    FacebookError error){
+      Util.logd("Facebook-authorize","Login failed: " + error);
+      mAuthDialogListener.onFacebookError(error);
+    }
+    public void onCancel(){
+      Util.logd("Facebook-authorize","Login canceled");
+      mAuthDialogListener.onCancel();
+    }
+  }
+);
+}

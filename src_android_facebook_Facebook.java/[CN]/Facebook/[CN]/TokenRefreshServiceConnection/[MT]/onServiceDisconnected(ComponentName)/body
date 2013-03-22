@@ -1,0 +1,4 @@
+{
+  serviceListener.onError(new Error("Service disconnected"));
+  applicationsContext.unbindService(TokenRefreshServiceConnection.this);
+}

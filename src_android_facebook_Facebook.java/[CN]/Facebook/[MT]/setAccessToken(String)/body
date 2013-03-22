@@ -1,0 +1,4 @@
+{
+  mAccessToken=token;
+  mLastAccessUpdate=System.currentTimeMillis();
+}

@@ -1,0 +1,6 @@
+{
+  if (expiresIn != null) {
+    long expires=expiresIn.equals("0") ? 0 : System.currentTimeMillis() + Long.parseLong(expiresIn) * 1000L;
+    setAccessExpires(expires);
+  }
+}

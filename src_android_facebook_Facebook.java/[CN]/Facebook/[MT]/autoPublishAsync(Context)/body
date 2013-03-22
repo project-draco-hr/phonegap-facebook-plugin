@@ -1,0 +1,14 @@
+{
+  AutoPublishAsyncTask asyncTask=null;
+synchronized (this) {
+    if (mAutoPublishAsyncTask == null && getShouldAutoPublishInstall()) {
+      String applicationId=Facebook.this.mAppId;
+      if (applicationId != null) {
+        asyncTask=mAutoPublishAsyncTask=new AutoPublishAsyncTask(applicationId,context);
+      }
+    }
+  }
+  if (asyncTask != null) {
+    asyncTask.execute();
+  }
+}
