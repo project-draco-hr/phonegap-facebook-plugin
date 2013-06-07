@@ -1,46 +1,29 @@
 {
-  PluginResult pr=new PluginResult(PluginResult.Status.NO_RESULT);
-  pr.setKeepCallback(true);
   if (action.equals("init")) {
-    try {
-      Log.d(TAG,"init: Initializing plugin.");
-      applicationId=args.getString(0);
-      this.loginCallbackId=callbackId;
-      Session session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
-      if (session.getState() == SessionState.CREATED_TOKEN_LOADED) {
-        Session.setActiveSession(session);
-        Session.OpenRequest openRequest=new Session.OpenRequest(cordova.getActivity());
-        openRequest.setCallback(new Session.StatusCallback(){
-          @Override public void call(          Session session,          SessionState state,          Exception exception){
-            onSessionStateChange(state,exception);
-          }
+    Log.d(TAG,"init: Initializing plugin.");
+    applicationId=args.getString(0);
+    Session session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
+    if (session.getState() == SessionState.CREATED_TOKEN_LOADED) {
+      Session.setActiveSession(session);
+      Session.OpenRequest openRequest=new Session.OpenRequest(cordova.getActivity());
+      openRequest.setCallback(new Session.StatusCallback(){
+        @Override public void call(        Session session,        SessionState state,        Exception exception){
+          onSessionStateChange(state,exception,callbackContext);
         }
+      }
 );
-        session.openForRead(openRequest);
-      }
-      if (session != null && session.isOpened()) {
-        onSessionStateChange(session.getState(),null);
-      }
- else {
-        return new PluginResult(PluginResult.Status.OK);
-      }
+      session.openForRead(openRequest);
     }
- catch (    JSONException e) {
-      e.printStackTrace();
-      return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. expected a string as the first arg.");
+    if (session != null && session.isOpened()) {
+      onSessionStateChange(session.getState(),null,callbackContext);
     }
+    return true;
   }
  else   if (action.equals("login")) {
     this.loginCallbackId=callbackId;
     String[] arrayPermissions=new String[args.length()];
-    try {
-      for (int i=0; i < args.length(); i++) {
-        arrayPermissions[i]=args.getString(i);
-      }
-    }
- catch (    JSONException e1) {
-      e1.printStackTrace();
-      return new PluginResult(PluginResult.Status.ERROR,"Invalid JSON args used. Expected a string array of permissions.");
+    for (int i=0; i < args.length(); i++) {
+      arrayPermissions[i]=args.getString(i);
     }
     List<String> permissions=null;
     if (arrayPermissions.length > 0) {
@@ -85,13 +68,14 @@
       openRequest.setPermissions(permissions);
       openRequest.setCallback(new Session.StatusCallback(){
         @Override public void call(        Session session,        SessionState state,        Exception exception){
-          onSessionStateChange(state,exception);
+          onSessionStateChange(state,exception,callbackContext);
         }
       }
 );
       cordova.setActivityResultCallback(this);
       session.openForRead(openRequest);
     }
+    return true;
   }
  else   if (action.equals("logout")) {
     Session session=Session.getActiveSession();
@@ -99,18 +83,20 @@
       if (session.isOpened()) {
         session.closeAndClearTokenInformation();
         userId=null;
-        pr=new PluginResult(PluginResult.Status.OK,getResponse());
+        callbackContext.success(getResponse());
       }
  else {
-        pr=new PluginResult(PluginResult.Status.ERROR,"Session not open.");
+        callbackContext.error("Session not open.");
       }
     }
  else {
-      pr=new PluginResult(PluginResult.Status.ERROR,"No valid session found, must call init and login before logout.");
+      callbackContext.error("No valid session found, must call init and login before logout.");
     }
+    return true;
   }
  else   if (action.equals("getLoginStatus")) {
-    pr=new PluginResult(PluginResult.Status.OK,getResponse());
+    callbackContext.success(getResponse());
+    return true;
   }
  else   if (action.equals("showDialog")) {
     Bundle collect=new Bundle();
@@ -147,7 +133,7 @@
     if (this.method.equals(FEED_DIALOG)) {
       Runnable runnable=new Runnable(){
         public void run(){
-          WebDialog feedDialog=(new WebDialog.FeedDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(me)).build();
+          WebDialog feedDialog=(new WebDialog.FeedDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(callbackContext)).build();
           feedDialog.show();
         }
       }
@@ -157,7 +143,7 @@
  else     if (this.method.equals(APPREQUESTS_DIALOG)) {
       Runnable runnable=new Runnable(){
         public void run(){
-          WebDialog requestsDialog=(new WebDialog.RequestsDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(me)).build();
+          WebDialog requestsDialog=(new WebDialog.RequestsDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(new UIDialogListener(callbackContext)).build();
           requestsDialog.show();
         }
       }
@@ -165,8 +151,9 @@
       cordova.getActivity().runOnUiThread(runnable);
     }
  else {
-      pr=new PluginResult(PluginResult.Status.ERROR,"Unsupported dialog method.");
+      callbackContext.error("Unsupported dialog method.");
     }
+    return true;
   }
-  return pr;
+  return false;
 }

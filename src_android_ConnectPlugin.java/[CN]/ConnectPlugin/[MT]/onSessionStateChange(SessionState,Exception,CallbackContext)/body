@@ -1,6 +1,6 @@
 {
   final Session session=Session.getActiveSession();
   if (state.isOpened()) {
-    getUserInfo(session);
+    getUserInfo(session,callbackContext);
   }
 }
