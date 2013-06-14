@@ -2,15 +2,15 @@
   if (exception != null) {
     if (exception instanceof FacebookOperationCanceledException) {
       Log.d(TAG,"cancel");
-      this.fba.success(new PluginResult(PluginResult.Status.NO_RESULT),this.fba.dialogCallbackId);
+      callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
     }
  else     if (exception instanceof FacebookDialogException) {
       Log.d(TAG,"other error");
-      this.fba.error("Dialog error: " + exception.getMessage(),this.fba.dialogCallbackId);
+      callbackContext.error("Dialog error: " + exception.getMessage());
     }
  else {
       Log.d(TAG,"facebook error");
-      this.fba.error("Facebook error: " + exception.getMessage(),this.fba.dialogCallbackId);
+      callbackContext.error("Facebook error: " + exception.getMessage());
     }
   }
  else {
@@ -25,10 +25,10 @@
  catch (      JSONException e) {
         e.printStackTrace();
       }
-      this.fba.success(new PluginResult(PluginResult.Status.OK,response),this.fba.dialogCallbackId);
+      callbackContext.success(response);
     }
  else {
-      this.fba.success(new PluginResult(PluginResult.Status.OK),this.fba.dialogCallbackId);
+      callbackContext.success();
     }
   }
 }
