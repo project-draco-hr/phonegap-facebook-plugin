@@ -1,0 +1,4 @@
+{
+  Log.d(TAG,"other error");
+  this.fba.error("Dialog error: " + e.getMessage(),this.fba.callbackId);
+}

@@ -1,5 +1,0 @@
-{
-  super();
-  this.fba=fba;
-  this.context=callbackContext;
-}
