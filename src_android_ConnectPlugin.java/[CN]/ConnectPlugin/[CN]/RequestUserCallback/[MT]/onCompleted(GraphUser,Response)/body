@@ -1,0 +1,6 @@
+{
+  if (user != null) {
+    this.fba.userId=user.getId();
+  }
+  context.success(getResponse());
+}

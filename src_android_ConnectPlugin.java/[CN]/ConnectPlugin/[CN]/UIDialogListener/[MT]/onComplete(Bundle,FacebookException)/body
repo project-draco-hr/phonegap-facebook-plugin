@@ -1,0 +1,34 @@
+{
+  if (exception != null) {
+    if (exception instanceof FacebookOperationCanceledException) {
+      Log.d(TAG,"cancel");
+      callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.NO_RESULT));
+    }
+ else     if (exception instanceof FacebookDialogException) {
+      Log.d(TAG,"other error");
+      callbackContext.error("Dialog error: " + exception.getMessage());
+    }
+ else {
+      Log.d(TAG,"facebook error");
+      callbackContext.error("Facebook error: " + exception.getMessage());
+    }
+  }
+ else {
+    if (values.size() > 0) {
+      JSONObject response=new JSONObject();
+      try {
+        Set<String> keys=values.keySet();
+        for (        String key : keys) {
+          response.put(key,values.get(key));
+        }
+      }
+ catch (      JSONException e) {
+        e.printStackTrace();
+      }
+      callbackContext.success(response);
+    }
+ else {
+      callbackContext.success();
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  final ConnectPlugin me=this;
+  Runnable runnable=new Runnable(){
+    public void run(){
+      Request request=Request.newMeRequest(session,new RequestUserCallback(me,callbackContext));
+      Request.executeBatchAsync(request);
+    }
+  }
+;
+  cordova.getActivity().runOnUiThread(runnable);
+}
