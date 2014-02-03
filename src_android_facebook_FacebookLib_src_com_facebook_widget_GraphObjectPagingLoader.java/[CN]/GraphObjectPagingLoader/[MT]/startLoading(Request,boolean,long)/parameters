@@ -1,0 +1,3 @@
+Request request
+boolean skipRoundtripIfCached
+long afterDelay

@@ -1,0 +1,23 @@
+{
+  super(context,attrs);
+  if (attrs.getStyleAttribute() == 0) {
+    this.setGravity(Gravity.CENTER);
+    this.setTextColor(getResources().getColor(R.color.com_facebook_loginview_text_color));
+    this.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.com_facebook_loginview_text_size));
+    this.setTypeface(Typeface.DEFAULT_BOLD);
+    if (isInEditMode()) {
+      this.setBackgroundColor(getResources().getColor(R.color.com_facebook_blue));
+      loginText="Log in with Facebook";
+    }
+ else {
+      this.setBackgroundResource(R.drawable.com_facebook_button_blue);
+      this.setCompoundDrawablesWithIntrinsicBounds(R.drawable.com_facebook_inverse_icon,0,0,0);
+      this.setCompoundDrawablePadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_compound_drawable_padding));
+      this.setPadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_left),getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_top),getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_right),getResources().getDimensionPixelSize(R.dimen.com_facebook_loginview_padding_bottom));
+    }
+  }
+  parseAttributes(attrs);
+  if (!isInEditMode()) {
+    initializeActiveSessionWithCachedToken(context);
+  }
+}

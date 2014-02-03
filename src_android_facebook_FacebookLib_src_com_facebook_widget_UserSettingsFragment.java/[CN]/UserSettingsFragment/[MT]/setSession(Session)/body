@@ -1,0 +1,8 @@
+{
+  super.setSession(newSession);
+  if (loginButton != null) {
+    loginButton.setSession(newSession);
+  }
+  fetchUserInfo();
+  updateUI();
+}

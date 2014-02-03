@@ -1,0 +1,13 @@
+{
+  Session session=Session.getActiveSession();
+  if (session == null) {
+    return null;
+  }
+  if (appEventsLogger == null || !appEventsLogger.isValidForSession(session)) {
+    if (appEventsLogger != null) {
+      AppEventsLogger.onContextStop();
+    }
+    appEventsLogger=AppEventsLogger.newLogger(activity,session);
+  }
+  return appEventsLogger;
+}

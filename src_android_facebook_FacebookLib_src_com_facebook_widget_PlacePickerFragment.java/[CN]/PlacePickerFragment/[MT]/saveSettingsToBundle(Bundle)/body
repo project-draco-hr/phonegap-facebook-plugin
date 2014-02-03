@@ -1,0 +1,8 @@
+{
+  super.saveSettingsToBundle(outState);
+  outState.putInt(RADIUS_IN_METERS_BUNDLE_KEY,radiusInMeters);
+  outState.putInt(RESULTS_LIMIT_BUNDLE_KEY,resultsLimit);
+  outState.putString(SEARCH_TEXT_BUNDLE_KEY,searchText);
+  outState.putParcelable(LOCATION_BUNDLE_KEY,location);
+  outState.putBoolean(SHOW_SEARCH_BOX_BUNDLE_KEY,showSearchBox);
+}

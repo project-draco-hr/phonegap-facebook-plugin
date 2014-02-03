@@ -1,0 +1,10 @@
+{
+  if (!running) {
+    return;
+  }
+  running=false;
+  CompletedListener callback=listener;
+  if (callback != null) {
+    callback.completed(result);
+  }
+}

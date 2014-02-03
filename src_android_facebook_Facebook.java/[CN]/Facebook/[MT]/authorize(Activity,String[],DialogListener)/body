@@ -1,3 +1,0 @@
-{
-  authorize(activity,permissions,DEFAULT_AUTH_ACTIVITY_CODE,listener);
-}

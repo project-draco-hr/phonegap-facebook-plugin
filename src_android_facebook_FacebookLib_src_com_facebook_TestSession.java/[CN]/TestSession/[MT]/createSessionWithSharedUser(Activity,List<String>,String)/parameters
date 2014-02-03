@@ -1,0 +1,3 @@
+Activity activity
+List<String> permissions
+String sessionUniqueUserTag

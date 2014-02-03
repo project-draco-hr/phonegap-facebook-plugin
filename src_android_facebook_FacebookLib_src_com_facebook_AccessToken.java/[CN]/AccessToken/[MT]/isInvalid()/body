@@ -1,0 +1,3 @@
+{
+  return Utility.isNullOrEmpty(this.token) || new Date().after(this.expires);
+}

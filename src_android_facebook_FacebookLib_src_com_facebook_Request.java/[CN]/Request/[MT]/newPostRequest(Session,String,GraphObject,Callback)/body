@@ -1,0 +1,5 @@
+{
+  Request request=new Request(session,graphPath,null,HttpMethod.POST,callback);
+  request.setGraphObject(graphObject);
+  return request;
+}

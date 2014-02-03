@@ -1,0 +1,9 @@
+{
+  if (pendingRequest == null || currentHandler == null) {
+    throw new FacebookException("Attempted to continue authorization without a pending request.");
+  }
+  if (currentHandler.needsRestart()) {
+    currentHandler.cancel();
+    tryCurrentHandler();
+  }
+}

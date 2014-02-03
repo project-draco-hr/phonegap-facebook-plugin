@@ -1,0 +1,18 @@
+{
+  InputStream stream=null;
+  if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+    URL url=connection.getURL();
+    stream=connection.getInputStream();
+    try {
+      if (isCDNURL(url.toURI())) {
+        FileLruCache cache=getCache(context);
+        stream=cache.interceptAndPut(url.toString(),new BufferedHttpInputStream(stream,connection));
+      }
+    }
+ catch (    IOException e) {
+    }
+catch (    URISyntaxException e) {
+    }
+  }
+  return stream;
+}

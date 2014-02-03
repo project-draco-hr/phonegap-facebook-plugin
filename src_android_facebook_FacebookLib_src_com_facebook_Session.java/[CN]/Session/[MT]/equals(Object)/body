@@ -1,0 +1,7 @@
+{
+  if (!(otherObj instanceof Session)) {
+    return false;
+  }
+  Session other=(Session)otherObj;
+  return areEqual(other.applicationId,applicationId) && areEqual(other.authorizationBundle,authorizationBundle) && areEqual(other.state,state)&& areEqual(other.getExpirationDate(),getExpirationDate());
+}

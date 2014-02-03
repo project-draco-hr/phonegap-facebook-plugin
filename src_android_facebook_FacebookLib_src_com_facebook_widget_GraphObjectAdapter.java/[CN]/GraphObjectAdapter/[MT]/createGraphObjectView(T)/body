@@ -1,0 +1,22 @@
+{
+  View result=inflater.inflate(getGraphObjectRowLayoutId(graphObject),null);
+  ViewStub checkboxStub=(ViewStub)result.findViewById(R.id.com_facebook_picker_checkbox_stub);
+  if (checkboxStub != null) {
+    if (!getShowCheckbox()) {
+      checkboxStub.setVisibility(View.GONE);
+    }
+ else {
+      CheckBox checkBox=(CheckBox)checkboxStub.inflate();
+      updateCheckboxState(checkBox,false);
+    }
+  }
+  ViewStub profilePicStub=(ViewStub)result.findViewById(R.id.com_facebook_picker_profile_pic_stub);
+  if (!getShowPicture()) {
+    profilePicStub.setVisibility(View.GONE);
+  }
+ else {
+    ImageView imageView=(ImageView)profilePicStub.inflate();
+    imageView.setVisibility(View.VISIBLE);
+  }
+  return result;
+}

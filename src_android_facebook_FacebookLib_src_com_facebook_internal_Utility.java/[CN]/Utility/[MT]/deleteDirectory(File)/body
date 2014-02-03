@@ -1,0 +1,11 @@
+{
+  if (!directoryOrFile.exists()) {
+    return;
+  }
+  if (directoryOrFile.isDirectory()) {
+    for (    File child : directoryOrFile.listFiles()) {
+      deleteDirectory(child);
+    }
+  }
+  directoryOrFile.delete();
+}

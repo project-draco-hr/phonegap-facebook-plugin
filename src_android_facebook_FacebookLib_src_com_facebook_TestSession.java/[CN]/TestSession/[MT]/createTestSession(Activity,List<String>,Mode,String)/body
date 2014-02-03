@@ -1,0 +1,9 @@
+{
+  if (Utility.isNullOrEmpty(testApplicationId) || Utility.isNullOrEmpty(testApplicationSecret)) {
+    throw new FacebookException("Must provide app ID and secret");
+  }
+  if (Utility.isNullOrEmpty(permissions)) {
+    permissions=Arrays.asList("email","publish_actions");
+  }
+  return new TestSession(activity,permissions,new TestTokenCachingStrategy(),sessionUniqueUserTag,mode);
+}

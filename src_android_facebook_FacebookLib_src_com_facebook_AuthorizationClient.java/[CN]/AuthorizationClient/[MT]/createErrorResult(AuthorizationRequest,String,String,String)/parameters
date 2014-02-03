@@ -1,0 +1,4 @@
+AuthorizationRequest request
+String errorType
+String errorDescription
+String errorCode

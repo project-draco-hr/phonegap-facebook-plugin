@@ -1,0 +1,6 @@
+{
+  this.requests=new ArrayList<Request>(requests);
+  this.callbackHandler=requests.callbackHandler;
+  this.timeoutInMilliseconds=requests.timeoutInMilliseconds;
+  this.callbacks=new ArrayList<Callback>(requests.callbacks);
+}

@@ -1,0 +1,14 @@
+{
+  Context applicationContext=context.getApplicationContext();
+  this.context=(applicationContext != null) ? applicationContext : context;
+  this.requestMessage=requestMessage;
+  this.replyMessage=replyMessage;
+  this.applicationId=applicationId;
+  this.protocolVersion=protocolVersion;
+  handler=new Handler(){
+    @Override public void handleMessage(    Message message){
+      PlatformServiceClient.this.handleMessage(message);
+    }
+  }
+;
+}

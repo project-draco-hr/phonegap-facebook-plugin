@@ -1,0 +1,3 @@
+{
+  return "{FileLruCache:" + " tag:" + this.tag + " file:"+ this.directory.getName()+ "}";
+}

@@ -1,0 +1,16 @@
+{
+  ArrayList<String> updated;
+  if (Utility.isNullOrEmpty(permissions)) {
+    updated=new ArrayList<String>();
+  }
+ else {
+    for (    String permission : permissions) {
+      if (Session.isPublishPermission(permission) || BASIC_INFO.equals(permission)) {
+        return permissions;
+      }
+    }
+    updated=new ArrayList<String>(permissions);
+  }
+  updated.add(BASIC_INFO);
+  return updated;
+}

@@ -1,0 +1,3 @@
+{
+  return openActiveSession(activity,allowLoginUI,new OpenRequest(activity).setCallback(callback));
+}

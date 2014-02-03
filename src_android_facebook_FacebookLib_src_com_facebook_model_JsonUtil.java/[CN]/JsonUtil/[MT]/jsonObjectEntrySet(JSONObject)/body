@@ -1,0 +1,10 @@
+{
+  HashSet<Map.Entry<String,Object>> result=new HashSet<Map.Entry<String,Object>>();
+  @SuppressWarnings("unchecked") Iterator<String> keys=(Iterator<String>)jsonObject.keys();
+  while (keys.hasNext()) {
+    String key=keys.next();
+    Object value=jsonObject.opt(key);
+    result.add(new JSONObjectEntry(key,value));
+  }
+  return result;
+}

@@ -1,0 +1,17 @@
+{
+  Validate.notNull(bundle,"bundle");
+  SharedPreferences.Editor editor=cache.edit();
+  for (  String key : bundle.keySet()) {
+    try {
+      serializeKey(key,bundle,editor);
+    }
+ catch (    JSONException e) {
+      Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"Error processing value for key: '" + key + "' -- "+ e);
+      return;
+    }
+  }
+  boolean successfulCommit=editor.commit();
+  if (!successfulCommit) {
+    Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"SharedPreferences.Editor.commit() was not successful");
+  }
+}

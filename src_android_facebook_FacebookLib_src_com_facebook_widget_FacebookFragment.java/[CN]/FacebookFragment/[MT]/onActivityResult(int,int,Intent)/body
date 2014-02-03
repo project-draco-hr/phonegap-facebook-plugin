@@ -1,0 +1,4 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  sessionTracker.getSession().onActivityResult(this.getActivity(),requestCode,resultCode,data);
+}

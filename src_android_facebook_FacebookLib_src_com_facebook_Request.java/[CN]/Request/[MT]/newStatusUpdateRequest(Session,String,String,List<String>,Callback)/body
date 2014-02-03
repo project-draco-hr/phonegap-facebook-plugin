@@ -1,0 +1,12 @@
+{
+  Bundle parameters=new Bundle();
+  parameters.putString("message",message);
+  if (placeId != null) {
+    parameters.putString("place",placeId);
+  }
+  if (tagIds != null && tagIds.size() > 0) {
+    String tags=TextUtils.join(",",tagIds);
+    parameters.putString("tags",tags);
+  }
+  return new Request(session,MY_FEED,parameters,HttpMethod.POST,callback);
+}

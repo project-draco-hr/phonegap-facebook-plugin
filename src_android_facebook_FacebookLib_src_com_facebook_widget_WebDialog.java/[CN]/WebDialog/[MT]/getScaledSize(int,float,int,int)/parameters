@@ -1,0 +1,4 @@
+int screenSize
+float density
+int noPaddingSize
+int maxPaddingSize

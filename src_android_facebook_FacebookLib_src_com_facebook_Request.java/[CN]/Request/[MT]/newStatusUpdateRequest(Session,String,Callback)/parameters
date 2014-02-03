@@ -1,0 +1,3 @@
+Session session
+String message
+Callback callback

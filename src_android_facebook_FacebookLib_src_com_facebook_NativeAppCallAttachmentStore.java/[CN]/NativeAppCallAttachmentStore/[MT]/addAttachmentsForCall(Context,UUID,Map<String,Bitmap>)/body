@@ -1,0 +1,18 @@
+{
+  Validate.notNull(context,"context");
+  Validate.notNull(callId,"callId");
+  Validate.containsNoNulls(imageAttachments.values(),"imageAttachments");
+  Validate.containsNoNullOrEmpty(imageAttachments.keySet(),"imageAttachments");
+  addAttachments(context,callId,imageAttachments,new ProcessAttachment<Bitmap>(){
+    @Override public void processAttachment(    Bitmap attachment,    File outputFile) throws IOException {
+      FileOutputStream outputStream=new FileOutputStream(outputFile);
+      try {
+        attachment.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+      }
+  finally {
+        Utility.closeQuietly(outputStream);
+      }
+    }
+  }
+);
+}

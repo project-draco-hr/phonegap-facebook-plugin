@@ -1,0 +1,6 @@
+{
+  if (activityCircle != null) {
+    activityCircle.clearAnimation();
+    activityCircle.setVisibility(View.INVISIBLE);
+  }
+}

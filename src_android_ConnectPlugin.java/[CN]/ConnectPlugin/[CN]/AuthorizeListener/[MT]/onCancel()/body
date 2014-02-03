@@ -1,4 +1,0 @@
-{
-  Log.d(TAG,"cancel");
-  this.fba.cb.error("Cancelled");
-}

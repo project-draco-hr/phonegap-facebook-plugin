@@ -1,0 +1,4 @@
+{
+  this.statusCallback=statusCallback;
+  return this;
+}

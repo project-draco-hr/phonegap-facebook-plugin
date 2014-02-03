@@ -1,0 +1,3 @@
+{
+  FacebookFragment.this.onSessionStateChange(state,exception);
+}

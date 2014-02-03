@@ -1,0 +1,6 @@
+{
+  if (sessionTracker != null) {
+    return sessionTracker.getSession();
+  }
+  return null;
+}

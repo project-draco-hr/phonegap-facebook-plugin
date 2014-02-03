@@ -1,0 +1,3 @@
+{
+  return String.format(GRAPH_URL_FORMAT,Settings.getFacebookDomain());
+}

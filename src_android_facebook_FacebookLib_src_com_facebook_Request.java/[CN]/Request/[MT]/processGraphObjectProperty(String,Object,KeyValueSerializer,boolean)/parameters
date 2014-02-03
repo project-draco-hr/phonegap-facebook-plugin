@@ -1,0 +1,4 @@
+String key
+Object value
+KeyValueSerializer serializer
+boolean passByValue

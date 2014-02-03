@@ -1,0 +1,50 @@
+{
+  Logger logger=new Logger(LoggingBehavior.REQUESTS,"Request");
+  int numRequests=requests.size();
+  HttpMethod connectionHttpMethod=(numRequests == 1) ? requests.get(0).httpMethod : HttpMethod.POST;
+  connection.setRequestMethod(connectionHttpMethod.name());
+  URL url=connection.getURL();
+  logger.append("Request:\n");
+  logger.appendKeyValue("Id",requests.getId());
+  logger.appendKeyValue("URL",url);
+  logger.appendKeyValue("Method",connection.getRequestMethod());
+  logger.appendKeyValue("User-Agent",connection.getRequestProperty("User-Agent"));
+  logger.appendKeyValue("Content-Type",connection.getRequestProperty("Content-Type"));
+  connection.setConnectTimeout(requests.getTimeout());
+  connection.setReadTimeout(requests.getTimeout());
+  boolean isPost=(connectionHttpMethod == HttpMethod.POST);
+  if (!isPost) {
+    logger.log();
+    return;
+  }
+  connection.setDoOutput(true);
+  BufferedOutputStream outputStream=new BufferedOutputStream(connection.getOutputStream());
+  try {
+    Serializer serializer=new Serializer(outputStream,logger);
+    if (numRequests == 1) {
+      Request request=requests.get(0);
+      logger.append("  Parameters:\n");
+      serializeParameters(request.parameters,serializer);
+      logger.append("  Attachments:\n");
+      serializeAttachments(request.parameters,serializer);
+      if (request.graphObject != null) {
+        processGraphObject(request.graphObject,url.getPath(),serializer);
+      }
+    }
+ else {
+      String batchAppID=getBatchAppId(requests);
+      if (Utility.isNullOrEmpty(batchAppID)) {
+        throw new FacebookException("At least one request in a batch must have an open Session, or a " + "default app ID must be specified.");
+      }
+      serializer.writeString(BATCH_APP_ID_PARAM,batchAppID);
+      Bundle attachments=new Bundle();
+      serializeRequestsAsJSON(serializer,requests,attachments);
+      logger.append("  Attachments:\n");
+      serializeAttachments(attachments,serializer);
+    }
+  }
+  finally {
+    outputStream.close();
+  }
+  logger.log();
+}

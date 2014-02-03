@@ -1,0 +1,12 @@
+{
+  if (showSearchBox) {
+    ListView listView=(ListView)view.findViewById(R.id.com_facebook_picker_list_view);
+    View searchHeaderView=getActivity().getLayoutInflater().inflate(R.layout.com_facebook_picker_search_box,listView,false);
+    listView.addHeaderView(searchHeaderView,null,false);
+    searchBox=(EditText)view.findViewById(R.id.com_facebook_picker_search_text);
+    searchBox.addTextChangedListener(new SearchTextWatcher());
+    if (!TextUtils.isEmpty(searchText)) {
+      searchBox.setText(searchText);
+    }
+  }
+}

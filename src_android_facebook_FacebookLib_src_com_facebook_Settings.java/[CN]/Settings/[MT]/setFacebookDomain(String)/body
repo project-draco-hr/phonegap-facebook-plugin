@@ -1,0 +1,6 @@
+{
+  if (!BuildConfig.DEBUG) {
+    Log.w(TAG,"WARNING: Calling setFacebookDomain from non-DEBUG code.");
+  }
+  Settings.facebookDomain=facebookDomain;
+}

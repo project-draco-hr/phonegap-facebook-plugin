@@ -1,0 +1,32 @@
+{
+  Validate.notNull(currentActivity,"currentActivity");
+  initializeStaticContext(currentActivity);
+synchronized (lock) {
+    if (pendingAuthorizationRequest == null || (requestCode != pendingAuthorizationRequest.getRequestCode())) {
+      return false;
+    }
+  }
+  Exception exception=null;
+  AuthorizationClient.Result.Code code=AuthorizationClient.Result.Code.ERROR;
+  if (data != null) {
+    AuthorizationClient.Result result=(AuthorizationClient.Result)data.getSerializableExtra(LoginActivity.RESULT_KEY);
+    if (result != null) {
+      handleAuthorizationResult(resultCode,result);
+      return true;
+    }
+ else     if (authorizationClient != null) {
+      authorizationClient.onActivityResult(requestCode,resultCode,data);
+      return true;
+    }
+  }
+ else   if (resultCode == Activity.RESULT_CANCELED) {
+    exception=new FacebookOperationCanceledException("User canceled operation.");
+    code=AuthorizationClient.Result.Code.CANCEL;
+  }
+  if (exception == null) {
+    exception=new FacebookException("Unexpected call to Session.onActivityResult");
+  }
+  logAuthorizationComplete(code,null,exception);
+  finishAuthOrReauth(null,exception);
+  return true;
+}

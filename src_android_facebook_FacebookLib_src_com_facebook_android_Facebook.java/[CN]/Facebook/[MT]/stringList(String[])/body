@@ -1,0 +1,8 @@
+{
+  if (array != null) {
+    return Arrays.asList(array);
+  }
+ else {
+    return Collections.emptyList();
+  }
+}

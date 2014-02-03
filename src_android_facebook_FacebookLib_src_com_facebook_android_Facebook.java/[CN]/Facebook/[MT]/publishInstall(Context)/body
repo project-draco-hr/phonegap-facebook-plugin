@@ -1,0 +1,4 @@
+{
+  Settings.publishInstallAsync(context,mAppId);
+  return false;
+}

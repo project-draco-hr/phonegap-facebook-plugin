@@ -1,0 +1,3 @@
+{
+  return createTestSession(activity,permissions,Mode.PRIVATE,null);
+}

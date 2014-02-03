@@ -1,0 +1,4 @@
+{
+  OutputStream output=openPutStream(key);
+  return new CopyingInputStream(input,output);
+}

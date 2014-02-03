@@ -1,0 +1,21 @@
+{
+  if (pictureURI == null) {
+    return;
+  }
+  boolean prefetching=imageView == null;
+  if (prefetching || !pictureURI.equals(imageView.getTag())) {
+    if (!prefetching) {
+      imageView.setTag(profileId);
+      imageView.setImageResource(getDefaultPicture());
+    }
+    ImageRequest.Builder builder=new ImageRequest.Builder(context.getApplicationContext(),pictureURI).setCallerTag(this).setCallback(new ImageRequest.Callback(){
+      @Override public void onCompleted(      ImageResponse response){
+        processImageResponse(response,profileId,imageView);
+      }
+    }
+);
+    ImageRequest newRequest=builder.build();
+    pendingRequests.put(profileId,newRequest);
+    ImageDownloader.downloadAsync(newRequest);
+  }
+}

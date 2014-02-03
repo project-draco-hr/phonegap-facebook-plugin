@@ -1,0 +1,14 @@
+{
+  AutoPublishAsyncTask asyncTask=null;
+synchronized (this) {
+    if (autoPublishAsyncTask == null && Settings.getShouldAutoPublishInstall()) {
+      String applicationId=Session.this.applicationId;
+      if (applicationId != null) {
+        asyncTask=autoPublishAsyncTask=new AutoPublishAsyncTask(applicationId,staticContext);
+      }
+    }
+  }
+  if (asyncTask != null) {
+    asyncTask.execute();
+  }
+}

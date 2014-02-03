@@ -1,0 +1,5 @@
+{
+  int protocolVersion=data.getIntExtra(EXTRA_PROTOCOL_VERSION,0);
+  String errorType=data.getStringExtra(STATUS_ERROR_TYPE);
+  return ((PROTOCOL_VERSION_20121101 == protocolVersion) && ERROR_SERVICE_DISABLED.equals(errorType));
+}

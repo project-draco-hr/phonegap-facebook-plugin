@@ -1,0 +1,5 @@
+String applicationId
+List<String> permissions
+SessionLoginBehavior behavior
+int activityCode
+SessionAuthorizationType authType

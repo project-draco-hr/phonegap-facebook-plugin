@@ -1,0 +1,8 @@
+{
+  AppEventsLogger logger=AppEventsLogger.newLogger(this.getActivity(),getSession());
+  Bundle parameters=new Bundle();
+  String outcome=doneButtonClicked ? AnalyticsEvents.PARAMETER_DIALOG_OUTCOME_VALUE_COMPLETED : AnalyticsEvents.PARAMETER_DIALOG_OUTCOME_VALUE_UNKNOWN;
+  parameters.putString(AnalyticsEvents.PARAMETER_DIALOG_OUTCOME,outcome);
+  parameters.putInt("num_places_picked",(getSelection() != null) ? 1 : 0);
+  logger.logSdkEvent(AnalyticsEvents.EVENT_PLACE_PICKER_USAGE,null,parameters);
+}

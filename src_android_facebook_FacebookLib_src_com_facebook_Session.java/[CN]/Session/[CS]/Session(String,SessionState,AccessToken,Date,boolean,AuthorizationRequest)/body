@@ -1,0 +1,11 @@
+{
+  this.applicationId=applicationId;
+  this.state=state;
+  this.tokenInfo=tokenInfo;
+  this.lastAttemptedTokenExtendDate=lastAttemptedTokenExtendDate;
+  this.pendingAuthorizationRequest=pendingAuthorizationRequest;
+  handler=new Handler(Looper.getMainLooper());
+  currentTokenRefreshRequest=null;
+  tokenCachingStrategy=null;
+  callbacks=new ArrayList<StatusCallback>();
+}

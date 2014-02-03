@@ -1,0 +1,33 @@
+{
+  Result outcome;
+  if (values != null) {
+    if (values.containsKey(ServerProtocol.DIALOG_PARAM_E2E)) {
+      e2e=values.getString(ServerProtocol.DIALOG_PARAM_E2E);
+    }
+    AccessToken token=AccessToken.createFromWebBundle(request.getPermissions(),values,AccessTokenSource.WEB_VIEW);
+    outcome=Result.createTokenResult(pendingRequest,token);
+    CookieSyncManager syncManager=CookieSyncManager.createInstance(context);
+    syncManager.sync();
+    saveCookieToken(token.getToken());
+  }
+ else {
+    if (error instanceof FacebookOperationCanceledException) {
+      outcome=Result.createCancelResult(pendingRequest,"User canceled log in.");
+    }
+ else {
+      e2e=null;
+      String errorCode=null;
+      String errorMessage=error.getMessage();
+      if (error instanceof FacebookServiceException) {
+        FacebookRequestError requestError=((FacebookServiceException)error).getRequestError();
+        errorCode=String.format("%d",requestError.getErrorCode());
+        errorMessage=requestError.toString();
+      }
+      outcome=Result.createErrorResult(pendingRequest,null,errorMessage,errorCode);
+    }
+  }
+  if (!Utility.isNullOrEmpty(e2e)) {
+    logWebLoginCompleted(applicationId,e2e);
+  }
+  completeAndValidate(outcome);
+}

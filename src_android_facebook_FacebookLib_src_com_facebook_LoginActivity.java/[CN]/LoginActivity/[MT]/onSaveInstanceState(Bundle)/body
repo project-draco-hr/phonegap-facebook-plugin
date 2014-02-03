@@ -1,0 +1,5 @@
+{
+  super.onSaveInstanceState(outState);
+  outState.putString(SAVED_CALLING_PKG_KEY,callingPackage);
+  outState.putSerializable(SAVED_AUTH_CLIENT,authorizationClient);
+}

@@ -1,9 +1,0 @@
-{
-  try {
-    Facebook.publishInstall(Facebook.this,mApplicationId,mApplicationContext);
-  }
- catch (  Exception e) {
-    Util.logd("Facebook-publish",e.getMessage());
-  }
-  return null;
-}

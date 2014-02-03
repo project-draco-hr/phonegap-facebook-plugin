@@ -1,0 +1,33 @@
+{
+  Facebook facebook=facebookWeakReference.get();
+  TokenRefreshServiceConnection connection=connectionWeakReference.get();
+  if (facebook == null || connection == null) {
+    return;
+  }
+  String token=msg.getData().getString(TOKEN);
+  long expiresAtMsecFromEpoch=msg.getData().getLong(EXPIRES) * 1000L;
+  if (token != null) {
+    facebook.setAccessToken(token);
+    facebook.setAccessExpires(expiresAtMsecFromEpoch);
+    Session refreshSession=facebook.session;
+    if (refreshSession != null) {
+      LegacyHelper.extendTokenCompleted(refreshSession,msg.getData());
+    }
+    if (connection.serviceListener != null) {
+      Bundle resultBundle=(Bundle)msg.getData().clone();
+      resultBundle.putLong(EXPIRES,expiresAtMsecFromEpoch);
+      connection.serviceListener.onComplete(resultBundle);
+    }
+  }
+ else   if (connection.serviceListener != null) {
+    String error=msg.getData().getString("error");
+    if (msg.getData().containsKey("error_code")) {
+      int errorCode=msg.getData().getInt("error_code");
+      connection.serviceListener.onFacebookError(new FacebookError(error,null,errorCode));
+    }
+ else {
+      connection.serviceListener.onError(new Error(error != null ? error : "Unknown service error"));
+    }
+  }
+  connection.applicationsContext.unbindService(connection);
+}

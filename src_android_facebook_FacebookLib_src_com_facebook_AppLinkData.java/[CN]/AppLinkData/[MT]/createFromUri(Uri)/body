@@ -1,0 +1,6 @@
+{
+  if (appLinkDataUri == null) {
+    return null;
+  }
+  return null;
+}

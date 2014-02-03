@@ -1,5 +1,0 @@
-{
-  mAccessToken=accessToken;
-  mAccessExpires=accessExpires;
-  mLastAccessUpdate=lastAccessUpdate;
-}

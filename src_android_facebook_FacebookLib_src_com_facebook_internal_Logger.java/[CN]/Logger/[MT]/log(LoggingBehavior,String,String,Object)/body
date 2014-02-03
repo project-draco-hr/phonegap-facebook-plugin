@@ -1,0 +1,6 @@
+{
+  if (Settings.isLoggingBehaviorEnabled(behavior)) {
+    String string=String.format(format,args);
+    log(behavior,Log.DEBUG,tag,string);
+  }
+}

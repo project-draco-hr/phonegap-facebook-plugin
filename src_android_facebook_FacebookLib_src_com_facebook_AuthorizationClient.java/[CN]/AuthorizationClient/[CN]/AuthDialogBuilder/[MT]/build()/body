@@ -1,0 +1,7 @@
+{
+  Bundle parameters=getParameters();
+  parameters.putString(ServerProtocol.DIALOG_PARAM_REDIRECT_URI,REDIRECT_URI);
+  parameters.putString(ServerProtocol.DIALOG_PARAM_CLIENT_ID,getApplicationId());
+  parameters.putString(ServerProtocol.DIALOG_PARAM_E2E,e2e);
+  return new WebDialog(getContext(),OAUTH_DIALOG,parameters,getTheme(),getListener());
+}

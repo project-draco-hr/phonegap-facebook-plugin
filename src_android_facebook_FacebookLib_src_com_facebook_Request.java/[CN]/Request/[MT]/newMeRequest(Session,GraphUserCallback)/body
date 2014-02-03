@@ -1,0 +1,11 @@
+{
+  Callback wrapper=new Callback(){
+    @Override public void onCompleted(    Response response){
+      if (callback != null) {
+        callback.onCompleted(response.getGraphObjectAs(GraphUser.class),response);
+      }
+    }
+  }
+;
+  return new Request(session,ME,null,null,wrapper);
+}

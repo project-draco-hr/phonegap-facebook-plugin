@@ -1,0 +1,3 @@
+{
+  stringsToReplace.put(original,replace);
+}

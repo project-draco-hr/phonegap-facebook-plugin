@@ -1,0 +1,9 @@
+{
+  this.mListener=listener;
+  setOnCompleteListener(new OnCompleteListener(){
+    @Override public void onComplete(    Bundle values,    FacebookException error){
+      callDialogListener(values,error);
+    }
+  }
+);
+}

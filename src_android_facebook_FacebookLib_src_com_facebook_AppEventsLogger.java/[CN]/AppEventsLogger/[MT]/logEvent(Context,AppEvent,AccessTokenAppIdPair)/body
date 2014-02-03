@@ -1,0 +1,8 @@
+{
+  if (shouldSuppressEvent(event)) {
+    return;
+  }
+  SessionEventsState state=getSessionEventsState(context,accessTokenAppId);
+  state.addEvent(event);
+  flushIfNecessary();
+}

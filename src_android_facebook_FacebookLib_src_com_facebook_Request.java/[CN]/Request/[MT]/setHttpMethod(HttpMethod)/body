@@ -1,0 +1,6 @@
+{
+  if (overriddenURL != null && httpMethod != HttpMethod.GET) {
+    throw new FacebookException("Can't change HTTP method on request with overridden URL.");
+  }
+  this.httpMethod=(httpMethod != null) ? httpMethod : HttpMethod.GET;
+}

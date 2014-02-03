@@ -1,0 +1,4 @@
+LoggingBehavior behavior
+String tag
+String format
+Object args

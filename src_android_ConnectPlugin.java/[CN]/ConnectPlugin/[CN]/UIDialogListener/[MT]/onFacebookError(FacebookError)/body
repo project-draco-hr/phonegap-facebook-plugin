@@ -1,4 +1,0 @@
-{
-  Log.d(TAG,"facebook error");
-  this.fba.cb.error("Facebook error: " + e.getMessage());
-}

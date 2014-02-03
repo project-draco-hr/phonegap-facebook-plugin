@@ -1,0 +1,6 @@
+{
+  if (originalRequest == null) {
+    throw new FacebookException("refreshOriginalRequest may not be called until after startLoading has been called.");
+  }
+  startLoading(originalRequest,false,afterDelay);
+}

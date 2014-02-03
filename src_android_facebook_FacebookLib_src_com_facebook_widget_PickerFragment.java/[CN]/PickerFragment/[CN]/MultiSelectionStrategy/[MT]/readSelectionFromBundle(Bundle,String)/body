@@ -1,0 +1,10 @@
+{
+  if (inBundle != null) {
+    String ids=inBundle.getString(key);
+    if (ids != null) {
+      String[] splitIds=TextUtils.split(ids,",");
+      selectedIds.clear();
+      Collections.addAll(selectedIds,splitIds);
+    }
+  }
+}

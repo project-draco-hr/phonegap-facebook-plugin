@@ -1,0 +1,13 @@
+{
+  if (!forceRequery && fetchedAppSettings.containsKey(applicationId)) {
+    return fetchedAppSettings.get(applicationId);
+  }
+  Bundle appSettingsParams=new Bundle();
+  appSettingsParams.putString(APPLICATION_FIELDS,TextUtils.join(",",APP_SETTING_FIELDS));
+  Request request=Request.newGraphPathRequest(null,applicationId,null);
+  request.setParameters(appSettingsParams);
+  GraphObject supportResponse=request.executeAndWait().getGraphObject();
+  FetchedAppSettings result=new FetchedAppSettings(safeGetBooleanFromResponse(supportResponse,SUPPORTS_ATTRIBUTION),safeGetBooleanFromResponse(supportResponse,SUPPORTS_IMPLICIT_SDK_LOGGING));
+  fetchedAppSettings.put(applicationId,result);
+  return result;
+}

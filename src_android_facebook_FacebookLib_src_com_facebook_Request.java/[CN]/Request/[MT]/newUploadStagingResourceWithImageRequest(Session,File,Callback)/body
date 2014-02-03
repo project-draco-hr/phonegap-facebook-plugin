@@ -1,0 +1,7 @@
+{
+  ParcelFileDescriptor descriptor=ParcelFileDescriptor.open(file,ParcelFileDescriptor.MODE_READ_ONLY);
+  ParcelFileDescriptorWithMimeType descriptorWithMimeType=new ParcelFileDescriptorWithMimeType(descriptor,"image/png");
+  Bundle parameters=new Bundle(1);
+  parameters.putParcelable(STAGING_PARAM,descriptorWithMimeType);
+  return new Request(session,MY_STAGING_RESOURCES,parameters,HttpMethod.POST,callback);
+}

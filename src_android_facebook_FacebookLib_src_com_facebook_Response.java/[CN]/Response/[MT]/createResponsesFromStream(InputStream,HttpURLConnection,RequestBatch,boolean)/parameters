@@ -1,0 +1,4 @@
+InputStream stream
+HttpURLConnection connection
+RequestBatch requests
+boolean isFromCache

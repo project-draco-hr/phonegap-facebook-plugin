@@ -1,0 +1,3 @@
+{
+  authorizationClient.onActivityResult(requestCode,resultCode,data);
+}

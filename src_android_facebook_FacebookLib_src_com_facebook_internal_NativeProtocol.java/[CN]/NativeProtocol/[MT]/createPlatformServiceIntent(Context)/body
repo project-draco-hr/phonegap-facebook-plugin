@@ -1,0 +1,4 @@
+{
+  Intent intent=new Intent(INTENT_ACTION_PLATFORM_SERVICE).setPackage(FACEBOOK_PACKAGE).addCategory(Intent.CATEGORY_DEFAULT);
+  return validateKatanaServiceIntent(context,intent);
+}

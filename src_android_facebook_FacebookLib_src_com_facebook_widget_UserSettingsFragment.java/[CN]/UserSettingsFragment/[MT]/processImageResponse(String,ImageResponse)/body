@@ -1,0 +1,13 @@
+{
+  if (response != null) {
+    Bitmap bitmap=response.getBitmap();
+    if (bitmap != null) {
+      BitmapDrawable drawable=new BitmapDrawable(UserSettingsFragment.this.getResources(),bitmap);
+      drawable.setBounds(0,0,getResources().getDimensionPixelSize(R.dimen.com_facebook_usersettingsfragment_profile_picture_width),getResources().getDimensionPixelSize(R.dimen.com_facebook_usersettingsfragment_profile_picture_height));
+      userProfilePic=drawable;
+      userProfilePicID=id;
+      connectedStateLabel.setCompoundDrawables(null,drawable,null,null);
+      connectedStateLabel.setTag(response.getRequest().getImageUri());
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  logString(contents.toString());
+  contents=new StringBuilder();
+}

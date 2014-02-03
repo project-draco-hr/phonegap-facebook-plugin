@@ -1,0 +1,4 @@
+{
+  getParameters().putString(MESSAGE_PARAM,message);
+  return this;
+}

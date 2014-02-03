@@ -1,0 +1,5 @@
+{
+  super.onPause();
+  authorizationClient.cancelCurrentHandler();
+  findViewById(R.id.com_facebook_login_activity_progress_bar).setVisibility(View.GONE);
+}

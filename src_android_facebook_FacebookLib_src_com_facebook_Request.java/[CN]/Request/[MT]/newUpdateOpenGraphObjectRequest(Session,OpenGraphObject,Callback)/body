@@ -1,0 +1,12 @@
+{
+  if (openGraphObject == null) {
+    throw new FacebookException("openGraphObject cannot be null");
+  }
+  String path=openGraphObject.getId();
+  if (path == null) {
+    throw new FacebookException("openGraphObject must have an id");
+  }
+  Bundle bundle=new Bundle();
+  bundle.putString(OBJECT_PARAM,openGraphObject.getInnerJSONObject().toString());
+  return new Request(session,path,bundle,HttpMethod.POST,callback);
+}

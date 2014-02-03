@@ -1,0 +1,30 @@
+{
+  Bundle extras=callbackSession.getAuthorizationBundle();
+  if (state == SessionState.OPENED) {
+    Session sessionToClose=null;
+synchronized (Facebook.this.lock) {
+      if (callbackSession != Facebook.this.session) {
+        sessionToClose=Facebook.this.session;
+        Facebook.this.session=callbackSession;
+        Facebook.this.sessionInvalidated=false;
+      }
+    }
+    if (sessionToClose != null) {
+      sessionToClose.close();
+    }
+    listener.onComplete(extras);
+  }
+ else   if (exception != null) {
+    if (exception instanceof FacebookOperationCanceledException) {
+      listener.onCancel();
+    }
+ else     if ((exception instanceof FacebookAuthorizationException) && (extras != null) && extras.containsKey(Session.WEB_VIEW_ERROR_CODE_KEY)&& extras.containsKey(Session.WEB_VIEW_FAILING_URL_KEY)) {
+      DialogError error=new DialogError(exception.getMessage(),extras.getInt(Session.WEB_VIEW_ERROR_CODE_KEY),extras.getString(Session.WEB_VIEW_FAILING_URL_KEY));
+      listener.onError(error);
+    }
+ else {
+      FacebookError error=new FacebookError(exception.getMessage());
+      listener.onFacebookError(error);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  pendingRequests.remove(graphObjectId);
+  if (response.getError() != null) {
+    callOnErrorListener(response.getError());
+  }
+  if (imageView == null) {
+    if (response.getBitmap() != null) {
+      if (prefetchedPictureCache.size() >= MAX_PREFETCHED_PICTURES) {
+        String oldestId=prefetchedProfilePictureIds.remove(0);
+        prefetchedPictureCache.remove(oldestId);
+      }
+      prefetchedPictureCache.put(graphObjectId,response);
+    }
+  }
+ else   if (graphObjectId.equals(imageView.getTag())) {
+    Exception error=response.getError();
+    Bitmap bitmap=response.getBitmap();
+    if (error == null && bitmap != null) {
+      imageView.setImageBitmap(bitmap);
+      imageView.setTag(response.getRequest().getImageUri());
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Session session
+String message
+String placeId
+List<String> tagIds
+Callback callback

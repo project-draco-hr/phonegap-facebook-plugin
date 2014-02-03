@@ -1,0 +1,10 @@
+{
+  SimpleGraphObjectCursor<T> oldCursor=this.cursor;
+  this.cursor=cursor;
+  if (isStarted()) {
+    super.deliverResult(cursor);
+    if (oldCursor != null && oldCursor != cursor && !oldCursor.isClosed()) {
+      oldCursor.close();
+    }
+  }
+}

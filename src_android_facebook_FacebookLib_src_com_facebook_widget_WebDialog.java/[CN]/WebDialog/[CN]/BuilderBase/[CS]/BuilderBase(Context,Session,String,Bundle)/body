@@ -1,0 +1,8 @@
+{
+  Validate.notNull(session,"session");
+  if (!session.isOpened()) {
+    throw new FacebookException("Attempted to use a Session that was not open.");
+  }
+  this.session=session;
+  finishInit(context,action,parameters);
+}

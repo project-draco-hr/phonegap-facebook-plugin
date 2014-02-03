@@ -1,0 +1,9 @@
+{
+  super(activity,TestSession.testApplicationId,tokenCachingStrategy);
+  Validate.notNull(permissions,"permissions");
+  Validate.notNullOrEmpty(testApplicationId,"testApplicationId");
+  Validate.notNullOrEmpty(testApplicationSecret,"testApplicationSecret");
+  this.sessionUniqueUserTag=sessionUniqueUserTag;
+  this.mode=mode;
+  this.requestedPermissions=permissions;
+}

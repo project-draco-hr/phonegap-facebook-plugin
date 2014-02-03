@@ -1,0 +1,13 @@
+{
+  if (onCompleteListener != null && !listenerCalled) {
+    listenerCalled=true;
+    FacebookException facebookException=null;
+    if (error instanceof FacebookException) {
+      facebookException=(FacebookException)error;
+    }
+ else {
+      facebookException=new FacebookException(error);
+    }
+    onCompleteListener.onComplete(null,facebookException);
+  }
+}

@@ -1,0 +1,50 @@
+{
+  while (true) {
+    String cachedToken=null;
+    Session oldSession=null;
+synchronized (this.lock) {
+      if (userSetSession != null) {
+        return userSetSession;
+      }
+      if ((session != null) || !sessionInvalidated) {
+        return session;
+      }
+      cachedToken=accessToken;
+      oldSession=session;
+    }
+    if (cachedToken == null) {
+      return null;
+    }
+    List<String> permissions;
+    if (oldSession != null) {
+      permissions=oldSession.getPermissions();
+    }
+ else     if (pendingAuthorizationPermissions != null) {
+      permissions=Arrays.asList(pendingAuthorizationPermissions);
+    }
+ else {
+      permissions=Collections.<String>emptyList();
+    }
+    Session newSession=new Session.Builder(pendingAuthorizationActivity).setApplicationId(mAppId).setTokenCachingStrategy(getTokenCache()).build();
+    if (newSession.getState() != SessionState.CREATED_TOKEN_LOADED) {
+      return null;
+    }
+    Session.OpenRequest openRequest=new Session.OpenRequest(pendingAuthorizationActivity).setPermissions(permissions);
+    openSession(newSession,openRequest,!permissions.isEmpty());
+    Session invalidatedSession=null;
+    Session returnSession=null;
+synchronized (this.lock) {
+      if (sessionInvalidated || (session == null)) {
+        invalidatedSession=session;
+        returnSession=session=newSession;
+        sessionInvalidated=false;
+      }
+    }
+    if (invalidatedSession != null) {
+      invalidatedSession.close();
+    }
+    if (returnSession != null) {
+      return returnSession;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (openGraphAction == null) {
+    throw new FacebookException("openGraphAction cannot be null");
+  }
+  if (Utility.isNullOrEmpty(openGraphAction.getType())) {
+    throw new FacebookException("openGraphAction must have non-null 'type' property");
+  }
+  String path=String.format(MY_ACTION_FORMAT,openGraphAction.getType());
+  return newPostRequest(session,path,openGraphAction,callback);
+}

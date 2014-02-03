@@ -1,0 +1,15 @@
+{
+  Session session=Session.getActiveSession();
+  if (session != null) {
+    if (callback != null) {
+      session.addCallback(callback);
+    }
+    if (SessionState.CREATED_TOKEN_LOADED.equals(session.getState())) {
+      session.openForRead(null);
+    }
+  }
+  IntentFilter filter=new IntentFilter();
+  filter.addAction(Session.ACTION_ACTIVE_SESSION_SET);
+  filter.addAction(Session.ACTION_ACTIVE_SESSION_UNSET);
+  broadcastManager.registerReceiver(receiver,filter);
+}

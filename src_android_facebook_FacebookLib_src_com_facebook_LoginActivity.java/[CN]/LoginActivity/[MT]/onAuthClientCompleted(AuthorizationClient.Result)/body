@@ -1,0 +1,10 @@
+{
+  request=null;
+  int resultCode=(outcome.code == AuthorizationClient.Result.Code.CANCEL) ? RESULT_CANCELED : RESULT_OK;
+  Bundle bundle=new Bundle();
+  bundle.putSerializable(RESULT_KEY,outcome);
+  Intent resultIntent=new Intent();
+  resultIntent.putExtras(bundle);
+  setResult(resultCode,resultIntent);
+  finish();
+}

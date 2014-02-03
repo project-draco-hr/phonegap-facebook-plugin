@@ -1,0 +1,7 @@
+{
+  List<String> userIds=new ArrayList<String>();
+  for (  GraphUser graphUser : graphUsers) {
+    userIds.add(graphUser.getId());
+  }
+  setSelectionByIds(userIds);
+}

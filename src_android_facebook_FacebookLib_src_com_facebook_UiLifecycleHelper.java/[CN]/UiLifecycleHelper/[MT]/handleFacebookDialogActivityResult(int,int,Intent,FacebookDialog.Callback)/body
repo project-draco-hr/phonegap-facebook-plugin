@@ -1,0 +1,26 @@
+{
+  if (pendingFacebookDialogCall == null || pendingFacebookDialogCall.getRequestCode() != requestCode) {
+    return false;
+  }
+  if (data == null) {
+    cancelPendingAppCall(facebookDialogCallback);
+    return true;
+  }
+  String callIdString=data.getStringExtra(NativeProtocol.EXTRA_PROTOCOL_CALL_ID);
+  UUID callId=null;
+  if (callIdString != null) {
+    try {
+      callId=UUID.fromString(callIdString);
+    }
+ catch (    IllegalArgumentException exception) {
+    }
+  }
+  if (callId != null && pendingFacebookDialogCall.getCallId().equals(callId)) {
+    FacebookDialog.handleActivityResult(activity,pendingFacebookDialogCall,requestCode,data,facebookDialogCallback);
+  }
+ else {
+    cancelPendingAppCall(facebookDialogCallback);
+  }
+  pendingFacebookDialogCall=null;
+  return true;
+}

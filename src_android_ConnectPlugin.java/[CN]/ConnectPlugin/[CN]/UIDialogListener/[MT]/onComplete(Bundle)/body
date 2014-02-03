@@ -1,4 +1,0 @@
-{
-  Log.d(TAG,values.toString());
-  this.fba.cb.success();
-}

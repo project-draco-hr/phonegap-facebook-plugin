@@ -1,0 +1,8 @@
+{
+synchronized (workLock) {
+    if (!isRunning()) {
+      pendingJobs=removeFromList(pendingJobs);
+      pendingJobs=addToList(pendingJobs,true);
+    }
+  }
+}

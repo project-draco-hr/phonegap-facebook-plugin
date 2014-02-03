@@ -1,0 +1,9 @@
+{
+  Set<String> keys=bundle.keySet();
+  for (  String key : keys) {
+    Object value=bundle.get(key);
+    if (isSupportedAttachmentType(value)) {
+      serializer.writeObject(key,value);
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  Result outcome;
+  logEvent(AnalyticsEvents.EVENT_NATIVE_LOGIN_DIALOG_COMPLETE,AnalyticsEvents.PARAMETER_NATIVE_LOGIN_DIALOG_COMPLETE_TIME,callId);
+  if (data == null) {
+    outcome=Result.createCancelResult(pendingRequest,"Operation canceled");
+  }
+ else   if (NativeProtocol.isServiceDisabledResult20121101(data)) {
+    outcome=null;
+  }
+ else   if (resultCode == Activity.RESULT_CANCELED) {
+    outcome=createCancelOrErrorResult(pendingRequest,data);
+  }
+ else   if (resultCode != Activity.RESULT_OK) {
+    outcome=Result.createErrorResult(pendingRequest,"Unexpected resultCode from authorization.",null);
+  }
+ else {
+    outcome=handleResultOk(data);
+  }
+  if (outcome != null) {
+    completeAndValidate(outcome);
+  }
+ else {
+    tryNextHandler();
+  }
+  return true;
+}

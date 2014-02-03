@@ -1,0 +1,13 @@
+{
+  try {
+    String callIdAndAttachmentName=uri.getPath().substring(1);
+    String[] parts=callIdAndAttachmentName.split("/");
+    String callIdString=parts[0];
+    String attachmentName=parts[1];
+    UUID callId=UUID.fromString(callIdString);
+    return new Pair<UUID,String>(callId,attachmentName);
+  }
+ catch (  Exception exception) {
+    return null;
+  }
+}

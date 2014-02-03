@@ -1,0 +1,4 @@
+{
+  float alpha=(!adapter.isEmpty()) ? .25f : 1.0f;
+  setAlpha(activityCircle,alpha);
+}

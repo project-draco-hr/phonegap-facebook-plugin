@@ -1,0 +1,6 @@
+{
+  super.onStartLoading();
+  if (cursor != null) {
+    deliverResult(cursor);
+  }
+}

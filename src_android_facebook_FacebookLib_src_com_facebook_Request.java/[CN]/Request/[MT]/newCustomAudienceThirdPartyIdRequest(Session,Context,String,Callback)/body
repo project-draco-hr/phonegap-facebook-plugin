@@ -1,0 +1,31 @@
+{
+  if (session == null) {
+    session=Session.getActiveSession();
+  }
+  if (session != null && !session.isOpened()) {
+    session=null;
+  }
+  if (applicationId == null) {
+    if (session != null) {
+      applicationId=session.getApplicationId();
+    }
+ else {
+      applicationId=Utility.getMetadataApplicationId(context);
+    }
+  }
+  if (applicationId == null) {
+    throw new FacebookException("Facebook App ID cannot be determined");
+  }
+  String endpoint=applicationId + "/custom_audience_third_party_id";
+  Bundle parameters=new Bundle();
+  if (session == null) {
+    String attributionId=Settings.getAttributionId(context.getContentResolver());
+    if (attributionId != null) {
+      parameters.putString("udid",attributionId);
+    }
+  }
+  if (Settings.getLimitEventAndDataUsage(context)) {
+    parameters.putString("limit_event_usage","1");
+  }
+  return new Request(session,endpoint,parameters,HttpMethod.GET,callback);
+}

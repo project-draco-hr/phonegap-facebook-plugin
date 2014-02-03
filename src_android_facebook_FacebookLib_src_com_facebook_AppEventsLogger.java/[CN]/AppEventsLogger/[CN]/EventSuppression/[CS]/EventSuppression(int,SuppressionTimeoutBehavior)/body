@@ -1,0 +1,4 @@
+{
+  this.timeoutPeriod=timeoutPeriod;
+  this.behavior=behavior;
+}
