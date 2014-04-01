@@ -1,0 +1,4 @@
+{
+  super.setArguments(args);
+  setSettingsFromBundle(args);
+}

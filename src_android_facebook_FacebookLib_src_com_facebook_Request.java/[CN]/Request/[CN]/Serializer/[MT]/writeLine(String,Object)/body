@@ -1,0 +1,4 @@
+{
+  write(format,args);
+  write("\r\n");
+}

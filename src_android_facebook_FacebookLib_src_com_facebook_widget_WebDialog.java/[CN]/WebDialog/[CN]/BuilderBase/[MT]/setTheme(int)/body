@@ -1,0 +1,5 @@
+{
+  this.theme=theme;
+  @SuppressWarnings("unchecked") CONCRETE result=(CONCRETE)this;
+  return result;
+}

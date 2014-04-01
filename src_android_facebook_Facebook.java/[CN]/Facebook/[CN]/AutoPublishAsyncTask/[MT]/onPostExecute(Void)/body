@@ -1,5 +1,0 @@
-{
-synchronized (Facebook.this) {
-    mAutoPublishAsyncTask=null;
-  }
-}

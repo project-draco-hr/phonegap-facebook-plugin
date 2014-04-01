@@ -1,0 +1,3 @@
+{
+  properties.setReadPermissions(Arrays.asList(permissions),sessionTracker.getSession());
+}

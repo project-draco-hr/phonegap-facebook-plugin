@@ -1,0 +1,4 @@
+{
+  Intent intent=new Intent().setClassName(FACEBOOK_PACKAGE,FACEBOOK_TOKEN_REFRESH_ACTIVITY);
+  return validateKatanaServiceIntent(context,intent);
+}

@@ -1,0 +1,11 @@
+{
+  if (this.cursor == cursor) {
+    return false;
+  }
+  if (this.cursor != null) {
+    this.cursor.close();
+  }
+  this.cursor=cursor;
+  rebuildAndNotify();
+  return true;
+}

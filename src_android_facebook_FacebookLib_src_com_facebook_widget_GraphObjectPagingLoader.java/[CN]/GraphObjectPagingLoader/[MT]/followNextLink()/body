@@ -1,0 +1,15 @@
+{
+  if (nextRequest != null) {
+    appendResults=true;
+    currentRequest=nextRequest;
+    currentRequest.setCallback(new Request.Callback(){
+      @Override public void onCompleted(      Response response){
+        requestCompleted(response);
+      }
+    }
+);
+    loading=true;
+    CacheableRequestBatch batch=putRequestIntoBatch(currentRequest,skipRoundtripIfCached);
+    Request.executeBatchAsync(batch);
+  }
+}

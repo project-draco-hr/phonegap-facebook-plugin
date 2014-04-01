@@ -1,0 +1,11 @@
+{
+  Set<Map.Entry<String,Object>> entrySet=map.entrySet();
+  for (  Map.Entry<String,Object> entry : entrySet) {
+    try {
+      jsonObject.putOpt(entry.getKey(),entry.getValue());
+    }
+ catch (    JSONException e) {
+      throw new IllegalArgumentException(e);
+    }
+  }
+}

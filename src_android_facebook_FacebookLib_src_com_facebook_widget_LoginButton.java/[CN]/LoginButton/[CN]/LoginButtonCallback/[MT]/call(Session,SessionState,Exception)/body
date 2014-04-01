@@ -1,0 +1,10 @@
+{
+  fetchUserInfo();
+  setButtonText();
+  if (properties.sessionStatusCallback != null) {
+    properties.sessionStatusCallback.call(session,state,exception);
+  }
+ else   if (exception != null) {
+    handleError(exception);
+  }
+}

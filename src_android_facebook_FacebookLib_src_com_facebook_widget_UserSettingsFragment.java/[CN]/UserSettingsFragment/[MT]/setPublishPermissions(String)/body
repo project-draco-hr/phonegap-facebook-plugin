@@ -1,0 +1,3 @@
+{
+  loginButtonProperties.setPublishPermissions(Arrays.asList(permissions),getSession());
+}

@@ -1,0 +1,3 @@
+{
+  fetchDeferredAppLinkData(context,null,completionHandler);
+}

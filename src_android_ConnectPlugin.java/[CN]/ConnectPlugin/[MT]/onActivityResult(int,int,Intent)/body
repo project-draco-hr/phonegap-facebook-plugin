@@ -1,4 +1,5 @@
 {
-  super.onActivityResult(requestCode,resultCode,data);
-  facebook.authorizeCallback(requestCode,resultCode,data);
+  super.onActivityResult(requestCode,resultCode,intent);
+  Log.d(TAG,"activity result in plugin");
+  Session.getActiveSession().onActivityResult(cordova.getActivity(),requestCode,resultCode,intent);
 }

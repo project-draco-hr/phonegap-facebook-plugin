@@ -1,0 +1,23 @@
+{
+  ViewGroup.LayoutParams params=getLayoutParams();
+  boolean customMeasure=false;
+  int newHeight=MeasureSpec.getSize(heightMeasureSpec);
+  int newWidth=MeasureSpec.getSize(widthMeasureSpec);
+  if (MeasureSpec.getMode(heightMeasureSpec) != MeasureSpec.EXACTLY && params.height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+    newHeight=getPresetSizeInPixels(true);
+    heightMeasureSpec=MeasureSpec.makeMeasureSpec(newHeight,MeasureSpec.EXACTLY);
+    customMeasure=true;
+  }
+  if (MeasureSpec.getMode(widthMeasureSpec) != MeasureSpec.EXACTLY && params.width == ViewGroup.LayoutParams.WRAP_CONTENT) {
+    newWidth=getPresetSizeInPixels(true);
+    widthMeasureSpec=MeasureSpec.makeMeasureSpec(newWidth,MeasureSpec.EXACTLY);
+    customMeasure=true;
+  }
+  if (customMeasure) {
+    setMeasuredDimension(newWidth,newHeight);
+    measureChildren(widthMeasureSpec,heightMeasureSpec);
+  }
+ else {
+    super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+  }
+}

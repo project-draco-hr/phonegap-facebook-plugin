@@ -1,0 +1,39 @@
+{
+  Validate.notNull(context,"context");
+  Validate.notNull(completionHandler,"completionHandler");
+  if (applicationId == null) {
+    applicationId=Utility.getMetadataApplicationId(context);
+  }
+  Validate.notNull(applicationId,"applicationId");
+  DeferredAppLinkDataClient client=new DeferredAppLinkDataClient(context,applicationId);
+  DeferredAppLinkDataClient.CompletedListener callback=new DeferredAppLinkDataClient.CompletedListener(){
+    @Override public void completed(    Bundle result){
+      AppLinkData appLinkData=null;
+      if (result != null) {
+        final String appLinkArgsJsonString=result.getString(BUNDLE_APPLINK_ARGS_KEY);
+        final long tapTimeUtc=result.getLong(ARGUMENTS_TAPTIME_KEY,-1);
+        appLinkData=createFromJson(appLinkArgsJsonString);
+        if (tapTimeUtc != -1) {
+          try {
+            appLinkData.getArguments().put(ARGUMENTS_TAPTIME_KEY,tapTimeUtc);
+          }
+ catch (          JSONException e) {
+            Log.d(TAG,"Unable to put tap time in AppLinkData.arguments");
+          }
+        }
+      }
+      completionHandler.onDeferredAppLinkDataFetched(appLinkData);
+    }
+  }
+;
+  client.setCompletedListener(callback);
+  if (!client.start()) {
+    Handler handler=new Handler(Looper.getMainLooper());
+    handler.post(new Runnable(){
+      @Override public void run(){
+        completionHandler.onDeferredAppLinkDataFetched(null);
+      }
+    }
+);
+  }
+}

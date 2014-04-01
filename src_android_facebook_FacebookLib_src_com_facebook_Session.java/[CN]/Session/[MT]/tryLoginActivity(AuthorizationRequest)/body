@@ -1,0 +1,13 @@
+{
+  Intent intent=getLoginActivityIntent(request);
+  if (!resolveIntent(intent)) {
+    return false;
+  }
+  try {
+    request.getStartActivityDelegate().startActivityForResult(intent,request.getRequestCode());
+  }
+ catch (  ActivityNotFoundException e) {
+    return false;
+  }
+  return true;
+}

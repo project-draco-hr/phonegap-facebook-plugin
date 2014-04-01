@@ -1,0 +1,9 @@
+{
+  this.loginBehavior=loginBehavior;
+  this.requestCode=requestCode;
+  this.permissions=permissions;
+  this.defaultAudience=defaultAudience;
+  this.isLegacy=isLegacy;
+  this.applicationId=applicationId;
+  this.validateSameFbidAsToken=validateSameFbidAsToken;
+}

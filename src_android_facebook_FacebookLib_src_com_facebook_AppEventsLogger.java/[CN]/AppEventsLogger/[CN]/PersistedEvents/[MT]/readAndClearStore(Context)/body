@@ -1,0 +1,7 @@
+{
+synchronized (staticLock) {
+    PersistedEvents persistedEvents=new PersistedEvents(context);
+    persistedEvents.readAndClearStore();
+    return persistedEvents;
+  }
+}

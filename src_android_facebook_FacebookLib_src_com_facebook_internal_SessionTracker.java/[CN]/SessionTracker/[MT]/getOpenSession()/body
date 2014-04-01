@@ -1,0 +1,7 @@
+{
+  Session openSession=getSession();
+  if (openSession != null && openSession.isOpened()) {
+    return openSession;
+  }
+  return null;
+}

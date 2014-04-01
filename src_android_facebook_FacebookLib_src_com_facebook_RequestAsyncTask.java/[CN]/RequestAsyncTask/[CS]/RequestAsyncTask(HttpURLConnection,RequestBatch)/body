@@ -1,0 +1,4 @@
+{
+  this.requests=requests;
+  this.connection=connection;
+}

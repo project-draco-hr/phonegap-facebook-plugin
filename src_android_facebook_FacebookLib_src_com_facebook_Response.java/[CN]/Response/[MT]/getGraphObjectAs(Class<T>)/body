@@ -1,0 +1,9 @@
+{
+  if (graphObject == null) {
+    return null;
+  }
+  if (graphObjectClass == null) {
+    throw new NullPointerException("Must pass in a valid interface that extends GraphObject");
+  }
+  return graphObject.cast(graphObjectClass);
+}

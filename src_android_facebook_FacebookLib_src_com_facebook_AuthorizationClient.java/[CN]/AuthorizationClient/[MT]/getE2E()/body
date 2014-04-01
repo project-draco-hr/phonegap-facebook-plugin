@@ -1,0 +1,9 @@
+{
+  JSONObject e2e=new JSONObject();
+  try {
+    e2e.put("init",System.currentTimeMillis());
+  }
+ catch (  JSONException e) {
+  }
+  return e2e.toString();
+}

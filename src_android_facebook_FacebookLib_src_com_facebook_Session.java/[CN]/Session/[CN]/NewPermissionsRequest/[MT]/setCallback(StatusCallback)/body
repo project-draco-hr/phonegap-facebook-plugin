@@ -1,0 +1,4 @@
+{
+  super.setCallback(statusCallback);
+  return this;
+}

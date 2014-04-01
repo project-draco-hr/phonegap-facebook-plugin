@@ -1,0 +1,13 @@
+{
+  ObjectOutputStream oos=null;
+  try {
+    oos=new ObjectOutputStream(new BufferedOutputStream(context.openFileOutput(PERSISTED_EVENTS_FILENAME,0)));
+    oos.writeObject(persistedEvents);
+  }
+ catch (  Exception e) {
+    Log.d(TAG,"Got unexpected exception: " + e.toString());
+  }
+ finally {
+    Utility.closeQuietly(oos);
+  }
+}

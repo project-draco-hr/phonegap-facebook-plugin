@@ -1,0 +1,8 @@
+{
+  if (handler != null) {
+    handler.post(runnable);
+  }
+ else {
+    Settings.getExecutor().execute(runnable);
+  }
+}

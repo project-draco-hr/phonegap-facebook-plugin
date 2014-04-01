@@ -1,0 +1,9 @@
+{
+  @SuppressWarnings("unchecked") T graphObject=(T)listView.getItemAtPosition(position);
+  String id=adapter.getIdOfGraphObject(graphObject);
+  selectionStrategy.toggleSelection(id);
+  adapter.notifyDataSetChanged();
+  if (onSelectionChangedListener != null) {
+    onSelectionChangedListener.onSelectionChanged(PickerFragment.this);
+  }
+}

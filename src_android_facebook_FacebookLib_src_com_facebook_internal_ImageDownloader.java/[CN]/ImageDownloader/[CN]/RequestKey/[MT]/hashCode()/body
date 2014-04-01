@@ -1,0 +1,6 @@
+{
+  int result=HASH_SEED;
+  result=(result * HASH_MULTIPLIER) + uri.hashCode();
+  result=(result * HASH_MULTIPLIER) + tag.hashCode();
+  return result;
+}

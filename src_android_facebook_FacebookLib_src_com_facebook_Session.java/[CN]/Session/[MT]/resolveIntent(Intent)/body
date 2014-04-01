@@ -1,0 +1,7 @@
+{
+  ResolveInfo resolveInfo=getStaticContext().getPackageManager().resolveActivity(intent,0);
+  if (resolveInfo == null) {
+    return false;
+  }
+  return true;
+}

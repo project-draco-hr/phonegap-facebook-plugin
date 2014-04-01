@@ -1,0 +1,5 @@
+Session session
+String message
+GraphPlace place
+List<GraphUser> tags
+Callback callback

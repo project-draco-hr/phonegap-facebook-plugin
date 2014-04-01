@@ -1,0 +1,5 @@
+{
+  if (container.isEmpty()) {
+    throw new IllegalArgumentException("Container '" + name + "' cannot be empty");
+  }
+}

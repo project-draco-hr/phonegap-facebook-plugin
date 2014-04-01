@@ -1,0 +1,9 @@
+{
+  if (displaySections) {
+    section=Math.max(0,Math.min(section,sectionKeys.size() - 1));
+    if (section < sectionKeys.size()) {
+      return getPosition(sectionKeys.get(section),null);
+    }
+  }
+  return 0;
+}

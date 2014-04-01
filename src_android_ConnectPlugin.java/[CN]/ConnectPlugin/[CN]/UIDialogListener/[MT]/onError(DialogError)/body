@@ -1,4 +1,0 @@
-{
-  Log.d(TAG,"other error");
-  this.fba.cb.error("Dialog error: " + e.getMessage());
-}

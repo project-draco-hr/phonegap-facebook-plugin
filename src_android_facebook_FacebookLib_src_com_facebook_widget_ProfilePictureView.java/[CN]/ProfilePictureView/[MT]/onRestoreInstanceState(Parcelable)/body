@@ -1,0 +1,18 @@
+{
+  if (state.getClass() != Bundle.class) {
+    super.onRestoreInstanceState(state);
+  }
+ else {
+    Bundle instanceState=(Bundle)state;
+    super.onRestoreInstanceState(instanceState.getParcelable(SUPER_STATE_KEY));
+    profileId=instanceState.getString(PROFILE_ID_KEY);
+    presetSizeType=instanceState.getInt(PRESET_SIZE_KEY);
+    isCropped=instanceState.getBoolean(IS_CROPPED_KEY);
+    queryWidth=instanceState.getInt(BITMAP_WIDTH_KEY);
+    queryHeight=instanceState.getInt(BITMAP_HEIGHT_KEY);
+    setImageBitmap((Bitmap)instanceState.getParcelable(BITMAP_KEY));
+    if (instanceState.getBoolean(PENDING_REFRESH_KEY)) {
+      refreshImage(true);
+    }
+  }
+}

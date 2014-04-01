@@ -1,0 +1,9 @@
+{
+  RequestKey key=new RequestKey(request.getImageUri(),request.getCallerTag());
+synchronized (pendingRequests) {
+    DownloaderContext downloaderContext=pendingRequests.get(key);
+    if (downloaderContext != null) {
+      downloaderContext.workItem.moveToFront();
+    }
+  }
+}

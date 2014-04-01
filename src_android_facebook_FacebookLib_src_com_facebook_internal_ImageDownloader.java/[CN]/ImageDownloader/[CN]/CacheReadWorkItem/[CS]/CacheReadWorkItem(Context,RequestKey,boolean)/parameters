@@ -1,0 +1,3 @@
+Context context
+RequestKey key
+boolean allowCachedRedirects

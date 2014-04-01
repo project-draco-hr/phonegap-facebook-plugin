@@ -1,0 +1,7 @@
+{
+  if (sessionTracker != null) {
+    Session currentSession=sessionTracker.getOpenSession();
+    return (currentSession != null) ? currentSession.getExpirationDate() : null;
+  }
+  return null;
+}

@@ -1,0 +1,7 @@
+{
+  super.onAttach(activity);
+  if (searchBox != null) {
+    InputMethodManager imm=(InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(searchBox,InputMethodManager.SHOW_IMPLICIT);
+  }
+}

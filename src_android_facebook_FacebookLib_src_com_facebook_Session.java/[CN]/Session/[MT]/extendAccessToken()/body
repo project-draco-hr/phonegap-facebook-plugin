@@ -1,0 +1,12 @@
+{
+  TokenRefreshRequest newTokenRefreshRequest=null;
+synchronized (this.lock) {
+    if (currentTokenRefreshRequest == null) {
+      newTokenRefreshRequest=new TokenRefreshRequest();
+      currentTokenRefreshRequest=newTokenRefreshRequest;
+    }
+  }
+  if (newTokenRefreshRequest != null) {
+    newTokenRefreshRequest.bind();
+  }
+}

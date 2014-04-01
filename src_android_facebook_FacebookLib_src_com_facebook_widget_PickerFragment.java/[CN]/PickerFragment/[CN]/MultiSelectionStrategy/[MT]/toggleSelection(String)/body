@@ -1,0 +1,10 @@
+{
+  if (id != null) {
+    if (selectedIds.contains(id)) {
+      selectedIds.remove(id);
+    }
+ else {
+      selectedIds.add(id);
+    }
+  }
+}

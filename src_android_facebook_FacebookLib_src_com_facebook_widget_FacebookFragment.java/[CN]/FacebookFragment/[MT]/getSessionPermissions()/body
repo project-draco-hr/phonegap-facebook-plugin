@@ -1,0 +1,7 @@
+{
+  if (sessionTracker != null) {
+    Session currentSession=sessionTracker.getSession();
+    return (currentSession != null) ? currentSession.getPermissions() : null;
+  }
+  return null;
+}

@@ -1,0 +1,4 @@
+{
+  this.accessToken=Utility.isNullOrEmpty(accessToken) ? null : accessToken;
+  this.applicationId=applicationId;
+}

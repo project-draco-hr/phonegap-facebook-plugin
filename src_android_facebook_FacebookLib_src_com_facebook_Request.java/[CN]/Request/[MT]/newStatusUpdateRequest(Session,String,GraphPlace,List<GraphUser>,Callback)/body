@@ -1,0 +1,11 @@
+{
+  List<String> tagIds=null;
+  if (tags != null) {
+    tagIds=new ArrayList<String>(tags.size());
+    for (    GraphUser tag : tags) {
+      tagIds.add(tag.getId());
+    }
+  }
+  String placeId=place == null ? null : place.getId();
+  return newStatusUpdateRequest(session,message,placeId,tagIds,callback);
+}

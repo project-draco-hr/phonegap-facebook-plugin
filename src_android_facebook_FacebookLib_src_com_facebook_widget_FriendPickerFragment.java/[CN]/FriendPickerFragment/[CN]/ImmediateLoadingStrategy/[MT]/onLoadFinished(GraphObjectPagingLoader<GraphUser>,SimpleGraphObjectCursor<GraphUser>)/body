@@ -1,0 +1,15 @@
+{
+  super.onLoadFinished(loader,data);
+  if (data == null || loader.isLoading()) {
+    return;
+  }
+  if (data.areMoreObjectsAvailable()) {
+    followNextLink();
+  }
+ else {
+    hideActivityCircle();
+    if (data.isFromCache()) {
+      loader.refreshOriginalRequest(data.getCount() == 0 ? CACHED_RESULT_REFRESH_DELAY : 0);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (Session.ACTION_ACTIVE_SESSION_SET.equals(intent.getAction())) {
+    Session session=Session.getActiveSession();
+    if (session != null && callback != null) {
+      session.addCallback(callback);
+    }
+  }
+ else   if (Session.ACTION_ACTIVE_SESSION_UNSET.equals(intent.getAction())) {
+    Session session=Session.getActiveSession();
+    if (session != null && callback != null) {
+      session.removeCallback(callback);
+    }
+  }
+}

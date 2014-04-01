@@ -1,0 +1,4 @@
+{
+  super(stream,Utility.DEFAULT_STREAM_BUFFER_SIZE);
+  this.connection=connection;
+}

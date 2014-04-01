@@ -1,0 +1,13 @@
+{
+  Uri.Builder builder=new Uri.Builder();
+  builder.scheme(URL_SCHEME);
+  builder.authority(authority);
+  builder.path(path);
+  for (  String key : parameters.keySet()) {
+    Object parameter=parameters.get(key);
+    if (parameter instanceof String) {
+      builder.appendQueryParameter(key,(String)parameter);
+    }
+  }
+  return builder.build();
+}

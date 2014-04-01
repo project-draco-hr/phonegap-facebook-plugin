@@ -1,0 +1,9 @@
+{
+  Session session=sessionTracker.getSession();
+  if (session != null) {
+    return session.onActivityResult((Activity)getContext(),requestCode,resultCode,data);
+  }
+ else {
+    return false;
+  }
+}

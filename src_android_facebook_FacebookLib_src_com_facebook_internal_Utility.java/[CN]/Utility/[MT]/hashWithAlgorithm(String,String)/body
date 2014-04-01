@@ -1,0 +1,17 @@
+{
+  MessageDigest hash=null;
+  try {
+    hash=MessageDigest.getInstance(algorithm);
+  }
+ catch (  NoSuchAlgorithmException e) {
+    return null;
+  }
+  hash.update(key.getBytes());
+  byte[] digest=hash.digest();
+  StringBuilder builder=new StringBuilder();
+  for (  int b : digest) {
+    builder.append(Integer.toHexString((b >> 4) & 0xf));
+    builder.append(Integer.toHexString((b >> 0) & 0xf));
+  }
+  return builder.toString();
+}

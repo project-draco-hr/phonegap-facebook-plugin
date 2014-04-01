@@ -1,0 +1,5 @@
+Request request
+HttpURLConnection connection
+Object object
+boolean isFromCache
+Object originalResult

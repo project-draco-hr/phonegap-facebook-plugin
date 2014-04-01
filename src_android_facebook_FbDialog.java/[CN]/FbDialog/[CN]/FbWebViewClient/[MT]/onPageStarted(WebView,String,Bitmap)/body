@@ -1,5 +1,0 @@
-{
-  Util.logd("Facebook-WebView","Webview loading URL: " + url);
-  super.onPageStarted(view,url,favicon);
-  mSpinner.show();
-}

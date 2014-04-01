@@ -1,0 +1,26 @@
+{
+  if (newSession == null) {
+    if (session != null) {
+      session.removeCallback(callback);
+      session=null;
+      addBroadcastReceiver();
+      if (getSession() != null) {
+        getSession().addCallback(callback);
+      }
+    }
+  }
+ else {
+    if (session == null) {
+      Session activeSession=Session.getActiveSession();
+      if (activeSession != null) {
+        activeSession.removeCallback(callback);
+      }
+      broadcastManager.unregisterReceiver(receiver);
+    }
+ else {
+      session.removeCallback(callback);
+    }
+    session=newSession;
+    session.addCallback(callback);
+  }
+}

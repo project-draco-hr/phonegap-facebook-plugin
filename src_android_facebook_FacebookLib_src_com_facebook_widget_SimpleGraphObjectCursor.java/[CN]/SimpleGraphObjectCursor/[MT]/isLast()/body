@@ -1,0 +1,4 @@
+{
+  final int count=getCount();
+  return (pos == (count - 1)) && (count != 0);
+}

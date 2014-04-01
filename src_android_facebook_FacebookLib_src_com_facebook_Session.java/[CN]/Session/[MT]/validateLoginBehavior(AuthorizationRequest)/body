@@ -1,0 +1,9 @@
+{
+  if (request != null && !request.isLegacy) {
+    Intent intent=new Intent();
+    intent.setClass(getStaticContext(),LoginActivity.class);
+    if (!resolveIntent(intent)) {
+      throw new FacebookException(String.format("Cannot use SessionLoginBehavior %s when %s is not declared as an activity in AndroidManifest.xml",request.getLoginBehavior(),LoginActivity.class.getName()));
+    }
+  }
+}

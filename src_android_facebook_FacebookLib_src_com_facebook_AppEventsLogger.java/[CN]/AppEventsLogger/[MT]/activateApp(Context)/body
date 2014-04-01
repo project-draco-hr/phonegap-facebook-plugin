@@ -1,0 +1,3 @@
+{
+  activateApp(context,Utility.getMetadataApplicationId(context));
+}

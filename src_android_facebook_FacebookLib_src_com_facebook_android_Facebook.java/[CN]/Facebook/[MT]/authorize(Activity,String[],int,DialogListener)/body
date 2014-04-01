@@ -1,0 +1,4 @@
+{
+  SessionLoginBehavior behavior=(activityCode >= 0) ? SessionLoginBehavior.SSO_WITH_FALLBACK : SessionLoginBehavior.SUPPRESS_SSO;
+  authorize(activity,permissions,activityCode,behavior,listener);
+}

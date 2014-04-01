@@ -1,0 +1,4 @@
+{
+  this.graphObjects.addAll(graphObjects);
+  this.fromCache|=fromCache;
+}

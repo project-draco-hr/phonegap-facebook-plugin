@@ -1,0 +1,5 @@
+{
+  if (loader != null) {
+    loader.clearResults();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (shouldLog()) {
+    contents.append(string);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.supportsAttribution=supportsAttribution;
+  this.supportsImplicitLogging=supportsImplicitLogging;
+}

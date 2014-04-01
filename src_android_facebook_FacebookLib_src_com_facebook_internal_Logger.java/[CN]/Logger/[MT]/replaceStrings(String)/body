@@ -1,0 +1,6 @@
+{
+  for (  Map.Entry<String,String> entry : stringsToReplace.entrySet()) {
+    string=string.replace(entry.getKey(),entry.getValue());
+  }
+  return string;
+}

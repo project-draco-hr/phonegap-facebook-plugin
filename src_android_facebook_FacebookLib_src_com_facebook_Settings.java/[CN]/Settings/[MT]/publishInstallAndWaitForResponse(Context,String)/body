@@ -1,0 +1,3 @@
+{
+  return publishInstallAndWaitForResponse(context,applicationId,false);
+}

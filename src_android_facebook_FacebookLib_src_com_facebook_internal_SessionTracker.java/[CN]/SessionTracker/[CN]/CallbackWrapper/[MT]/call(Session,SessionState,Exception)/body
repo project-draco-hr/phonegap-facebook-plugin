@@ -1,0 +1,8 @@
+{
+  if (wrapped != null && isTracking()) {
+    wrapped.call(session,state,exception);
+  }
+  if (session == SessionTracker.this.session && state.isClosed()) {
+    setSession(null);
+  }
+}

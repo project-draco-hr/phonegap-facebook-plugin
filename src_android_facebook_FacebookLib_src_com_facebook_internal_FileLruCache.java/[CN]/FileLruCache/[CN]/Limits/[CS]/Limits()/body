@@ -1,0 +1,4 @@
+{
+  this.fileCount=1024;
+  this.byteCount=1024 * 1024;
+}

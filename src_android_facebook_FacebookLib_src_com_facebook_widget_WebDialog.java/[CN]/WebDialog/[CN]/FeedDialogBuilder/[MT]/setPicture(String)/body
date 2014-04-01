@@ -1,0 +1,4 @@
+{
+  getParameters().putString(PICTURE_PARAM,picture);
+  return this;
+}

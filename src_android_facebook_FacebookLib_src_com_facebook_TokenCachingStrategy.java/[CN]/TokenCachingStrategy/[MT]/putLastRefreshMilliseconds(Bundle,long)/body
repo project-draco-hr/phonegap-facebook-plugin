@@ -1,0 +1,4 @@
+{
+  Validate.notNull(bundle,"bundle");
+  bundle.putLong(LAST_REFRESH_DATE_KEY,value);
+}

@@ -1,0 +1,4 @@
+{
+  getParameters().putString(NAME_PARAM,name);
+  return this;
+}

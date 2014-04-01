@@ -1,0 +1,12 @@
+{
+  if (isTracking) {
+    return;
+  }
+  if (this.session == null) {
+    addBroadcastReceiver();
+  }
+  if (getSession() != null) {
+    getSession().addCallback(callback);
+  }
+  isTracking=true;
+}

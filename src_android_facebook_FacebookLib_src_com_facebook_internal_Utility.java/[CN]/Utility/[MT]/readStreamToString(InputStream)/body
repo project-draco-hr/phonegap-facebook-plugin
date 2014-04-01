@@ -1,0 +1,20 @@
+{
+  BufferedInputStream bufferedInputStream=null;
+  InputStreamReader reader=null;
+  try {
+    bufferedInputStream=new BufferedInputStream(inputStream);
+    reader=new InputStreamReader(bufferedInputStream);
+    StringBuilder stringBuilder=new StringBuilder();
+    final int bufferSize=1024 * 2;
+    char[] buffer=new char[bufferSize];
+    int n=0;
+    while ((n=reader.read(buffer)) != -1) {
+      stringBuilder.append(buffer,0,n);
+    }
+    return stringBuilder.toString();
+  }
+  finally {
+    closeQuietly(bufferedInputStream);
+    closeQuietly(reader);
+  }
+}

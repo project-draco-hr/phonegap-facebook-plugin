@@ -1,0 +1,8 @@
+{
+  File[] filesToDelete=root.listFiles(excludeNonBufferFiles());
+  if (filesToDelete != null) {
+    for (    File file : filesToDelete) {
+      file.delete();
+    }
+  }
+}

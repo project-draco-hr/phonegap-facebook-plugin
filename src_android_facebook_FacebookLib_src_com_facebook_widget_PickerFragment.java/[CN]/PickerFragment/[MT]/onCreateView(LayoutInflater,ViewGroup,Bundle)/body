@@ -1,0 +1,21 @@
+{
+  ViewGroup view=(ViewGroup)inflater.inflate(layout,container,false);
+  listView=(ListView)view.findViewById(R.id.com_facebook_picker_list_view);
+  listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> parent,    View v,    int position,    long id){
+      onListItemClick((ListView)parent,v,position);
+    }
+  }
+);
+  listView.setOnLongClickListener(new View.OnLongClickListener(){
+    @Override public boolean onLongClick(    View v){
+      return false;
+    }
+  }
+);
+  listView.setOnScrollListener(onScrollListener);
+  activityCircle=(ProgressBar)view.findViewById(R.id.com_facebook_picker_activity_circle);
+  setupViews(view);
+  listView.setAdapter(adapter);
+  return view;
+}

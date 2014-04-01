@@ -1,0 +1,5 @@
+{
+  sessionTracker.setSession(newSession);
+  fetchUserInfo();
+  setButtonText();
+}

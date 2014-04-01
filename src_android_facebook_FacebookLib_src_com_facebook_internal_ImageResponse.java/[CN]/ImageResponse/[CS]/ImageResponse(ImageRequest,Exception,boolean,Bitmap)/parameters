@@ -1,0 +1,4 @@
+ImageRequest request
+Exception error
+boolean isCachedRedirect
+Bitmap bitmap

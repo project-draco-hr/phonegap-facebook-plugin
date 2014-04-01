@@ -1,0 +1,9 @@
+{
+  if (loggingExtras == null) {
+    loggingExtras=new HashMap<String,String>();
+  }
+  if (loggingExtras.containsKey(key) && accumulate) {
+    value=loggingExtras.get(key) + "," + value;
+  }
+  loggingExtras.put(key,value);
+}

@@ -1,0 +1,3 @@
+{
+  preSelectedFriendIds.addAll(userIds);
+}

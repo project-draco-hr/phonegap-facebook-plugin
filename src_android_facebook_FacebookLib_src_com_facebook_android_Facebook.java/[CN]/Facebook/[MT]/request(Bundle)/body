@@ -1,0 +1,6 @@
+{
+  if (!parameters.containsKey("method")) {
+    throw new IllegalArgumentException("API method must be specified. " + "(parameters must contain key \"method\" and value). See" + " http://developers.facebook.com/docs/reference/rest/");
+  }
+  return requestImpl(null,parameters,"GET");
+}

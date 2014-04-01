@@ -1,0 +1,4 @@
+{
+  Validate.notNull(bundle,"bundle");
+  bundle.putSerializable(TOKEN_SOURCE_KEY,value);
+}

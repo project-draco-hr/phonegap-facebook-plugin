@@ -1,0 +1,6 @@
+{
+  long permissionsHash=getPermissionsString().hashCode() & 0xffffffffL;
+  long sessionTagHash=(sessionUniqueUserTag != null) ? sessionUniqueUserTag.hashCode() & 0xffffffffL : 0;
+  long combinedHash=permissionsHash ^ sessionTagHash;
+  return validNameStringFromInteger(combinedHash);
+}

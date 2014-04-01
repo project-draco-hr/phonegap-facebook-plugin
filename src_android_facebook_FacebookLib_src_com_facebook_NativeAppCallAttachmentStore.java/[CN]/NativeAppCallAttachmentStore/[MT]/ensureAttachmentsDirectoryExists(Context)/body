@@ -1,0 +1,5 @@
+{
+  File dir=getAttachmentsDirectory(context);
+  dir.mkdirs();
+  return dir;
+}

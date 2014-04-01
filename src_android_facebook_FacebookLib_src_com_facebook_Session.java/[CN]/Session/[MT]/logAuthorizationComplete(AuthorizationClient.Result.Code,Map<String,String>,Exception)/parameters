@@ -1,0 +1,3 @@
+AuthorizationClient.Result.Code result
+Map<String,String> resultExtras
+Exception exception

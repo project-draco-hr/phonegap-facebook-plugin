@@ -1,0 +1,10 @@
+{
+  if (bundle == null) {
+    return null;
+  }
+  long n=bundle.getLong(key,INVALID_BUNDLE_MILLISECONDS);
+  if (n == INVALID_BUNDLE_MILLISECONDS) {
+    return null;
+  }
+  return new Date(n);
+}

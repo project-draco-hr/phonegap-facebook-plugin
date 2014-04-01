@@ -1,0 +1,4 @@
+{
+  sender=new Messenger(service);
+  sendMessage();
+}

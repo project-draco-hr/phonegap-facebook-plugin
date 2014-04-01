@@ -1,0 +1,9 @@
+{
+  super.onResume();
+  if (callingPackage == null) {
+    Log.e(TAG,NULL_CALLING_PKG_ERROR_MSG);
+    finish();
+    return;
+  }
+  authorizationClient.startOrContinueAuth(request);
+}

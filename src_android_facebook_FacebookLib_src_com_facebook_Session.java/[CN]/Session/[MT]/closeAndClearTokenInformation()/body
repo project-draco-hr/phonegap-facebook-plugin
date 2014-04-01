@@ -1,0 +1,8 @@
+{
+  if (this.tokenCachingStrategy != null) {
+    this.tokenCachingStrategy.clear();
+  }
+  Utility.clearFacebookCookies(staticContext);
+  Utility.clearCaches(staticContext);
+  close();
+}

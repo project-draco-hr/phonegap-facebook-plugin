@@ -1,0 +1,8 @@
+{
+  if (selectedId != null && selectedId.equals(id)) {
+    selectedId=null;
+  }
+ else {
+    selectedId=id;
+  }
+}

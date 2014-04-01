@@ -1,0 +1,8 @@
+{
+  if (onErrorListener != null) {
+    if (!(exception instanceof FacebookException)) {
+      exception=new FacebookException(exception);
+    }
+    onErrorListener.onError(this,(FacebookException)exception);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  if (currentTokenRefreshRequest != null) {
+    return false;
+  }
+  boolean result=false;
+  Date now=new Date();
+  if (state.isOpened() && tokenInfo.getSource().canExtendToken() && now.getTime() - lastAttemptedTokenExtendDate.getTime() > TOKEN_EXTEND_RETRY_SECONDS * 1000 && now.getTime() - tokenInfo.getLastRefresh().getTime() > TOKEN_EXTEND_THRESHOLD_SECONDS * 1000) {
+    result=true;
+  }
+  return result;
+}

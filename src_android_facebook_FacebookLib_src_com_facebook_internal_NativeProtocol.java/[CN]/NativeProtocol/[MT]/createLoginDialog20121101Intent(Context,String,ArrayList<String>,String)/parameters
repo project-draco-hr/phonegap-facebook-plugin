@@ -1,0 +1,4 @@
+Context context
+String applicationId
+ArrayList<String> permissions
+String audience

@@ -1,0 +1,17 @@
+{
+  Bundle bundle=AuthorizationClient.newAuthorizationLoggingBundle(pendingAuthorizationRequest.getAuthId());
+  bundle.putLong(AuthorizationClient.EVENT_PARAM_TIMESTAMP,System.currentTimeMillis());
+  try {
+    JSONObject extras=new JSONObject();
+    extras.put(AuthorizationClient.EVENT_EXTRAS_LOGIN_BEHAVIOR,pendingAuthorizationRequest.loginBehavior.toString());
+    extras.put(AuthorizationClient.EVENT_EXTRAS_REQUEST_CODE,pendingAuthorizationRequest.requestCode);
+    extras.put(AuthorizationClient.EVENT_EXTRAS_IS_LEGACY,pendingAuthorizationRequest.isLegacy);
+    extras.put(AuthorizationClient.EVENT_EXTRAS_PERMISSIONS,TextUtils.join(",",pendingAuthorizationRequest.permissions));
+    extras.put(AuthorizationClient.EVENT_EXTRAS_DEFAULT_AUDIENCE,pendingAuthorizationRequest.defaultAudience.toString());
+    bundle.putString(AuthorizationClient.EVENT_PARAM_EXTRAS,extras.toString());
+  }
+ catch (  JSONException e) {
+  }
+  AppEventsLogger logger=getAppEventsLogger();
+  logger.logSdkEvent(AuthorizationClient.EVENT_NAME_LOGIN_START,null,bundle);
+}

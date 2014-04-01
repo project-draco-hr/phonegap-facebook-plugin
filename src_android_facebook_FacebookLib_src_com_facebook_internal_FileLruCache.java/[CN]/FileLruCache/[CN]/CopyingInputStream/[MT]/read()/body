@@ -1,0 +1,7 @@
+{
+  int b=input.read();
+  if (b >= 0) {
+    output.write(b);
+  }
+  return b;
+}

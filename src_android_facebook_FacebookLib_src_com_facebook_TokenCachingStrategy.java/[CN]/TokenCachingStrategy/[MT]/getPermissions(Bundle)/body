@@ -1,0 +1,4 @@
+{
+  Validate.notNull(bundle,"bundle");
+  return bundle.getStringArrayList(PERMISSIONS_KEY);
+}

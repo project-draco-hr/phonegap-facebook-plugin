@@ -1,3 +1,0 @@
-{
-  return request(graphPath,parameters,"GET");
-}

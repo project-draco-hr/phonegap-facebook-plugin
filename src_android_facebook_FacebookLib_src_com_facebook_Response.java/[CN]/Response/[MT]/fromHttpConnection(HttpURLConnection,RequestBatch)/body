@@ -1,0 +1,69 @@
+{
+  InputStream stream=null;
+  FileLruCache cache=null;
+  String cacheKey=null;
+  if (requests instanceof CacheableRequestBatch) {
+    CacheableRequestBatch cacheableRequestBatch=(CacheableRequestBatch)requests;
+    cache=getResponseCache();
+    cacheKey=cacheableRequestBatch.getCacheKeyOverride();
+    if (Utility.isNullOrEmpty(cacheKey)) {
+      if (requests.size() == 1) {
+        cacheKey=requests.get(0).getUrlForSingleRequest();
+      }
+ else {
+        Logger.log(LoggingBehavior.REQUESTS,RESPONSE_CACHE_TAG,"Not using cache for cacheable request because no key was specified");
+      }
+    }
+    if (!cacheableRequestBatch.getForceRoundTrip() && cache != null && !Utility.isNullOrEmpty(cacheKey)) {
+      try {
+        stream=cache.get(cacheKey);
+        if (stream != null) {
+          return createResponsesFromStream(stream,null,requests,true);
+        }
+      }
+ catch (      FacebookException exception) {
+      }
+catch (      JSONException exception) {
+      }
+catch (      IOException exception) {
+      }
+ finally {
+        Utility.closeQuietly(stream);
+      }
+    }
+  }
+  try {
+    if (connection.getResponseCode() >= 400) {
+      stream=connection.getErrorStream();
+    }
+ else {
+      stream=connection.getInputStream();
+      if ((cache != null) && (cacheKey != null) && (stream != null)) {
+        InputStream interceptStream=cache.interceptAndPut(cacheKey,stream);
+        if (interceptStream != null) {
+          stream=interceptStream;
+        }
+      }
+    }
+    return createResponsesFromStream(stream,connection,requests,false);
+  }
+ catch (  FacebookException facebookException) {
+    Logger.log(LoggingBehavior.REQUESTS,RESPONSE_LOG_TAG,"Response <Error>: %s",facebookException);
+    return constructErrorResponses(requests,connection,facebookException);
+  }
+catch (  JSONException exception) {
+    Logger.log(LoggingBehavior.REQUESTS,RESPONSE_LOG_TAG,"Response <Error>: %s",exception);
+    return constructErrorResponses(requests,connection,new FacebookException(exception));
+  }
+catch (  IOException exception) {
+    Logger.log(LoggingBehavior.REQUESTS,RESPONSE_LOG_TAG,"Response <Error>: %s",exception);
+    return constructErrorResponses(requests,connection,new FacebookException(exception));
+  }
+catch (  SecurityException exception) {
+    Logger.log(LoggingBehavior.REQUESTS,RESPONSE_LOG_TAG,"Response <Error>: %s",exception);
+    return constructErrorResponses(requests,connection,new FacebookException(exception));
+  }
+ finally {
+    Utility.closeQuietly(stream);
+  }
+}
