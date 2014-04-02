@@ -1,0 +1,4 @@
+{
+  out.write(buffer,offset,length);
+  addProgress(length);
+}

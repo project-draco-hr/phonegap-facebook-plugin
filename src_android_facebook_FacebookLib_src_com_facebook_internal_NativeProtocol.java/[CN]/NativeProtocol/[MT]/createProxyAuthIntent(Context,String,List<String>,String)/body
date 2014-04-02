@@ -1,10 +1,10 @@
 {
-  Intent intent=new Intent().setClassName(FACEBOOK_PACKAGE,FACEBOOK_PROXY_AUTH_ACTIVITY).putExtra(FACEBOOK_PROXY_AUTH_APP_ID_KEY,applicationId);
+  Intent intent=new Intent().setClassName(FACEBOOK_APP_INFO.getPackage(),FACEBOOK_PROXY_AUTH_ACTIVITY).putExtra(FACEBOOK_PROXY_AUTH_APP_ID_KEY,applicationId);
   if (!Utility.isNullOrEmpty(permissions)) {
     intent.putExtra(FACEBOOK_PROXY_AUTH_PERMISSIONS_KEY,TextUtils.join(",",permissions));
   }
   if (!Utility.isNullOrEmpty(e2e)) {
     intent.putExtra(FACEBOOK_PROXY_AUTH_E2E_KEY,e2e);
   }
-  return validateKatanaActivityIntent(context,intent);
+  return validateActivityIntent(context,intent,FACEBOOK_APP_INFO);
 }

@@ -1,0 +1,7 @@
+{
+  super.close();
+  for (  RequestProgress p : progressMap.values()) {
+    p.reportProgress();
+  }
+  reportBatchProgress();
+}

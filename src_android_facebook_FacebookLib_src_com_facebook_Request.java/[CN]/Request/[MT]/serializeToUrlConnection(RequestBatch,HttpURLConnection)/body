@@ -18,30 +18,21 @@
     return;
   }
   connection.setDoOutput(true);
-  BufferedOutputStream outputStream=new BufferedOutputStream(connection.getOutputStream());
+  OutputStream outputStream=null;
   try {
-    Serializer serializer=new Serializer(outputStream,logger);
-    if (numRequests == 1) {
-      Request request=requests.get(0);
-      logger.append("  Parameters:\n");
-      serializeParameters(request.parameters,serializer);
-      logger.append("  Attachments:\n");
-      serializeAttachments(request.parameters,serializer);
-      if (request.graphObject != null) {
-        processGraphObject(request.graphObject,url.getPath(),serializer);
-      }
+    if (hasOnProgressCallbacks(requests)) {
+      ProgressNoopOutputStream countingStream=null;
+      countingStream=new ProgressNoopOutputStream(requests.getCallbackHandler());
+      processRequest(requests,null,numRequests,url,countingStream);
+      int max=countingStream.getMaxProgress();
+      Map<Request,RequestProgress> progressMap=countingStream.getProgressMap();
+      BufferedOutputStream buffered=new BufferedOutputStream(connection.getOutputStream());
+      outputStream=new ProgressOutputStream(buffered,requests,progressMap,max);
     }
  else {
-      String batchAppID=getBatchAppId(requests);
-      if (Utility.isNullOrEmpty(batchAppID)) {
-        throw new FacebookException("At least one request in a batch must have an open Session, or a " + "default app ID must be specified.");
-      }
-      serializer.writeString(BATCH_APP_ID_PARAM,batchAppID);
-      Bundle attachments=new Bundle();
-      serializeRequestsAsJSON(serializer,requests,attachments);
-      logger.append("  Attachments:\n");
-      serializeAttachments(attachments,serializer);
+      outputStream=new BufferedOutputStream(connection.getOutputStream());
     }
+    processRequest(requests,logger,numRequests,url,outputStream);
   }
   finally {
     outputStream.close();

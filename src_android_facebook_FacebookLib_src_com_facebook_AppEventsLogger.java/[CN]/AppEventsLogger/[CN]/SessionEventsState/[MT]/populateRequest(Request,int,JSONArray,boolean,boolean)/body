@@ -5,7 +5,7 @@
     publishParams.setProperty("num_skipped_events",numSkipped);
   }
   if (includeAttribution) {
-    Utility.setAppEventAttributionParameters(publishParams,attributionId,hashedDeviceAndAppId,limitEventUsage);
+    Utility.setAppEventAttributionParameters(publishParams,attributionIdentifiers,hashedDeviceAndAppId,limitEventUsage);
   }
   publishParams.setProperty("application_package_name",packageName);
   request.setGraphObject(publishParams);

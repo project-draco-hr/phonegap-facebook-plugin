@@ -1,0 +1,3 @@
+{
+  currentRequestProgress=request != null ? progressMap.get(request) : null;
+}

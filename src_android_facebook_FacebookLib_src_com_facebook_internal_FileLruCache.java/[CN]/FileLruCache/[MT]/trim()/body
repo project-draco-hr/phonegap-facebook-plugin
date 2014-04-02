@@ -1,4 +1,8 @@
 {
+synchronized (lock) {
+    isTrimPending=false;
+    isTrimInProgress=true;
+  }
   try {
     Logger.log(LoggingBehavior.CACHE,TAG,"trim started");
     PriorityQueue<ModifiedFile> heap=new PriorityQueue<ModifiedFile>();
@@ -24,7 +28,7 @@
   }
   finally {
 synchronized (lock) {
-      isTrimPending=false;
+      isTrimInProgress=false;
       lock.notifyAll();
     }
   }

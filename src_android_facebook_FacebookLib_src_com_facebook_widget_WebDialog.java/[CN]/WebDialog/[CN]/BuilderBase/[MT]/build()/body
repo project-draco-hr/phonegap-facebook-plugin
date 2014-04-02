@@ -6,8 +6,5 @@
  else {
     parameters.putString(ServerProtocol.DIALOG_PARAM_APP_ID,applicationId);
   }
-  if (!parameters.containsKey(ServerProtocol.DIALOG_PARAM_REDIRECT_URI)) {
-    parameters.putString(ServerProtocol.DIALOG_PARAM_REDIRECT_URI,REDIRECT_URI);
-  }
   return new WebDialog(context,action,parameters,theme,listener);
 }

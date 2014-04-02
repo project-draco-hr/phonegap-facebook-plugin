@@ -1,0 +1,43 @@
+{
+  JSONObject batchEntry=new JSONObject();
+  if (this.batchEntryName != null) {
+    batchEntry.put(BATCH_ENTRY_NAME_PARAM,this.batchEntryName);
+    batchEntry.put(BATCH_ENTRY_OMIT_RESPONSE_ON_SUCCESS_PARAM,this.batchEntryOmitResultOnSuccess);
+  }
+  if (this.batchEntryDependsOn != null) {
+    batchEntry.put(BATCH_ENTRY_DEPENDS_ON_PARAM,this.batchEntryDependsOn);
+  }
+  String relativeURL=getUrlForBatchedRequest();
+  batchEntry.put(BATCH_RELATIVE_URL_PARAM,relativeURL);
+  batchEntry.put(BATCH_METHOD_PARAM,httpMethod);
+  if (this.session != null) {
+    String accessToken=this.session.getAccessToken();
+    Logger.registerAccessToken(accessToken);
+  }
+  ArrayList<String> attachmentNames=new ArrayList<String>();
+  Set<String> keys=this.parameters.keySet();
+  for (  String key : keys) {
+    Object value=this.parameters.get(key);
+    if (isSupportedAttachmentType(value)) {
+      String name=String.format("%s%d",ATTACHMENT_FILENAME_PREFIX,attachments.size());
+      attachmentNames.add(name);
+      attachments.put(name,new Attachment(this,value));
+    }
+  }
+  if (!attachmentNames.isEmpty()) {
+    String attachmentNamesString=TextUtils.join(",",attachmentNames);
+    batchEntry.put(ATTACHED_FILES_PARAM,attachmentNamesString);
+  }
+  if (this.graphObject != null) {
+    final ArrayList<String> keysAndValues=new ArrayList<String>();
+    processGraphObject(this.graphObject,relativeURL,new KeyValueSerializer(){
+      @Override public void writeString(      String key,      String value) throws IOException {
+        keysAndValues.add(String.format("%s=%s",key,URLEncoder.encode(value,"UTF-8")));
+      }
+    }
+);
+    String bodyValue=TextUtils.join("&",keysAndValues);
+    batchEntry.put(BATCH_BODY_PARAM,bodyValue);
+  }
+  batch.put(batchEntry);
+}

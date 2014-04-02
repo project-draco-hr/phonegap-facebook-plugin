@@ -1,0 +1,2 @@
+Map<String,Attachment> attachments
+Serializer serializer

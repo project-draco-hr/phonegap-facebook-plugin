@@ -1,0 +1,5 @@
+RequestBatch requests
+Logger logger
+int numRequests
+URL url
+OutputStream outputStream
