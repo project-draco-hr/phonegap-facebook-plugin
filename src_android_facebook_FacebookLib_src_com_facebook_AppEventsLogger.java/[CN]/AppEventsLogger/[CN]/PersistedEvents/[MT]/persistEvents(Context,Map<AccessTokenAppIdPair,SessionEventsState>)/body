@@ -1,0 +1,13 @@
+{
+synchronized (staticLock) {
+    PersistedEvents persistedEvents=readAndClearStore(context);
+    for (    Map.Entry<AccessTokenAppIdPair,SessionEventsState> entry : eventsToPersist.entrySet()) {
+      List<AppEvent> events=entry.getValue().getEventsToPersist();
+      if (events.size() == 0) {
+        continue;
+      }
+      persistedEvents.addEvents(entry.getKey(),events);
+    }
+    persistedEvents.write();
+  }
+}

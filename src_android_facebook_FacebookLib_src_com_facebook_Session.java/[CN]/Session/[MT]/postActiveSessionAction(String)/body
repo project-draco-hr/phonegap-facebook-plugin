@@ -1,0 +1,4 @@
+{
+  final Intent intent=new Intent(action);
+  LocalBroadcastManager.getInstance(getStaticContext()).sendBroadcast(intent);
+}

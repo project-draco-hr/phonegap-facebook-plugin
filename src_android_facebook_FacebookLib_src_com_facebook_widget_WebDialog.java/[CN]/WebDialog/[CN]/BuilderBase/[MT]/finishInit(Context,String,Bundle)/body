@@ -1,0 +1,10 @@
+{
+  this.context=context;
+  this.action=action;
+  if (parameters != null) {
+    this.parameters=parameters;
+  }
+ else {
+    this.parameters=new Bundle();
+  }
+}

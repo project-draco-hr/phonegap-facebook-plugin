@@ -1,0 +1,3 @@
+{
+  super(context,NativeProtocol.MESSAGE_GET_INSTALL_DATA_REQUEST,NativeProtocol.MESSAGE_GET_INSTALL_DATA_REPLY,NativeProtocol.PROTOCOL_VERSION_20130618,applicationId);
+}

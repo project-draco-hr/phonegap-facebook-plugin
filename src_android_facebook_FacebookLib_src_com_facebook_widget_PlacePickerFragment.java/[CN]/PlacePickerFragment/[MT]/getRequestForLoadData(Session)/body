@@ -1,0 +1,3 @@
+{
+  return createRequest(location,radiusInMeters,resultsLimit,searchText,extraFields,session);
+}

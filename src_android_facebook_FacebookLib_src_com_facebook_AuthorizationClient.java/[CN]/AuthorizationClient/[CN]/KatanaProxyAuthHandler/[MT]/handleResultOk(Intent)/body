@@ -1,0 +1,29 @@
+{
+  Bundle extras=data.getExtras();
+  String error=extras.getString("error");
+  if (error == null) {
+    error=extras.getString("error_type");
+  }
+  String errorCode=extras.getString("error_code");
+  String errorMessage=extras.getString("error_message");
+  if (errorMessage == null) {
+    errorMessage=extras.getString("error_description");
+  }
+  String e2e=extras.getString(NativeProtocol.FACEBOOK_PROXY_AUTH_E2E_KEY);
+  if (!Utility.isNullOrEmpty(e2e)) {
+    logWebLoginCompleted(applicationId,e2e);
+  }
+  if (error == null && errorCode == null && errorMessage == null) {
+    AccessToken token=AccessToken.createFromWebBundle(pendingRequest.getPermissions(),extras,AccessTokenSource.FACEBOOK_APPLICATION_WEB);
+    return Result.createTokenResult(pendingRequest,token);
+  }
+ else   if (ServerProtocol.errorsProxyAuthDisabled.contains(error)) {
+    return null;
+  }
+ else   if (ServerProtocol.errorsUserCanceled.contains(error)) {
+    return Result.createCancelResult(pendingRequest,null);
+  }
+ else {
+    return Result.createErrorResult(pendingRequest,error,errorMessage,errorCode);
+  }
+}

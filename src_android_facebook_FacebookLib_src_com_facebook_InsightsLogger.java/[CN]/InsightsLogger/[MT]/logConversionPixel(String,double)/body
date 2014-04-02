@@ -1,0 +1,11 @@
+{
+  if (pixelId == null) {
+    Logger.log(LoggingBehavior.DEVELOPER_ERRORS,"Insights","pixelID cannot be null");
+    return;
+  }
+  Bundle parameters=new Bundle();
+  parameters.putString(EVENT_PARAMETER_PIXEL_ID,pixelId);
+  parameters.putDouble(EVENT_PARAMETER_PIXEL_VALUE,valueOfPixel);
+  appEventsLogger.logEvent(EVENT_NAME_LOG_CONVERSION_PIXEL,valueOfPixel,parameters);
+  AppEventsLogger.eagerFlush();
+}

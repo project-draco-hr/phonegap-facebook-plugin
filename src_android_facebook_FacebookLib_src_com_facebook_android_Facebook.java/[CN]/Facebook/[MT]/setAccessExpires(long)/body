@@ -1,0 +1,8 @@
+{
+  checkUserSession("setAccessExpires");
+synchronized (this.lock) {
+    accessExpiresMillisecondsAfterEpoch=timestampInMsec;
+    lastAccessUpdateMillisecondsAfterEpoch=System.currentTimeMillis();
+    sessionInvalidated=true;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  SharedPreferences preferences=context.getSharedPreferences(APP_EVENT_PREFERENCES,Context.MODE_PRIVATE);
+  return preferences.getBoolean("limitEventUsage",false);
+}

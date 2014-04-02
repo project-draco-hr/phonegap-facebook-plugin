@@ -1,0 +1,3 @@
+{
+  return createSessionWithSharedUser(activity,permissions,null);
+}

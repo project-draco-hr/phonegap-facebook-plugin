@@ -1,0 +1,3 @@
+{
+  return (accessToken == null ? 0 : accessToken.hashCode()) ^ (applicationId == null ? 0 : applicationId.hashCode());
+}

@@ -1,0 +1,9 @@
+int requestStatusCode
+int errorCode
+int subErrorCode
+String errorType
+String errorMessage
+JSONObject requestResultBody
+JSONObject requestResult
+Object batchRequestResult
+HttpURLConnection connection

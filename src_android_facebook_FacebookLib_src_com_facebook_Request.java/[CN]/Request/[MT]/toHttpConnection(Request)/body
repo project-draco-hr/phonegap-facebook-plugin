@@ -1,0 +1,3 @@
+{
+  return toHttpConnection(Arrays.asList(requests));
+}

@@ -1,0 +1,46 @@
+{
+  Utility.logd(LOG_TAG,"Redirect URL: " + url);
+  if (url.startsWith(WebDialog.REDIRECT_URI)) {
+    Bundle values=Util.parseUrl(url);
+    String error=values.getString("error");
+    if (error == null) {
+      error=values.getString("error_type");
+    }
+    String errorMessage=values.getString("error_msg");
+    if (errorMessage == null) {
+      errorMessage=values.getString("error_description");
+    }
+    String errorCodeString=values.getString("error_code");
+    int errorCode=FacebookRequestError.INVALID_ERROR_CODE;
+    if (!Utility.isNullOrEmpty(errorCodeString)) {
+      try {
+        errorCode=Integer.parseInt(errorCodeString);
+      }
+ catch (      NumberFormatException ex) {
+        errorCode=FacebookRequestError.INVALID_ERROR_CODE;
+      }
+    }
+    if (Utility.isNullOrEmpty(error) && Utility.isNullOrEmpty(errorMessage) && errorCode == FacebookRequestError.INVALID_ERROR_CODE) {
+      sendSuccessToListener(values);
+    }
+ else     if (error != null && (error.equals("access_denied") || error.equals("OAuthAccessDeniedException"))) {
+      sendCancelToListener();
+    }
+ else {
+      FacebookRequestError requestError=new FacebookRequestError(errorCode,error,errorMessage);
+      sendErrorToListener(new FacebookServiceException(requestError,errorMessage));
+    }
+    WebDialog.this.dismiss();
+    return true;
+  }
+ else   if (url.startsWith(WebDialog.CANCEL_URI)) {
+    sendCancelToListener();
+    WebDialog.this.dismiss();
+    return true;
+  }
+ else   if (url.contains(DISPLAY_TOUCH)) {
+    return false;
+  }
+  getContext().startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
+  return true;
+}

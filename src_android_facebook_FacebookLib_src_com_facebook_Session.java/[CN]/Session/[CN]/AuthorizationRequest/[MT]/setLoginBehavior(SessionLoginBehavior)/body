@@ -1,0 +1,6 @@
+{
+  if (loginBehavior != null) {
+    this.loginBehavior=loginBehavior;
+  }
+  return this;
+}

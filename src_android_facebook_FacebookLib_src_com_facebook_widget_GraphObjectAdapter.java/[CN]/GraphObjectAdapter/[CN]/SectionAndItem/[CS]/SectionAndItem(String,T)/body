@@ -1,0 +1,4 @@
+{
+  this.sectionKey=sectionKey;
+  this.graphObject=graphObject;
+}

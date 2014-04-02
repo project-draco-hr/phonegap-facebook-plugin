@@ -1,0 +1,6 @@
+{
+  if (permissions != null) {
+    this.permissions=permissions;
+  }
+  return this;
+}

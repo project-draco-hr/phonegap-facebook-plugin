@@ -1,0 +1,5 @@
+{
+  super.saveSettingsToBundle(outState);
+  outState.putString(USER_ID_BUNDLE_KEY,userId);
+  outState.putBoolean(MULTI_SELECT_BUNDLE_KEY,multiSelect);
+}

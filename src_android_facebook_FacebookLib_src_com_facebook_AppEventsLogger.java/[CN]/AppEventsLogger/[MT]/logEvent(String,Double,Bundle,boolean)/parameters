@@ -1,0 +1,4 @@
+String eventName
+Double valueToSum
+Bundle parameters
+boolean isImplicitlyLogged

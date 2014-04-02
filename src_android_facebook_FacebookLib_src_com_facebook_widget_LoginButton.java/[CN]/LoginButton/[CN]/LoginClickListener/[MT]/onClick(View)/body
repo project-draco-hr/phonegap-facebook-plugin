@@ -1,0 +1,61 @@
+{
+  Context context=getContext();
+  final Session openSession=sessionTracker.getOpenSession();
+  if (openSession != null) {
+    if (confirmLogout) {
+      String logout=getResources().getString(R.string.com_facebook_loginview_log_out_action);
+      String cancel=getResources().getString(R.string.com_facebook_loginview_cancel_action);
+      String message;
+      if (user != null && user.getName() != null) {
+        message=String.format(getResources().getString(R.string.com_facebook_loginview_logged_in_as),user.getName());
+      }
+ else {
+        message=getResources().getString(R.string.com_facebook_loginview_logged_in_using_facebook);
+      }
+      AlertDialog.Builder builder=new AlertDialog.Builder(context);
+      builder.setMessage(message).setCancelable(true).setPositiveButton(logout,new DialogInterface.OnClickListener(){
+        public void onClick(        DialogInterface dialog,        int which){
+          openSession.closeAndClearTokenInformation();
+        }
+      }
+).setNegativeButton(cancel,null);
+      builder.create().show();
+    }
+ else {
+      openSession.closeAndClearTokenInformation();
+    }
+  }
+ else {
+    Session currentSession=sessionTracker.getSession();
+    if (currentSession == null || currentSession.getState().isClosed()) {
+      sessionTracker.setSession(null);
+      Session session=new Session.Builder(context).setApplicationId(applicationId).build();
+      Session.setActiveSession(session);
+      currentSession=session;
+    }
+    if (!currentSession.isOpened()) {
+      Session.OpenRequest openRequest=null;
+      if (parentFragment != null) {
+        openRequest=new Session.OpenRequest(parentFragment);
+      }
+ else       if (context instanceof Activity) {
+        openRequest=new Session.OpenRequest((Activity)context);
+      }
+      if (openRequest != null) {
+        openRequest.setDefaultAudience(properties.defaultAudience);
+        openRequest.setPermissions(properties.permissions);
+        openRequest.setLoginBehavior(properties.loginBehavior);
+        if (SessionAuthorizationType.PUBLISH.equals(properties.authorizationType)) {
+          currentSession.openForPublish(openRequest);
+        }
+ else {
+          currentSession.openForRead(openRequest);
+        }
+      }
+    }
+  }
+  AppEventsLogger logger=AppEventsLogger.newLogger(getContext());
+  Bundle parameters=new Bundle();
+  parameters.putInt("logging_in",(openSession != null) ? 0 : 1);
+  logger.logSdkEvent(loginLogoutEventName,null,parameters);
+}

@@ -1,0 +1,20 @@
+{
+  checkUserSession("logout");
+  Bundle b=new Bundle();
+  b.putString("method","auth.expireSession");
+  String response=request(b);
+  long currentTimeMillis=System.currentTimeMillis();
+  Session sessionToClose=null;
+synchronized (this.lock) {
+    sessionToClose=session;
+    session=null;
+    accessToken=null;
+    accessExpiresMillisecondsAfterEpoch=0;
+    lastAccessUpdateMillisecondsAfterEpoch=currentTimeMillis;
+    sessionInvalidated=false;
+  }
+  if (sessionToClose != null) {
+    sessionToClose.closeAndClearTokenInformation();
+  }
+  return response;
+}

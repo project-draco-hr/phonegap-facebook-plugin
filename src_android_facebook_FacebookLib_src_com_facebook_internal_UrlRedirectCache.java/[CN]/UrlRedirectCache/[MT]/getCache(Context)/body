@@ -1,0 +1,6 @@
+{
+  if (urlRedirectCache == null) {
+    urlRedirectCache=new FileLruCache(context.getApplicationContext(),TAG,new FileLruCache.Limits());
+  }
+  return urlRedirectCache;
+}

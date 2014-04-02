@@ -1,0 +1,6 @@
+{
+  if ((currentContext != null) && (staticContext == null)) {
+    Context applicationContext=currentContext.getApplicationContext();
+    staticContext=(applicationContext != null) ? applicationContext : currentContext;
+  }
+}

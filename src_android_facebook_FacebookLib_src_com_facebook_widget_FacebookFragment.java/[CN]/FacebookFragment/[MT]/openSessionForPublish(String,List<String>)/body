@@ -1,0 +1,3 @@
+{
+  openSessionForPublish(applicationId,permissions,SessionLoginBehavior.SSO_WITH_FALLBACK,Session.DEFAULT_AUTHORIZE_ACTIVITY_CODE);
+}

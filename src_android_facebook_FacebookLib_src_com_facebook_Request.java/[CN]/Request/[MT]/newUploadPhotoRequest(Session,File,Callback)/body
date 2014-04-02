@@ -1,0 +1,6 @@
+{
+  ParcelFileDescriptor descriptor=ParcelFileDescriptor.open(file,ParcelFileDescriptor.MODE_READ_ONLY);
+  Bundle parameters=new Bundle(1);
+  parameters.putParcelable(PICTURE_PARAM,descriptor);
+  return new Request(session,MY_PHOTOS,parameters,HttpMethod.POST,callback);
+}

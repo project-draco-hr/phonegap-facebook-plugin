@@ -1,0 +1,25 @@
+{
+  Validate.notNull(context,"context");
+  Validate.notNull(callId,"callId");
+  Validate.containsNoNulls(imageAttachmentFiles.values(),"imageAttachmentFiles");
+  Validate.containsNoNullOrEmpty(imageAttachmentFiles.keySet(),"imageAttachmentFiles");
+  addAttachments(context,callId,imageAttachmentFiles,new ProcessAttachment<File>(){
+    @Override public void processAttachment(    File attachment,    File outputFile) throws IOException {
+      FileOutputStream outputStream=new FileOutputStream(outputFile);
+      FileInputStream inputStream=null;
+      try {
+        inputStream=new FileInputStream(attachment);
+        byte[] buffer=new byte[1024];
+        int len;
+        while ((len=inputStream.read(buffer)) > 0) {
+          outputStream.write(buffer,0,len);
+        }
+      }
+  finally {
+        Utility.closeQuietly(outputStream);
+        Utility.closeQuietly(inputStream);
+      }
+    }
+  }
+);
+}

@@ -1,0 +1,3 @@
+{
+  return new AuthRequestSerializationProxyV1(loginBehavior,requestCode,permissions,defaultAudience.name(),isLegacy,applicationId,validateSameFbidAsToken);
+}

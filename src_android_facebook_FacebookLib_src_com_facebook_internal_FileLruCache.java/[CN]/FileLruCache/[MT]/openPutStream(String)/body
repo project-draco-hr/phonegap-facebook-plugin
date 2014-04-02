@@ -1,0 +1,3 @@
+{
+  return openPutStream(key,null);
+}

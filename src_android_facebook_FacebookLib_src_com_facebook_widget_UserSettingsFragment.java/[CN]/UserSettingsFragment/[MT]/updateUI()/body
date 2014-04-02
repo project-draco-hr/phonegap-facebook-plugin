@@ -1,0 +1,39 @@
+{
+  if (!isAdded()) {
+    return;
+  }
+  if (isSessionOpen()) {
+    connectedStateLabel.setTextColor(getResources().getColor(R.color.com_facebook_usersettingsfragment_connected_text_color));
+    connectedStateLabel.setShadowLayer(1f,0f,-1f,getResources().getColor(R.color.com_facebook_usersettingsfragment_connected_shadow_color));
+    if (user != null) {
+      ImageRequest request=getImageRequest();
+      if (request != null) {
+        URI requestUrl=request.getImageUri();
+        if (!requestUrl.equals(connectedStateLabel.getTag())) {
+          if (user.getId().equals(userProfilePicID)) {
+            connectedStateLabel.setCompoundDrawables(null,userProfilePic,null,null);
+            connectedStateLabel.setTag(requestUrl);
+          }
+ else {
+            ImageDownloader.downloadAsync(request);
+          }
+        }
+      }
+      connectedStateLabel.setText(user.getName());
+    }
+ else {
+      connectedStateLabel.setText(getResources().getString(R.string.com_facebook_usersettingsfragment_logged_in));
+      Drawable noProfilePic=getResources().getDrawable(R.drawable.com_facebook_profile_default_icon);
+      noProfilePic.setBounds(0,0,getResources().getDimensionPixelSize(R.dimen.com_facebook_usersettingsfragment_profile_picture_width),getResources().getDimensionPixelSize(R.dimen.com_facebook_usersettingsfragment_profile_picture_height));
+      connectedStateLabel.setCompoundDrawables(null,noProfilePic,null,null);
+    }
+  }
+ else {
+    int textColor=getResources().getColor(R.color.com_facebook_usersettingsfragment_not_connected_text_color);
+    connectedStateLabel.setTextColor(textColor);
+    connectedStateLabel.setShadowLayer(0f,0f,0f,textColor);
+    connectedStateLabel.setText(getResources().getString(R.string.com_facebook_usersettingsfragment_not_logged_in));
+    connectedStateLabel.setCompoundDrawables(null,null,null,null);
+    connectedStateLabel.setTag(null);
+  }
+}

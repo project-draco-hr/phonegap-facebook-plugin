@@ -1,0 +1,25 @@
+{
+  int dimensionId;
+switch (presetSizeType) {
+case SMALL:
+    dimensionId=R.dimen.com_facebook_profilepictureview_preset_size_small;
+  break;
+case NORMAL:
+dimensionId=R.dimen.com_facebook_profilepictureview_preset_size_normal;
+break;
+case LARGE:
+dimensionId=R.dimen.com_facebook_profilepictureview_preset_size_large;
+break;
+case CUSTOM:
+if (!forcePreset) {
+return ImageRequest.UNSPECIFIED_DIMENSION;
+}
+ else {
+dimensionId=R.dimen.com_facebook_profilepictureview_preset_size_normal;
+break;
+}
+default :
+return ImageRequest.UNSPECIFIED_DIMENSION;
+}
+return getResources().getDimensionPixelSize(dimensionId);
+}

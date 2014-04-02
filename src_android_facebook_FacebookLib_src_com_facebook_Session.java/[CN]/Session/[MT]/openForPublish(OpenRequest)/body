@@ -1,0 +1,3 @@
+{
+  open(openRequest,SessionAuthorizationType.PUBLISH);
+}

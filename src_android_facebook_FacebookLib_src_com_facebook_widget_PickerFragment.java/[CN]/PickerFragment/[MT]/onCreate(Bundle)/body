@@ -1,0 +1,10 @@
+{
+  super.onCreate(savedInstanceState);
+  adapter=createAdapter();
+  adapter.setFilter(new GraphObjectAdapter.Filter<T>(){
+    @Override public boolean includeItem(    T graphObject){
+      return filterIncludesItem(graphObject);
+    }
+  }
+);
+}

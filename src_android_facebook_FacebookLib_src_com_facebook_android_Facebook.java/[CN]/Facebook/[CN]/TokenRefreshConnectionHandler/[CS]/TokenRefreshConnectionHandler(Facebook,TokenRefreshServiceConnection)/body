@@ -1,0 +1,5 @@
+{
+  super();
+  facebookWeakReference=new WeakReference<Facebook>(facebook);
+  connectionWeakReference=new WeakReference<TokenRefreshServiceConnection>(connection);
+}

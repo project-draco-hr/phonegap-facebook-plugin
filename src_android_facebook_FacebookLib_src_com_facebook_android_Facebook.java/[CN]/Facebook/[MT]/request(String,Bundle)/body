@@ -1,0 +1,3 @@
+{
+  return requestImpl(graphPath,parameters,"GET");
+}

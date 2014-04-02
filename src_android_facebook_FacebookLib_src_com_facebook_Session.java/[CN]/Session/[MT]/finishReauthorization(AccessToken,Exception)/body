@@ -1,0 +1,10 @@
+{
+  final SessionState oldState=state;
+  if (newToken != null) {
+    tokenInfo=newToken;
+    saveTokenToCache(newToken);
+    state=SessionState.OPENED_TOKEN_UPDATED;
+  }
+  pendingAuthorizationRequest=null;
+  postStateChange(oldState,state,exception);
+}

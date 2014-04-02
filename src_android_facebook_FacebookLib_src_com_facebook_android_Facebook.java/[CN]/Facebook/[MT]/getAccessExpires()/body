@@ -1,0 +1,9 @@
+{
+  Session s=getSession();
+  if (s != null) {
+    return s.getExpirationDate().getTime();
+  }
+ else {
+    return accessExpiresMillisecondsAfterEpoch;
+  }
+}

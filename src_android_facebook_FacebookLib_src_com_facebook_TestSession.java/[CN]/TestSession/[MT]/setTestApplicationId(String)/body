@@ -1,0 +1,6 @@
+{
+  if (testApplicationId != null && !testApplicationId.equals(applicationId)) {
+    throw new FacebookException("Can't have more than one test application ID");
+  }
+  testApplicationId=applicationId;
+}

@@ -1,0 +1,4 @@
+{
+  jsonObject=new JSONObject(jsonString);
+  this.isImplicit=isImplicit;
+}

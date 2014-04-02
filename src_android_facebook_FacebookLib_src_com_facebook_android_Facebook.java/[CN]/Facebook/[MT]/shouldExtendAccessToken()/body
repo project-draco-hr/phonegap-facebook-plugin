@@ -1,0 +1,4 @@
+{
+  checkUserSession("shouldExtendAccessToken");
+  return isSessionValid() && (System.currentTimeMillis() - lastAccessUpdateMillisecondsAfterEpoch >= REFRESH_TOKEN_BARRIER);
+}

@@ -1,0 +1,15 @@
+{
+  InputStream imageStream=null;
+  if (url != null) {
+    if (isCDNURL(url)) {
+      try {
+        FileLruCache cache=getCache(context);
+        imageStream=cache.get(url.toString());
+      }
+ catch (      IOException e) {
+        Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,e.toString());
+      }
+    }
+  }
+  return imageStream;
+}

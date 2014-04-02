@@ -1,0 +1,22 @@
+{
+  if (response.getRequest() == lastRequest) {
+    lastRequest=null;
+    Bitmap responseImage=response.getBitmap();
+    Exception error=response.getError();
+    if (error != null) {
+      OnErrorListener listener=onErrorListener;
+      if (listener != null) {
+        listener.onError(new FacebookException("Error in downloading profile picture for profileId: " + getProfileId(),error));
+      }
+ else {
+        Logger.log(LoggingBehavior.REQUESTS,Log.ERROR,TAG,error.toString());
+      }
+    }
+ else     if (responseImage != null) {
+      setImageBitmap(responseImage);
+      if (response.isCachedRedirect()) {
+        sendImageRequest(false);
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  setCurrentTokenRefreshRequest(new TokenRefreshRequest());
+}

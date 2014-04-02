@@ -1,0 +1,9 @@
+{
+synchronized (staticLock) {
+    int result=0;
+    for (    SessionEventsState state : stateMap.values()) {
+      result+=state.getAccumulatedEventCount();
+    }
+    return result;
+  }
+}

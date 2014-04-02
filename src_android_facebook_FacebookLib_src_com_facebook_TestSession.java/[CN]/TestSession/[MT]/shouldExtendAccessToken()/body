@@ -1,0 +1,5 @@
+{
+  boolean result=super.shouldExtendAccessToken();
+  wasAskedToExtendAccessToken=false;
+  return result;
+}

@@ -1,0 +1,27 @@
+{
+  Bundle bundle=null;
+  if (pendingRequest == null) {
+    bundle=newAuthorizationLoggingBundle("");
+    bundle.putString(EVENT_PARAM_LOGIN_RESULT,Result.Code.ERROR.getLoggingValue());
+    bundle.putString(EVENT_PARAM_ERROR_MESSAGE,"Unexpected call to logAuthorizationMethodComplete with null pendingRequest.");
+  }
+ else {
+    bundle=newAuthorizationLoggingBundle(pendingRequest.getAuthId());
+    if (result != null) {
+      bundle.putString(EVENT_PARAM_LOGIN_RESULT,result);
+    }
+    if (errorMessage != null) {
+      bundle.putString(EVENT_PARAM_ERROR_MESSAGE,errorMessage);
+    }
+    if (errorCode != null) {
+      bundle.putString(EVENT_PARAM_ERROR_CODE,errorCode);
+    }
+    if (loggingExtras != null && !loggingExtras.isEmpty()) {
+      JSONObject jsonObject=new JSONObject(loggingExtras);
+      bundle.putString(EVENT_PARAM_EXTRAS,jsonObject.toString());
+    }
+  }
+  bundle.putString(EVENT_PARAM_METHOD,method);
+  bundle.putLong(EVENT_PARAM_TIMESTAMP,System.currentTimeMillis());
+  getAppEventsLogger().logSdkEvent(EVENT_NAME_LOGIN_METHOD_COMPLETE,null,bundle);
+}

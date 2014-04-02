@@ -1,0 +1,20 @@
+{
+synchronized (Session.STATIC_LOCK) {
+    if (session != Session.activeSession) {
+      Session oldSession=Session.activeSession;
+      if (oldSession != null) {
+        oldSession.close();
+      }
+      Session.activeSession=session;
+      if (oldSession != null) {
+        postActiveSessionAction(Session.ACTION_ACTIVE_SESSION_UNSET);
+      }
+      if (session != null) {
+        postActiveSessionAction(Session.ACTION_ACTIVE_SESSION_SET);
+        if (session.isOpened()) {
+          postActiveSessionAction(Session.ACTION_ACTIVE_SESSION_OPENED);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  File dir=getAttachmentsDirectory(context);
+  Utility.deleteDirectory(dir);
+}

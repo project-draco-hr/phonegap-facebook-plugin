@@ -1,0 +1,3 @@
+{
+  logPurchase(purchaseAmount,currency,null);
+}

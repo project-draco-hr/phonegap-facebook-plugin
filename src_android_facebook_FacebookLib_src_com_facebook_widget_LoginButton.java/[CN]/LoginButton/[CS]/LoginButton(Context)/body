@@ -1,0 +1,5 @@
+{
+  super(context);
+  initializeActiveSessionWithCachedToken(context);
+  finishInit();
+}

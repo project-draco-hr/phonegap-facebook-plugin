@@ -1,0 +1,19 @@
+{
+  View view=inflater.inflate(R.layout.com_facebook_usersettingsfragment,container,false);
+  loginButton=(LoginButton)view.findViewById(R.id.com_facebook_usersettingsfragment_login_button);
+  loginButton.setProperties(loginButtonProperties);
+  loginButton.setFragment(this);
+  loginButton.setLoginLogoutEventName(AnalyticsEvents.EVENT_USER_SETTINGS_USAGE);
+  Session session=getSession();
+  if (session != null && !session.equals(Session.getActiveSession())) {
+    loginButton.setSession(session);
+  }
+  connectedStateLabel=(TextView)view.findViewById(R.id.com_facebook_usersettingsfragment_profile_name);
+  if (view.getBackground() == null) {
+    view.setBackgroundColor(getResources().getColor(R.color.com_facebook_blue));
+  }
+ else {
+    view.getBackground().setDither(true);
+  }
+  return view;
+}

@@ -1,0 +1,20 @@
+{
+  Bundle params=new Bundle();
+  if (s != null) {
+    String array[]=s.split("&");
+    for (    String parameter : array) {
+      String v[]=parameter.split("=");
+      try {
+        if (v.length == 2) {
+          params.putString(URLDecoder.decode(v[0],UTF8),URLDecoder.decode(v[1],UTF8));
+        }
+ else         if (v.length == 1) {
+          params.putString(URLDecoder.decode(v[0],UTF8),"");
+        }
+      }
+ catch (      UnsupportedEncodingException e) {
+      }
+    }
+  }
+  return params;
+}

@@ -1,0 +1,6 @@
+{
+  if (requestCode == pendingRequest.getRequestCode()) {
+    return currentHandler.onActivityResult(requestCode,resultCode,data);
+  }
+  return false;
+}

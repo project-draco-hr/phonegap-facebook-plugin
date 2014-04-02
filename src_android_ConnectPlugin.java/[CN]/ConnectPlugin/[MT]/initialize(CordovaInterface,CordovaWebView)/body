@@ -1,0 +1,21 @@
+{
+  int appResId=cordova.getActivity().getResources().getIdentifier("fb_app_id","string",cordova.getActivity().getPackageName());
+  applicationId=cordova.getActivity().getString(appResId);
+  cordova.setActivityResultCallback(this);
+  Session session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
+  if (session.getState() == SessionState.CREATED_TOKEN_LOADED) {
+    Session.setActiveSession(session);
+    Session.OpenRequest openRequest=new Session.OpenRequest(cordova.getActivity());
+    openRequest.setCallback(new Session.StatusCallback(){
+      @Override public void call(      Session session,      SessionState state,      Exception exception){
+        onSessionStateChange(state,exception);
+      }
+    }
+);
+    session.openForRead(openRequest);
+  }
+  if (session != null && session.isOpened()) {
+    onSessionStateChange(session.getState(),null);
+  }
+  super.initialize(cordova,webView);
+}

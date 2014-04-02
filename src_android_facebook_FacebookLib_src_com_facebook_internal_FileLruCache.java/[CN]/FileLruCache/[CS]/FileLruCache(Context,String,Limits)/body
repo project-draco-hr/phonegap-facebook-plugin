@@ -1,0 +1,9 @@
+{
+  this.tag=tag;
+  this.limits=limits;
+  this.directory=new File(context.getCacheDir(),tag);
+  this.lock=new Object();
+  if (this.directory.mkdirs() || this.directory.isDirectory()) {
+    BufferFile.deleteAll(this.directory);
+  }
+}

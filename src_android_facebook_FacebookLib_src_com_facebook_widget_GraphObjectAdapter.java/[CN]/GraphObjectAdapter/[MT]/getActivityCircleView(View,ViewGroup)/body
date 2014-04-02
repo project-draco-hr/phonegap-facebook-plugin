@@ -1,0 +1,9 @@
+{
+  View result=convertView;
+  if (result == null) {
+    result=inflater.inflate(R.layout.com_facebook_picker_activity_circle_row,null);
+  }
+  ProgressBar activityCircle=(ProgressBar)result.findViewById(R.id.com_facebook_picker_row_activity_circle);
+  activityCircle.setVisibility(View.VISIBLE);
+  return result;
+}

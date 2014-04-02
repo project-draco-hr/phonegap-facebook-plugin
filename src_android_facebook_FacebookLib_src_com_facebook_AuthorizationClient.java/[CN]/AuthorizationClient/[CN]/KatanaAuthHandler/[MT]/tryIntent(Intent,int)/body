@@ -1,0 +1,12 @@
+{
+  if (intent == null) {
+    return false;
+  }
+  try {
+    getStartActivityDelegate().startActivityForResult(intent,requestCode);
+  }
+ catch (  ActivityNotFoundException e) {
+    return false;
+  }
+  return true;
+}

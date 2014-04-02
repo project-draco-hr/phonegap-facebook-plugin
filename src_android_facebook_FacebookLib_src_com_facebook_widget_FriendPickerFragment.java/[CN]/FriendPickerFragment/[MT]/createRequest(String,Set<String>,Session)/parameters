@@ -1,0 +1,3 @@
+String userID
+Set<String> extraFields
+Session session

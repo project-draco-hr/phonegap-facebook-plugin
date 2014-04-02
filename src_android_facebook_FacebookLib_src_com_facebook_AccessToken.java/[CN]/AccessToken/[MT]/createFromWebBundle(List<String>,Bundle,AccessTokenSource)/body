@@ -1,0 +1,5 @@
+{
+  Date expires=getBundleLongAsDate(bundle,EXPIRES_IN_KEY,new Date());
+  String token=bundle.getString(ACCESS_TOKEN_KEY);
+  return createNew(requestedPermissions,token,expires,source);
+}

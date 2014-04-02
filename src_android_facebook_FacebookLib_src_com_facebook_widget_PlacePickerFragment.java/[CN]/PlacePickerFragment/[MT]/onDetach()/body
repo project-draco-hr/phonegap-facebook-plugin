@@ -1,0 +1,7 @@
+{
+  super.onDetach();
+  if (searchBox != null) {
+    InputMethodManager imm=(InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(searchBox.getWindowToken(),0);
+  }
+}

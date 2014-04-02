@@ -1,4 +1,0 @@
-{
-  Log.d(TAG,values.toString());
-  this.fba.success(new PluginResult(PluginResult.Status.OK),this.fba.callbackId);
-}

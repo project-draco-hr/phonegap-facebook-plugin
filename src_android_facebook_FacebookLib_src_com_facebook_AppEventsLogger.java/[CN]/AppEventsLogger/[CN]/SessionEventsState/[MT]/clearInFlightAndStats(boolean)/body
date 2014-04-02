@@ -1,0 +1,7 @@
+{
+  if (moveToAccumulated) {
+    accumulatedEvents.addAll(inFlightEvents);
+  }
+  inFlightEvents.clear();
+  numSkippedEventsDueToFullBuffer=0;
+}

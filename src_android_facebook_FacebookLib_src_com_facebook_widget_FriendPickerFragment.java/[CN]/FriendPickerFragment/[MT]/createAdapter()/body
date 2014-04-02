@@ -1,0 +1,16 @@
+{
+  PickerFragmentAdapter<GraphUser> adapter=new PickerFragmentAdapter<GraphUser>(this.getActivity()){
+    @Override protected int getGraphObjectRowLayoutId(    GraphUser graphObject){
+      return R.layout.com_facebook_picker_list_row;
+    }
+    @Override protected int getDefaultPicture(){
+      return R.drawable.com_facebook_profile_default_icon;
+    }
+  }
+;
+  adapter.setShowCheckbox(true);
+  adapter.setShowPicture(getShowPictures());
+  adapter.setSortFields(Arrays.asList(new String[]{NAME}));
+  adapter.setGroupByField(NAME);
+  return adapter;
+}

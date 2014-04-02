@@ -1,0 +1,9 @@
+{
+  Session session=new Builder(context).build();
+  if (SessionState.CREATED_TOKEN_LOADED.equals(session.getState()) || allowLoginUI) {
+    setActiveSession(session);
+    session.openForRead(openRequest);
+    return session;
+  }
+  return null;
+}

@@ -1,0 +1,11 @@
+{
+  if (Utility.isNullOrEmpty(attachmentName) || callId == null) {
+    throw new FileNotFoundException();
+  }
+  try {
+    return getAttachmentFile(callId,attachmentName,false);
+  }
+ catch (  IOException e) {
+    throw new FileNotFoundException();
+  }
+}

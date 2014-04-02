@@ -1,0 +1,14 @@
+{
+  if (request == null) {
+    return;
+  }
+  if (pendingRequest != null) {
+    throw new FacebookException("Attempted to authorize while a request is pending.");
+  }
+  if (request.needsNewTokenValidation() && !checkInternetPermission()) {
+    return;
+  }
+  pendingRequest=request;
+  handlersToTry=getHandlerTypes(request);
+  tryNextHandler();
+}

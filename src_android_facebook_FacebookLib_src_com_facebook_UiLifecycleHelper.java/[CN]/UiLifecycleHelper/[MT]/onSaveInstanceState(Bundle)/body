@@ -1,0 +1,4 @@
+{
+  Session.saveSession(Session.getActiveSession(),outState);
+  outState.putParcelable(DIALOG_CALL_BUNDLE_SAVE_KEY,pendingFacebookDialogCall);
+}

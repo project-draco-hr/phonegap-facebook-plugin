@@ -1,0 +1,14 @@
+{
+  if (value instanceof String) {
+    bundle.putString(key,(String)value);
+  }
+ else   if (value instanceof Parcelable) {
+    bundle.putParcelable(key,(Parcelable)value);
+  }
+ else   if (value instanceof byte[]) {
+    bundle.putByteArray(key,(byte[])value);
+  }
+ else {
+    throw new FacebookException("attempted to add unsupported type to Bundle");
+  }
+}

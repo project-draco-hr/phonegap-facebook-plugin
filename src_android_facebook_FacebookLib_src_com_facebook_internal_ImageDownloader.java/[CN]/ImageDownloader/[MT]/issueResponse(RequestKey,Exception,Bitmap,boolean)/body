@@ -1,0 +1,16 @@
+{
+  DownloaderContext completedRequestContext=removePendingRequest(key);
+  if (completedRequestContext != null && !completedRequestContext.isCancelled) {
+    final ImageRequest request=completedRequestContext.request;
+    final ImageRequest.Callback callback=request.getCallback();
+    if (callback != null) {
+      getHandler().post(new Runnable(){
+        @Override public void run(){
+          ImageResponse response=new ImageResponse(request,error,isCachedRedirect,bitmap);
+          callback.onCompleted(response);
+        }
+      }
+);
+    }
+  }
+}

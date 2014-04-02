@@ -1,0 +1,4 @@
+Activity currentActivity
+int requestCode
+int resultCode
+Intent data

@@ -1,0 +1,21 @@
+{
+  if (adapter != null) {
+    View view=listView.getChildAt(1);
+    int anchorPosition=listView.getFirstVisiblePosition();
+    if (anchorPosition > 0) {
+      anchorPosition++;
+    }
+    GraphObjectAdapter.SectionAndItem<T> anchorItem=adapter.getSectionAndItem(anchorPosition);
+    final int top=(view != null && anchorItem.getType() != GraphObjectAdapter.SectionAndItem.Type.ACTIVITY_CIRCLE) ? view.getTop() : 0;
+    boolean dataChanged=adapter.changeCursor(data);
+    if (view != null && anchorItem != null) {
+      final int newPositionOfItem=adapter.getPosition(anchorItem.sectionKey,anchorItem.graphObject);
+      if (newPositionOfItem != -1) {
+        listView.setSelectionFromTop(newPositionOfItem,top);
+      }
+    }
+    if (dataChanged && onDataChangedListener != null) {
+      onDataChangedListener.onDataChanged(PickerFragment.this);
+    }
+  }
+}

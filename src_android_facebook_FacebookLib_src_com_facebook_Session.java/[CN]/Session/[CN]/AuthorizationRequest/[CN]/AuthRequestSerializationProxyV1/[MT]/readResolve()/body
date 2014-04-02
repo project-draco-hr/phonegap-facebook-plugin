@@ -1,0 +1,3 @@
+{
+  return new AuthorizationRequest(loginBehavior,requestCode,permissions,defaultAudience,isLegacy,applicationId,validateSameFbidAsToken);
+}

@@ -1,0 +1,37 @@
+{
+  ViewStub stub=(ViewStub)view.findViewById(R.id.com_facebook_picker_title_bar_stub);
+  if (stub != null) {
+    View titleBar=stub.inflate();
+    final RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+    layoutParams.addRule(RelativeLayout.BELOW,R.id.com_facebook_picker_title_bar);
+    listView.setLayoutParams(layoutParams);
+    if (titleBarBackground != null) {
+      titleBar.setBackgroundDrawable(titleBarBackground);
+    }
+    doneButton=(Button)view.findViewById(R.id.com_facebook_picker_done_button);
+    if (doneButton != null) {
+      doneButton.setOnClickListener(new View.OnClickListener(){
+        @Override public void onClick(        View v){
+          logAppEvents(true);
+          appEventsLogged=true;
+          if (onDoneButtonClickedListener != null) {
+            onDoneButtonClickedListener.onDoneButtonClicked(PickerFragment.this);
+          }
+        }
+      }
+);
+      if (getDoneButtonText() != null) {
+        doneButton.setText(getDoneButtonText());
+      }
+      if (doneButtonBackground != null) {
+        doneButton.setBackgroundDrawable(doneButtonBackground);
+      }
+    }
+    titleTextView=(TextView)view.findViewById(R.id.com_facebook_picker_title);
+    if (titleTextView != null) {
+      if (getTitleText() != null) {
+        titleTextView.setText(getTitleText());
+      }
+    }
+  }
+}

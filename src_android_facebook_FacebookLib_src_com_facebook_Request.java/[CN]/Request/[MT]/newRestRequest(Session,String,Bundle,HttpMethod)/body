@@ -1,0 +1,5 @@
+{
+  Request request=new Request(session,null,parameters,httpMethod);
+  request.setRestMethod(restMethod);
+  return request;
+}

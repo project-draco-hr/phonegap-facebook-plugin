@@ -1,0 +1,6 @@
+{
+  assert(current.source == AccessTokenSource.FACEBOOK_APPLICATION_WEB || current.source == AccessTokenSource.FACEBOOK_APPLICATION_NATIVE || current.source == AccessTokenSource.FACEBOOK_APPLICATION_SERVICE);
+  Date expires=getBundleLongAsDate(bundle,EXPIRES_IN_KEY,new Date(0));
+  String token=bundle.getString(ACCESS_TOKEN_KEY);
+  return createNew(current.getPermissions(),token,expires,current.source);
+}

@@ -1,0 +1,5 @@
+{
+  super(context,attrs);
+  initialize(context);
+  parseAttributes(attrs);
+}

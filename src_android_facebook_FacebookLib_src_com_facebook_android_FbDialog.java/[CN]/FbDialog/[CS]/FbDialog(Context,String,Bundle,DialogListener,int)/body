@@ -1,0 +1,4 @@
+{
+  super(context,action,parameters,theme,null);
+  setDialogListener(listener);
+}

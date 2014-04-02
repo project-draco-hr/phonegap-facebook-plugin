@@ -1,0 +1,3 @@
+String method
+Result result
+Map<String,String> loggingExtras

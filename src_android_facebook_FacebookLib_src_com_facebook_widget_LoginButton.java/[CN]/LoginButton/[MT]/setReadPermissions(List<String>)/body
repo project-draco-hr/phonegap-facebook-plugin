@@ -1,0 +1,3 @@
+{
+  properties.setReadPermissions(permissions,sessionTracker.getSession());
+}

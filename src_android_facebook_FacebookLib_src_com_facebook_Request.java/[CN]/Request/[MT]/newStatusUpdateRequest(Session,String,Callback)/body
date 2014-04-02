@@ -1,0 +1,3 @@
+{
+  return newStatusUpdateRequest(session,message,(String)null,null,callback);
+}

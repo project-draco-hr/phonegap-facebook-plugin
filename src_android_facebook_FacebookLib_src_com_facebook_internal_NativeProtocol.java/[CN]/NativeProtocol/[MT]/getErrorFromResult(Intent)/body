@@ -1,0 +1,11 @@
+{
+  if (!isErrorResult(resultIntent)) {
+    return null;
+  }
+  String type=resultIntent.getStringExtra(STATUS_ERROR_TYPE);
+  String description=resultIntent.getStringExtra(STATUS_ERROR_DESCRIPTION);
+  if (type.equalsIgnoreCase(ERROR_USER_CANCELED)) {
+    return new FacebookOperationCanceledException(description);
+  }
+  return new FacebookException(description);
+}

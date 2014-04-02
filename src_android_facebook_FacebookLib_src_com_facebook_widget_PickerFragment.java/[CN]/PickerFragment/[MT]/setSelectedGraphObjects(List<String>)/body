@@ -1,0 +1,7 @@
+{
+  for (  String objectId : objectIds) {
+    if (!this.selectionStrategy.isSelected(objectId)) {
+      this.selectionStrategy.toggleSelection(objectId);
+    }
+  }
+}

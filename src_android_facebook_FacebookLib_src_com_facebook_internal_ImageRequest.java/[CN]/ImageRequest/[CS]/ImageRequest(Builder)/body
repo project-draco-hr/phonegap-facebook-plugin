@@ -1,0 +1,7 @@
+{
+  this.context=builder.context;
+  this.imageUri=builder.imageUrl;
+  this.callback=builder.callback;
+  this.allowCachedRedirects=builder.allowCachedRedirects;
+  this.callerTag=builder.callerTag == null ? new Object() : builder.callerTag;
+}

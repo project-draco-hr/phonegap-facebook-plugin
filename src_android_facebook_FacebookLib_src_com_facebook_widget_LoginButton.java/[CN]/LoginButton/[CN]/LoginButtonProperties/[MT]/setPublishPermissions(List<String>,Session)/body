@@ -1,0 +1,9 @@
+{
+  if (SessionAuthorizationType.READ.equals(authorizationType)) {
+    throw new UnsupportedOperationException("Cannot call setPublishPermissions after setReadPermissions has been called.");
+  }
+  if (validatePermissions(permissions,SessionAuthorizationType.PUBLISH,session)) {
+    this.permissions=permissions;
+    authorizationType=SessionAuthorizationType.PUBLISH;
+  }
+}

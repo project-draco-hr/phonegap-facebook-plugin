@@ -1,0 +1,30 @@
+{
+  if (attachments.size() == 0) {
+    return;
+  }
+  if (attachmentsDirectory == null) {
+    cleanupAllAttachments(context);
+  }
+  ensureAttachmentsDirectoryExists(context);
+  List<File> filesToCleanup=new ArrayList<File>();
+  try {
+    for (    Map.Entry<String,T> entry : attachments.entrySet()) {
+      String attachmentName=entry.getKey();
+      T attachment=entry.getValue();
+      File file=getAttachmentFile(callId,attachmentName,true);
+      filesToCleanup.add(file);
+      processor.processAttachment(attachment,file);
+    }
+  }
+ catch (  IOException exception) {
+    Log.e(TAG,"Got unexpected exception:" + exception);
+    for (    File file : filesToCleanup) {
+      try {
+        file.delete();
+      }
+ catch (      Exception e) {
+      }
+    }
+    throw new FacebookException(exception);
+  }
+}

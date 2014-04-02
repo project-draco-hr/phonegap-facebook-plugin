@@ -1,0 +1,5 @@
+{
+  this.graphObjectClass=graphObjectClass;
+  this.layout=layout;
+  setPickerFragmentSettingsFromBundle(args);
+}

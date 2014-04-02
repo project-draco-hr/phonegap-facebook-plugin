@@ -1,0 +1,8 @@
+{
+  clearResults();
+  Request request=getRequestForLoadData(getSession());
+  if (request != null) {
+    onLoadingData();
+    loadingStrategy.startLoading(request);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  this.innerStream.write(buffer,offset,count);
+}

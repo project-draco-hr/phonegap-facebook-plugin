@@ -1,0 +1,8 @@
+{
+  if (Session.ACTION_ACTIVE_SESSION_SET.equals(intent.getAction())) {
+    Session session=Session.getActiveSession();
+    if (session != null) {
+      session.addCallback(SessionTracker.this.callback);
+    }
+  }
+}

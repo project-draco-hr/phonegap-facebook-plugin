@@ -1,0 +1,8 @@
+{
+  if (session == null) {
+    throw new IllegalArgumentException("session cannot be null");
+  }
+synchronized (this.lock) {
+    this.userSetSession=session;
+  }
+}

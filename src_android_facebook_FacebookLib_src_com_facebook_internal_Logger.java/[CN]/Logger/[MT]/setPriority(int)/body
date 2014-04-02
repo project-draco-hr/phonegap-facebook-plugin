@@ -1,0 +1,4 @@
+{
+  Validate.oneOf(value,"value",Log.ASSERT,Log.DEBUG,Log.ERROR,Log.INFO,Log.VERBOSE,Log.WARN);
+  priority=value;
+}

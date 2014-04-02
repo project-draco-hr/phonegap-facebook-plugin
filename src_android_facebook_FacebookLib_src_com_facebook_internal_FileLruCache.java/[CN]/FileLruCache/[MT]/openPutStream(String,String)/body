@@ -1,0 +1,49 @@
+{
+  final File buffer=BufferFile.newFile(this.directory);
+  buffer.delete();
+  if (!buffer.createNewFile()) {
+    throw new IOException("Could not create file at " + buffer.getAbsolutePath());
+  }
+  FileOutputStream file=null;
+  try {
+    file=new FileOutputStream(buffer);
+  }
+ catch (  FileNotFoundException e) {
+    Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"Error creating buffer output stream: " + e);
+    throw new IOException(e.getMessage());
+  }
+  final long bufferFileCreateTime=System.currentTimeMillis();
+  StreamCloseCallback renameToTargetCallback=new StreamCloseCallback(){
+    @Override public void onClose(){
+      if (bufferFileCreateTime < lastClearCacheTime.get()) {
+        buffer.delete();
+      }
+ else {
+        renameToTargetAndTrim(key,buffer);
+      }
+    }
+  }
+;
+  CloseCallbackOutputStream cleanup=new CloseCallbackOutputStream(file,renameToTargetCallback);
+  BufferedOutputStream buffered=new BufferedOutputStream(cleanup,Utility.DEFAULT_STREAM_BUFFER_SIZE);
+  boolean success=false;
+  try {
+    JSONObject header=new JSONObject();
+    header.put(HEADER_CACHEKEY_KEY,key);
+    if (!Utility.isNullOrEmpty(contentTag)) {
+      header.put(HEADER_CACHE_CONTENT_TAG_KEY,contentTag);
+    }
+    StreamHeader.writeHeader(buffered,header);
+    success=true;
+    return buffered;
+  }
+ catch (  JSONException e) {
+    Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"Error creating JSON header for cache file: " + e);
+    throw new IOException(e.getMessage());
+  }
+ finally {
+    if (!success) {
+      buffered.close();
+    }
+  }
+}

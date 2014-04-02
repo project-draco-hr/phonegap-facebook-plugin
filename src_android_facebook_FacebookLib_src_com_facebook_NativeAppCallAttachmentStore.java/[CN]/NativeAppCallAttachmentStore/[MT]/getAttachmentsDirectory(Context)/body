@@ -1,0 +1,6 @@
+{
+  if (attachmentsDirectory == null) {
+    attachmentsDirectory=new File(context.getCacheDir(),ATTACHMENTS_DIR_NAME);
+  }
+  return attachmentsDirectory;
+}

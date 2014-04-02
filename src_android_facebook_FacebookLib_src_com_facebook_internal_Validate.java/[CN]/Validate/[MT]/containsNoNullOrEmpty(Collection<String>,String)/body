@@ -1,0 +1,11 @@
+{
+  Validate.notNull(container,name);
+  for (  String item : container) {
+    if (item == null) {
+      throw new NullPointerException("Container '" + name + "' cannot contain null values");
+    }
+    if (item.length() == 0) {
+      throw new IllegalArgumentException("Container '" + name + "' cannot contain empty values");
+    }
+  }
+}

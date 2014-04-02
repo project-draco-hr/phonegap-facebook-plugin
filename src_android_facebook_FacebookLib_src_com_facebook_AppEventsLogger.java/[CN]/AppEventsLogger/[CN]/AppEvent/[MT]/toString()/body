@@ -1,0 +1,3 @@
+{
+  return String.format("\"%s\", implicit: %b, json: %s",jsonObject.optString("_eventName"),isImplicit,jsonObject.toString());
+}

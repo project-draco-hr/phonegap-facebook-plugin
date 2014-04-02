@@ -1,0 +1,11 @@
+{
+  if (webView != null) {
+    webView.stopLoading();
+  }
+  if (!isDetached) {
+    if (spinner.isShowing()) {
+      spinner.dismiss();
+    }
+    super.dismiss();
+  }
+}

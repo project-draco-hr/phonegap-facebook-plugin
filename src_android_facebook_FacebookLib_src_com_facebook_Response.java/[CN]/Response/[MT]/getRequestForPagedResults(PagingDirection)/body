@@ -1,0 +1,29 @@
+{
+  String link=null;
+  if (graphObject != null) {
+    PagedResults pagedResults=graphObject.cast(PagedResults.class);
+    PagingInfo pagingInfo=pagedResults.getPaging();
+    if (pagingInfo != null) {
+      if (direction == PagingDirection.NEXT) {
+        link=pagingInfo.getNext();
+      }
+ else {
+        link=pagingInfo.getPrevious();
+      }
+    }
+  }
+  if (Utility.isNullOrEmpty(link)) {
+    return null;
+  }
+  if (link != null && link.equals(request.getUrlForSingleRequest())) {
+    return null;
+  }
+  Request pagingRequest;
+  try {
+    pagingRequest=new Request(request.getSession(),new URL(link));
+  }
+ catch (  MalformedURLException e) {
+    return null;
+  }
+  return pagingRequest;
+}

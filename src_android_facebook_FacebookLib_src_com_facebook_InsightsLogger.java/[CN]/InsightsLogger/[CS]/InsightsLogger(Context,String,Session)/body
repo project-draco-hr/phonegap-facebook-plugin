@@ -1,0 +1,3 @@
+{
+  appEventsLogger=AppEventsLogger.newLogger(context,applicationId,session);
+}

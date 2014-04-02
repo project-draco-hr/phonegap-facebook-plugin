@@ -1,0 +1,3 @@
+{
+  return newGraphPathRequest(session,graphPath,callback).executeAsync();
+}

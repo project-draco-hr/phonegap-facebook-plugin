@@ -1,0 +1,31 @@
+{
+  if (bundle == null) {
+    return null;
+  }
+  byte[] data=bundle.getByteArray(SESSION_BUNDLE_SAVE_KEY);
+  if (data != null) {
+    ByteArrayInputStream is=new ByteArrayInputStream(data);
+    try {
+      Session session=(Session)(new ObjectInputStream(is)).readObject();
+      initializeStaticContext(context);
+      if (cachingStrategy != null) {
+        session.tokenCachingStrategy=cachingStrategy;
+      }
+ else {
+        session.tokenCachingStrategy=new SharedPreferencesTokenCachingStrategy(context);
+      }
+      if (callback != null) {
+        session.addCallback(callback);
+      }
+      session.authorizationBundle=bundle.getBundle(AUTH_BUNDLE_SAVE_KEY);
+      return session;
+    }
+ catch (    ClassNotFoundException e) {
+      Log.w(TAG,"Unable to restore session",e);
+    }
+catch (    IOException e) {
+      Log.w(TAG,"Unable to restore session.",e);
+    }
+  }
+  return null;
+}

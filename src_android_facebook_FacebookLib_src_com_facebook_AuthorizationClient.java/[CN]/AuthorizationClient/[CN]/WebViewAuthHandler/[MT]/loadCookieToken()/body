@@ -1,0 +1,5 @@
+{
+  Context context=getStartActivityDelegate().getActivityContext();
+  SharedPreferences sharedPreferences=context.getSharedPreferences(WEB_VIEW_AUTH_HANDLER_STORE,Context.MODE_PRIVATE);
+  return sharedPreferences.getString(WEB_VIEW_AUTH_HANDLER_TOKEN_KEY,"");
+}

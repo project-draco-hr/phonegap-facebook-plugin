@@ -1,0 +1,3 @@
+{
+  logAuthorizationMethodComplete(method,result.code.getLoggingValue(),result.errorMessage,result.errorCode,loggingExtras);
+}

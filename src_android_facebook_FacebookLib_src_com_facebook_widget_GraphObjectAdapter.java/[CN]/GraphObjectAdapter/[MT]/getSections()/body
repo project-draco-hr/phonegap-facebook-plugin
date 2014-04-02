@@ -1,0 +1,8 @@
+{
+  if (displaySections) {
+    return sectionKeys.toArray();
+  }
+ else {
+    return new Object[0];
+  }
+}

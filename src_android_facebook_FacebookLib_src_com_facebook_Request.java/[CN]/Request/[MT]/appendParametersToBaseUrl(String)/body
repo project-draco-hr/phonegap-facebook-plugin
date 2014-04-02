@@ -1,0 +1,21 @@
+{
+  Uri.Builder uriBuilder=new Uri.Builder().encodedPath(baseUrl);
+  Set<String> keys=this.parameters.keySet();
+  for (  String key : keys) {
+    Object value=this.parameters.get(key);
+    if (value == null) {
+      value="";
+    }
+    if (isSupportedParameterType(value)) {
+      value=parameterToString(value);
+    }
+ else {
+      if (httpMethod == HttpMethod.GET) {
+        throw new IllegalArgumentException(String.format("Unsupported parameter type for GET request: %s",value.getClass().getSimpleName()));
+      }
+      continue;
+    }
+    uriBuilder.appendQueryParameter(key,value.toString());
+  }
+  return uriBuilder.toString();
+}

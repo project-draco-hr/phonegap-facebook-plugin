@@ -1,0 +1,6 @@
+{
+  int result=HASH_SEED;
+  result=(result * HASH_MULTIPLIER) + file.hashCode();
+  result=(result * HASH_MULTIPLIER) + (int)(modified % Integer.MAX_VALUE);
+  return result;
+}

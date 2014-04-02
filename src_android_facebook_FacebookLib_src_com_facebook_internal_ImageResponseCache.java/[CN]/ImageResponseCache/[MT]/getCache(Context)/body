@@ -1,0 +1,6 @@
+{
+  if (imageCache == null) {
+    imageCache=new FileLruCache(context.getApplicationContext(),TAG,new FileLruCache.Limits());
+  }
+  return imageCache;
+}

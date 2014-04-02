@@ -1,0 +1,14 @@
+{
+  if (currentHandler.needsInternetPermission() && !checkInternetPermission()) {
+    addLoggingExtra(EVENT_EXTRAS_MISSING_INTERNET_PERMISSION,AppEventsConstants.EVENT_PARAM_VALUE_YES,false);
+    return false;
+  }
+  boolean tried=currentHandler.tryAuthorize(pendingRequest);
+  if (tried) {
+    logAuthorizationMethodStart(currentHandler.getNameForLogging());
+  }
+ else {
+    addLoggingExtra(EVENT_EXTRAS_NOT_TRIED,currentHandler.getNameForLogging(),true);
+  }
+  return tried;
+}

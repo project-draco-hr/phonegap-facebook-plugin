@@ -1,0 +1,9 @@
+{
+  checkUserSession("extendAccessToken");
+  Intent intent=new Intent();
+  intent.setClassName("com.facebook.katana","com.facebook.katana.platform.TokenRefreshService");
+  if (!validateServiceIntent(context,intent)) {
+    return false;
+  }
+  return context.bindService(intent,new TokenRefreshServiceConnection(context,serviceListener),Context.BIND_AUTO_CREATE);
+}

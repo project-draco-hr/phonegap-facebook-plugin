@@ -1,0 +1,6 @@
+{
+  clearCookiesForDomain(context,"facebook.com");
+  clearCookiesForDomain(context,".facebook.com");
+  clearCookiesForDomain(context,"https://facebook.com");
+  clearCookiesForDomain(context,"https://.facebook.com");
+}

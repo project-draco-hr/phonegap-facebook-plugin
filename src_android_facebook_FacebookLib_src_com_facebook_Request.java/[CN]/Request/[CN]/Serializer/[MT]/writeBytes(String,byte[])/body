@@ -1,0 +1,7 @@
+{
+  writeContentDisposition(key,key,"content/unknown");
+  this.outputStream.write(bytes);
+  writeLine("");
+  writeRecordBoundary();
+  logger.appendKeyValue("    " + key,String.format("<Data: %d>",bytes.length));
+}

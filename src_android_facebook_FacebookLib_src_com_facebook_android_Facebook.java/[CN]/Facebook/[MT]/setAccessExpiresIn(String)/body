@@ -1,0 +1,7 @@
+{
+  checkUserSession("setAccessExpiresIn");
+  if (expiresInSecsFromNow != null) {
+    long expires=expiresInSecsFromNow.equals("0") ? 0 : System.currentTimeMillis() + Long.parseLong(expiresInSecsFromNow) * 1000L;
+    setAccessExpires(expires);
+  }
+}
