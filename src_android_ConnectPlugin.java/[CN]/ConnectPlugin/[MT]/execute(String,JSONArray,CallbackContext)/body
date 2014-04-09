@@ -80,6 +80,21 @@
     callbackContext.success(Session.getActiveSession().getState().toString());
     return true;
   }
+ else   if (action.equals("getAccessToken")) {
+    Session session=Session.getActiveSession();
+    if (session != null) {
+      if (session.isOpened()) {
+        callbackContext.success(session.getAccessToken());
+      }
+ else {
+        callbackContext.error("Session not open.");
+      }
+    }
+ else {
+      callbackContext.error("No valid session found, must call init and login before logout.");
+    }
+    return true;
+  }
  else   if (action.equals("showDialog")) {
     Bundle collect=new Bundle();
     JSONObject params=null;
