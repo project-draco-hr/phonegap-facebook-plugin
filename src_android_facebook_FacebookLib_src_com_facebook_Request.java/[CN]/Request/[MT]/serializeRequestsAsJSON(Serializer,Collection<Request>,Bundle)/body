@@ -1,8 +1,0 @@
-{
-  JSONArray batch=new JSONArray();
-  for (  Request request : requests) {
-    request.serializeToBatch(batch,attachments);
-  }
-  String batchAsString=batch.toString();
-  serializer.writeString(BATCH_PARAM,batchAsString);
-}

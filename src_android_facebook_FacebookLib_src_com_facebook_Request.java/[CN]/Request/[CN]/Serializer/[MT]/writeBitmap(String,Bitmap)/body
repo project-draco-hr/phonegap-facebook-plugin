@@ -3,5 +3,7 @@
   bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
   writeLine("");
   writeRecordBoundary();
-  logger.appendKeyValue("    " + key,"<Image>");
+  if (logger != null) {
+    logger.appendKeyValue("    " + key,"<Image>");
+  }
 }

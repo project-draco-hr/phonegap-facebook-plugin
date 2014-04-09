@@ -17,14 +17,15 @@
     throw new FacebookException("Facebook App ID cannot be determined");
   }
   String endpoint=applicationId + "/custom_audience_third_party_id";
+  AttributionIdentifiers attributionIdentifiers=AttributionIdentifiers.getAttributionIdentifiers(context);
   Bundle parameters=new Bundle();
   if (session == null) {
-    String attributionId=Settings.getAttributionId(context.getContentResolver());
-    if (attributionId != null) {
-      parameters.putString("udid",attributionId);
+    String udid=attributionIdentifiers.getAttributionId() != null ? attributionIdentifiers.getAttributionId() : attributionIdentifiers.getAndroidAdvertiserId();
+    if (attributionIdentifiers.getAttributionId() != null) {
+      parameters.putString("udid",udid);
     }
   }
-  if (Settings.getLimitEventAndDataUsage(context)) {
+  if (Settings.getLimitEventAndDataUsage(context) || attributionIdentifiers.isTrackingLimited()) {
     parameters.putString("limit_event_usage","1");
   }
   return new Request(session,endpoint,parameters,HttpMethod.GET,callback);

@@ -1,0 +1,37 @@
+{
+  Serializer serializer=new Serializer(outputStream,logger);
+  if (numRequests == 1) {
+    Request request=requests.get(0);
+    Map<String,Attachment> attachments=new HashMap<String,Attachment>();
+    for (    String key : request.parameters.keySet()) {
+      Object value=request.parameters.get(key);
+      if (isSupportedAttachmentType(value)) {
+        attachments.put(key,new Attachment(request,value));
+      }
+    }
+    if (logger != null) {
+      logger.append("  Parameters:\n");
+    }
+    serializeParameters(request.parameters,serializer,request);
+    if (logger != null) {
+      logger.append("  Attachments:\n");
+    }
+    serializeAttachments(attachments,serializer);
+    if (request.graphObject != null) {
+      processGraphObject(request.graphObject,url.getPath(),serializer);
+    }
+  }
+ else {
+    String batchAppID=getBatchAppId(requests);
+    if (Utility.isNullOrEmpty(batchAppID)) {
+      throw new FacebookException("At least one request in a batch must have an open Session, or a " + "default app ID must be specified.");
+    }
+    serializer.writeString(BATCH_APP_ID_PARAM,batchAppID);
+    Map<String,Attachment> attachments=new HashMap<String,Attachment>();
+    serializeRequestsAsJSON(serializer,requests,attachments);
+    if (logger != null) {
+      logger.append("  Attachments:\n");
+    }
+    serializeAttachments(attachments,serializer);
+  }
+}

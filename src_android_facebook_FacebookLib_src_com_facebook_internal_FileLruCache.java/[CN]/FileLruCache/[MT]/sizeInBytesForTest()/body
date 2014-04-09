@@ -1,6 +1,6 @@
 {
 synchronized (lock) {
-    while (isTrimPending) {
+    while (isTrimPending || isTrimInProgress) {
       try {
         lock.wait();
       }
