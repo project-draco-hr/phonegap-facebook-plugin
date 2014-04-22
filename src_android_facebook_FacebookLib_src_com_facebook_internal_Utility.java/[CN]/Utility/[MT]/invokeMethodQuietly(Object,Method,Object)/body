@@ -1,0 +1,11 @@
+{
+  try {
+    return method.invoke(receiver,args);
+  }
+ catch (  IllegalAccessException ex) {
+    return null;
+  }
+catch (  InvocationTargetException ex) {
+    return null;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return Uri.parse(CONTENT_SCHEME + appInfo.getPackage() + PLATFORM_PROVIDER_VERSIONS);
+}

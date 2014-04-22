@@ -1,4 +1,0 @@
-{
-  String packageName=getContext().getPackageName();
-  data.putString(NativeProtocol.EXTRA_GET_INSTALL_DATA_PACKAGE,packageName);
-}

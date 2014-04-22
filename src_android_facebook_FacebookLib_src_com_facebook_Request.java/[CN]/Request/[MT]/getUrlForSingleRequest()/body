@@ -7,7 +7,12 @@
     baseUrl=String.format("%s/%s",ServerProtocol.getRestUrlBase(),restMethod);
   }
  else {
-    baseUrl=String.format("%s/%s",ServerProtocol.getGraphUrlBase(),graphPath);
+    if (this.getHttpMethod() == HttpMethod.POST && graphPath != null && graphPath.endsWith(VIDEOS_SUFFIX)) {
+      baseUrl=String.format("%s/%s",ServerProtocol.getGraphVideoUrlBase(),graphPath);
+    }
+ else {
+      baseUrl=String.format("%s/%s",ServerProtocol.getGraphUrlBase(),graphPath);
+    }
   }
   addCommonParameters();
   return appendParametersToBaseUrl(baseUrl);

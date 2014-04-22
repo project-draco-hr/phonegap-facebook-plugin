@@ -1,0 +1,15 @@
+{
+  List<NativeAppInfo> list=actionToAppInfoMap.get(internalAction);
+  if (list == null) {
+    return null;
+  }
+  Intent intent=null;
+  for (  NativeAppInfo appInfo : list) {
+    intent=new Intent().setAction(activityAction).setPackage(appInfo.getPackage()).addCategory(Intent.CATEGORY_DEFAULT);
+    intent=validateActivityIntent(context,intent,appInfo);
+    if (intent != null) {
+      return intent;
+    }
+  }
+  return intent;
+}

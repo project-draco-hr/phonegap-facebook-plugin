@@ -1,0 +1,22 @@
+{
+  if (progress > lastReportedProgress) {
+    Request.Callback callback=request.getCallback();
+    if (maxProgress > 0 && callback instanceof Request.OnProgressCallback) {
+      final long currentCopy=progress;
+      final long maxProgressCopy=maxProgress;
+      final Request.OnProgressCallback callbackCopy=(Request.OnProgressCallback)callback;
+      if (callbackHandler == null) {
+        callbackCopy.onProgress(currentCopy,maxProgressCopy);
+      }
+ else {
+        callbackHandler.post(new Runnable(){
+          @Override public void run(){
+            callbackCopy.onProgress(currentCopy,maxProgressCopy);
+          }
+        }
+);
+      }
+      lastReportedProgress=progress;
+    }
+  }
+}

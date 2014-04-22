@@ -5,9 +5,9 @@
   if (newState.isClosed()) {
     this.tokenInfo=AccessToken.createEmptyToken(Collections.<String>emptyList());
   }
+  Runnable runCallbacks=new Runnable(){
+    public void run(){
 synchronized (callbacks) {
-    Runnable runCallbacks=new Runnable(){
-      public void run(){
         for (        final StatusCallback callback : callbacks) {
           Runnable closure=new Runnable(){
             public void run(){
@@ -19,9 +19,9 @@ synchronized (callbacks) {
         }
       }
     }
-;
-    runWithHandlerOrExecutor(handler,runCallbacks);
   }
+;
+  runWithHandlerOrExecutor(handler,runCallbacks);
   if (this == Session.activeSession) {
     if (oldState.isOpened() != newState.isOpened()) {
       if (newState.isOpened()) {

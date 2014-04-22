@@ -1,0 +1,13 @@
+{
+  if (intent == null) {
+    return null;
+  }
+  ResolveInfo resolveInfo=context.getPackageManager().resolveService(intent,0);
+  if (resolveInfo == null) {
+    return null;
+  }
+  if (!appInfo.validateSignature(context,resolveInfo.serviceInfo.packageName)) {
+    return null;
+  }
+  return intent;
+}
