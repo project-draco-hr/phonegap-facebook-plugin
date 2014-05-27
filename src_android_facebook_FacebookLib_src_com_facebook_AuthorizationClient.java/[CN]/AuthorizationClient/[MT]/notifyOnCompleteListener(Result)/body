@@ -1,5 +1,0 @@
-{
-  if (onCompletedListener != null) {
-    onCompletedListener.onCompleted(outcome);
-  }
-}

@@ -1,6 +1,0 @@
-{
-  Validate.notNull(executor,"executor");
-synchronized (LOCK) {
-    Settings.executor=executor;
-  }
-}

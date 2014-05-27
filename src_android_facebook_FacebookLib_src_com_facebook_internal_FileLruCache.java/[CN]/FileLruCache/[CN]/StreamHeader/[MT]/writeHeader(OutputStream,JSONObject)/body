@@ -1,9 +1,0 @@
-{
-  String headerString=header.toString();
-  byte[] headerBytes=headerString.getBytes();
-  stream.write(HEADER_VERSION);
-  stream.write((headerBytes.length >> 16) & 0xff);
-  stream.write((headerBytes.length >> 8) & 0xff);
-  stream.write((headerBytes.length >> 0) & 0xff);
-  stream.write(headerBytes);
-}

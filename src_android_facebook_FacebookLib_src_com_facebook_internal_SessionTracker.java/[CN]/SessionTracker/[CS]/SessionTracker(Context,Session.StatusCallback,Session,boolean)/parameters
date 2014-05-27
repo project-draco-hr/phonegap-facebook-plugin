@@ -1,4 +1,0 @@
-Context context
-Session.StatusCallback callback
-Session session
-boolean startTracking

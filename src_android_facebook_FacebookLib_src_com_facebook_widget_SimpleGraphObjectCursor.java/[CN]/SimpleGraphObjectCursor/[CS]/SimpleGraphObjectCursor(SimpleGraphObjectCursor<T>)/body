@@ -1,7 +1,0 @@
-{
-  pos=other.pos;
-  closed=other.closed;
-  graphObjects=new ArrayList<T>();
-  graphObjects.addAll(other.graphObjects);
-  fromCache=other.fromCache;
-}

@@ -1,3 +1,0 @@
-{
-  loginButtonProperties.setPublishPermissions(permissions,getSession());
-}

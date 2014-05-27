@@ -1,3 +1,0 @@
-{
-  request(graphPath,new Bundle(),"GET",listener,null);
-}

@@ -1,3 +1,0 @@
-{
-  return value instanceof Bitmap || value instanceof byte[] || value instanceof ParcelFileDescriptor|| value instanceof ParcelFileDescriptorWithMimeType;
-}

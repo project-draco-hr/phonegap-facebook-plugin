@@ -1,4 +1,0 @@
-{
-  getParameters().putString(FROM_PARAM,id);
-  return this;
-}

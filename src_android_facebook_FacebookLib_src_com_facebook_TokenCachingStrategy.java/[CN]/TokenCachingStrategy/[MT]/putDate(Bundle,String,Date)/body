@@ -1,3 +1,0 @@
-{
-  bundle.putLong(key,date.getTime());
-}

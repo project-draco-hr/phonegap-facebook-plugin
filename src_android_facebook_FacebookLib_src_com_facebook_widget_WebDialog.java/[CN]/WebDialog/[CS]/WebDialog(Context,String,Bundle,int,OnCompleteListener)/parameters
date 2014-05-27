@@ -1,5 +1,0 @@
-Context context
-String action
-Bundle parameters
-int theme
-OnCompleteListener listener

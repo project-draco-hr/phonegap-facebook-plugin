@@ -1,4 +1,0 @@
-{
-  mApplicationId=applicationId;
-  mApplicationContext=context.getApplicationContext();
-}

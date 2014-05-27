@@ -1,3 +1,0 @@
-{
-  return new GraphObjectPagingLoader<T>(getActivity(),graphObjectClass);
-}

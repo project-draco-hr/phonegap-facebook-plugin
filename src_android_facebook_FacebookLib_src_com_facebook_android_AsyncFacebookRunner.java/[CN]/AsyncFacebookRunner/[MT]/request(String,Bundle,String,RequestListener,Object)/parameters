@@ -1,5 +1,0 @@
-String graphPath
-Bundle parameters
-String httpMethod
-RequestListener listener
-Object state

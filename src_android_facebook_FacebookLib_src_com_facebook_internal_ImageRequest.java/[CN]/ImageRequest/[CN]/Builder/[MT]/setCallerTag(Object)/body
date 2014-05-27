@@ -1,4 +1,0 @@
-{
-  this.callerTag=callerTag;
-  return this;
-}

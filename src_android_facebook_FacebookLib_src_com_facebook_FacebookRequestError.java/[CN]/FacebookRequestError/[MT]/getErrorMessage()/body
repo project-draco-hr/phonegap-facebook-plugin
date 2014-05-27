@@ -1,8 +1,0 @@
-{
-  if (errorMessage != null) {
-    return errorMessage;
-  }
- else {
-    return exception.getLocalizedMessage();
-  }
-}

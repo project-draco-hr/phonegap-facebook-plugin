@@ -1,9 +1,0 @@
-{
-  Intent intent=new Intent();
-  intent.setClass(getStaticContext(),LoginActivity.class);
-  intent.setAction(request.getLoginBehavior().toString());
-  AuthorizationClient.AuthorizationRequest authClientRequest=request.getAuthorizationClientRequest();
-  Bundle extras=LoginActivity.populateIntentExtras(authClientRequest);
-  intent.putExtras(extras);
-  return intent;
-}

@@ -1,5 +1,0 @@
-{
-  Bundle extras=new Bundle();
-  extras.putSerializable(EXTRA_REQUEST,request);
-  return extras;
-}

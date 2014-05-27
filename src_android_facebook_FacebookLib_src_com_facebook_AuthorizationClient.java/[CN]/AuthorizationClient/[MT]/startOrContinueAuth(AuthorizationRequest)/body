@@ -1,8 +1,0 @@
-{
-  if (getInProgress()) {
-    continueAuth();
-  }
- else {
-    authorize(request);
-  }
-}

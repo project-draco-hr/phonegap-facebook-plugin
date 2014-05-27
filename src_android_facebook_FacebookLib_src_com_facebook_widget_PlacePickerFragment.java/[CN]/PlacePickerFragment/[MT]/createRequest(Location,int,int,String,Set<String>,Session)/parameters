@@ -1,6 +1,0 @@
-Location location
-int radiusInMeters
-int resultsLimit
-String searchText
-Set<String> extraFields
-Session session

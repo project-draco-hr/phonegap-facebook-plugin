@@ -1,6 +1,0 @@
-{
-  if (tokenCache == null) {
-    tokenCache=new SetterTokenCachingStrategy();
-  }
-  return tokenCache;
-}

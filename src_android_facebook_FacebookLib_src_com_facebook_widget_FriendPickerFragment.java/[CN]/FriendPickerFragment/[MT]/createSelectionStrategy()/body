@@ -1,3 +1,0 @@
-{
-  return multiSelect ? new MultiSelectionStrategy() : new SingleSelectionStrategy();
-}

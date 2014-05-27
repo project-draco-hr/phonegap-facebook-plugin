@@ -1,6 +1,0 @@
-{
-  extraFields=new HashSet<String>();
-  if (fields != null) {
-    extraFields.addAll(fields);
-  }
-}

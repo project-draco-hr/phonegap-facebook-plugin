@@ -1,5 +1,0 @@
-{
-  super(context,attrs,defStyle);
-  initialize(context);
-  parseAttributes(attrs);
-}

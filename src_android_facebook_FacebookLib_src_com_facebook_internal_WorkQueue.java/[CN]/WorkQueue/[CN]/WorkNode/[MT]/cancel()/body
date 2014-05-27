@@ -1,9 +1,0 @@
-{
-synchronized (workLock) {
-    if (!isRunning()) {
-      pendingJobs=removeFromList(pendingJobs);
-      return true;
-    }
-  }
-  return false;
-}

@@ -1,7 +1,0 @@
-{
-  Validate.notNull(context,"context");
-  this.cacheKey=Utility.isNullOrEmpty(cacheKey) ? DEFAULT_CACHE_KEY : cacheKey;
-  Context applicationContext=context.getApplicationContext();
-  context=applicationContext != null ? applicationContext : context;
-  this.cache=context.getSharedPreferences(this.cacheKey,Context.MODE_PRIVATE);
-}

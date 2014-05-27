@@ -1,6 +1,0 @@
-{
-  if (activityCircle != null) {
-    layoutActivityCircle();
-    activityCircle.setVisibility(View.VISIBLE);
-  }
-}

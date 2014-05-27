@@ -1,7 +1,0 @@
-{
-  checkUserSession("extendAccessTokenIfNeeded");
-  if (shouldExtendAccessToken()) {
-    return extendAccessToken(context,serviceListener);
-  }
-  return true;
-}

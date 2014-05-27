@@ -1,3 +1,0 @@
-{
-  return replaceStrings(contents.toString());
-}

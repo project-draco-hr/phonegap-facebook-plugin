@@ -1,2 +1,0 @@
-GraphObjectPagingLoader<GraphPlace> loader
-SimpleGraphObjectCursor<GraphPlace> data

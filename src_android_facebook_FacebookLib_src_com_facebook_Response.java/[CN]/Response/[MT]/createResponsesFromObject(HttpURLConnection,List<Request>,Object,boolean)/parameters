@@ -1,4 +1,0 @@
-HttpURLConnection connection
-List<Request> requests
-Object object
-boolean isFromCache

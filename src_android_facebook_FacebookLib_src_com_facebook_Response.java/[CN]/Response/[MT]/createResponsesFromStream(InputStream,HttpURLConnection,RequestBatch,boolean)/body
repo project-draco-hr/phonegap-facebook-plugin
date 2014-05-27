@@ -1,5 +1,0 @@
-{
-  String responseString=Utility.readStreamToString(stream);
-  Logger.log(LoggingBehavior.INCLUDE_RAW_RESPONSES,RESPONSE_LOG_TAG,"Response (raw)\n  Size: %d\n  Response:\n%s\n",responseString.length(),responseString);
-  return createResponsesFromString(responseString,connection,requests,isFromCache);
-}

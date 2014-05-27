@@ -1,6 +1,0 @@
-{
-  this.session=session;
-  this.overriddenURL=overriddenURL.toString();
-  setHttpMethod(HttpMethod.GET);
-  this.parameters=new Bundle();
-}

@@ -1,4 +1,0 @@
-{
-  Validate.notNull(requests,"requests");
-  return executeBatchAndWait(Arrays.asList(requests));
-}

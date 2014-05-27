@@ -1,6 +1,0 @@
-{
-  if (!persistedEvents.containsKey(accessTokenAppId)) {
-    persistedEvents.put(accessTokenAppId,new ArrayList<AppEvent>());
-  }
-  persistedEvents.get(accessTokenAppId).addAll(eventsToPersist);
-}

@@ -1,2 +1,0 @@
-Context context
-Map<AccessTokenAppIdPair,SessionEventsState> eventsToPersist

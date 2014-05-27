@@ -1,5 +1,0 @@
-{
-  if (shouldLog()) {
-    contents.append(String.format(format,args));
-  }
-}

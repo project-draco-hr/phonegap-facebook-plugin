@@ -1,4 +1,0 @@
-{
-  Validate.notNull(requests,"requests");
-  return executeBatchAsync(Arrays.asList(requests));
-}

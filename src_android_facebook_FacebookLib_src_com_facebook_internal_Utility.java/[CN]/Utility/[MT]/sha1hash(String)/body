@@ -1,3 +1,0 @@
-{
-  return hashWithAlgorithm(HASH_ALGORITHM_SHA1,key);
-}

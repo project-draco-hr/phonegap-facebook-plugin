@@ -1,6 +1,0 @@
-{
-  Session session=new Session(context,null,null,false);
-  setActiveSession(session);
-  session.open(accessToken,callback);
-  return session;
-}

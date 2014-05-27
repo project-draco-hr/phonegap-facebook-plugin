@@ -1,5 +1,0 @@
-Activity activity
-List<String> permissions
-TokenCachingStrategy tokenCachingStrategy
-String sessionUniqueUserTag
-Mode mode

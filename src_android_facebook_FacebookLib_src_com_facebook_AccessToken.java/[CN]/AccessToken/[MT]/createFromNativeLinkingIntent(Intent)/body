@@ -1,7 +1,0 @@
-{
-  Validate.notNull(intent,"intent");
-  if (intent.getExtras() == null) {
-    return null;
-  }
-  return createFromBundle(null,intent.getExtras(),AccessTokenSource.FACEBOOK_APPLICATION_WEB,new Date());
-}

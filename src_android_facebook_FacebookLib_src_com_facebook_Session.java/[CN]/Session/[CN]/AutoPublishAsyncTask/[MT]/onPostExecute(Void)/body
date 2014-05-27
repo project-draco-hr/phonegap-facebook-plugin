@@ -1,5 +1,0 @@
-{
-synchronized (Session.this) {
-    autoPublishAsyncTask=null;
-  }
-}

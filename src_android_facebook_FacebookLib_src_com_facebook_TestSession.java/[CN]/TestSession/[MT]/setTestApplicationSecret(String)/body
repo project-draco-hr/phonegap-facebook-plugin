@@ -1,6 +1,0 @@
-{
-  if (testApplicationSecret != null && !testApplicationSecret.equals(applicationSecret)) {
-    throw new FacebookException("Can't have more than one test application secret");
-  }
-  testApplicationSecret=applicationSecret;
-}

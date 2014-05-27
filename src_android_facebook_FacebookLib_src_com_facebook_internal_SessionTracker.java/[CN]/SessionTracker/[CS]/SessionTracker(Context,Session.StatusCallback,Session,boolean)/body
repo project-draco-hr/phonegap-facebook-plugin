@@ -1,9 +1,0 @@
-{
-  this.callback=new CallbackWrapper(callback);
-  this.session=session;
-  this.receiver=new ActiveSessionBroadcastReceiver();
-  this.broadcastManager=LocalBroadcastManager.getInstance(context);
-  if (startTracking) {
-    startTracking();
-  }
-}

@@ -1,3 +1,0 @@
-{
-  onSearchBoxTextChanged(s.toString(),false);
-}

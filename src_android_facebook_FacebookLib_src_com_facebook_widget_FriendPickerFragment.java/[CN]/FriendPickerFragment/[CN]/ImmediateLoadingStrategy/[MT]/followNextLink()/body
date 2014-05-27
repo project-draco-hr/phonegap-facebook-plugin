@@ -1,4 +1,0 @@
-{
-  displayActivityCircle();
-  loader.followNextLink();
-}

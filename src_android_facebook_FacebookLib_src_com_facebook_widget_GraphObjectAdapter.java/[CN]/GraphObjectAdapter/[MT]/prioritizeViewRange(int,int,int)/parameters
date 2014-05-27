@@ -1,3 +1,0 @@
-int firstVisibleItem
-int lastVisibleItem
-int prefetchBuffer

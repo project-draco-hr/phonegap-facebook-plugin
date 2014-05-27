@@ -1,3 +1,0 @@
-{
-  return new AccessToken(token.token,token.expires,permissions,token.source,token.lastRefresh);
-}

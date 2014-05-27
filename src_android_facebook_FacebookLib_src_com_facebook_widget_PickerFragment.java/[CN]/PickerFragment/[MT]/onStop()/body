@@ -1,6 +1,0 @@
-{
-  if (!appEventsLogged) {
-    logAppEvents(false);
-  }
-  super.onStop();
-}

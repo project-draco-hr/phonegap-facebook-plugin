@@ -1,6 +1,0 @@
-{
-  if (timeoutInMilliseconds < 0) {
-    throw new IllegalArgumentException("Argument timeoutInMilliseconds must be >= 0.");
-  }
-  this.timeoutInMilliseconds=timeoutInMilliseconds;
-}

@@ -1,8 +1,0 @@
-{
-synchronized (pendingRequests) {
-    DownloaderContext downloaderContext=new DownloaderContext();
-    downloaderContext.request=request;
-    pendingRequests.put(key,downloaderContext);
-    downloaderContext.workItem=workQueue.addActiveWorkItem(workItem);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  Bundle parameters=new Bundle(1);
-  parameters.putParcelable(STAGING_PARAM,image);
-  return new Request(session,MY_STAGING_RESOURCES,parameters,HttpMethod.POST,callback);
-}

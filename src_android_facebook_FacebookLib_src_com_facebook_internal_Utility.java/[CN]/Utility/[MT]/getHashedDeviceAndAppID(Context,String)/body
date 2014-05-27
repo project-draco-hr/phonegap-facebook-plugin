@@ -1,9 +1,0 @@
-{
-  String androidId=Secure.getString(context.getContentResolver(),Secure.ANDROID_ID);
-  if (androidId == null) {
-    return null;
-  }
- else {
-    return sha1hash(androidId + applicationId);
-  }
-}

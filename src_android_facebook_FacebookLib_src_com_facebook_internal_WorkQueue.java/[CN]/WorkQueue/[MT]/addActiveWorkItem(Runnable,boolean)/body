@@ -1,8 +1,0 @@
-{
-  WorkNode node=new WorkNode(callback);
-synchronized (workLock) {
-    pendingJobs=node.addToList(pendingJobs,addToFront);
-  }
-  startItem();
-  return node;
-}

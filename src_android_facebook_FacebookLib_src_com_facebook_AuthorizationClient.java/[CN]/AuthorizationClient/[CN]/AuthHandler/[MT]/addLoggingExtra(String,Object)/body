@@ -1,6 +1,0 @@
-{
-  if (methodLoggingExtras == null) {
-    methodLoggingExtras=new HashMap<String,String>();
-  }
-  methodLoggingExtras.put(key,value == null ? null : value.toString());
-}

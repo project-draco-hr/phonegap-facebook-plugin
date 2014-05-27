@@ -1,9 +1,0 @@
-{
-  openRequest.setIsLegacy(true);
-  if (isPublish) {
-    session.openForPublish(openRequest);
-  }
- else {
-    session.openForRead(openRequest);
-  }
-}

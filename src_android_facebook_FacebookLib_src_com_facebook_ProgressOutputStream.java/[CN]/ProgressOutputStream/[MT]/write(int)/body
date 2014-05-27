@@ -1,4 +1,0 @@
-{
-  out.write(oneByte);
-  addProgress(1);
-}

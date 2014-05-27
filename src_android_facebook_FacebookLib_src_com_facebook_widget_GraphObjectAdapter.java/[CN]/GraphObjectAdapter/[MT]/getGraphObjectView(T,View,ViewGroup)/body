@@ -1,8 +1,0 @@
-{
-  View result=convertView;
-  if (result == null) {
-    result=createGraphObjectView(graphObject);
-  }
-  populateGraphObjectView(result,graphObject);
-  return result;
-}

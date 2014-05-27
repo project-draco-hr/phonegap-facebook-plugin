@@ -1,9 +1,0 @@
-{
-  Set<String> keys=bundle.keySet();
-  for (  String key : keys) {
-    Object value=bundle.get(key);
-    if (isSupportedParameterType(value)) {
-      serializer.writeObject(key,value,request);
-    }
-  }
-}

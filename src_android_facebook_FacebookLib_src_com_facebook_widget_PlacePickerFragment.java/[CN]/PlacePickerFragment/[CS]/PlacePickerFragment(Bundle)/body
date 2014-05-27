@@ -1,4 +1,0 @@
-{
-  super(GraphPlace.class,R.layout.com_facebook_placepickerfragment,args);
-  setPlacePickerSettingsFromBundle(args);
-}

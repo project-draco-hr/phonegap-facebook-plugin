@@ -1,4 +1,0 @@
-{
-  this.context=context;
-  this.inflater=LayoutInflater.from(context);
-}

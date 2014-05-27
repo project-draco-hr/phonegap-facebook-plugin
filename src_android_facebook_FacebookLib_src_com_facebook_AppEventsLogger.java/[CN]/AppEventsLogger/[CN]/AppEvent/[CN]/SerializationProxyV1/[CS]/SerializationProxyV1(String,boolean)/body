@@ -1,4 +1,0 @@
-{
-  this.jsonString=jsonString;
-  this.isImplicit=isImplicit;
-}

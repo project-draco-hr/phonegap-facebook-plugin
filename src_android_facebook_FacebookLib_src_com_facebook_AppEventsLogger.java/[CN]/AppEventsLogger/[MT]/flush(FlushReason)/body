@@ -1,8 +1,0 @@
-{
-  Settings.getExecutor().execute(new Runnable(){
-    @Override public void run(){
-      flushAndWait(reason);
-    }
-  }
-);
-}

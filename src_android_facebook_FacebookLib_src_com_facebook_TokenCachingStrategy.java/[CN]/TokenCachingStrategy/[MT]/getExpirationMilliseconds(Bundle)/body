@@ -1,4 +1,0 @@
-{
-  Validate.notNull(bundle,"bundle");
-  return bundle.getLong(EXPIRATION_DATE_KEY);
-}

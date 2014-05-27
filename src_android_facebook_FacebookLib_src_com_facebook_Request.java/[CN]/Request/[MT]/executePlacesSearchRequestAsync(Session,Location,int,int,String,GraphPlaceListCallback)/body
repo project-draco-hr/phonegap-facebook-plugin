@@ -1,3 +1,0 @@
-{
-  return newPlacesSearchRequest(session,location,radiusInMeters,resultsLimit,searchText,callback).executeAsync();
-}

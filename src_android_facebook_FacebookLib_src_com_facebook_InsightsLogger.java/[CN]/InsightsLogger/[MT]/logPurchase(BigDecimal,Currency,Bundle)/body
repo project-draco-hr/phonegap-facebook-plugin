@@ -1,3 +1,0 @@
-{
-  appEventsLogger.logPurchase(purchaseAmount,currency,parameters);
-}

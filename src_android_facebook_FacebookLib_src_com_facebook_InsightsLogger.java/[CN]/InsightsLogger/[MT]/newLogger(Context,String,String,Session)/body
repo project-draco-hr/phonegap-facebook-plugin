@@ -1,3 +1,0 @@
-{
-  return new InsightsLogger(context,applicationId,session);
-}

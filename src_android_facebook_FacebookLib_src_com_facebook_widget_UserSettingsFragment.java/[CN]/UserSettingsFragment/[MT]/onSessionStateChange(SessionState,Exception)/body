@@ -1,7 +1,0 @@
-{
-  fetchUserInfo();
-  updateUI();
-  if (sessionStatusCallback != null) {
-    sessionStatusCallback.call(getSession(),state,exception);
-  }
-}

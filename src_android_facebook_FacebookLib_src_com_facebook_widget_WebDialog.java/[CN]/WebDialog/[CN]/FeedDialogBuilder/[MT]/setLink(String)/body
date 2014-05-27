@@ -1,4 +1,0 @@
-{
-  getParameters().putString(LINK_PARAM,link);
-  return this;
-}

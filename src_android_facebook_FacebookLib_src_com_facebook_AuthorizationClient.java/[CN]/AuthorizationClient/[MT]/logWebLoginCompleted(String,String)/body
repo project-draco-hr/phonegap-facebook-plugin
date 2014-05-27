@@ -1,8 +1,0 @@
-{
-  AppEventsLogger appEventsLogger=AppEventsLogger.newLogger(context,applicationId);
-  Bundle parameters=new Bundle();
-  parameters.putString(AnalyticsEvents.PARAMETER_WEB_LOGIN_E2E,e2e);
-  parameters.putLong(AnalyticsEvents.PARAMETER_WEB_LOGIN_SWITCHBACK_TIME,System.currentTimeMillis());
-  parameters.putString(AnalyticsEvents.PARAMETER_APP_ID,applicationId);
-  appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_WEB_LOGIN_COMPLETE,null,parameters);
-}

@@ -1,8 +1,0 @@
-{
-  if (mode == Mode.PRIVATE) {
-    createTestAccountAndFinishAuth();
-  }
- else {
-    findOrCreateSharedTestAccount();
-  }
-}

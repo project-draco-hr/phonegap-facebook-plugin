@@ -1,8 +1,0 @@
-{
-  super.onSaveInstanceState(outState);
-  saveSettingsToBundle(outState);
-  selectionStrategy.saveSelectionToBundle(outState,SELECTION_BUNDLE_KEY);
-  if (activityCircle != null) {
-    outState.putBoolean(ACTIVITY_CIRCLE_SHOW_KEY,activityCircle.getVisibility() == View.VISIBLE);
-  }
-}

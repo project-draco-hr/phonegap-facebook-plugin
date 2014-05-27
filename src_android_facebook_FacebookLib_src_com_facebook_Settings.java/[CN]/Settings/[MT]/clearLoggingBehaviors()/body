@@ -1,5 +1,0 @@
-{
-synchronized (loggingBehaviors) {
-    loggingBehaviors.clear();
-  }
-}

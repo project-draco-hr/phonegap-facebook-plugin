@@ -1,8 +1,0 @@
-{
-  if (pendingResult.token == null) {
-    throw new FacebookException("Can't validate without a token");
-  }
-  RequestBatch batch=createReauthValidationBatch(pendingResult);
-  notifyBackgroundProcessingStart();
-  batch.executeAsync();
-}

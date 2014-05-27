@@ -1,8 +1,0 @@
-{
-  TextView result=(TextView)convertView;
-  if (result == null) {
-    result=(TextView)inflater.inflate(R.layout.com_facebook_picker_list_section_header,null);
-  }
-  result.setText(sectionHeader);
-  return result;
-}

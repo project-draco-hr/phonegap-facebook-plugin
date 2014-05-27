@@ -1,3 +1,0 @@
-List<String> requestedPermissions
-Bundle bundle
-AccessTokenSource source

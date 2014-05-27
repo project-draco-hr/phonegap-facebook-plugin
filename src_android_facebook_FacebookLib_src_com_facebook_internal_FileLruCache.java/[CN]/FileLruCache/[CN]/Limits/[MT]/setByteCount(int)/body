@@ -1,6 +1,0 @@
-{
-  if (n < 0) {
-    throw new InvalidParameterException("Cache byte-count limit must be >= 0");
-  }
-  byteCount=n;
-}

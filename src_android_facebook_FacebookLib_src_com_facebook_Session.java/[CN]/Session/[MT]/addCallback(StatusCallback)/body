@@ -1,7 +1,0 @@
-{
-synchronized (callbacks) {
-    if (callback != null && !callbacks.contains(callback)) {
-      callbacks.add(callback);
-    }
-  }
-}

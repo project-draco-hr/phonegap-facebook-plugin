@@ -1,7 +1,0 @@
-{
-  if (!(o instanceof AccessTokenAppIdPair)) {
-    return false;
-  }
-  AccessTokenAppIdPair p=(AccessTokenAppIdPair)o;
-  return Utility.areObjectsEqual(p.accessToken,accessToken) && Utility.areObjectsEqual(p.applicationId,applicationId);
-}

@@ -1,4 +1,0 @@
-{
-  String name=FILE_NAME_PREFIX + Long.valueOf(bufferIndex.incrementAndGet()).toString();
-  return new File(root,name);
-}

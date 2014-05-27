@@ -1,4 +1,0 @@
-{
-  originalRequest=request;
-  startLoading(request,skipRoundtripIfCached,0);
-}

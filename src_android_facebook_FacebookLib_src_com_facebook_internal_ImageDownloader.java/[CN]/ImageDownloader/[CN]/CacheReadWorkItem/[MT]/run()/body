@@ -1,3 +1,0 @@
-{
-  readFromCache(key,context,allowCachedRedirects);
-}

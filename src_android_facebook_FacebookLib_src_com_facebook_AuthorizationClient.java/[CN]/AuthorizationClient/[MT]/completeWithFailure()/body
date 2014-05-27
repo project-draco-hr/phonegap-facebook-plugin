@@ -1,3 +1,0 @@
-{
-  complete(Result.createErrorResult(pendingRequest,"Login attempt failed.",null));
-}

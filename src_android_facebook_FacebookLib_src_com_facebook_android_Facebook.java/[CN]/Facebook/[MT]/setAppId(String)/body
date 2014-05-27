@@ -1,7 +1,0 @@
-{
-  checkUserSession("setAppId");
-synchronized (this.lock) {
-    mAppId=appId;
-    sessionInvalidated=true;
-  }
-}

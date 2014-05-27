@@ -1,3 +1,0 @@
-{
-  return String.format("%s%s/%s/%s",ATTACHMENT_URL_BASE,applicationId,callId.toString(),attachmentName);
-}

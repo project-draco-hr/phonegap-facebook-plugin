@@ -1,9 +1,0 @@
-{
-  Set<String> keys=attachments.keySet();
-  for (  String key : keys) {
-    Attachment attachment=attachments.get(key);
-    if (isSupportedAttachmentType(attachment.getValue())) {
-      serializer.writeObject(key,attachment.getValue(),attachment.getRequest());
-    }
-  }
-}

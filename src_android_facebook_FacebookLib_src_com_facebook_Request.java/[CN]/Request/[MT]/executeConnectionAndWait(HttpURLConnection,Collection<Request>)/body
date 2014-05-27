@@ -1,3 +1,0 @@
-{
-  return executeConnectionAndWait(connection,new RequestBatch(requests));
-}

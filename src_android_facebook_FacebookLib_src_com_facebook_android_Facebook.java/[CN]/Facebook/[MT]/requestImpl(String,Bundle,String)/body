@@ -1,8 +1,0 @@
-{
-  params.putString("format","json");
-  if (isSessionValid()) {
-    params.putString(TOKEN,getAccessToken());
-  }
-  String url=(graphPath != null) ? GRAPH_BASE_URL + graphPath : RESTSERVER_URL;
-  return Util.openUrl(url,httpMethod,params);
-}

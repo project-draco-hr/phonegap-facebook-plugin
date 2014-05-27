@@ -1,8 +1,0 @@
-{
-  writeContentDisposition(key,null,null);
-  writeLine("%s",value);
-  writeRecordBoundary();
-  if (logger != null) {
-    logger.appendKeyValue("    " + key,value);
-  }
-}

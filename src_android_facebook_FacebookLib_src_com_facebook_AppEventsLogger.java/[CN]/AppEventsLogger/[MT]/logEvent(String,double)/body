@@ -1,3 +1,0 @@
-{
-  logEvent(eventName,valueToSum,null);
-}

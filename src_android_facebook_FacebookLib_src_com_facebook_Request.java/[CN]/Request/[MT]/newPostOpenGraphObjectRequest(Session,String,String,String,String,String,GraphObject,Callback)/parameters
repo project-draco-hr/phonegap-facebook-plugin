@@ -1,8 +1,0 @@
-Session session
-String type
-String title
-String imageUrl
-String url
-String description
-GraphObject objectProperties
-Callback callback

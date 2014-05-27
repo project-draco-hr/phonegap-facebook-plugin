@@ -1,3 +1,0 @@
-{
-  super(context,session,APPREQUESTS_DIALOG,parameters);
-}

@@ -1,3 +1,0 @@
-{
-  return createErrorResult(request,errorType,errorDescription,null);
-}

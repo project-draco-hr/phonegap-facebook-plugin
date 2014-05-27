@@ -1,3 +1,0 @@
-{
-  return new SerializationProxyV1(applicationId,state,tokenInfo,lastAttemptedTokenExtendDate,false,pendingAuthorizationRequest);
-}

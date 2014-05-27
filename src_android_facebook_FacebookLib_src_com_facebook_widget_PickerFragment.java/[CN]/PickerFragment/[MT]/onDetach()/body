@@ -1,7 +1,0 @@
-{
-  super.onDetach();
-  listView.setOnScrollListener(null);
-  listView.setAdapter(null);
-  loadingStrategy.detach();
-  sessionTracker.stopTracking();
-}

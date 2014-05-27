@@ -1,5 +1,0 @@
-{
-  if (inBundle != null) {
-    selectedId=inBundle.getString(key);
-  }
-}

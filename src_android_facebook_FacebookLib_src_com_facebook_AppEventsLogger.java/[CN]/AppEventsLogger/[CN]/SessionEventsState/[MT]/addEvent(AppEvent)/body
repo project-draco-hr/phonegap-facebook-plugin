@@ -1,8 +1,0 @@
-{
-  if (accumulatedEvents.size() + inFlightEvents.size() >= MAX_ACCUMULATED_LOG_EVENTS) {
-    numSkippedEventsDueToFullBuffer++;
-  }
- else {
-    accumulatedEvents.add(event);
-  }
-}

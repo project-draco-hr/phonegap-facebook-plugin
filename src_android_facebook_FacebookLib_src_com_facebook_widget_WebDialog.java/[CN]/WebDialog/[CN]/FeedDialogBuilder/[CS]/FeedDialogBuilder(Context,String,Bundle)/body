@@ -1,3 +1,0 @@
-{
-  super(context,applicationId,FEED_DIALOG,parameters);
-}

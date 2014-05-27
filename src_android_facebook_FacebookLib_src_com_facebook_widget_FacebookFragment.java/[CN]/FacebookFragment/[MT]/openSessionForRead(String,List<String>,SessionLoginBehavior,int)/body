@@ -1,3 +1,0 @@
-{
-  openSession(applicationId,permissions,behavior,activityCode,SessionAuthorizationType.READ);
-}

@@ -1,3 +1,0 @@
-{
-  super(context,applicationId,OAUTH_DIALOG,parameters);
-}

@@ -1,3 +1,0 @@
-{
-  return new SerializationProxyV1(accessToken,applicationId);
-}

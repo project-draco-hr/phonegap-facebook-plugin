@@ -1,5 +1,0 @@
-String method
-String result
-String errorMessage
-String errorCode
-Map<String,String> loggingExtras

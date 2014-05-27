@@ -1,5 +1,0 @@
-{
-  if (Utility.isNullOrEmpty(arg)) {
-    throw new IllegalArgumentException("Argument '" + name + "' cannot be null or empty");
-  }
-}

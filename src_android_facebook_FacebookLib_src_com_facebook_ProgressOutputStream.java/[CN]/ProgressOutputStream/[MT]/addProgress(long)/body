@@ -1,9 +1,0 @@
-{
-  if (currentRequestProgress != null) {
-    currentRequestProgress.addProgress(size);
-  }
-  batchProgress+=size;
-  if (batchProgress >= lastReportedProgress + threshold || batchProgress >= maxProgress) {
-    reportBatchProgress();
-  }
-}

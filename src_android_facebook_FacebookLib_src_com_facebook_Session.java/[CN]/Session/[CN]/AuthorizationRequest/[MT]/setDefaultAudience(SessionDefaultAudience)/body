@@ -1,6 +1,0 @@
-{
-  if (defaultAudience != null) {
-    this.defaultAudience=defaultAudience;
-  }
-  return this;
-}

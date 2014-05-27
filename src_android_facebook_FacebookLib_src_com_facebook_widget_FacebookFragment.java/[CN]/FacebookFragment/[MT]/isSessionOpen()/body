@@ -1,6 +1,0 @@
-{
-  if (sessionTracker != null) {
-    return sessionTracker.getOpenSession() != null;
-  }
-  return false;
-}

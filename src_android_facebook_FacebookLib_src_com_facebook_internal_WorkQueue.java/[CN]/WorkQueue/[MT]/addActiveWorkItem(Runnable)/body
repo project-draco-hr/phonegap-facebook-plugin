@@ -1,3 +1,0 @@
-{
-  return addActiveWorkItem(callback,true);
-}

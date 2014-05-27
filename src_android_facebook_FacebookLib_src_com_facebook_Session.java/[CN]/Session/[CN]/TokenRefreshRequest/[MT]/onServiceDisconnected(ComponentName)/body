@@ -1,4 +1,0 @@
-{
-  cleanup();
-  staticContext.unbindService(TokenRefreshRequest.this);
-}

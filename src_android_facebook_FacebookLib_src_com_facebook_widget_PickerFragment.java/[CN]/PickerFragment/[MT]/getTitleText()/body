@@ -1,6 +1,0 @@
-{
-  if (titleText == null) {
-    titleText=getDefaultTitleText();
-  }
-  return titleText;
-}

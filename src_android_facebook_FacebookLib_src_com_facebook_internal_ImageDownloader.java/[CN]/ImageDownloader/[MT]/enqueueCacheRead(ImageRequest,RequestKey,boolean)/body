@@ -1,3 +1,0 @@
-{
-  enqueueRequest(request,key,cacheReadQueue,new CacheReadWorkItem(request.getContext(),key,allowCachedRedirects));
-}

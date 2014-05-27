@@ -1,5 +1,0 @@
-{
-  this.attributionIdentifiers=identifiers;
-  this.packageName=packageName;
-  this.hashedDeviceAndAppId=hashedDeviceAndAppId;
-}

@@ -1,4 +1,0 @@
-{
-  Validate.notEmptyAndContainsNoNulls(requests,"requests");
-  return toHttpConnection(new RequestBatch(requests));
-}

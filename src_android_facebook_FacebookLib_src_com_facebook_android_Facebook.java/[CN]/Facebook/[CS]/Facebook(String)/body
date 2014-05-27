@@ -1,6 +1,0 @@
-{
-  if (appId == null) {
-    throw new IllegalArgumentException("You must specify your application ID when instantiating " + "a Facebook object. See README for details.");
-  }
-  mAppId=appId;
-}

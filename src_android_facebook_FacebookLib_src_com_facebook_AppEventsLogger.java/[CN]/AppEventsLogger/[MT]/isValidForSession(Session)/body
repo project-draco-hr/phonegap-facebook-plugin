@@ -1,4 +1,0 @@
-{
-  AccessTokenAppIdPair other=new AccessTokenAppIdPair(session);
-  return accessTokenAppId.equals(other);
-}

@@ -1,3 +1,0 @@
-{
-  return NativeProtocol.ACTION_FEED_DIALOG;
-}

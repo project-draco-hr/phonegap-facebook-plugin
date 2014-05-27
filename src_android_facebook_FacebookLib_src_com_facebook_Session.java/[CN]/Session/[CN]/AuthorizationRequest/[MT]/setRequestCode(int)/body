@@ -1,6 +1,0 @@
-{
-  if (requestCode >= 0) {
-    this.requestCode=requestCode;
-  }
-  return this;
-}

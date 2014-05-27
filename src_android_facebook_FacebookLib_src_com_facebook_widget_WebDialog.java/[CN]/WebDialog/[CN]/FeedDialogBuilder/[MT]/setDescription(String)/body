@@ -1,4 +1,0 @@
-{
-  getParameters().putString(DESCRIPTION_PARAM,description);
-  return this;
-}

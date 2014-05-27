@@ -1,8 +1,0 @@
-{
-  try {
-    getCache(context).clearCache();
-  }
- catch (  IOException e) {
-    Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"clearCache failed " + e.getMessage());
-  }
-}

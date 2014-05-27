@@ -1,9 +1,0 @@
-{
-  boolean force=false;
-  if (Utility.isNullOrEmpty(this.profileId) || !this.profileId.equalsIgnoreCase(profileId)) {
-    setBlankProfilePicture();
-    force=true;
-  }
-  this.profileId=profileId;
-  refreshImage(force);
-}

@@ -1,5 +1,0 @@
-{
-  testAccountId=testAccount.getId();
-  AccessToken accessToken=AccessToken.createFromString(testAccount.getAccessToken(),requestedPermissions,AccessTokenSource.TEST_USER);
-  finishAuthOrReauth(accessToken,null);
-}

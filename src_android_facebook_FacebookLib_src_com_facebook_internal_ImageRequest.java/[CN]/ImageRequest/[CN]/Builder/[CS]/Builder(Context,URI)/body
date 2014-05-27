@@ -1,5 +1,0 @@
-{
-  Validate.notNull(imageUrl,"imageUrl");
-  this.context=context;
-  this.imageUrl=imageUrl;
-}

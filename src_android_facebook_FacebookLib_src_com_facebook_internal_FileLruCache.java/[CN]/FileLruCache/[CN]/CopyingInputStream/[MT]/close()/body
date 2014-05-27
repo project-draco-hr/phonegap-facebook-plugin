@@ -1,8 +1,0 @@
-{
-  try {
-    this.input.close();
-  }
-  finally {
-    this.output.close();
-  }
-}

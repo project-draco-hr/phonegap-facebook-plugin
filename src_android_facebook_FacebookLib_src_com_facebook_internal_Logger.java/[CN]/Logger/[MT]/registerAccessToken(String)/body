@@ -1,5 +1,0 @@
-{
-  if (Settings.isLoggingBehaviorEnabled(LoggingBehavior.INCLUDE_ACCESS_TOKENS) == false) {
-    registerStringToReplace(accessToken,"ACCESS_TOKEN_REMOVED");
-  }
-}

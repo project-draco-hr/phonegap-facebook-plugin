@@ -1,5 +1,0 @@
-{
-synchronized (pendingRequests) {
-    return pendingRequests.remove(key);
-  }
-}

@@ -1,3 +1,0 @@
-{
-  this(context,url,listener,DEFAULT_THEME);
-}

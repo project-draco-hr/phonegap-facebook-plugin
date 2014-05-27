@@ -1,3 +1,0 @@
-{
-  throw new InvalidObjectException("Cannot readObject, serialization proxy required");
-}

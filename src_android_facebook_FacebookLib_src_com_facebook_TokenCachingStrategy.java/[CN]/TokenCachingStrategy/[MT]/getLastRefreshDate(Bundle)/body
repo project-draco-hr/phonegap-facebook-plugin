@@ -1,4 +1,0 @@
-{
-  Validate.notNull(bundle,"bundle");
-  return getDate(bundle,LAST_REFRESH_DATE_KEY);
-}

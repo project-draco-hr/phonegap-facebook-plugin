@@ -1,4 +1,0 @@
-{
-  super.setRequestCode(requestCode);
-  return this;
-}

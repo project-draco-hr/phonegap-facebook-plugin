@@ -1,3 +1,0 @@
-Serializer serializer
-Collection<Request> requests
-Map<String,Attachment> attachments

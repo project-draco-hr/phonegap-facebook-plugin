@@ -1,3 +1,0 @@
-{
-  return resultIntent.hasExtra(STATUS_ERROR_TYPE);
-}

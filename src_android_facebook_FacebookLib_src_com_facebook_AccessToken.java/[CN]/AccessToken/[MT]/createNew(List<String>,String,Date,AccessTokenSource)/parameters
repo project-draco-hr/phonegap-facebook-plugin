@@ -1,4 +1,0 @@
-List<String> requestedPermissions
-String accessToken
-Date expires
-AccessTokenSource source

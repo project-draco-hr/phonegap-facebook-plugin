@@ -1,3 +1,0 @@
-{
-  return newPostRequest(session,graphPath,graphObject,callback).executeAsync();
-}

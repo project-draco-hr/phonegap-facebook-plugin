@@ -1,9 +1,0 @@
-{
-  Session s=getSession();
-  if (s != null) {
-    return s.getAccessToken();
-  }
- else {
-    return null;
-  }
-}

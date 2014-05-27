@@ -1,9 +1,0 @@
-SessionLoginBehavior loginBehavior
-int requestCode
-boolean isLegacy
-List<String> permissions
-SessionDefaultAudience defaultAudience
-String applicationId
-String validateSameFbidAsToken
-StartActivityDelegate startActivityDelegate
-String authId

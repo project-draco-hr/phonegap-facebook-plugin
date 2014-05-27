@@ -1,6 +1,0 @@
-{
-  Validate.notEmptyAndContainsNoNulls(requests,"requests");
-  RequestAsyncTask asyncTask=new RequestAsyncTask(requests);
-  asyncTask.executeOnSettingsExecutor();
-  return asyncTask;
-}

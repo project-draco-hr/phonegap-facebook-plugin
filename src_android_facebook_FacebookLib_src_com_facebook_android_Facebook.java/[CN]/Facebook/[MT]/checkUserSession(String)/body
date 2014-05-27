@@ -1,5 +1,0 @@
-{
-  if (userSetSession != null) {
-    throw new UnsupportedOperationException(String.format("Cannot call %s after setSession has been called.",methodName));
-  }
-}

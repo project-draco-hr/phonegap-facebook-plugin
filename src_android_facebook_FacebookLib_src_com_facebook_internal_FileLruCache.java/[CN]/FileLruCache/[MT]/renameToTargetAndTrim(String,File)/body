@@ -1,7 +1,0 @@
-{
-  final File target=new File(directory,Utility.md5hash(key));
-  if (!buffer.renameTo(target)) {
-    buffer.delete();
-  }
-  postTrim();
-}

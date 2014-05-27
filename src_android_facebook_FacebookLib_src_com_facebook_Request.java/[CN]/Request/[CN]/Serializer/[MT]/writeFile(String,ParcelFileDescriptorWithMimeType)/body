@@ -1,3 +1,0 @@
-{
-  writeFile(key,descriptorWithMimeType.getFileDescriptor(),descriptorWithMimeType.getMimeType());
-}

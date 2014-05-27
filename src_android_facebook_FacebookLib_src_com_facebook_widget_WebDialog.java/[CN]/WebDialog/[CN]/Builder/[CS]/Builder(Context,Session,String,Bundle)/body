@@ -1,3 +1,0 @@
-{
-  super(context,session,action,parameters);
-}

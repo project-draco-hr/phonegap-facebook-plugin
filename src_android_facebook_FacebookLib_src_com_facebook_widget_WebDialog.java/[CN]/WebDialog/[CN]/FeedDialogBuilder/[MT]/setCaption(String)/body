@@ -1,4 +1,0 @@
-{
-  getParameters().putString(CAPTION_PARAM,caption);
-  return this;
-}

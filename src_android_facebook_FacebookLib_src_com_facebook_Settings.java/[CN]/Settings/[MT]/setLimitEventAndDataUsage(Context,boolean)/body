@@ -1,6 +1,0 @@
-{
-  SharedPreferences preferences=context.getSharedPreferences(APP_EVENT_PREFERENCES,Context.MODE_PRIVATE);
-  SharedPreferences.Editor editor=preferences.edit();
-  editor.putBoolean("limitEventUsage",limitEventUsage);
-  editor.commit();
-}

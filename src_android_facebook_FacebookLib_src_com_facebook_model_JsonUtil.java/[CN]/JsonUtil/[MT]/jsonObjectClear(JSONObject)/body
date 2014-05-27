@@ -1,7 +1,0 @@
-{
-  @SuppressWarnings("unchecked") Iterator<String> keys=(Iterator<String>)jsonObject.keys();
-  while (keys.hasNext()) {
-    keys.next();
-    keys.remove();
-  }
-}

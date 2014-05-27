@@ -1,3 +1,0 @@
-{
-  loginButtonProperties.setReadPermissions(Arrays.asList(permissions),getSession());
-}

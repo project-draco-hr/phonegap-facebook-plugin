@@ -1,3 +1,0 @@
-{
-  return sectionKeys.size() == 0;
-}

@@ -1,4 +1,0 @@
-{
-  super(errorMessage);
-  this.error=error;
-}

@@ -1,3 +1,0 @@
-{
-  return newUploadPhotoRequest(session,file,callback).executeAsync();
-}

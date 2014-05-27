@@ -1,5 +1,0 @@
-{
-  checkBox.setChecked(graphObjectSelected);
-  int visible=(graphObjectSelected || selectionStrategy.shouldShowCheckBoxIfUnselected()) ? View.VISIBLE : View.GONE;
-  checkBox.setVisibility(visible);
-}

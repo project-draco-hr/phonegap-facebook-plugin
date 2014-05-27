@@ -1,3 +1,0 @@
-{
-  return selectedId != null && id != null && selectedId.equals(id);
-}

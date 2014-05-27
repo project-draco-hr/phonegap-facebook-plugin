@@ -1,6 +1,0 @@
-{
-  if (graphObjectList == null) {
-    return null;
-  }
-  return graphObjectList.castToListOf(graphObjectClass);
-}

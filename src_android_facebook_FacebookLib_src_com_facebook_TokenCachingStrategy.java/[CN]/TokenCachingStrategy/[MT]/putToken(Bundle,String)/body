@@ -1,5 +1,0 @@
-{
-  Validate.notNull(bundle,"bundle");
-  Validate.notNull(value,"value");
-  bundle.putString(TOKEN_KEY,value);
-}

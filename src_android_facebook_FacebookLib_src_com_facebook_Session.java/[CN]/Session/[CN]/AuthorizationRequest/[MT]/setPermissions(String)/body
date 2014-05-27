@@ -1,3 +1,0 @@
-{
-  return setPermissions(Arrays.asList(permissions));
-}

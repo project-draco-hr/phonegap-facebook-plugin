@@ -1,7 +1,0 @@
-{
-  Validate.notNull(connection,"connection");
-  RequestAsyncTask asyncTask=new RequestAsyncTask(connection,requests);
-  requests.setCallbackHandler(callbackHandler);
-  asyncTask.executeOnSettingsExecutor();
-  return asyncTask;
-}

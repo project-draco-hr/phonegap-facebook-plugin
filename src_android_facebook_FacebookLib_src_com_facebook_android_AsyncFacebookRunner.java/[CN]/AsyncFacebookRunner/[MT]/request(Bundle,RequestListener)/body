@@ -1,3 +1,0 @@
-{
-  request(null,parameters,"GET",listener,null);
-}

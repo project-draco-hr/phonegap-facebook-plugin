@@ -1,3 +1,0 @@
-{
-  Logger.log(LoggingBehavior.DEVELOPER_ERRORS,"AppEvents",message);
-}

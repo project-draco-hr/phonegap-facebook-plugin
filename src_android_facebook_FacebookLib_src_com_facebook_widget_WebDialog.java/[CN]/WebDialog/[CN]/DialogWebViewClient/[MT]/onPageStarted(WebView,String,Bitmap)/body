@@ -1,7 +1,0 @@
-{
-  Utility.logd(LOG_TAG,"Webview loading URL: " + url);
-  super.onPageStarted(view,url,favicon);
-  if (!isDetached) {
-    spinner.show();
-  }
-}

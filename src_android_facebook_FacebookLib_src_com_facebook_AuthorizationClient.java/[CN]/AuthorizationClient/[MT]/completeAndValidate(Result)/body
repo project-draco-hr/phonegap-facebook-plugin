@@ -1,8 +1,0 @@
-{
-  if (outcome.token != null && pendingRequest.needsNewTokenValidation()) {
-    validateSameFbidAndFinish(outcome);
-  }
- else {
-    complete(outcome);
-  }
-}

@@ -1,4 +1,0 @@
-{
-  Collection<GraphPlace> selection=getSelectedGraphObjects();
-  return (selection != null && !selection.isEmpty()) ? selection.iterator().next() : null;
-}

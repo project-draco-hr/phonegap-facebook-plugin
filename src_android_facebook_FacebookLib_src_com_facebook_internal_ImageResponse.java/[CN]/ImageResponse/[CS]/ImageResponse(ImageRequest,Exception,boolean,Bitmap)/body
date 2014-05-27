@@ -1,6 +1,0 @@
-{
-  this.request=request;
-  this.error=error;
-  this.bitmap=bitmap;
-  this.isCachedRedirect=isCachedRedirect;
-}

@@ -1,4 +1,0 @@
-{
-  this.maxConcurrent=maxConcurrent;
-  this.executor=executor;
-}

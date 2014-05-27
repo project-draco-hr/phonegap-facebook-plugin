@@ -1,3 +1,0 @@
-{
-  return executeConnectionAsync(null,connection,requests);
-}

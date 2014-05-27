@@ -1,3 +1,0 @@
-{
-  requestNewPermissions(newPermissionsRequest,SessionAuthorizationType.READ);
-}

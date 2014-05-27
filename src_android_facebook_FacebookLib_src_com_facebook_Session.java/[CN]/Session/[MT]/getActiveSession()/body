@@ -1,5 +1,0 @@
-{
-synchronized (Session.STATIC_LOCK) {
-    return Session.activeSession;
-  }
-}

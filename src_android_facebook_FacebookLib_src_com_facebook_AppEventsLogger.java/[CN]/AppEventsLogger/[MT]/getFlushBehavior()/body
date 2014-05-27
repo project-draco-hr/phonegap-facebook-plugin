@@ -1,5 +1,0 @@
-{
-synchronized (staticLock) {
-    return flushBehavior;
-  }
-}

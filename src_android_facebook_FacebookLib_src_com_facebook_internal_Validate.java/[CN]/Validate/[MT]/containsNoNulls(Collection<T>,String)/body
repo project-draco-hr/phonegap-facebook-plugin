@@ -1,8 +1,0 @@
-{
-  Validate.notNull(container,name);
-  for (  T item : container) {
-    if (item == null) {
-      throw new NullPointerException("Container '" + name + "' cannot contain null values");
-    }
-  }
-}

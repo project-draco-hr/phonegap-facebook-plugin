@@ -1,5 +1,0 @@
-{
-  if (sessionTracker != null) {
-    sessionTracker.setSession(newSession);
-  }
-}

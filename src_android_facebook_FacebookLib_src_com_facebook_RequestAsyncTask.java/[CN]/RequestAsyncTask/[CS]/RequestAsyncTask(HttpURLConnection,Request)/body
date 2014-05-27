@@ -1,3 +1,0 @@
-{
-  this(connection,new RequestBatch(requests));
-}

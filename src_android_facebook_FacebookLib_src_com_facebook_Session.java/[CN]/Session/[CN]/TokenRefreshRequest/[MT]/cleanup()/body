@@ -1,5 +1,0 @@
-{
-  if (currentTokenRefreshRequest == this) {
-    currentTokenRefreshRequest=null;
-  }
-}

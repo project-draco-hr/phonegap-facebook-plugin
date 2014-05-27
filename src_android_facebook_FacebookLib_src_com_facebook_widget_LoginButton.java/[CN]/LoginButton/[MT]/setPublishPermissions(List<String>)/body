@@ -1,3 +1,0 @@
-{
-  properties.setPublishPermissions(permissions,sessionTracker.getSession());
-}

@@ -1,4 +1,0 @@
-{
-  this.allowCachedRedirects=allowCachedRedirects;
-  return this;
-}

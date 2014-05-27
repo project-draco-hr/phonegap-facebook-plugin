@@ -1,4 +1,0 @@
-{
-  String message=TextUtils.join(": ",Utility.asListNoNulls(errorType,errorDescription));
-  return new Result(request,Code.ERROR,null,message,errorCode);
-}

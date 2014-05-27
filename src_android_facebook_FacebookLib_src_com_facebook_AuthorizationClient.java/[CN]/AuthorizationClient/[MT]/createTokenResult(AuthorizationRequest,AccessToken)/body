@@ -1,3 +1,0 @@
-{
-  return new Result(request,Code.SUCCESS,token,null,null);
-}

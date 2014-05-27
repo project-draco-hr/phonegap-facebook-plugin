@@ -1,4 +1,0 @@
-{
-  super.setSettingsFromBundle(inState);
-  setPlacePickerSettingsFromBundle(inState);
-}

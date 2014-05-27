@@ -1,6 +1,0 @@
-{
-  if (this.multiSelect != multiSelect) {
-    this.multiSelect=multiSelect;
-    setSelectionStrategy(createSelectionStrategy());
-  }
-}

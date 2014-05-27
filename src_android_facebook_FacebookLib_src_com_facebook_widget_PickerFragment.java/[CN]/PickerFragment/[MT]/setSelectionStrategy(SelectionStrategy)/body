@@ -1,8 +1,0 @@
-{
-  if (selectionStrategy != this.selectionStrategy) {
-    this.selectionStrategy=selectionStrategy;
-    if (adapter != null) {
-      adapter.notifyDataSetChanged();
-    }
-  }
-}

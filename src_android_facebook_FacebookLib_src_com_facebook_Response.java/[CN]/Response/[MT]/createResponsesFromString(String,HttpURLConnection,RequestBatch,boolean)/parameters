@@ -1,4 +1,0 @@
-String responseString
-HttpURLConnection connection
-RequestBatch requests
-boolean isFromCache

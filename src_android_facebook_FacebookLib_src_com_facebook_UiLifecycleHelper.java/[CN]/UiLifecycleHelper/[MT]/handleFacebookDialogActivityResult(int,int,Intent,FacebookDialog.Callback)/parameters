@@ -1,4 +1,0 @@
-int requestCode
-int resultCode
-Intent data
-FacebookDialog.Callback facebookDialogCallback

@@ -1,6 +1,0 @@
-{
-  if (handler == null) {
-    handler=new Handler(Looper.getMainLooper());
-  }
-  return handler;
-}

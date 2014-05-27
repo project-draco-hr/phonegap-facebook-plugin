@@ -1,8 +1,0 @@
-{
-  checkUserSession("setTokenFromCache");
-synchronized (this.lock) {
-    this.accessToken=accessToken;
-    accessExpiresMillisecondsAfterEpoch=accessExpires;
-    lastAccessUpdateMillisecondsAfterEpoch=lastAccessUpdate;
-  }
-}

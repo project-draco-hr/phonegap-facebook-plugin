@@ -1,5 +1,0 @@
-{
-  if (newToken != null && tokenCachingStrategy != null) {
-    tokenCachingStrategy.save(newToken.toCacheBundle());
-  }
-}

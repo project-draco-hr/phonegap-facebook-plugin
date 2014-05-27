@@ -1,7 +1,0 @@
-{
-  int lastVisibleItem=listView.getLastVisiblePosition();
-  if (lastVisibleItem >= 0) {
-    int firstVisibleItem=listView.getFirstVisiblePosition();
-    adapter.prioritizeViewRange(firstVisibleItem,lastVisibleItem,PROFILE_PICTURE_PREFETCH_BUFFER);
-  }
-}

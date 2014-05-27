@@ -1,3 +1,0 @@
-{
-  this(session,graphPath,parameters,httpMethod,null);
-}

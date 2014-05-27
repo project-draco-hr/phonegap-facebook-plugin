@@ -1,5 +1,0 @@
-{
-  super(context,attrs,defStyle);
-  parseAttributes(attrs);
-  initializeActiveSessionWithCachedToken(context);
-}

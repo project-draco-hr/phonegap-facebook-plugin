@@ -1,3 +1,0 @@
-{
-  appTestAccounts.put(testAccount.getId(),testAccount);
-}

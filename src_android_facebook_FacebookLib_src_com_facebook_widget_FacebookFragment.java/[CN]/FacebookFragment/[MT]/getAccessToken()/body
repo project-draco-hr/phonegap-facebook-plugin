@@ -1,7 +1,0 @@
-{
-  if (sessionTracker != null) {
-    Session currentSession=sessionTracker.getOpenSession();
-    return (currentSession != null) ? currentSession.getAccessToken() : null;
-  }
-  return null;
-}

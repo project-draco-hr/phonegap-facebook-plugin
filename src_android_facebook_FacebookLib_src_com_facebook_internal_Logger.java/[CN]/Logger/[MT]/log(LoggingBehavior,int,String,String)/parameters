@@ -1,4 +1,0 @@
-LoggingBehavior behavior
-int priority
-String tag
-String string

@@ -1,4 +1,0 @@
-{
-  getParameters().putString(TITLE_PARAM,title);
-  return this;
-}

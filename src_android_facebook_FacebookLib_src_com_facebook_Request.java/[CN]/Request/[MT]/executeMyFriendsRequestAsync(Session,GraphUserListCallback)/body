@@ -1,3 +1,0 @@
-{
-  return newMyFriendsRequest(session,callback).executeAsync();
-}

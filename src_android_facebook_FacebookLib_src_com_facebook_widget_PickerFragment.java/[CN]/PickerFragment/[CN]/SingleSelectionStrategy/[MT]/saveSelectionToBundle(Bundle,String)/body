@@ -1,5 +1,0 @@
-{
-  if (!TextUtils.isEmpty(selectedId)) {
-    outBundle.putString(key,selectedId);
-  }
-}

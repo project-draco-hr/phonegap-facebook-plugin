@@ -1,7 +1,0 @@
-{
-  Session session=Session.getActiveSession();
-  if (session != null) {
-    session.onActivityResult(activity,requestCode,resultCode,data);
-  }
-  handleFacebookDialogActivityResult(requestCode,resultCode,data,facebookDialogCallback);
-}

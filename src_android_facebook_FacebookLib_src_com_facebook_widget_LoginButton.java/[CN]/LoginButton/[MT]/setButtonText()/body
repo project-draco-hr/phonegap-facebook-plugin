@@ -1,8 +1,0 @@
-{
-  if (sessionTracker != null && sessionTracker.getOpenSession() != null) {
-    setText((logoutText != null) ? logoutText : getResources().getString(R.string.com_facebook_loginview_log_out_button));
-  }
- else {
-    setText((loginText != null) ? loginText : getResources().getString(R.string.com_facebook_loginview_log_in_button));
-  }
-}

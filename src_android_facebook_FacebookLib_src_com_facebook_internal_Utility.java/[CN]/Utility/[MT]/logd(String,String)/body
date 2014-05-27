@@ -1,5 +1,0 @@
-{
-  if (BuildConfig.DEBUG && tag != null && msg != null) {
-    Log.d(tag,msg);
-  }
-}

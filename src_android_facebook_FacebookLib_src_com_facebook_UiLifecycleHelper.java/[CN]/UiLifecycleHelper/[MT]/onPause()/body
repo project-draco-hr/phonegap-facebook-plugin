@@ -1,9 +1,0 @@
-{
-  broadcastManager.unregisterReceiver(receiver);
-  if (callback != null) {
-    Session session=Session.getActiveSession();
-    if (session != null) {
-      session.removeCallback(callback);
-    }
-  }
-}

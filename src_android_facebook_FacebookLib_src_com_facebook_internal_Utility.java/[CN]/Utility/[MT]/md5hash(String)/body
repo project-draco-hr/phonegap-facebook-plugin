@@ -1,3 +1,0 @@
-{
-  return hashWithAlgorithm(HASH_ALGORITHM_MD5,key);
-}

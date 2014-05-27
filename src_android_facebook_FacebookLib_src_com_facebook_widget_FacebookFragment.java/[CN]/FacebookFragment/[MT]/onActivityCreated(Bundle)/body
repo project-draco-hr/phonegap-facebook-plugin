@@ -1,4 +1,0 @@
-{
-  super.onActivityCreated(savedInstanceState);
-  sessionTracker=new SessionTracker(getActivity(),new DefaultSessionStatusCallback());
-}

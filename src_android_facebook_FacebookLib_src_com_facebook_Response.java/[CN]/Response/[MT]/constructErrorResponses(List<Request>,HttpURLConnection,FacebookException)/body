@@ -1,9 +1,0 @@
-{
-  int count=requests.size();
-  List<Response> responses=new ArrayList<Response>(count);
-  for (int i=0; i < count; ++i) {
-    Response response=new Response(requests.get(i),connection,new FacebookRequestError(connection,error));
-    responses.add(response);
-  }
-  return responses;
-}

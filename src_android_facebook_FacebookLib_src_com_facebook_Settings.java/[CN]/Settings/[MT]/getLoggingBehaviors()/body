@@ -1,5 +1,0 @@
-{
-synchronized (loggingBehaviors) {
-    return Collections.unmodifiableSet(new HashSet<LoggingBehavior>(loggingBehaviors));
-  }
-}

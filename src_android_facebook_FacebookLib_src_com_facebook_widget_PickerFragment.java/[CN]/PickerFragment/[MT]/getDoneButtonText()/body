@@ -1,6 +1,0 @@
-{
-  if (doneButtonText == null) {
-    doneButtonText=getDefaultDoneButtonText();
-  }
-  return doneButtonText;
-}

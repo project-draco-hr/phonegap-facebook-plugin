@@ -1,4 +1,0 @@
-{
-  Intent intent=new Intent().setClassName(FACEBOOK_APP_INFO.getPackage(),FACEBOOK_TOKEN_REFRESH_ACTIVITY);
-  return validateServiceIntent(context,intent,FACEBOOK_APP_INFO);
-}

@@ -1,4 +1,0 @@
-{
-  this.mimeType=mimeType;
-  this.fileDescriptor=fileDescriptor;
-}

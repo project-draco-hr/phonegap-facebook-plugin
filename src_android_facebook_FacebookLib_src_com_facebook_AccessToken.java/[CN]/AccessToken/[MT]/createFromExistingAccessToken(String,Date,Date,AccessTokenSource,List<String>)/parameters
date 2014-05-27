@@ -1,5 +1,0 @@
-String accessToken
-Date expirationTime
-Date lastRefreshTime
-AccessTokenSource accessTokenSource
-List<String> permissions

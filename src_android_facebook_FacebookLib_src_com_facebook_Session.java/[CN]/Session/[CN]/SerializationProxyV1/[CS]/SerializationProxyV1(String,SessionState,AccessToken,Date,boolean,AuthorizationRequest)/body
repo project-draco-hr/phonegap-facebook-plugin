@@ -1,8 +1,0 @@
-{
-  this.applicationId=applicationId;
-  this.state=state;
-  this.tokenInfo=tokenInfo;
-  this.lastAttemptedTokenExtendDate=lastAttemptedTokenExtendDate;
-  this.shouldAutoPublish=shouldAutoPublish;
-  this.pendingAuthorizationRequest=pendingAuthorizationRequest;
-}

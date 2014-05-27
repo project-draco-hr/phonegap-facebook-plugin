@@ -1,7 +1,0 @@
-{
-  adapter.setDataNeededListener(null);
-  adapter.setOnErrorListener(null);
-  loader.setOnErrorListener(null);
-  loader=null;
-  adapter=null;
-}

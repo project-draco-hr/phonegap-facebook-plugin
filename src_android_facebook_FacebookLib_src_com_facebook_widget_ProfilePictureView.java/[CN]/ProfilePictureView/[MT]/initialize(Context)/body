@@ -1,8 +1,0 @@
-{
-  removeAllViews();
-  image=new ImageView(context);
-  LayoutParams imageLayout=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-  image.setLayoutParams(imageLayout);
-  image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-  addView(image);
-}

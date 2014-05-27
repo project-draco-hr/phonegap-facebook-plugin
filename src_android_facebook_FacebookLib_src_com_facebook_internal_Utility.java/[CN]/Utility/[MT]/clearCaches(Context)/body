@@ -1,3 +1,0 @@
-{
-  ImageDownloader.clearCache(context);
-}

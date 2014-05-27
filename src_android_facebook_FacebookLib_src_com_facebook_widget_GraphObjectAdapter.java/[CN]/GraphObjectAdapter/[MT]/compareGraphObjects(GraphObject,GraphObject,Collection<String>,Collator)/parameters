@@ -1,4 +1,0 @@
-GraphObject a
-GraphObject b
-Collection<String> sortFields
-Collator collator

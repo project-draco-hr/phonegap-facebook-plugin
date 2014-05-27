@@ -1,3 +1,0 @@
-{
-  return (another instanceof ModifiedFile) && (compareTo((ModifiedFile)another) == 0);
-}

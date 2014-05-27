@@ -1,3 +1,0 @@
-{
-  authorize(activity,new String[]{},DEFAULT_AUTH_ACTIVITY_CODE,SessionLoginBehavior.SSO_WITH_FALLBACK,listener);
-}

@@ -1,3 +1,0 @@
-{
-  return (c == null) || (c.size() == 0);
-}

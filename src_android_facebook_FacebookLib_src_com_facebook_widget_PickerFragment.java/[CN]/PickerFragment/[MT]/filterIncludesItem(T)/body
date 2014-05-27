@@ -1,6 +1,0 @@
-{
-  if (filter != null) {
-    return filter.includeItem(graphObject);
-  }
-  return true;
-}

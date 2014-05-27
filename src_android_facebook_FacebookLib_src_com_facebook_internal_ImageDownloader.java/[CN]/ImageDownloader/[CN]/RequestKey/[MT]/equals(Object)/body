@@ -1,8 +1,0 @@
-{
-  boolean isEqual=false;
-  if (o != null && o instanceof RequestKey) {
-    RequestKey compareTo=(RequestKey)o;
-    isEqual=compareTo.uri == uri && compareTo.tag == tag;
-  }
-  return isEqual;
-}

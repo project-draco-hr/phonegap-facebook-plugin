@@ -1,3 +1,0 @@
-{
-  append("  %s:\t%s\n",key,value);
-}

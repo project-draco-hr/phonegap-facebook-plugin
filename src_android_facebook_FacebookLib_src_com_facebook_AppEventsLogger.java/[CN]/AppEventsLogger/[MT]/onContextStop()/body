@@ -1,3 +1,0 @@
-{
-  PersistedEvents.persistEvents(applicationContext,stateMap);
-}

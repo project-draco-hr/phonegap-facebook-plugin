@@ -1,6 +1,0 @@
-{
-  nextRequest=null;
-  originalRequest=null;
-  currentRequest=null;
-  deliverResult(null);
-}

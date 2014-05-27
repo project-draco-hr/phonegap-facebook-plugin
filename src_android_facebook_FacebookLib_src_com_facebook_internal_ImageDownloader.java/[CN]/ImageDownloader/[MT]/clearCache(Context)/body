@@ -1,4 +1,0 @@
-{
-  ImageResponseCache.clearCache(context);
-  UrlRedirectCache.clearCache(context);
-}

@@ -1,5 +1,0 @@
-{
-  if (currentHandler != null) {
-    currentHandler.cancel();
-  }
-}

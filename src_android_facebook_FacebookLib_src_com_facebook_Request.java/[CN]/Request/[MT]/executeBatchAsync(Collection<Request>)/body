@@ -1,3 +1,0 @@
-{
-  return executeBatchAsync(new RequestBatch(requests));
-}

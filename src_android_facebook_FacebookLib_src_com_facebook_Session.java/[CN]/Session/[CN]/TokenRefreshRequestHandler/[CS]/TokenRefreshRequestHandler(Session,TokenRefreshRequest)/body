@@ -1,5 +1,0 @@
-{
-  super(Looper.getMainLooper());
-  sessionWeakReference=new WeakReference<Session>(session);
-  refreshRequestWeakReference=new WeakReference<TokenRefreshRequest>(refreshRequest);
-}

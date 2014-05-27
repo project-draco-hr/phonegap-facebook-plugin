@@ -1,8 +1,0 @@
-{
-  if (appLinkDataUri == null) {
-    return null;
-  }
-  AppLinkData appLinkData=new AppLinkData();
-  appLinkData.targetUri=appLinkDataUri;
-  return appLinkData;
-}

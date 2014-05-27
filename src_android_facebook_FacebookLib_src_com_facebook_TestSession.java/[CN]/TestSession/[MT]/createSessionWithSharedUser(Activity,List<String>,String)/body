@@ -1,3 +1,0 @@
-{
-  return createTestSession(activity,permissions,Mode.SHARED,sessionUniqueUserTag);
-}

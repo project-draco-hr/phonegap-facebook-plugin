@@ -1,3 +1,0 @@
-{
-  return new StringBuilder().append("{RequestAsyncTask: ").append(" connection: ").append(connection).append(", requests: ").append(requests).append("}").toString();
-}

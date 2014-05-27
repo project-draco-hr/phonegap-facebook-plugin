@@ -1,4 +1,0 @@
-{
-  out.writeString(mimeType);
-  out.writeFileDescriptor(fileDescriptor.getFileDescriptor());
-}

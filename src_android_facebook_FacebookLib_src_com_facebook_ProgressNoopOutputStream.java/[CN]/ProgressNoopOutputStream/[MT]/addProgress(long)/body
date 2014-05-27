@@ -1,8 +1,0 @@
-{
-  if (currentRequestProgress == null) {
-    currentRequestProgress=new RequestProgress(callbackHandler,currentRequest);
-    progressMap.put(currentRequest,currentRequestProgress);
-  }
-  currentRequestProgress.addToMax(size);
-  batchMax+=size;
-}

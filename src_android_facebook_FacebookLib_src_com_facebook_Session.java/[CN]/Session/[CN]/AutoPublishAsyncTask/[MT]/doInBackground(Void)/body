@@ -1,9 +1,0 @@
-{
-  try {
-    Settings.publishInstallAndWaitForResponse(mApplicationContext,mApplicationId,true);
-  }
- catch (  Exception e) {
-    Utility.logd("Facebook-publish",e);
-  }
-  return null;
-}

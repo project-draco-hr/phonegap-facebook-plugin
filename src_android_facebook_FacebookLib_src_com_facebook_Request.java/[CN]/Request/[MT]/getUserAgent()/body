@@ -1,6 +1,0 @@
-{
-  if (userAgent == null) {
-    userAgent=String.format("%s.%s",USER_AGENT_BASE,FacebookSdkVersion.BUILD);
-  }
-  return userAgent;
-}

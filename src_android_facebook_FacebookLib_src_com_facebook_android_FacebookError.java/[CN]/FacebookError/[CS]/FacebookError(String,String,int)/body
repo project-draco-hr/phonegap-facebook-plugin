@@ -1,5 +1,0 @@
-{
-  super(message);
-  mErrorType=type;
-  mErrorCode=code;
-}

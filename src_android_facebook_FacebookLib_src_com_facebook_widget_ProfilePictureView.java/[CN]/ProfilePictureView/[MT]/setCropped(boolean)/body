@@ -1,4 +1,0 @@
-{
-  isCropped=showCroppedVersion;
-  refreshImage(false);
-}

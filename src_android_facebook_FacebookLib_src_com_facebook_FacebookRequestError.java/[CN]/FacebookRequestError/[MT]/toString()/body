@@ -1,3 +1,0 @@
-{
-  return new StringBuilder("{HttpStatus: ").append(requestStatusCode).append(", errorCode: ").append(errorCode).append(", errorType: ").append(errorType).append(", errorMessage: ").append(getErrorMessage()).append("}").toString();
-}

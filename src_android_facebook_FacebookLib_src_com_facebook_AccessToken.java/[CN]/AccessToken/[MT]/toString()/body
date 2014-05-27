@@ -1,8 +1,0 @@
-{
-  StringBuilder builder=new StringBuilder();
-  builder.append("{AccessToken");
-  builder.append(" token:").append(tokenToString());
-  appendPermissions(builder);
-  builder.append("}");
-  return builder.toString();
-}

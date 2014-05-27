@@ -1,7 +1,0 @@
-{
-  this.expires=expires;
-  this.permissions=permissions;
-  this.token=token;
-  this.source=source;
-  this.lastRefresh=lastRefresh;
-}

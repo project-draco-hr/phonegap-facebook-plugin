@@ -1,3 +1,0 @@
-{
-  return openActiveSession(context,allowLoginUI,new OpenRequest(fragment).setCallback(callback));
-}

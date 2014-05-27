@@ -1,6 +1,0 @@
-{
-  accessToken=TokenCachingStrategy.getToken(bundle);
-  accessExpiresMillisecondsAfterEpoch=TokenCachingStrategy.getExpirationMilliseconds(bundle);
-  pendingAuthorizationPermissions=stringArray(TokenCachingStrategy.getPermissions(bundle));
-  lastAccessUpdateMillisecondsAfterEpoch=TokenCachingStrategy.getLastRefreshMilliseconds(bundle);
-}

@@ -1,6 +1,0 @@
-{
-  if (!selectedIds.isEmpty()) {
-    String ids=TextUtils.join(",",selectedIds);
-    outBundle.putString(key,ids);
-  }
-}

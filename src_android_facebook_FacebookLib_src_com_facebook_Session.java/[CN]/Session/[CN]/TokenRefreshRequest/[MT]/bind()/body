@@ -1,9 +1,0 @@
-{
-  Intent intent=NativeProtocol.createTokenRefreshIntent(getStaticContext());
-  if (intent != null && staticContext.bindService(intent,this,Context.BIND_AUTO_CREATE)) {
-    setLastAttemptedTokenExtendDate(new Date());
-  }
- else {
-    cleanup();
-  }
-}

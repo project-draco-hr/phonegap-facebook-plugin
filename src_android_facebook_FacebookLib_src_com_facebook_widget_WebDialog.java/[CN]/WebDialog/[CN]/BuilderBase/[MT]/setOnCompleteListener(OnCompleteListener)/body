@@ -1,5 +1,0 @@
-{
-  this.listener=listener;
-  @SuppressWarnings("unchecked") CONCRETE result=(CONCRETE)this;
-  return result;
-}

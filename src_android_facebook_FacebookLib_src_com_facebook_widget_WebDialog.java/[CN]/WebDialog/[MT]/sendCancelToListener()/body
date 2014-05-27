@@ -1,3 +1,0 @@
-{
-  sendErrorToListener(new FacebookOperationCanceledException());
-}

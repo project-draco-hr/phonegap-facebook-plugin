@@ -1,7 +1,0 @@
-{
-  ResolveInfo resolveInfo=context.getPackageManager().resolveService(intent,0);
-  if (resolveInfo == null) {
-    return false;
-  }
-  return validateAppSignatureForPackage(context,resolveInfo.serviceInfo.packageName);
-}

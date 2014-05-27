@@ -1,6 +1,0 @@
-{
-  Validate.notNullOrEmpty(tag,"tag");
-  this.behavior=behavior;
-  this.tag=LOG_TAG_BASE + tag;
-  this.contents=new StringBuilder();
-}

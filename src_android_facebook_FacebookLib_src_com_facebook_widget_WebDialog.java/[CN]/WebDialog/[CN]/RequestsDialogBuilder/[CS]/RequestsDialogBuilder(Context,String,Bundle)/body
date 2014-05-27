@@ -1,3 +1,0 @@
-{
-  super(context,applicationId,APPREQUESTS_DIALOG,parameters);
-}

@@ -1,5 +1,0 @@
-{
-  sender=null;
-  context.unbindService(this);
-  callback(null);
-}

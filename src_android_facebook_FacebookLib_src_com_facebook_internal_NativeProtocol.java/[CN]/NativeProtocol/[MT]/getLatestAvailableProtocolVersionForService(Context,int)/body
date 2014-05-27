@@ -1,3 +1,0 @@
-{
-  return getLatestAvailableProtocolVersionForAppInfoList(context,facebookAppInfoList,minimumVersion);
-}

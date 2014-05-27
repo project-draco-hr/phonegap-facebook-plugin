@@ -1,8 +1,0 @@
-{
-synchronized (lock) {
-    if (appEventsLogger == null) {
-      appEventsLogger=AppEventsLogger.newLogger(staticContext,applicationId);
-    }
-    return appEventsLogger;
-  }
-}

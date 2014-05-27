@@ -1,4 +1,0 @@
-{
-  wasAskedToExtendAccessToken=true;
-  super.extendAccessToken();
-}

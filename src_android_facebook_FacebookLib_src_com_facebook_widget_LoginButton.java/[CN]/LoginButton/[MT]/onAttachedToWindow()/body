@@ -1,8 +1,0 @@
-{
-  super.onAttachedToWindow();
-  if (sessionTracker != null && !sessionTracker.isTracking()) {
-    sessionTracker.startTracking();
-    fetchUserInfo();
-    setButtonText();
-  }
-}

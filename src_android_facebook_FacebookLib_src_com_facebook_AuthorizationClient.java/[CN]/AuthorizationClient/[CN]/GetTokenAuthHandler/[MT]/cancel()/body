@@ -1,6 +1,0 @@
-{
-  if (getTokenClient != null) {
-    getTokenClient.cancel();
-    getTokenClient=null;
-  }
-}

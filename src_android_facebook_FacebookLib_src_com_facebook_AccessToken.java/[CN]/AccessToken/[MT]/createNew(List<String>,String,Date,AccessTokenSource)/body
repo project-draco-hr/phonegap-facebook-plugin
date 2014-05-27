@@ -1,8 +1,0 @@
-{
-  if (Utility.isNullOrEmpty(accessToken) || (expires == null)) {
-    return createEmptyToken(requestedPermissions);
-  }
- else {
-    return new AccessToken(accessToken,expires,requestedPermissions,source,new Date());
-  }
-}

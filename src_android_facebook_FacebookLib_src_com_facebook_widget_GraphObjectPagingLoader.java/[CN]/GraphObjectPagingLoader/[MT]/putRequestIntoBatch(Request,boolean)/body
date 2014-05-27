@@ -1,5 +1,0 @@
-{
-  CacheableRequestBatch batch=new CacheableRequestBatch(request);
-  batch.setForceRoundTrip(!skipRoundtripIfCached);
-  return batch;
-}

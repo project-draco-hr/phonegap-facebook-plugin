@@ -1,6 +1,0 @@
-{
-  if (n < 0) {
-    throw new InvalidParameterException("Cache file count limit must be >= 0");
-  }
-  fileCount=n;
-}

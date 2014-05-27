@@ -1,3 +1,0 @@
-{
-  super(context,session,FEED_DIALOG,parameters);
-}

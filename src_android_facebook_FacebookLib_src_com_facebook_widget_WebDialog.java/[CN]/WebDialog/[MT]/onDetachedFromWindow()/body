@@ -1,4 +1,0 @@
-{
-  isDetached=true;
-  super.onDetachedFromWindow();
-}

@@ -1,6 +1,0 @@
-{
-  super.onPreExecute();
-  if (requests.getCallbackHandler() == null) {
-    requests.setCallbackHandler(new Handler());
-  }
-}

@@ -1,3 +1,0 @@
-{
-  return value instanceof String || value instanceof Boolean || value instanceof Number|| value instanceof Date;
-}

@@ -1,3 +1,0 @@
-{
-  this.innerStream.write(buffer);
-}

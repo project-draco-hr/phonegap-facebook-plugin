@@ -1,3 +1,0 @@
-{
-  return newMeRequest(session,callback).executeAsync();
-}

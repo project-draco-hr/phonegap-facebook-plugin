@@ -1,3 +1,0 @@
-{
-  return selectionStrategy.isSelected(graphObjectId);
-}

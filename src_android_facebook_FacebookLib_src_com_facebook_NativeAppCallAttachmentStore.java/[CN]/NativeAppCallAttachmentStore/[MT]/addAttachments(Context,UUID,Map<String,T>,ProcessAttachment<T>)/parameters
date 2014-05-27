@@ -1,4 +1,0 @@
-Context context
-UUID callId
-Map<String,T> attachments
-ProcessAttachment<T> processor

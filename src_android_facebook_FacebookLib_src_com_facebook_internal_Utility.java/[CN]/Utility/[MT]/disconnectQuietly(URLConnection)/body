@@ -1,5 +1,0 @@
-{
-  if (connection instanceof HttpURLConnection) {
-    ((HttpURLConnection)connection).disconnect();
-  }
-}

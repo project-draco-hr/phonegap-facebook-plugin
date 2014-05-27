@@ -1,5 +1,0 @@
-{
-synchronized (callbacks) {
-    callbacks.remove(callback);
-  }
-}

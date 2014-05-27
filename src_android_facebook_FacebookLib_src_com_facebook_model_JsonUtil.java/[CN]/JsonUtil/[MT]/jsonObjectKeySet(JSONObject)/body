@@ -1,8 +1,0 @@
-{
-  HashSet<String> result=new HashSet<String>();
-  @SuppressWarnings("unchecked") Iterator<String> keys=(Iterator<String>)jsonObject.keys();
-  while (keys.hasNext()) {
-    result.add(keys.next());
-  }
-  return result;
-}

@@ -1,9 +1,0 @@
-{
-  TestAccount testAccount=findTestAccountMatchingIdentifier(getSharedTestAccountIdentifier());
-  if (testAccount != null) {
-    finishAuthWithTestAccount(testAccount);
-  }
- else {
-    createTestAccountAndFinishAuth();
-  }
-}

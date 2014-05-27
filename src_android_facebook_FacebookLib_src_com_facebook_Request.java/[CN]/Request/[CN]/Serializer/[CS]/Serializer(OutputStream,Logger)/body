@@ -1,4 +1,0 @@
-{
-  this.outputStream=outputStream;
-  this.logger=logger;
-}

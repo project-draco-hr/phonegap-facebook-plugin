@@ -1,4 +1,0 @@
-{
-  this.accessToken=accessToken;
-  this.appId=appId;
-}

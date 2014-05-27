@@ -1,5 +1,0 @@
-AuthorizationRequest request
-Code code
-AccessToken token
-String errorMessage
-String errorCode

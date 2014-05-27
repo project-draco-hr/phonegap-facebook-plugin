@@ -1,3 +1,0 @@
-{
-  return new StringBuilder().append("{FacebookServiceException: ").append("httpResponseCode: ").append(error.getRequestStatusCode()).append(", facebookErrorCode: ").append(error.getErrorCode()).append(", facebookErrorType: ").append(error.getErrorType()).append(", message: ").append(error.getErrorMessage()).append("}").toString();
-}

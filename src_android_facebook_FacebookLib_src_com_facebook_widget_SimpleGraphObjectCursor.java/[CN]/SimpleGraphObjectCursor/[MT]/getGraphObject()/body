@@ -1,9 +1,0 @@
-{
-  if (pos < 0) {
-    throw new CursorIndexOutOfBoundsException("Before first object.");
-  }
-  if (pos >= graphObjects.size()) {
-    throw new CursorIndexOutOfBoundsException("After last object.");
-  }
-  return graphObjects.get(pos);
-}

@@ -1,5 +1,0 @@
-{
-  this.request=request;
-  this.callbackHandler=callbackHandler;
-  this.threshold=Settings.getOnProgressThreshold();
-}

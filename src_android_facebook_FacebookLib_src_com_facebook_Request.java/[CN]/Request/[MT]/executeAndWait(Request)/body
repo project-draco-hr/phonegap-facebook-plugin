@@ -1,7 +1,0 @@
-{
-  List<Response> responses=executeBatchAndWait(request);
-  if (responses == null || responses.size() != 1) {
-    throw new FacebookException("invalid state: expected a single response");
-  }
-  return responses.get(0);
-}

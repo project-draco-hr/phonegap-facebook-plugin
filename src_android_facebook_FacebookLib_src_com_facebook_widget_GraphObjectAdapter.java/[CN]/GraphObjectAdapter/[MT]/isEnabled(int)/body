@@ -1,4 +1,0 @@
-{
-  SectionAndItem<T> sectionAndItem=getSectionAndItem(position);
-  return sectionAndItem.getType() == SectionAndItem.Type.GRAPH_OBJECT;
-}

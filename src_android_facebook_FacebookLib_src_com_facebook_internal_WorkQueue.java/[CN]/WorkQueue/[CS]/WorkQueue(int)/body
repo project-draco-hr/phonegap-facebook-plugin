@@ -1,3 +1,0 @@
-{
-  this(maxConcurrent,Settings.getExecutor());
-}
