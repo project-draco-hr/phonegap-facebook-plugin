@@ -1,0 +1,6 @@
+{
+  if (argumentBundle != null) {
+    return argumentBundle.getBundle(ARGUMENTS_REFERER_DATA_KEY);
+  }
+  return null;
+}

@@ -3,5 +3,7 @@
   this.outputStream.write(bytes);
   writeLine("");
   writeRecordBoundary();
-  logger.appendKeyValue("    " + key,String.format("<Data: %d>",bytes.length));
+  if (logger != null) {
+    logger.appendKeyValue("    " + key,String.format("<Data: %d>",bytes.length));
+  }
 }

@@ -2,8 +2,8 @@
 synchronized (staticLock) {
     SessionEventsState state=stateMap.get(accessTokenAppId);
     if (state == null) {
-      String attributionId=Settings.getAttributionId(context.getContentResolver());
-      state=new SessionEventsState(attributionId,context.getPackageName(),hashedDeviceAndAppId);
+      AttributionIdentifiers attributionIdentifiers=AttributionIdentifiers.getAttributionIdentifiers(context);
+      state=new SessionEventsState(attributionIdentifiers,context.getPackageName(),hashedDeviceAndAppId);
       stateMap.put(accessTokenAppId,state);
     }
     return state;

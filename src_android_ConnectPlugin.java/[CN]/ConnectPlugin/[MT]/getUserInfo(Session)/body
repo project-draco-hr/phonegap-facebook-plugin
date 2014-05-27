@@ -5,7 +5,8 @@
         if (loginContext != null) {
           GraphObject graphObject=response.getGraphObject();
           Log.d(TAG,"returning login object " + graphObject.getInnerJSONObject().toString());
-          loginContext.success(graphObject.getInnerJSONObject());
+          userID=user.getId();
+          loginContext.success(getResponse());
           loginContext=null;
         }
       }

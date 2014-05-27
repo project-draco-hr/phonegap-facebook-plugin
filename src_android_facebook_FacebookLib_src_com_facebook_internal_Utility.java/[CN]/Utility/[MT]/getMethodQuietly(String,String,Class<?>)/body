@@ -1,0 +1,9 @@
+{
+  try {
+    Class<?> clazz=Class.forName(className);
+    return getMethodQuietly(clazz,methodName,parameterTypes);
+  }
+ catch (  ClassNotFoundException ex) {
+    return null;
+  }
+}

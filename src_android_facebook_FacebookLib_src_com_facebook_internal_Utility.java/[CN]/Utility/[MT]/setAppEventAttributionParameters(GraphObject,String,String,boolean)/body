@@ -1,9 +1,0 @@
-{
-  if (attributionId != null) {
-    params.setProperty("attribution",attributionId);
-  }
- else   if (hashedDeviceAndAppId != null) {
-    params.setProperty("advertiser_id",hashedDeviceAndAppId);
-  }
-  params.setProperty("application_tracking_enabled",!limitEventUsage);
-}

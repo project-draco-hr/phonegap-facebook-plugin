@@ -1,0 +1,7 @@
+{
+  Map<String,List<NativeAppInfo>> map=new HashMap<String,List<NativeAppInfo>>();
+  map.put(ACTION_OGACTIONPUBLISH_DIALOG,facebookAppInfoList);
+  map.put(ACTION_FEED_DIALOG,facebookAppInfoList);
+  map.put(ACTION_LOGIN_DIALOG,facebookAppInfoList);
+  return map;
+}

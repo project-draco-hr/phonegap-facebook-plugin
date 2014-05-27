@@ -4,8 +4,11 @@
   if (intent == null) {
     return null;
   }
-  String appLinkArgsJsonString=intent.getStringExtra(BUNDLE_APPLINK_ARGS_KEY);
-  AppLinkData appLinkData=createFromJson(appLinkArgsJsonString);
+  AppLinkData appLinkData=createFromAlApplinkData(intent);
+  if (appLinkData == null) {
+    String appLinkArgsJsonString=intent.getStringExtra(BUNDLE_APPLINK_ARGS_KEY);
+    appLinkData=createFromJson(appLinkArgsJsonString);
+  }
   if (appLinkData == null) {
     appLinkData=createFromUri(intent.getData());
   }

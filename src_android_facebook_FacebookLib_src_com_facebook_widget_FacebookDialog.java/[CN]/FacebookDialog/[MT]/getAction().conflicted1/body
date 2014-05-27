@@ -1,0 +1,3 @@
+{
+  return NativeProtocol.ACTION_OGACTIONPUBLISH_DIALOG;
+}
