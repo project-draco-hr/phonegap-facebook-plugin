@@ -1,0 +1,4 @@
+{
+  LOG.d(TAG,"onExceededDatabaseQuota estimatedSize: %d  currentQuota: %d  totalUsedQuota: %d",estimatedSize,currentQuota,totalUsedQuota);
+  quotaUpdater.updateQuota(MAX_QUOTA);
+}

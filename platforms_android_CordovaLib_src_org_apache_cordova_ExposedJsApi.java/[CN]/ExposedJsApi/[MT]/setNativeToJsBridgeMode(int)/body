@@ -1,0 +1,3 @@
+{
+  jsMessageQueue.setBridgeMode(value);
+}

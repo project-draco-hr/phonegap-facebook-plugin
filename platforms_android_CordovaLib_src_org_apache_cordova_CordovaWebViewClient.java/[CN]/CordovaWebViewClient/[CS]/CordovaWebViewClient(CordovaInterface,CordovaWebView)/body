@@ -1,0 +1,4 @@
+{
+  this.cordova=cordova;
+  this.appView=view;
+}

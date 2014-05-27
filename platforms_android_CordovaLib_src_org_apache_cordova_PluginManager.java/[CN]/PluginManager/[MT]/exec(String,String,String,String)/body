@@ -1,0 +1,15 @@
+{
+  if (numPendingUiExecs.get() > 0) {
+    numPendingUiExecs.getAndIncrement();
+    this.ctx.getActivity().runOnUiThread(new Runnable(){
+      public void run(){
+        execHelper(service,action,callbackId,rawArgs);
+        numPendingUiExecs.getAndDecrement();
+      }
+    }
+);
+  }
+ else {
+    execHelper(service,action,callbackId,rawArgs);
+  }
+}

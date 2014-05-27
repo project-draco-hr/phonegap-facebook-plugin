@@ -1,0 +1,24 @@
+{
+  String realPath=null;
+  if (uriString.startsWith("content://")) {
+    String[] proj={_DATA};
+    Cursor cursor=cordova.getActivity().managedQuery(Uri.parse(uriString),proj,null,null,null);
+    int column_index=cursor.getColumnIndexOrThrow(_DATA);
+    cursor.moveToFirst();
+    realPath=cursor.getString(column_index);
+    if (realPath == null) {
+      LOG.e(LOG_TAG,"Could get real path for URI string %s",uriString);
+    }
+  }
+ else   if (uriString.startsWith("file://")) {
+    realPath=uriString.substring(7);
+    if (realPath.startsWith("/android_asset/")) {
+      LOG.e(LOG_TAG,"Cannot get real path for URI string %s because it is a file:///android_asset/ URI.",uriString);
+      realPath=null;
+    }
+  }
+ else {
+    realPath=uriString;
+  }
+  return realPath;
+}

@@ -1,0 +1,21 @@
+{
+  this.aperture=inFile.getAttribute(ExifInterface.TAG_APERTURE);
+  this.datetime=inFile.getAttribute(ExifInterface.TAG_DATETIME);
+  this.exposureTime=inFile.getAttribute(ExifInterface.TAG_EXPOSURE_TIME);
+  this.flash=inFile.getAttribute(ExifInterface.TAG_FLASH);
+  this.focalLength=inFile.getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
+  this.gpsAltitude=inFile.getAttribute(ExifInterface.TAG_GPS_ALTITUDE);
+  this.gpsAltitudeRef=inFile.getAttribute(ExifInterface.TAG_GPS_ALTITUDE_REF);
+  this.gpsDateStamp=inFile.getAttribute(ExifInterface.TAG_GPS_DATESTAMP);
+  this.gpsLatitude=inFile.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+  this.gpsLatitudeRef=inFile.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
+  this.gpsLongitude=inFile.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+  this.gpsLongitudeRef=inFile.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
+  this.gpsProcessingMethod=inFile.getAttribute(ExifInterface.TAG_GPS_PROCESSING_METHOD);
+  this.gpsTimestamp=inFile.getAttribute(ExifInterface.TAG_GPS_TIMESTAMP);
+  this.iso=inFile.getAttribute(ExifInterface.TAG_ISO);
+  this.make=inFile.getAttribute(ExifInterface.TAG_MAKE);
+  this.model=inFile.getAttribute(ExifInterface.TAG_MODEL);
+  this.orientation=inFile.getAttribute(ExifInterface.TAG_ORIENTATION);
+  this.whiteBalance=inFile.getAttribute(ExifInterface.TAG_WHITE_BALANCE);
+}

@@ -1,0 +1,26 @@
+{
+  CordovaPlugin plugin=getPlugin(service);
+  if (plugin == null) {
+    Log.d(TAG,"exec() call to unknown plugin: " + service);
+    PluginResult cr=new PluginResult(PluginResult.Status.CLASS_NOT_FOUND_EXCEPTION);
+    app.sendPluginResult(cr,callbackId);
+    return;
+  }
+  try {
+    CallbackContext callbackContext=new CallbackContext(callbackId,app);
+    long pluginStartTime=System.currentTimeMillis();
+    boolean wasValidAction=plugin.execute(action,rawArgs,callbackContext);
+    long duration=System.currentTimeMillis() - pluginStartTime;
+    if (duration > SLOW_EXEC_WARNING_THRESHOLD) {
+      Log.w(TAG,"THREAD WARNING: exec() call to " + service + "."+ action+ " blocked the main thread for "+ duration+ "ms. Plugin should use CordovaInterface.getThreadPool().");
+    }
+    if (!wasValidAction) {
+      PluginResult cr=new PluginResult(PluginResult.Status.INVALID_ACTION);
+      app.sendPluginResult(cr,callbackId);
+    }
+  }
+ catch (  JSONException e) {
+    PluginResult cr=new PluginResult(PluginResult.Status.JSON_EXCEPTION);
+    app.sendPluginResult(cr,callbackId);
+  }
+}

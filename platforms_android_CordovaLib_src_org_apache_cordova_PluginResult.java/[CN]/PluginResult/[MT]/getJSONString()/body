@@ -1,0 +1,3 @@
+{
+  return "{\"status\":" + this.status + ",\"message\":"+ this.getMessage()+ ",\"keepCallback\":"+ this.keepCallback+ "}";
+}

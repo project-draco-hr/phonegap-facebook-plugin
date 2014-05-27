@@ -1,0 +1,4 @@
+{
+  CordovaArgs cordovaArgs=new CordovaArgs(args);
+  return execute(action,cordovaArgs,callbackContext);
+}

@@ -1,0 +1,13 @@
+{
+  super(context,attrs,defStyle,privateBrowsing);
+  if (CordovaInterface.class.isInstance(context)) {
+    this.cordova=(CordovaInterface)context;
+  }
+ else {
+    Log.d(TAG,"Your activity must implement CordovaInterface to work");
+  }
+  this.setWebChromeClient(new CordovaChromeClient(this.cordova));
+  this.initWebViewClient(this.cordova);
+  this.loadConfiguration();
+  this.setup();
+}

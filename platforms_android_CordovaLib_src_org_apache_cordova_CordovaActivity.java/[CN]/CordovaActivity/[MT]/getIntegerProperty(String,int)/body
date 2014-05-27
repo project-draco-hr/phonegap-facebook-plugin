@@ -1,0 +1,18 @@
+{
+  Bundle bundle=this.getIntent().getExtras();
+  if (bundle == null) {
+    return defaultValue;
+  }
+  name=name.toLowerCase(Locale.getDefault());
+  Integer p;
+  try {
+    p=(Integer)bundle.get(name);
+  }
+ catch (  ClassCastException e) {
+    p=Integer.parseInt(bundle.get(name).toString());
+  }
+  if (p == null) {
+    return defaultValue;
+  }
+  return p.intValue();
+}

@@ -1,0 +1,6 @@
+{
+  super(getMtu);
+  this.openSslSocketClass=openSslSocketClass;
+  this.setUseSessionTickets=setUseSessionTickets;
+  this.setHostname=setHostname;
+}

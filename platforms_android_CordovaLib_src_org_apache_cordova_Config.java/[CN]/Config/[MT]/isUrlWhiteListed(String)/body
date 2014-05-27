@@ -1,0 +1,6 @@
+{
+  if (self == null) {
+    return false;
+  }
+  return self.whitelist.isUrlWhiteListed(url);
+}

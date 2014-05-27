@@ -1,0 +1,7 @@
+{
+  this.uri=uri;
+  this.inputStream=inputStream;
+  this.mimeType=mimeType;
+  this.length=length;
+  this.assetFd=assetFd;
+}

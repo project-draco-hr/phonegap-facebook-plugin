@@ -1,0 +1,31 @@
+{
+  final CordovaActivity that=this;
+  Runnable runnable=new Runnable(){
+    public void run(){
+      Display display=getWindowManager().getDefaultDisplay();
+      LinearLayout root=new LinearLayout(that.getActivity());
+      root.setMinimumHeight(display.getHeight());
+      root.setMinimumWidth(display.getWidth());
+      root.setOrientation(LinearLayout.VERTICAL);
+      root.setBackgroundColor(that.getIntegerProperty("backgroundColor",Color.BLACK));
+      root.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT,0.0F));
+      root.setBackgroundResource(that.splashscreen);
+      splashDialog=new Dialog(that,android.R.style.Theme_Translucent_NoTitleBar);
+      if ((getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
+        splashDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+      }
+      splashDialog.setContentView(root);
+      splashDialog.setCancelable(false);
+      splashDialog.show();
+      final Handler handler=new Handler();
+      handler.postDelayed(new Runnable(){
+        public void run(){
+          removeSplashScreen();
+        }
+      }
+,time);
+    }
+  }
+;
+  this.runOnUiThread(runnable);
+}

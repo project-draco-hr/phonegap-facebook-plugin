@@ -1,0 +1,13 @@
+{
+  int SDK_INT=Build.VERSION.SDK_INT;
+  boolean isHoneycomb=(SDK_INT >= Build.VERSION_CODES.HONEYCOMB && SDK_INT <= Build.VERSION_CODES.HONEYCOMB_MR2);
+  if (isHoneycomb || (SDK_INT < Build.VERSION_CODES.GINGERBREAD)) {
+    Log.i(TAG,"Disabled addJavascriptInterface() bridge since Android version is old.");
+    return;
+  }
+ else   if (SDK_INT < Build.VERSION_CODES.HONEYCOMB && Build.MANUFACTURER.equals("unknown")) {
+    Log.i(TAG,"Disabled addJavascriptInterface() bridge callback due to a bug on the 2.3 emulator");
+    return;
+  }
+  this.addJavascriptInterface(exposedJsApi,"_cordovaNative");
+}

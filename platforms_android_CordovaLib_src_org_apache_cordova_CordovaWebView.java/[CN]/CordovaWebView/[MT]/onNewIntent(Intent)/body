@@ -1,0 +1,5 @@
+{
+  if (this.pluginManager != null) {
+    this.pluginManager.onNewIntent(intent);
+  }
+}

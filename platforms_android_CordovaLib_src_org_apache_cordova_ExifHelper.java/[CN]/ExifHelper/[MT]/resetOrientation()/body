@@ -1,0 +1,3 @@
+{
+  this.orientation="" + ExifInterface.ORIENTATION_NORMAL;
+}

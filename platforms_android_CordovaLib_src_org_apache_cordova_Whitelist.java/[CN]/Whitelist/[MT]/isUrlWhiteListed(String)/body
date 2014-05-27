@@ -1,0 +1,12 @@
+{
+  if (whiteList == null)   return true;
+  Uri parsedUri=Uri.parse(uri);
+  Iterator<URLPattern> pit=whiteList.iterator();
+  while (pit.hasNext()) {
+    URLPattern p=pit.next();
+    if (p.matches(parsedUri)) {
+      return true;
+    }
+  }
+  return false;
+}

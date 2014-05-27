@@ -1,0 +1,26 @@
+{
+  assertNonRelative(uri);
+  String scheme=uri.getScheme();
+  if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+    return URI_TYPE_CONTENT;
+  }
+  if (ContentResolver.SCHEME_ANDROID_RESOURCE.equals(scheme)) {
+    return URI_TYPE_RESOURCE;
+  }
+  if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+    if (uri.getPath().startsWith("/android_asset/")) {
+      return URI_TYPE_ASSET;
+    }
+    return URI_TYPE_FILE;
+  }
+  if ("data".equals(scheme)) {
+    return URI_TYPE_DATA;
+  }
+  if ("http".equals(scheme)) {
+    return URI_TYPE_HTTP;
+  }
+  if ("https".equals(scheme)) {
+    return URI_TYPE_HTTPS;
+  }
+  return URI_TYPE_UNKNOWN;
+}

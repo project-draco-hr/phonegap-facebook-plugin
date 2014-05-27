@@ -1,0 +1,5 @@
+{
+  this.status=status.ordinal();
+  this.messageType=message == null ? MESSAGE_TYPE_NULL : MESSAGE_TYPE_STRING;
+  this.strMessage=message;
+}

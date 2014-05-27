@@ -1,0 +1,65 @@
+{
+  boolean reqOk=false;
+  if (url.startsWith("file://") || Config.isUrlWhiteListed(url)) {
+    reqOk=true;
+  }
+  if (reqOk && defaultValue != null && defaultValue.length() > 3 && defaultValue.substring(0,4).equals("gap:")) {
+    JSONArray array;
+    try {
+      array=new JSONArray(defaultValue.substring(4));
+      String service=array.getString(0);
+      String action=array.getString(1);
+      String callbackId=array.getString(2);
+      String r=this.appView.exposedJsApi.exec(service,action,callbackId,message);
+      result.confirm(r == null ? "" : r);
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+ else   if (reqOk && defaultValue != null && defaultValue.equals("gap_bridge_mode:")) {
+    try {
+      this.appView.exposedJsApi.setNativeToJsBridgeMode(Integer.parseInt(message));
+      result.confirm("");
+    }
+ catch (    NumberFormatException e) {
+      result.confirm("");
+      e.printStackTrace();
+    }
+  }
+ else   if (reqOk && defaultValue != null && defaultValue.equals("gap_poll:")) {
+    String r=this.appView.exposedJsApi.retrieveJsMessages("1".equals(message));
+    result.confirm(r == null ? "" : r);
+  }
+ else   if (defaultValue != null && defaultValue.equals("gap_init:")) {
+    result.confirm("OK");
+  }
+ else {
+    final JsPromptResult res=result;
+    AlertDialog.Builder dlg=new AlertDialog.Builder(this.cordova.getActivity());
+    dlg.setMessage(message);
+    final EditText input=new EditText(this.cordova.getActivity());
+    if (defaultValue != null) {
+      input.setText(defaultValue);
+    }
+    dlg.setView(input);
+    dlg.setCancelable(false);
+    dlg.setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int which){
+        String usertext=input.getText().toString();
+        res.confirm(usertext);
+      }
+    }
+);
+    dlg.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int which){
+        res.cancel();
+      }
+    }
+);
+    dlg.create();
+    dlg.show();
+  }
+  return true;
+}

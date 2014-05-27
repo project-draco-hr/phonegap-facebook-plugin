@@ -1,0 +1,8 @@
+{
+  if (super.canGoBack()) {
+    printBackForwardList();
+    super.goBack();
+    return true;
+  }
+  return false;
+}

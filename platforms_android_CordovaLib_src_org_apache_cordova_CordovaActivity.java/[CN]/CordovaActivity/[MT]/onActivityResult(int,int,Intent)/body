@@ -1,0 +1,23 @@
+{
+  LOG.d(TAG,"Incoming Result");
+  super.onActivityResult(requestCode,resultCode,intent);
+  Log.d(TAG,"Request code = " + requestCode);
+  if (appView != null && requestCode == CordovaChromeClient.FILECHOOSER_RESULTCODE) {
+    ValueCallback<Uri> mUploadMessage=this.appView.getWebChromeClient().getValueCallback();
+    Log.d(TAG,"did we get here?");
+    if (null == mUploadMessage)     return;
+    Uri result=intent == null || resultCode != Activity.RESULT_OK ? null : intent.getData();
+    Log.d(TAG,"result = " + result);
+    mUploadMessage.onReceiveValue(result);
+    mUploadMessage=null;
+  }
+  CordovaPlugin callback=this.activityResultCallback;
+  if (callback == null && initCallbackClass != null) {
+    this.activityResultCallback=appView.pluginManager.getPlugin(initCallbackClass);
+    callback=this.activityResultCallback;
+  }
+  if (callback != null) {
+    LOG.d(TAG,"We have a callback to send this result to");
+    callback.onActivityResult(requestCode,resultCode,intent);
+  }
+}

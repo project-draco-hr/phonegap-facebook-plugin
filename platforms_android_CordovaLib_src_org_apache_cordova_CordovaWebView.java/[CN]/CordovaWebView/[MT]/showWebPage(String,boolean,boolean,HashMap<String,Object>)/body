@@ -1,0 +1,32 @@
+{
+  LOG.d(TAG,"showWebPage(%s, %b, %b, HashMap",url,openExternal,clearHistory);
+  if (clearHistory) {
+    this.clearHistory();
+  }
+  if (!openExternal) {
+    if (url.startsWith("file://") || Config.isUrlWhiteListed(url)) {
+      this.loadUrl(url);
+    }
+ else {
+      LOG.w(TAG,"showWebPage: Cannot load URL into webview since it is not in white list.  Loading into browser instead. (URL=" + url + ")");
+      try {
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        cordova.getActivity().startActivity(intent);
+      }
+ catch (      android.content.ActivityNotFoundException e) {
+        LOG.e(TAG,"Error loading url " + url,e);
+      }
+    }
+  }
+ else {
+    try {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(url));
+      cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error loading url " + url,e);
+    }
+  }
+}

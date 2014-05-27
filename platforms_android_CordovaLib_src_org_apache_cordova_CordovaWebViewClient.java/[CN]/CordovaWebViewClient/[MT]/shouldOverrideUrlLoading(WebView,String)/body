@@ -1,0 +1,90 @@
+{
+  if (NativeToJsMessageQueue.ENABLE_LOCATION_CHANGE_EXEC_MODE && url.startsWith(CORDOVA_EXEC_URL_PREFIX)) {
+    handleExecUrl(url);
+  }
+ else   if ((this.appView.pluginManager != null) && this.appView.pluginManager.onOverrideUrlLoading(url)) {
+  }
+ else   if (url.startsWith(WebView.SCHEME_TEL)) {
+    try {
+      Intent intent=new Intent(Intent.ACTION_DIAL);
+      intent.setData(Uri.parse(url));
+      this.cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error dialing " + url + ": "+ e.toString());
+    }
+  }
+ else   if (url.startsWith("geo:")) {
+    try {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(url));
+      this.cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error showing map " + url + ": "+ e.toString());
+    }
+  }
+ else   if (url.startsWith(WebView.SCHEME_MAILTO)) {
+    try {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(url));
+      this.cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error sending email " + url + ": "+ e.toString());
+    }
+  }
+ else   if (url.startsWith("sms:")) {
+    try {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      String address=null;
+      int parmIndex=url.indexOf('?');
+      if (parmIndex == -1) {
+        address=url.substring(4);
+      }
+ else {
+        address=url.substring(4,parmIndex);
+        Uri uri=Uri.parse(url);
+        String query=uri.getQuery();
+        if (query != null) {
+          if (query.startsWith("body=")) {
+            intent.putExtra("sms_body",query.substring(5));
+          }
+        }
+      }
+      intent.setData(Uri.parse("sms:" + address));
+      intent.putExtra("address",address);
+      intent.setType("vnd.android-dir/mms-sms");
+      this.cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error sending sms " + url + ":"+ e.toString());
+    }
+  }
+ else   if (url.startsWith("market:")) {
+    try {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(url));
+      this.cordova.getActivity().startActivity(intent);
+    }
+ catch (    android.content.ActivityNotFoundException e) {
+      LOG.e(TAG,"Error loading Google Play Store: " + url,e);
+    }
+  }
+ else {
+    if (url.startsWith("file://") || url.startsWith("data:") || Config.isUrlWhiteListed(url)) {
+      return false;
+    }
+ else {
+      try {
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        this.cordova.getActivity().startActivity(intent);
+      }
+ catch (      android.content.ActivityNotFoundException e) {
+        LOG.e(TAG,"Error loading url " + url,e);
+      }
+    }
+  }
+  return true;
+}

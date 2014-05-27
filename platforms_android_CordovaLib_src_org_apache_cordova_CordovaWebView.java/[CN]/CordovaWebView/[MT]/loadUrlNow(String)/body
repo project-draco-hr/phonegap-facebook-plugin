@@ -1,0 +1,8 @@
+{
+  if (LOG.isLoggable(LOG.DEBUG) && !url.startsWith("javascript:")) {
+    LOG.d(TAG,">>> loadUrlNow()");
+  }
+  if (url.startsWith("file://") || url.startsWith("javascript:") || Config.isUrlWhiteListed(url)) {
+    super.loadUrl(url);
+  }
+}

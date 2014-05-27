@@ -1,0 +1,5 @@
+{
+  this.contentResolver=context.getContentResolver();
+  this.assetManager=context.getAssets();
+  this.pluginManager=pluginManager;
+}

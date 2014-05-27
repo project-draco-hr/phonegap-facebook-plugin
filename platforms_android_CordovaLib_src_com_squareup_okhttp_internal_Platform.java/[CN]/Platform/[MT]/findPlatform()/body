@@ -1,0 +1,44 @@
+{
+  Method getMtu;
+  try {
+    getMtu=NetworkInterface.class.getMethod("getMTU");
+  }
+ catch (  NoSuchMethodException e) {
+    return new Platform();
+  }
+  Class<?> openSslSocketClass;
+  Method setUseSessionTickets;
+  Method setHostname;
+  try {
+    openSslSocketClass=Class.forName("org.apache.harmony.xnet.provider.jsse.OpenSSLSocketImpl");
+    setUseSessionTickets=openSslSocketClass.getMethod("setUseSessionTickets",boolean.class);
+    setHostname=openSslSocketClass.getMethod("setHostname",String.class);
+    try {
+      Method setNpnProtocols=openSslSocketClass.getMethod("setNpnProtocols",byte[].class);
+      Method getNpnSelectedProtocol=openSslSocketClass.getMethod("getNpnSelectedProtocol");
+      return new Android41(getMtu,openSslSocketClass,setUseSessionTickets,setHostname,setNpnProtocols,getNpnSelectedProtocol);
+    }
+ catch (    NoSuchMethodException ignored) {
+      return new Android23(getMtu,openSslSocketClass,setUseSessionTickets,setHostname);
+    }
+  }
+ catch (  ClassNotFoundException ignored) {
+  }
+catch (  NoSuchMethodException ignored) {
+  }
+  try {
+    String npnClassName="org.eclipse.jetty.npn.NextProtoNego";
+    Class<?> nextProtoNegoClass=Class.forName(npnClassName);
+    Class<?> providerClass=Class.forName(npnClassName + "$Provider");
+    Class<?> clientProviderClass=Class.forName(npnClassName + "$ClientProvider");
+    Class<?> serverProviderClass=Class.forName(npnClassName + "$ServerProvider");
+    Method putMethod=nextProtoNegoClass.getMethod("put",SSLSocket.class,providerClass);
+    Method getMethod=nextProtoNegoClass.getMethod("get",SSLSocket.class);
+    return new JdkWithJettyNpnPlatform(getMtu,putMethod,getMethod,clientProviderClass,serverProviderClass);
+  }
+ catch (  ClassNotFoundException ignored) {
+  }
+catch (  NoSuchMethodException ignored) {
+  }
+  return getMtu != null ? new Java5(getMtu) : new Platform();
+}

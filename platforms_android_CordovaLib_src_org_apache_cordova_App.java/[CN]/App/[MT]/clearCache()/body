@@ -1,0 +1,8 @@
+{
+  cordova.getActivity().runOnUiThread(new Runnable(){
+    public void run(){
+      webView.clearCache(true);
+    }
+  }
+);
+}

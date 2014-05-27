@@ -1,0 +1,9 @@
+{
+  AuthenticationToken token=this.getAuthenticationToken(host,realm);
+  if (token != null) {
+    handler.proceed(token.getUserName(),token.getPassword());
+  }
+ else {
+    super.onReceivedHttpAuthRequest(view,handler,host,realm);
+  }
+}

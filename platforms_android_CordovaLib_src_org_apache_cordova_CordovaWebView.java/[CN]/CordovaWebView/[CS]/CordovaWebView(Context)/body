@@ -1,0 +1,11 @@
+{
+  super(context);
+  if (CordovaInterface.class.isInstance(context)) {
+    this.cordova=(CordovaInterface)context;
+  }
+ else {
+    Log.d(TAG,"Your activity must implement CordovaInterface to work");
+  }
+  this.loadConfiguration();
+  this.setup();
+}

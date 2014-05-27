@@ -1,0 +1,22 @@
+{
+  String uriAsString=uri.getSchemeSpecificPart();
+  int commaPos=uriAsString.indexOf(',');
+  if (commaPos == -1) {
+    return null;
+  }
+  String[] mimeParts=uriAsString.substring(0,commaPos).split(";");
+  String contentType=null;
+  boolean base64=false;
+  if (mimeParts.length > 0) {
+    contentType=mimeParts[0];
+  }
+  for (int i=1; i < mimeParts.length; ++i) {
+    if ("base64".equalsIgnoreCase(mimeParts[i])) {
+      base64=true;
+    }
+  }
+  String dataPartAsString=uriAsString.substring(commaPos + 1);
+  byte[] data=base64 ? Base64.decode(dataPartAsString,Base64.DEFAULT) : EncodingUtils.getBytes(dataPartAsString,"UTF-8");
+  InputStream inputStream=new ByteArrayInputStream(data);
+  return new OpenForReadResult(uri,inputStream,contentType,data.length,null);
+}

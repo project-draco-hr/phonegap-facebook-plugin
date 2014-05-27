@@ -1,0 +1,8 @@
+{
+  this.activityResultCallback=command;
+  this.activityResultKeepRunning=this.keepRunning;
+  if (command != null) {
+    this.keepRunning=false;
+  }
+  super.startActivityForResult(intent,requestCode);
+}

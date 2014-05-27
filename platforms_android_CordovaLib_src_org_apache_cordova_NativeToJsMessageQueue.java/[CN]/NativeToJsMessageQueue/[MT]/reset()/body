@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    queue.clear();
+    setBridgeMode(DEFAULT_BRIDGE_MODE);
+  }
+}

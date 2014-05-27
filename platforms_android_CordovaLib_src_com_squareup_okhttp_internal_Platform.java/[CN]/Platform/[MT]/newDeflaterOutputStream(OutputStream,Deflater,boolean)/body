@@ -1,0 +1,21 @@
+{
+  try {
+    Constructor<DeflaterOutputStream> constructor=deflaterConstructor;
+    if (constructor == null) {
+      constructor=deflaterConstructor=DeflaterOutputStream.class.getConstructor(OutputStream.class,Deflater.class,boolean.class);
+    }
+    return constructor.newInstance(out,deflater,syncFlush);
+  }
+ catch (  NoSuchMethodException e) {
+    throw new UnsupportedOperationException("Cannot SPDY; no SYNC_FLUSH available");
+  }
+catch (  InvocationTargetException e) {
+    throw e.getCause() instanceof RuntimeException ? (RuntimeException)e.getCause() : new RuntimeException(e.getCause());
+  }
+catch (  InstantiationException e) {
+    throw new RuntimeException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new AssertionError();
+  }
+}

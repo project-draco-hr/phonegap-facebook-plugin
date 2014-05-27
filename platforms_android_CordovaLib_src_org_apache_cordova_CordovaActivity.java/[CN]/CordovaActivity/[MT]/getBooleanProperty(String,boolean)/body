@@ -1,0 +1,24 @@
+{
+  Bundle bundle=this.getIntent().getExtras();
+  if (bundle == null) {
+    return defaultValue;
+  }
+  name=name.toLowerCase(Locale.getDefault());
+  Boolean p;
+  try {
+    p=(Boolean)bundle.get(name);
+  }
+ catch (  ClassCastException e) {
+    String s=bundle.get(name).toString();
+    if ("true".equals(s)) {
+      p=true;
+    }
+ else {
+      p=false;
+    }
+  }
+  if (p == null) {
+    return defaultValue;
+  }
+  return p.booleanValue();
+}

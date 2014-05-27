@@ -1,0 +1,15 @@
+{
+  Object obj=this.ctx.onMessage(id,data);
+  if (obj != null) {
+    return obj;
+  }
+  for (  PluginEntry entry : this.entries.values()) {
+    if (entry.plugin != null) {
+      obj=entry.plugin.onMessage(id,data);
+      if (obj != null) {
+        return obj;
+      }
+    }
+  }
+  return null;
+}

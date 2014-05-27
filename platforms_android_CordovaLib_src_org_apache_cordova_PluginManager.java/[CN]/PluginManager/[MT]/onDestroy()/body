@@ -1,0 +1,7 @@
+{
+  for (  PluginEntry entry : this.entries.values()) {
+    if (entry.plugin != null) {
+      entry.plugin.onDestroy();
+    }
+  }
+}

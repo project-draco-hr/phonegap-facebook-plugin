@@ -1,0 +1,4 @@
+{
+  this.chromeClient=client;
+  super.setWebChromeClient(client);
+}

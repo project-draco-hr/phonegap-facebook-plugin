@@ -1,0 +1,6 @@
+{
+  WebBackForwardList myList=super.restoreState(savedInstanceState);
+  Log.d(TAG,"WebView restoration crew now restoring!");
+  this.pluginManager.init();
+  return myList;
+}

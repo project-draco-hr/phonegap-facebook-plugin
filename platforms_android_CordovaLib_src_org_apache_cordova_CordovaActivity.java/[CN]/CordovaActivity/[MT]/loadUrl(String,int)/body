@@ -1,0 +1,4 @@
+{
+  this.splashscreenTime=time;
+  this.loadUrl(url);
+}

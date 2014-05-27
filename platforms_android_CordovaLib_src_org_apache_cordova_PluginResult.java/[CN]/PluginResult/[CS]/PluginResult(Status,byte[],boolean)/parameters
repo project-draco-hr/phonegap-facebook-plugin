@@ -1,0 +1,3 @@
+Status status
+byte[] data
+boolean binaryString

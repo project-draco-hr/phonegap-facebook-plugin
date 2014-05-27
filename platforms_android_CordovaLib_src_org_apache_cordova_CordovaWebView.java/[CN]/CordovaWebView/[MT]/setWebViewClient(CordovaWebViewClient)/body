@@ -1,0 +1,4 @@
+{
+  this.viewClient=client;
+  super.setWebViewClient(client);
+}

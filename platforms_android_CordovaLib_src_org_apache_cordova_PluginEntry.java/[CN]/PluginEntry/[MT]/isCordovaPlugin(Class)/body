@@ -1,0 +1,6 @@
+{
+  if (c != null) {
+    return org.apache.cordova.CordovaPlugin.class.isAssignableFrom(c);
+  }
+  return false;
+}

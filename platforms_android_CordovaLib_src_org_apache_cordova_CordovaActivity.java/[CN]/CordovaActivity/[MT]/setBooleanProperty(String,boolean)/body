@@ -1,0 +1,4 @@
+{
+  Log.d(TAG,"Setting boolean properties in CordovaActivity will be deprecated in 3.0 on July 2013, please use config.xml");
+  this.getIntent().putExtra(name.toLowerCase(),value);
+}

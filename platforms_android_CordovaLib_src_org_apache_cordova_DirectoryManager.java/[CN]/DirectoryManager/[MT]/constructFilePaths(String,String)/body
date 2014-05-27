@@ -1,0 +1,10 @@
+{
+  File newPath;
+  if (file2.startsWith(file1)) {
+    newPath=new File(file2);
+  }
+ else {
+    newPath=new File(file1 + "/" + file2);
+  }
+  return newPath;
+}

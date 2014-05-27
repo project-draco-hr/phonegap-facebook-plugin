@@ -1,0 +1,7 @@
+{
+  List<String> nameValueBlock=stream.getResponseHeaders();
+  RawHeaders rawHeaders=RawHeaders.fromNameValueBlock(nameValueBlock);
+  rawHeaders.computeResponseStatusLineFromSpdyHeaders();
+  httpEngine.receiveHeaders(rawHeaders);
+  return new ResponseHeaders(httpEngine.uri,rawHeaders);
+}

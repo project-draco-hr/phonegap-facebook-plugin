@@ -1,0 +1,6 @@
+{
+  StatFs stat=new StatFs(path);
+  long blockSize=stat.getBlockSize();
+  long availableBlocks=stat.getAvailableBlocks();
+  return availableBlocks * blockSize / 1024;
+}

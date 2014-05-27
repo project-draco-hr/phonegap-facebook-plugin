@@ -1,0 +1,31 @@
+{
+  if (whiteList != null) {
+    try {
+      if (origin.compareTo("*") == 0) {
+        LOG.d(TAG,"Unlimited access to network resources");
+        whiteList=null;
+      }
+ else {
+        Pattern parts=Pattern.compile("^((\\*|[a-z-]+)://)?(\\*|((\\*\\.)?[^*/:]+))?(:(\\d+))?(/.*)?");
+        Matcher m=parts.matcher(origin);
+        if (m.matches()) {
+          String scheme=m.group(2);
+          String host=m.group(3);
+          if (("file".equals(scheme) || "content".equals(scheme)) && host == null)           host="*";
+          String port=m.group(7);
+          String path=m.group(8);
+          if (scheme == null) {
+            whiteList.add(new URLPattern("http",host,port,path));
+            whiteList.add(new URLPattern("https",host,port,path));
+          }
+ else {
+            whiteList.add(new URLPattern(scheme,host,port,path));
+          }
+        }
+      }
+    }
+ catch (    Exception e) {
+      LOG.d(TAG,"Failed to add origin %s",origin);
+    }
+  }
+}

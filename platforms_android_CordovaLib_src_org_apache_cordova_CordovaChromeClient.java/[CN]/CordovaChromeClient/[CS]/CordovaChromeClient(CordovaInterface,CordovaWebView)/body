@@ -1,0 +1,4 @@
+{
+  this.cordova=ctx;
+  this.appView=app;
+}

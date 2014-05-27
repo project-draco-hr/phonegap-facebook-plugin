@@ -1,0 +1,57 @@
+{
+  int id=this.ctx.getActivity().getResources().getIdentifier("config","xml",this.ctx.getActivity().getClass().getPackage().getName());
+  if (id == 0) {
+    id=this.ctx.getActivity().getResources().getIdentifier("config","xml",this.ctx.getActivity().getPackageName());
+    if (id == 0) {
+      this.pluginConfigurationMissing();
+      return;
+    }
+  }
+  XmlResourceParser xml=this.ctx.getActivity().getResources().getXml(id);
+  int eventType=-1;
+  String service="", pluginClass="", paramType="";
+  boolean onload=false;
+  boolean insideFeature=false;
+  while (eventType != XmlResourceParser.END_DOCUMENT) {
+    if (eventType == XmlResourceParser.START_TAG) {
+      String strNode=xml.getName();
+      if (strNode.equals("url-filter")) {
+        Log.w(TAG,"Plugin " + service + " is using deprecated tag <url-filter>");
+        if (urlMap.get(service) == null) {
+          urlMap.put(service,new ArrayList<String>(2));
+        }
+        List<String> filters=urlMap.get(service);
+        filters.add(xml.getAttributeValue(null,"value"));
+      }
+ else       if (strNode.equals("feature")) {
+        insideFeature=true;
+        service=xml.getAttributeValue(null,"name");
+      }
+ else       if (insideFeature && strNode.equals("param")) {
+        paramType=xml.getAttributeValue(null,"name");
+        if (paramType.equals("service"))         service=xml.getAttributeValue(null,"value");
+ else         if (paramType.equals("package") || paramType.equals("android-package"))         pluginClass=xml.getAttributeValue(null,"value");
+ else         if (paramType.equals("onload"))         onload="true".equals(xml.getAttributeValue(null,"value"));
+      }
+    }
+ else     if (eventType == XmlResourceParser.END_TAG) {
+      String strNode=xml.getName();
+      if (strNode.equals("feature") || strNode.equals("plugin")) {
+        PluginEntry entry=new PluginEntry(service,pluginClass,onload);
+        this.addService(entry);
+        service="";
+        pluginClass="";
+        insideFeature=false;
+      }
+    }
+    try {
+      eventType=xml.next();
+    }
+ catch (    XmlPullParserException e) {
+      e.printStackTrace();
+    }
+catch (    IOException e) {
+      e.printStackTrace();
+    }
+  }
+}

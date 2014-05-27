@@ -1,0 +1,5 @@
+{
+  if (this.appView != null && this.appView.pluginManager != null) {
+    this.appView.pluginManager.addService(serviceType,className);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (splashDialog != null && splashDialog.isShowing()) {
+    splashDialog.dismiss();
+    splashDialog=null;
+  }
+}
