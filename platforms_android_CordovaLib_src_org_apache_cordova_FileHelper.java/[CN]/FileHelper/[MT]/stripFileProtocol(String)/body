@@ -1,0 +1,6 @@
+{
+  if (uriString.startsWith("file://")) {
+    uriString=uriString.substring(7);
+  }
+  return uriString;
+}

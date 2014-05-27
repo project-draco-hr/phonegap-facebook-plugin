@@ -1,0 +1,3 @@
+String token
+List<String> permissions
+AccessTokenSource source

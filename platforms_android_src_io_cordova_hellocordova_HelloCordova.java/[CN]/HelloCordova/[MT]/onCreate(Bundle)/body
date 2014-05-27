@@ -1,0 +1,5 @@
+{
+  super.onCreate(savedInstanceState);
+  super.init();
+  super.loadUrl(Config.getStartUrl());
+}

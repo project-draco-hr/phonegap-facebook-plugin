@@ -1,0 +1,7 @@
+{
+  if (adapter == null) {
+    throw new FacebookException("Can't issue requests until Fragment has been created.");
+  }
+  String userToFetch=(userId != null) ? userId : "me";
+  return createRequest(userToFetch,extraFields,session);
+}

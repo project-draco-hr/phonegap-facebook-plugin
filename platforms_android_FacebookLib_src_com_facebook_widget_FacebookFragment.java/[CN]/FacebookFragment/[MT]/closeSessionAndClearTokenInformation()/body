@@ -1,0 +1,8 @@
+{
+  if (sessionTracker != null) {
+    Session currentSession=sessionTracker.getOpenSession();
+    if (currentSession != null) {
+      currentSession.closeAndClearTokenInformation();
+    }
+  }
+}

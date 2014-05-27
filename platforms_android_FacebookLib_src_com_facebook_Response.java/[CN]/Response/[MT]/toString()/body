@@ -1,0 +1,10 @@
+{
+  String responseCode;
+  try {
+    responseCode=String.format("%d",(connection != null) ? connection.getResponseCode() : 200);
+  }
+ catch (  IOException e) {
+    responseCode="unknown";
+  }
+  return new StringBuilder().append("{Response: ").append(" responseCode: ").append(responseCode).append(", graphObject: ").append(graphObject).append(", error: ").append(error).append(", isFromCache:").append(isFromCache).append("}").toString();
+}

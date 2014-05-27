@@ -1,0 +1,25 @@
+{
+  connect();
+  OutputStream out=httpEngine.getRequestBody();
+  if (out == null) {
+    throw new ProtocolException("method does not support a request body: " + method);
+  }
+ else   if (httpEngine.hasResponse()) {
+    throw new ProtocolException("cannot write request body after response has been read");
+  }
+  if (faultRecoveringRequestBody == null) {
+    faultRecoveringRequestBody=new FaultRecoveringOutputStream(MAX_REPLAY_BUFFER_LENGTH,out){
+      @Override protected OutputStream replacementStream(      IOException e) throws IOException {
+        if (httpEngine.getRequestBody() instanceof AbstractOutputStream && ((AbstractOutputStream)httpEngine.getRequestBody()).isClosed()) {
+          return null;
+        }
+        if (handleFailure(e)) {
+          return httpEngine.getRequestBody();
+        }
+        return null;
+      }
+    }
+;
+  }
+  return faultRecoveringRequestBody;
+}

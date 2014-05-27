@@ -1,0 +1,24 @@
+{
+  if (this.appView == null) {
+    this.init();
+  }
+  this.splashscreenTime=this.getIntegerProperty("SplashScreenDelay",this.splashscreenTime);
+  if (this.splashscreenTime > 0) {
+    this.splashscreen=this.getIntegerProperty("SplashScreen",0);
+    if (this.splashscreen != 0) {
+      this.showSplashScreen(this.splashscreenTime);
+    }
+  }
+  this.backgroundColor=this.getIntegerProperty("BackgroundColor",Color.BLACK);
+  this.root.setBackgroundColor(this.backgroundColor);
+  this.keepRunning=this.getBooleanProperty("KeepRunning",true);
+  if (appView.getParent() != null) {
+    this.loadSpinner();
+  }
+  if (this.splashscreen != 0) {
+    this.appView.loadUrl(url,this.splashscreenTime);
+  }
+ else {
+    this.appView.loadUrl(url);
+  }
+}

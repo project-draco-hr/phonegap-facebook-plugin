@@ -1,0 +1,4 @@
+{
+  this.innerStream=innerStream;
+  this.callback=callback;
+}

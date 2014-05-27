@@ -1,0 +1,12 @@
+{
+  AuthorizationClient.StartActivityDelegate delegate=new AuthorizationClient.StartActivityDelegate(){
+    @Override public void startActivityForResult(    Intent intent,    int requestCode){
+      startActivityDelegate.startActivityForResult(intent,requestCode);
+    }
+    @Override public Activity getActivityContext(){
+      return startActivityDelegate.getActivityContext();
+    }
+  }
+;
+  return new AuthorizationClient.AuthorizationRequest(loginBehavior,requestCode,isLegacy,permissions,defaultAudience,applicationId,validateSameFbidAsToken,delegate,authId);
+}

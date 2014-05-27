@@ -1,0 +1,11 @@
+{
+  super.attach(adapter);
+  this.adapter.setDataNeededListener(new GraphObjectAdapter.DataNeededListener(){
+    @Override public void onDataNeeded(){
+      if (!loader.isLoading()) {
+        loader.followNextLink();
+      }
+    }
+  }
+);
+}

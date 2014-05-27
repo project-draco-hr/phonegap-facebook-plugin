@@ -1,0 +1,3 @@
+{
+  return remapUri(Uri.fromFile(new File(path))).getPath();
+}

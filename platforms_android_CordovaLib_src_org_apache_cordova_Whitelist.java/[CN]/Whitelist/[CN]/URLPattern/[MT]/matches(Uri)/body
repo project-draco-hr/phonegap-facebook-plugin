@@ -1,0 +1,9 @@
+{
+  try {
+    return ((scheme == null || scheme.matcher(uri.getScheme()).matches()) && (host == null || host.matcher(uri.getHost()).matches()) && (port == null || port.equals(uri.getPort()))&& (path == null || path.matcher(uri.getPath()).matches()));
+  }
+ catch (  Exception e) {
+    LOG.d(TAG,e.toString());
+    return false;
+  }
+}

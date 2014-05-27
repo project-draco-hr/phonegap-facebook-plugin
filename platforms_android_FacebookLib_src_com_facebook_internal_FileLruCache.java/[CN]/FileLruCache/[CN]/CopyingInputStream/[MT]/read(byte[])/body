@@ -1,0 +1,7 @@
+{
+  int count=input.read(buffer);
+  if (count > 0) {
+    output.write(buffer,0,count);
+  }
+  return count;
+}

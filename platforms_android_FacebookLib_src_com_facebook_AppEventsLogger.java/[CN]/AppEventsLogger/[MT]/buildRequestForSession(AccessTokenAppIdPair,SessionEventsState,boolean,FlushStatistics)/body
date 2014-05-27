@@ -1,0 +1,23 @@
+{
+  String applicationId=accessTokenAppId.getApplicationId();
+  Utility.FetchedAppSettings fetchedAppSettings=Utility.queryAppSettings(applicationId,false);
+  final Request postRequest=Request.newPostRequest(null,String.format("%s/activities",applicationId),null,null);
+  Bundle requestParameters=postRequest.getParameters();
+  if (requestParameters == null) {
+    requestParameters=new Bundle();
+  }
+  requestParameters.putString("access_token",accessTokenAppId.getAccessToken());
+  postRequest.setParameters(requestParameters);
+  int numEvents=sessionEventsState.populateRequest(postRequest,fetchedAppSettings.supportsImplicitLogging(),fetchedAppSettings.supportsAttribution(),limitEventUsage);
+  if (numEvents == 0) {
+    return null;
+  }
+  flushState.numEvents+=numEvents;
+  postRequest.setCallback(new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      handleResponse(accessTokenAppId,postRequest,response,sessionEventsState,flushState);
+    }
+  }
+);
+  return postRequest;
+}

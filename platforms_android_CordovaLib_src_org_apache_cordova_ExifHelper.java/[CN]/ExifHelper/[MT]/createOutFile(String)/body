@@ -1,0 +1,3 @@
+{
+  this.outFile=new ExifInterface(filePath);
+}

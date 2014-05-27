@@ -1,0 +1,27 @@
+{
+  Connection pooled=pool.get(address);
+  if (pooled != null) {
+    return pooled;
+  }
+  if (!hasNextTlsMode()) {
+    if (!hasNextInetSocketAddress()) {
+      if (!hasNextProxy()) {
+        if (!hasNextPostponed()) {
+          throw new NoSuchElementException();
+        }
+        return new Connection(nextPostponed());
+      }
+      lastProxy=nextProxy();
+      resetNextInetSocketAddress(lastProxy);
+    }
+    lastInetSocketAddress=nextInetSocketAddress();
+    resetNextTlsMode();
+  }
+  boolean modernTls=nextTlsMode() == TLS_MODE_MODERN;
+  Route route=new Route(address,lastProxy,lastInetSocketAddress,modernTls);
+  if (failedRoutes.contains(route)) {
+    postponedRoutes.add(route);
+    return next();
+  }
+  return new Connection(route);
+}

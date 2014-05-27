@@ -1,0 +1,6 @@
+{
+  if (encodedMessage == null) {
+    encodedMessage=JSONObject.quote(strMessage);
+  }
+  return encodedMessage;
+}

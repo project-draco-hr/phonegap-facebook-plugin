@@ -1,0 +1,6 @@
+{
+  this.service=service;
+  this.plugin=plugin;
+  this.pluginClass=plugin.getClass().getName();
+  this.onload=false;
+}

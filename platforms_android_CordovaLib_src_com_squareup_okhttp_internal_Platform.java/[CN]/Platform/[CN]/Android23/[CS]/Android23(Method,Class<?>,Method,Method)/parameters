@@ -1,0 +1,4 @@
+Method getMtu
+Class<?> openSslSocketClass
+Method setUseSessionTickets
+Method setHostname

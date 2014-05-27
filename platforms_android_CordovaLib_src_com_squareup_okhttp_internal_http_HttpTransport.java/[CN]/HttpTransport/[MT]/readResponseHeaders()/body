@@ -1,0 +1,6 @@
+{
+  RawHeaders headers=RawHeaders.fromBytes(socketIn);
+  httpEngine.connection.setHttpMinorVersion(headers.getHttpMinorVersion());
+  httpEngine.receiveHeaders(headers);
+  return new ResponseHeaders(httpEngine.uri,headers);
+}

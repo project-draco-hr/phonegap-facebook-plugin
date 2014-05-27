@@ -1,0 +1,8 @@
+{
+  if (applicationId == null) {
+    applicationId=Utility.getMetadataApplicationId(context);
+  }
+  Validate.notNullOrEmpty(applicationId,"applicationId");
+  this.applicationId=applicationId;
+  finishInit(context,action,parameters);
+}

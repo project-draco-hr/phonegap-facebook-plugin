@@ -1,0 +1,5 @@
+{
+  if (getFlushBehavior() != FlushBehavior.EXPLICIT_ONLY) {
+    flush(FlushReason.EAGER_FLUSHING_EVENT);
+  }
+}

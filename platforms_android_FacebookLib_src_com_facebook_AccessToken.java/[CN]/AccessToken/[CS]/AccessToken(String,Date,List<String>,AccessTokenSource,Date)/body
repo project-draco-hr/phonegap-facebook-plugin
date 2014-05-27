@@ -1,0 +1,10 @@
+{
+  if (permissions == null) {
+    permissions=Collections.emptyList();
+  }
+  this.expires=expires;
+  this.permissions=Collections.unmodifiableList(permissions);
+  this.token=token;
+  this.source=source;
+  this.lastRefresh=lastRefresh;
+}

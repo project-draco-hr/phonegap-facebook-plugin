@@ -1,0 +1,6 @@
+{
+  if (self == null) {
+    return;
+  }
+  self.whitelist.addWhiteListEntry(origin,subdomains);
+}

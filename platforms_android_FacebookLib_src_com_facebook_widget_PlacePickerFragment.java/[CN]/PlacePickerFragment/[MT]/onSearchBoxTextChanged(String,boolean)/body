@@ -1,0 +1,13 @@
+{
+  if (!forceReloadEventIfSameText && Utility.stringsEqualOrEmpty(this.searchText,searchText)) {
+    return;
+  }
+  if (TextUtils.isEmpty(searchText)) {
+    searchText=null;
+  }
+  this.searchText=searchText;
+  hasSearchTextChangedSinceLastQuery=true;
+  if (searchTextTimer == null) {
+    searchTextTimer=createSearchTextTimer();
+  }
+}

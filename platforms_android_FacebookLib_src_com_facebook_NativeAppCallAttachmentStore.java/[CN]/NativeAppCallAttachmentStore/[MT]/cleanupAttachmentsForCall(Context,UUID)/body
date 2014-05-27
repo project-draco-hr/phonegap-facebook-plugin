@@ -1,0 +1,4 @@
+{
+  File dir=getAttachmentsDirectoryForCall(callId,false);
+  Utility.deleteDirectory(dir);
+}

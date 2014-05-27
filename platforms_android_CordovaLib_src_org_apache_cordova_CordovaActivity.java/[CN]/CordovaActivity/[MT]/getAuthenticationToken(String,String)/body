@@ -1,0 +1,6 @@
+{
+  if (this.appView != null && this.appView.viewClient != null) {
+    return this.appView.viewClient.getAuthenticationToken(host,realm);
+  }
+  return null;
+}

@@ -1,0 +1,4 @@
+OutputStream out
+RequestBatch requests
+Map<Request,RequestProgress> progressMap
+long maxProgress

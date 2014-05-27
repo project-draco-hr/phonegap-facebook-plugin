@@ -1,0 +1,11 @@
+{
+  LOG.d(TAG,"Handle the pause");
+  this.loadUrl("javascript:try{cordova.fireDocumentEvent('pause');}catch(e){console.log('exception firing pause event from native');};");
+  if (this.pluginManager != null) {
+    this.pluginManager.onPause(keepRunning);
+  }
+  if (!keepRunning) {
+    this.pauseTimers();
+  }
+  paused=true;
+}

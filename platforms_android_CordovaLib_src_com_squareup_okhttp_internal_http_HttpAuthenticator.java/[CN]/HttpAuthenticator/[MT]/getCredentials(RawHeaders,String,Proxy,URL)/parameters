@@ -1,0 +1,4 @@
+RawHeaders responseHeaders
+String challengeHeader
+Proxy proxy
+URL url

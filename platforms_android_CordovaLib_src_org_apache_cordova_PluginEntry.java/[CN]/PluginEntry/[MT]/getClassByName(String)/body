@@ -1,0 +1,7 @@
+{
+  Class c=null;
+  if ((clazz != null) && !("".equals(clazz))) {
+    c=Class.forName(clazz);
+  }
+  return c;
+}

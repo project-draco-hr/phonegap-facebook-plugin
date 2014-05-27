@@ -1,0 +1,6 @@
+{
+  if (loginDialog != null) {
+    loginDialog.dismiss();
+    loginDialog=null;
+  }
+}

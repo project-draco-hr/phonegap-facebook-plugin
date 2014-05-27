@@ -1,0 +1,7 @@
+{
+  super(out);
+  this.requests=requests;
+  this.progressMap=progressMap;
+  this.maxProgress=maxProgress;
+  this.threshold=Settings.getOnProgressThreshold();
+}

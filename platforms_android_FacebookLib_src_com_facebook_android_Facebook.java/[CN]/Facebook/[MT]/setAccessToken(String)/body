@@ -1,0 +1,8 @@
+{
+  checkUserSession("setAccessToken");
+synchronized (this.lock) {
+    accessToken=token;
+    lastAccessUpdateMillisecondsAfterEpoch=System.currentTimeMillis();
+    sessionInvalidated=true;
+  }
+}

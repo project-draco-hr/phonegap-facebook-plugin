@@ -1,0 +1,11 @@
+{
+  PersistedEvents persistedEvents=PersistedEvents.readAndClearStore(applicationContext);
+  int result=0;
+  for (  AccessTokenAppIdPair accessTokenAppId : persistedEvents.keySet()) {
+    SessionEventsState sessionEventsState=getSessionEventsState(applicationContext,accessTokenAppId);
+    List<AppEvent> events=persistedEvents.getEvents(accessTokenAppId);
+    sessionEventsState.accumulatePersistedEvents(events);
+    result+=events.size();
+  }
+  return result;
+}

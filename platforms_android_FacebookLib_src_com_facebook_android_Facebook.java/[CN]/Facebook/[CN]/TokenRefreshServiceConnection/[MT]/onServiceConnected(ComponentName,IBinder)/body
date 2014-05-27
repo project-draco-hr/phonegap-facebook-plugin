@@ -1,0 +1,4 @@
+{
+  messageSender=new Messenger(service);
+  refreshToken();
+}

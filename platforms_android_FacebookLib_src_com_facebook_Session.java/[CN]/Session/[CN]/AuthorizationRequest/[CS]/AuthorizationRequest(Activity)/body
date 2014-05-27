@@ -1,0 +1,11 @@
+{
+  startActivityDelegate=new StartActivityDelegate(){
+    @Override public void startActivityForResult(    Intent intent,    int requestCode){
+      activity.startActivityForResult(intent,requestCode);
+    }
+    @Override public Activity getActivityContext(){
+      return activity;
+    }
+  }
+;
+}

@@ -1,0 +1,4 @@
+{
+  this.tokenCachingStrategy=tokenCachingStrategy;
+  return this;
+}

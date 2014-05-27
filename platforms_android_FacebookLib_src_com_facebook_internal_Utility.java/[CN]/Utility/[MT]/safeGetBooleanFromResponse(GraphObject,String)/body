@@ -1,0 +1,10 @@
+{
+  Object result=false;
+  if (response != null) {
+    result=response.getProperty(propertyName);
+  }
+  if (!(result instanceof Boolean)) {
+    result=false;
+  }
+  return (Boolean)result;
+}

@@ -1,0 +1,3 @@
+String key
+JSONArray requestJsonArray
+Collection<Request> requests

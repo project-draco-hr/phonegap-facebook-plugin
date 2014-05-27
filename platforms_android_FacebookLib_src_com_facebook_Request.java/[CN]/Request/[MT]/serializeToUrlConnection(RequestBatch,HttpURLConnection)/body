@@ -1,0 +1,41 @@
+{
+  Logger logger=new Logger(LoggingBehavior.REQUESTS,"Request");
+  int numRequests=requests.size();
+  HttpMethod connectionHttpMethod=(numRequests == 1) ? requests.get(0).httpMethod : HttpMethod.POST;
+  connection.setRequestMethod(connectionHttpMethod.name());
+  URL url=connection.getURL();
+  logger.append("Request:\n");
+  logger.appendKeyValue("Id",requests.getId());
+  logger.appendKeyValue("URL",url);
+  logger.appendKeyValue("Method",connection.getRequestMethod());
+  logger.appendKeyValue("User-Agent",connection.getRequestProperty("User-Agent"));
+  logger.appendKeyValue("Content-Type",connection.getRequestProperty("Content-Type"));
+  connection.setConnectTimeout(requests.getTimeout());
+  connection.setReadTimeout(requests.getTimeout());
+  boolean isPost=(connectionHttpMethod == HttpMethod.POST);
+  if (!isPost) {
+    logger.log();
+    return;
+  }
+  connection.setDoOutput(true);
+  OutputStream outputStream=null;
+  try {
+    if (hasOnProgressCallbacks(requests)) {
+      ProgressNoopOutputStream countingStream=null;
+      countingStream=new ProgressNoopOutputStream(requests.getCallbackHandler());
+      processRequest(requests,null,numRequests,url,countingStream);
+      int max=countingStream.getMaxProgress();
+      Map<Request,RequestProgress> progressMap=countingStream.getProgressMap();
+      BufferedOutputStream buffered=new BufferedOutputStream(connection.getOutputStream());
+      outputStream=new ProgressOutputStream(buffered,requests,progressMap,max);
+    }
+ else {
+      outputStream=new BufferedOutputStream(connection.getOutputStream());
+    }
+    processRequest(requests,logger,numRequests,url,outputStream);
+  }
+  finally {
+    outputStream.close();
+  }
+  logger.log();
+}

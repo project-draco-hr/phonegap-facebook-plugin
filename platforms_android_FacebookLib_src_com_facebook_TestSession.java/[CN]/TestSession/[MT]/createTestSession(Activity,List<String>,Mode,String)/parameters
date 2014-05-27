@@ -1,0 +1,4 @@
+Activity activity
+List<String> permissions
+Mode mode
+String sessionUniqueUserTag

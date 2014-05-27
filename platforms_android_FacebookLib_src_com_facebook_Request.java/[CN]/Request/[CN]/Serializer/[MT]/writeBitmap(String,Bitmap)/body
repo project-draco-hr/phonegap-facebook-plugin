@@ -1,0 +1,9 @@
+{
+  writeContentDisposition(key,key,"image/png");
+  bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+  writeLine("");
+  writeRecordBoundary();
+  if (logger != null) {
+    logger.appendKeyValue("    " + key,"<Image>");
+  }
+}

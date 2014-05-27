@@ -1,0 +1,28 @@
+{
+  super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+  LOG.v(TAG,"We are in our onMeasure method");
+  int width, height;
+  height=MeasureSpec.getSize(heightMeasureSpec);
+  width=MeasureSpec.getSize(widthMeasureSpec);
+  LOG.v(TAG,"Old Height = %d",oldHeight);
+  LOG.v(TAG,"Height = %d",height);
+  LOG.v(TAG,"Old Width = %d",oldWidth);
+  LOG.v(TAG,"Width = %d",width);
+  if (oldHeight == 0 || oldHeight == height) {
+    LOG.d(TAG,"Ignore this event");
+  }
+ else   if (screenHeight == width) {
+    int tmp_var=screenHeight;
+    screenHeight=screenWidth;
+    screenWidth=tmp_var;
+    LOG.v(TAG,"Orientation Change");
+  }
+ else   if (height > oldHeight) {
+    if (app != null)     app.appView.sendJavascript("cordova.fireDocumentEvent('hidekeyboard');");
+  }
+ else   if (height < oldHeight) {
+    if (app != null)     app.appView.sendJavascript("cordova.fireDocumentEvent('showkeyboard');");
+  }
+  oldHeight=height;
+  oldWidth=width;
+}

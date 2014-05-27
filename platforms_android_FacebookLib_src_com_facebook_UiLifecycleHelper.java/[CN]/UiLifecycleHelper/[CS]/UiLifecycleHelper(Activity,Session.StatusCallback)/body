@@ -1,0 +1,9 @@
+{
+  if (activity == null) {
+    throw new IllegalArgumentException(ACTIVITY_NULL_MESSAGE);
+  }
+  this.activity=activity;
+  this.callback=callback;
+  this.receiver=new ActiveSessionBroadcastReceiver();
+  this.broadcastManager=LocalBroadcastManager.getInstance(activity);
+}

@@ -1,0 +1,3 @@
+{
+  dialog(context,action,new Bundle(),listener);
+}

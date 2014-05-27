@@ -1,0 +1,5 @@
+{
+  if (backgroundProcessingListener != null) {
+    backgroundProcessingListener.onBackgroundProcessingStarted();
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (appView != null && (appView.isCustomViewShowing() || appView.getFocusedChild() != null) && (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU)) {
+    return appView.onKeyUp(keyCode,event);
+  }
+ else {
+    return super.onKeyUp(keyCode,event);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  super.setLoginBehavior(loginBehavior);
+  return this;
+}

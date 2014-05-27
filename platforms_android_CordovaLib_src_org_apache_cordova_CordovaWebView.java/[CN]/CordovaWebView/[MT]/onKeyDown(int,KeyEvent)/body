@@ -1,0 +1,33 @@
+{
+  if (keyDownCodes.contains(keyCode)) {
+    if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+      LOG.d(TAG,"Down Key Hit");
+      this.loadUrl("javascript:cordova.fireDocumentEvent('volumedownbutton');");
+      return true;
+    }
+ else     if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+      LOG.d(TAG,"Up Key Hit");
+      this.loadUrl("javascript:cordova.fireDocumentEvent('volumeupbutton');");
+      return true;
+    }
+ else {
+      return super.onKeyDown(keyCode,event);
+    }
+  }
+ else   if (keyCode == KeyEvent.KEYCODE_BACK) {
+    return !(this.startOfHistory()) || this.bound;
+  }
+ else   if (keyCode == KeyEvent.KEYCODE_MENU) {
+    View childView=this.getFocusedChild();
+    if (childView != null) {
+      InputMethodManager imm=(InputMethodManager)cordova.getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(childView.getWindowToken(),0);
+      cordova.getActivity().openOptionsMenu();
+      return true;
+    }
+ else {
+      return super.onKeyDown(keyCode,event);
+    }
+  }
+  return super.onKeyDown(keyCode,event);
+}

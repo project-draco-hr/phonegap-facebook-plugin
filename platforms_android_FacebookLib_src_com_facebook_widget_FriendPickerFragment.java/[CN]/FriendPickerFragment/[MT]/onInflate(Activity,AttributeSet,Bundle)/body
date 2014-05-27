@@ -1,0 +1,6 @@
+{
+  super.onInflate(activity,attrs,savedInstanceState);
+  TypedArray a=activity.obtainStyledAttributes(attrs,R.styleable.com_facebook_friend_picker_fragment);
+  setMultiSelect(a.getBoolean(R.styleable.com_facebook_friend_picker_fragment_multi_select,multiSelect));
+  a.recycle();
+}

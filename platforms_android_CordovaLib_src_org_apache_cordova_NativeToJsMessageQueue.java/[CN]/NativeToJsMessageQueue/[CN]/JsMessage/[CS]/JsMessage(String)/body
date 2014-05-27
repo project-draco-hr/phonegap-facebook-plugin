@@ -1,0 +1,7 @@
+{
+  if (js == null) {
+    throw new NullPointerException();
+  }
+  jsPayloadOrCallbackId=js;
+  pluginResult=null;
+}

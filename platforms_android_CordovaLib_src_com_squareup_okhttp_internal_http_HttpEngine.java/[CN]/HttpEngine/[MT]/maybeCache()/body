@@ -1,0 +1,9 @@
+{
+  if (!policy.getUseCaches() || policy.responseCache == null) {
+    return;
+  }
+  if (!responseHeaders.isCacheable(requestHeaders)) {
+    return;
+  }
+  cacheRequest=policy.responseCache.put(uri,policy.getHttpConnectionToCache());
+}

@@ -1,0 +1,27 @@
+{
+  assertBackgroundThread();
+switch (getUriType(uri)) {
+case URI_TYPE_FILE:
+    return new File(uri.getPath());
+case URI_TYPE_CONTENT:
+{
+    Cursor cursor=contentResolver.query(uri,LOCAL_FILE_PROJECTION,null,null,null);
+    if (cursor != null) {
+      try {
+        int columnIndex=cursor.getColumnIndex(LOCAL_FILE_PROJECTION[0]);
+        if (columnIndex != -1 && cursor.getCount() > 0) {
+          cursor.moveToFirst();
+          String realPath=cursor.getString(columnIndex);
+          if (realPath != null) {
+            return new File(realPath);
+          }
+        }
+      }
+  finally {
+        cursor.close();
+      }
+    }
+  }
+}
+return null;
+}

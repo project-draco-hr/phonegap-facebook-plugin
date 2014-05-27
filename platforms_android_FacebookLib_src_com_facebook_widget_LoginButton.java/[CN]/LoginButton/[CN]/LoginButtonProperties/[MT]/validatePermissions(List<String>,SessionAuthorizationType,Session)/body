@@ -1,0 +1,14 @@
+{
+  if (SessionAuthorizationType.PUBLISH.equals(authType)) {
+    if (Utility.isNullOrEmpty(permissions)) {
+      throw new IllegalArgumentException("Permissions for publish actions cannot be null or empty.");
+    }
+  }
+  if (currentSession != null && currentSession.isOpened()) {
+    if (!Utility.isSubset(permissions,currentSession.getPermissions())) {
+      Log.e(TAG,"Cannot set additional permissions when session is already open.");
+      return false;
+    }
+  }
+  return true;
+}

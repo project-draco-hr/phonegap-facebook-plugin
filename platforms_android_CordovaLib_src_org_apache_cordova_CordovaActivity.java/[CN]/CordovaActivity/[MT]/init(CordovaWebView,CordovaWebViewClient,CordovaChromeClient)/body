@@ -1,0 +1,19 @@
+{
+  LOG.d(TAG,"CordovaActivity.init()");
+  this.appView=webView;
+  this.appView.setId(100);
+  this.appView.setWebViewClient(webViewClient);
+  this.appView.setWebChromeClient(webChromeClient);
+  webViewClient.setWebView(this.appView);
+  webChromeClient.setWebView(this.appView);
+  this.appView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT,1.0F));
+  if (this.getBooleanProperty("DisallowOverscroll",false)) {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.GINGERBREAD) {
+      this.appView.setOverScrollMode(CordovaWebView.OVER_SCROLL_NEVER);
+    }
+  }
+  this.appView.setVisibility(View.INVISIBLE);
+  this.root.addView(this.appView);
+  setContentView(this.root);
+  this.cancelLoadUrl=false;
+}

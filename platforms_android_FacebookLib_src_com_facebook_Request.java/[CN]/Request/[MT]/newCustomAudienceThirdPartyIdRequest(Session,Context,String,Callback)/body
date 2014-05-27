@@ -1,0 +1,32 @@
+{
+  if (session == null) {
+    session=Session.getActiveSession();
+  }
+  if (session != null && !session.isOpened()) {
+    session=null;
+  }
+  if (applicationId == null) {
+    if (session != null) {
+      applicationId=session.getApplicationId();
+    }
+ else {
+      applicationId=Utility.getMetadataApplicationId(context);
+    }
+  }
+  if (applicationId == null) {
+    throw new FacebookException("Facebook App ID cannot be determined");
+  }
+  String endpoint=applicationId + "/custom_audience_third_party_id";
+  AttributionIdentifiers attributionIdentifiers=AttributionIdentifiers.getAttributionIdentifiers(context);
+  Bundle parameters=new Bundle();
+  if (session == null) {
+    String udid=attributionIdentifiers.getAttributionId() != null ? attributionIdentifiers.getAttributionId() : attributionIdentifiers.getAndroidAdvertiserId();
+    if (attributionIdentifiers.getAttributionId() != null) {
+      parameters.putString("udid",udid);
+    }
+  }
+  if (Settings.getLimitEventAndDataUsage(context) || attributionIdentifiers.isTrackingLimited()) {
+    parameters.putString("limit_event_usage","1");
+  }
+  return new Request(session,endpoint,parameters,HttpMethod.GET,callback);
+}

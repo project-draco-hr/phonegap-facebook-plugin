@@ -1,0 +1,3 @@
+String applicationId
+UUID callId
+String attachmentName

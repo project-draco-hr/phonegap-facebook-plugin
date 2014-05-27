@@ -1,0 +1,18 @@
+{
+  AccessToken newToken=null;
+  Exception exception=null;
+  if (resultCode == Activity.RESULT_OK) {
+    if (result.code == AuthorizationClient.Result.Code.SUCCESS) {
+      newToken=result.token;
+    }
+ else {
+      exception=new FacebookAuthorizationException(result.errorMessage);
+    }
+  }
+ else   if (resultCode == Activity.RESULT_CANCELED) {
+    exception=new FacebookOperationCanceledException(result.errorMessage);
+  }
+  logAuthorizationComplete(result.code,result.loggingExtras,exception);
+  authorizationClient=null;
+  finishAuthOrReauth(newToken,exception);
+}

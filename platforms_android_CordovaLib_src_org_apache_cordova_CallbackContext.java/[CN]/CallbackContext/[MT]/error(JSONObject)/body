@@ -1,0 +1,3 @@
+{
+  sendPluginResult(new PluginResult(PluginResult.Status.ERROR,message));
+}

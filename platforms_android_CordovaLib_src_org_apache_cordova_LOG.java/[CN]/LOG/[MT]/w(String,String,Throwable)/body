@@ -1,0 +1,3 @@
+{
+  if (LOG.WARN >= LOGLEVEL)   Log.w(tag,s,e);
+}

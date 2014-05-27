@@ -1,0 +1,8 @@
+{
+  if (button.compareTo("volumeup") == 0) {
+    keyDownCodes.add(KeyEvent.KEYCODE_VOLUME_UP);
+  }
+ else   if (button.compareTo("volumedown") == 0) {
+    keyDownCodes.add(KeyEvent.KEYCODE_VOLUME_DOWN);
+  }
+}

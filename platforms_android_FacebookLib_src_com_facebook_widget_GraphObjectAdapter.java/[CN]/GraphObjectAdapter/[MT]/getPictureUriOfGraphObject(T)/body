@@ -1,0 +1,22 @@
+{
+  String uri=null;
+  Object o=graphObject.getProperty(PICTURE);
+  if (o instanceof String) {
+    uri=(String)o;
+  }
+ else   if (o instanceof JSONObject) {
+    ItemPicture itemPicture=GraphObject.Factory.create((JSONObject)o).cast(ItemPicture.class);
+    ItemPictureData data=itemPicture.getData();
+    if (data != null) {
+      uri=data.getUrl();
+    }
+  }
+  if (uri != null) {
+    try {
+      return new URI(uri);
+    }
+ catch (    URISyntaxException e) {
+    }
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  if (image != null && imageBitmap != null) {
+    imageContents=imageBitmap;
+    image.setImageBitmap(imageBitmap);
+  }
+}

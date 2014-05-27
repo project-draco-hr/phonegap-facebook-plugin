@@ -1,0 +1,5 @@
+{
+  super(getMtu,openSslSocketClass,setUseSessionTickets,setHostname);
+  this.setNpnProtocols=setNpnProtocols;
+  this.getNpnSelectedProtocol=getNpnSelectedProtocol;
+}

@@ -1,0 +1,6 @@
+{
+  this.ctx=ctx;
+  this.app=app;
+  this.firstRun=true;
+  this.numPendingUiExecs=new AtomicInteger(0);
+}

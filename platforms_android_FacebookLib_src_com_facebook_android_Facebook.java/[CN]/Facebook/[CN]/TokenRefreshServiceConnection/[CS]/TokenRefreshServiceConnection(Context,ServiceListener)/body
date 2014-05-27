@@ -1,0 +1,4 @@
+{
+  this.applicationsContext=applicationsContext;
+  this.serviceListener=serviceListener;
+}

@@ -1,0 +1,9 @@
+{
+  if ((url.startsWith("javascript:")) || this.canGoBack()) {
+  }
+ else {
+    LOG.d(TAG,"loadUrlIntoView(%s, %d)",url,time);
+    this.postMessage("splashscreen","show");
+  }
+  this.loadUrlIntoView(url);
+}

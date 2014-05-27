@@ -1,0 +1,27 @@
+{
+  this.skipRoundtripIfCached=skipRoundtripIfCached;
+  appendResults=false;
+  nextRequest=null;
+  currentRequest=request;
+  currentRequest.setCallback(new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      requestCompleted(response);
+    }
+  }
+);
+  loading=true;
+  final RequestBatch batch=putRequestIntoBatch(request,skipRoundtripIfCached);
+  Runnable r=new Runnable(){
+    @Override public void run(){
+      Request.executeBatchAsync(batch);
+    }
+  }
+;
+  if (afterDelay == 0) {
+    r.run();
+  }
+ else {
+    Handler handler=new Handler();
+    handler.postDelayed(r,afterDelay);
+  }
+}

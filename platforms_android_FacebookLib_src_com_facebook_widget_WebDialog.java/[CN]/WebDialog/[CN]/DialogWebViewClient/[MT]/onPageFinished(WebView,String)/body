@@ -1,0 +1,9 @@
+{
+  super.onPageFinished(view,url);
+  if (!isDetached) {
+    spinner.dismiss();
+  }
+  contentFrameLayout.setBackgroundColor(Color.TRANSPARENT);
+  webView.setVisibility(View.VISIBLE);
+  crossImageView.setVisibility(View.VISIBLE);
+}

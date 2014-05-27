@@ -1,0 +1,3 @@
+{
+  enqueueRequest(request,key,downloadQueue,new DownloadImageWorkItem(request.getContext(),key));
+}

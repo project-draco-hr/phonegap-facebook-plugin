@@ -1,0 +1,4 @@
+Context context
+String applicationId
+TokenCachingStrategy tokenCachingStrategy
+boolean loadTokenFromCache

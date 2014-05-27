@@ -1,0 +1,27 @@
+{
+switch (getUriType(uri)) {
+case URI_TYPE_FILE:
+case URI_TYPE_ASSET:
+    return getMimeTypeFromPath(uri.getPath());
+case URI_TYPE_CONTENT:
+case URI_TYPE_RESOURCE:
+  return contentResolver.getType(uri);
+case URI_TYPE_DATA:
+{
+  return getDataUriMimeType(uri);
+}
+case URI_TYPE_HTTP:
+case URI_TYPE_HTTPS:
+{
+try {
+  HttpURLConnection conn=httpClient.open(new URL(uri.toString()));
+  conn.setDoInput(false);
+  conn.setRequestMethod("HEAD");
+  return conn.getHeaderField("Content-Type");
+}
+ catch (IOException e) {
+}
+}
+}
+return null;
+}

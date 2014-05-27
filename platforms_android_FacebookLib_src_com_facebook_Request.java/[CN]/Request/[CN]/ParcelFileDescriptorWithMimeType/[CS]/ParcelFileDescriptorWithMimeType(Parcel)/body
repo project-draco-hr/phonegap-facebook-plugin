@@ -1,0 +1,4 @@
+{
+  mimeType=in.readString();
+  fileDescriptor=in.readFileDescriptor();
+}

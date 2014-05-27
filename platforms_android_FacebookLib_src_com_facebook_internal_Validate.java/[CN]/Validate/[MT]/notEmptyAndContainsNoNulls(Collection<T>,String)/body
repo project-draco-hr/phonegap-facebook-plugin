@@ -1,0 +1,4 @@
+{
+  Validate.containsNoNulls(container,name);
+  Validate.notEmpty(container,name);
+}

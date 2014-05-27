@@ -1,0 +1,7 @@
+{
+  super.onSaveInstanceState(outState);
+  if (this.activityResultCallback != null) {
+    String cClass=this.activityResultCallback.getClass().getName();
+    outState.putString("callbackClass",cClass);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.activityState=ACTIVITY_EXITING;
+  super.finish();
+}

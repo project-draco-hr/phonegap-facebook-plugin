@@ -1,0 +1,6 @@
+{
+  Bundle bundle=newAuthorizationLoggingBundle(pendingRequest.getAuthId());
+  bundle.putLong(EVENT_PARAM_TIMESTAMP,System.currentTimeMillis());
+  bundle.putString(EVENT_PARAM_METHOD,method);
+  getAppEventsLogger().logSdkEvent(EVENT_NAME_LOGIN_METHOD_START,null,bundle);
+}

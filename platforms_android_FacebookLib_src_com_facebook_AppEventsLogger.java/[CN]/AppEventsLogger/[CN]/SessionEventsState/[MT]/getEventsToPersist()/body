@@ -1,0 +1,5 @@
+{
+  List<AppEvent> result=accumulatedEvents;
+  accumulatedEvents=new ArrayList<AppEvent>();
+  return result;
+}

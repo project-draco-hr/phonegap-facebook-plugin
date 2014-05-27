@@ -1,0 +1,10 @@
+{
+  if (attachmentsDirectory == null) {
+    return null;
+  }
+  File dir=new File(attachmentsDirectory,callId.toString());
+  if (create && !dir.exists()) {
+    dir.mkdirs();
+  }
+  return dir;
+}

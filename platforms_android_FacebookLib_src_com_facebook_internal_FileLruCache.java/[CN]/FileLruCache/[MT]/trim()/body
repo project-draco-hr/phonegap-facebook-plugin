@@ -1,0 +1,35 @@
+{
+synchronized (lock) {
+    isTrimPending=false;
+    isTrimInProgress=true;
+  }
+  try {
+    Logger.log(LoggingBehavior.CACHE,TAG,"trim started");
+    PriorityQueue<ModifiedFile> heap=new PriorityQueue<ModifiedFile>();
+    long size=0;
+    long count=0;
+    File[] filesToTrim=this.directory.listFiles(BufferFile.excludeBufferFiles());
+    if (filesToTrim != null) {
+      for (      File file : filesToTrim) {
+        ModifiedFile modified=new ModifiedFile(file);
+        heap.add(modified);
+        Logger.log(LoggingBehavior.CACHE,TAG,"  trim considering time=" + Long.valueOf(modified.getModified()) + " name="+ modified.getFile().getName());
+        size+=file.length();
+        count++;
+      }
+    }
+    while ((size > limits.getByteCount()) || (count > limits.getFileCount())) {
+      File file=heap.remove().getFile();
+      Logger.log(LoggingBehavior.CACHE,TAG,"  trim removing " + file.getName());
+      size-=file.length();
+      count--;
+      file.delete();
+    }
+  }
+  finally {
+synchronized (lock) {
+      isTrimInProgress=false;
+      lock.notifyAll();
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  progress+=size;
+  if (progress >= lastReportedProgress + threshold || progress >= maxProgress) {
+    reportProgress();
+  }
+}

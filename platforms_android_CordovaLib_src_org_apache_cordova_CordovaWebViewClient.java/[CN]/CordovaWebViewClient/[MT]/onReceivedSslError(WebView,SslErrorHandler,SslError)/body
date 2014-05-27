@@ -1,0 +1,18 @@
+{
+  final String packageName=this.cordova.getActivity().getPackageName();
+  final PackageManager pm=this.cordova.getActivity().getPackageManager();
+  ApplicationInfo appInfo;
+  try {
+    appInfo=pm.getApplicationInfo(packageName,PackageManager.GET_META_DATA);
+    if ((appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+      handler.proceed();
+      return;
+    }
+ else {
+      super.onReceivedSslError(view,handler,error);
+    }
+  }
+ catch (  NameNotFoundException e) {
+    super.onReceivedSslError(view,handler,error);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  this.request=request;
+  this.token=token;
+  this.errorMessage=errorMessage;
+  this.code=code;
+  this.errorCode=errorCode;
+}

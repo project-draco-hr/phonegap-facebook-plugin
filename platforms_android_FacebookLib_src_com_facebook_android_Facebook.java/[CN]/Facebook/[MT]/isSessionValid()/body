@@ -1,0 +1,3 @@
+{
+  return (getAccessToken() != null) && ((getAccessExpires() == 0) || (System.currentTimeMillis() < getAccessExpires()));
+}

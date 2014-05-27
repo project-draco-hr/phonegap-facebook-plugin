@@ -1,0 +1,8 @@
+{
+  if (keyDown) {
+    keyDownCodes.add(keyCode);
+  }
+ else {
+    keyUpCodes.add(keyCode);
+  }
+}

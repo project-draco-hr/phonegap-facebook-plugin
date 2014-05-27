@@ -1,0 +1,24 @@
+{
+  if (location == null && Utility.isNullOrEmpty(searchText)) {
+    throw new FacebookException("Either location or searchText must be specified.");
+  }
+  Bundle parameters=new Bundle(5);
+  parameters.putString("type","place");
+  parameters.putInt("limit",resultsLimit);
+  if (location != null) {
+    parameters.putString("center",String.format(Locale.US,"%f,%f",location.getLatitude(),location.getLongitude()));
+    parameters.putInt("distance",radiusInMeters);
+  }
+  if (!Utility.isNullOrEmpty(searchText)) {
+    parameters.putString("q",searchText);
+  }
+  Callback wrapper=new Callback(){
+    @Override public void onCompleted(    Response response){
+      if (callback != null) {
+        callback.onCompleted(typedListFromResponse(response,GraphPlace.class),response);
+      }
+    }
+  }
+;
+  return new Request(session,SEARCH,parameters,HttpMethod.GET,wrapper);
+}

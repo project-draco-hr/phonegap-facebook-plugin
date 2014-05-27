@@ -1,0 +1,7 @@
+{
+  OpenGraphObject openGraphObject=OpenGraphObject.Factory.createForPost(OpenGraphObject.class,type,title,imageUrl,url,description);
+  if (objectProperties != null) {
+    openGraphObject.setData(objectProperties);
+  }
+  return newPostOpenGraphObjectRequest(session,openGraphObject,callback);
+}

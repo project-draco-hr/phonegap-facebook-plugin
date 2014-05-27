@@ -1,0 +1,15 @@
+{
+  for (  Object value : values) {
+    if (value != null) {
+      if (value.equals(arg)) {
+        return;
+      }
+    }
+ else {
+      if (arg == null) {
+        return;
+      }
+    }
+  }
+  throw new IllegalArgumentException("Argument '" + name + "' was not one of the allowed values");
+}

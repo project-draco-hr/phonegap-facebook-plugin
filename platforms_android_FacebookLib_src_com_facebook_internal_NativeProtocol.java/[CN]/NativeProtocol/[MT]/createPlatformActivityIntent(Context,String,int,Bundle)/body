@@ -1,0 +1,8 @@
+{
+  Intent intent=findActivityIntent(context,INTENT_ACTION_PLATFORM_ACTIVITY,action);
+  if (intent == null) {
+    return null;
+  }
+  intent.putExtras(extras).putExtra(EXTRA_PROTOCOL_VERSION,version).putExtra(EXTRA_PROTOCOL_ACTION,action);
+  return intent;
+}

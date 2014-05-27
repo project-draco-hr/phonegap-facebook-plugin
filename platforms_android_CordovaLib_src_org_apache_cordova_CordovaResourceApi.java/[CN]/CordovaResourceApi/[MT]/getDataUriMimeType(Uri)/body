@@ -1,0 +1,12 @@
+{
+  String uriAsString=uri.getSchemeSpecificPart();
+  int commaPos=uriAsString.indexOf(',');
+  if (commaPos == -1) {
+    return null;
+  }
+  String[] mimeParts=uriAsString.substring(0,commaPos).split(";");
+  if (mimeParts.length > 0) {
+    return mimeParts[0];
+  }
+  return null;
+}

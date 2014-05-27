@@ -1,0 +1,36 @@
+{
+  if (jsonString == null) {
+    return null;
+  }
+  try {
+    JSONObject appLinkArgsJson=new JSONObject(jsonString);
+    String version=appLinkArgsJson.getString(APPLINK_VERSION_KEY);
+    JSONObject bridgeArgs=appLinkArgsJson.getJSONObject(APPLINK_BRIDGE_ARGS_KEY);
+    String method=bridgeArgs.getString(BRIDGE_ARGS_METHOD_KEY);
+    if (method.equals("applink") && version.equals("2")) {
+      AppLinkData appLinkData=new AppLinkData();
+      appLinkData.arguments=appLinkArgsJson.getJSONObject(APPLINK_METHOD_ARGS_KEY);
+      if (appLinkData.arguments.has(METHOD_ARGS_REF_KEY)) {
+        appLinkData.ref=appLinkData.arguments.getString(METHOD_ARGS_REF_KEY);
+      }
+ else       if (appLinkData.arguments.has(ARGUMENTS_REFERER_DATA_KEY)) {
+        JSONObject refererData=appLinkData.arguments.getJSONObject(ARGUMENTS_REFERER_DATA_KEY);
+        if (refererData.has(REFERER_DATA_REF_KEY)) {
+          appLinkData.ref=refererData.getString(REFERER_DATA_REF_KEY);
+        }
+      }
+      if (appLinkData.arguments.has(METHOD_ARGS_TARGET_URL_KEY)) {
+        appLinkData.targetUri=Uri.parse(appLinkData.arguments.getString(METHOD_ARGS_TARGET_URL_KEY));
+      }
+      appLinkData.argumentBundle=toBundle(appLinkData.arguments);
+      return appLinkData;
+    }
+  }
+ catch (  JSONException e) {
+    Log.d(TAG,"Unable to parse AppLink JSON",e);
+  }
+catch (  FacebookException e) {
+    Log.d(TAG,"Unable to parse AppLink JSON",e);
+  }
+  return null;
+}

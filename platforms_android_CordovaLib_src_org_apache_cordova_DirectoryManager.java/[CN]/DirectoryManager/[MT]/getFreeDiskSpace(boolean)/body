@@ -1,0 +1,14 @@
+{
+  String status=Environment.getExternalStorageState();
+  long freeSpace=0;
+  if (status.equals(Environment.MEDIA_MOUNTED)) {
+    freeSpace=freeSpaceCalculation(Environment.getExternalStorageDirectory().getPath());
+  }
+ else   if (checkInternal) {
+    freeSpace=freeSpaceCalculation("/");
+  }
+ else {
+    return -1;
+  }
+  return freeSpace;
+}

@@ -1,0 +1,19 @@
+{
+  try {
+    ImageRequest.Builder requestBuilder=new ImageRequest.Builder(getContext(),ImageRequest.getProfilePictureUrl(profileId,queryWidth,queryHeight));
+    ImageRequest request=requestBuilder.setAllowCachedRedirects(allowCachedResponse).setCallerTag(this).setCallback(new ImageRequest.Callback(){
+      @Override public void onCompleted(      ImageResponse response){
+        processResponse(response);
+      }
+    }
+).build();
+    if (lastRequest != null) {
+      ImageDownloader.cancelRequest(lastRequest);
+    }
+    lastRequest=request;
+    ImageDownloader.downloadAsync(request);
+  }
+ catch (  URISyntaxException e) {
+    Logger.log(LoggingBehavior.REQUESTS,Log.ERROR,TAG,e.toString());
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (graphPath != null && restMethod != null) {
+    throw new IllegalArgumentException("Only one of a graph path or REST method may be specified per request.");
+  }
+}

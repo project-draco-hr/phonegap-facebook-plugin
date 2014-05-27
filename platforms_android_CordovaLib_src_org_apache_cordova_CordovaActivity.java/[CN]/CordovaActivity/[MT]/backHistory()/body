@@ -1,0 +1,6 @@
+{
+  if (this.appView != null) {
+    return appView.backHistory();
+  }
+  return false;
+}

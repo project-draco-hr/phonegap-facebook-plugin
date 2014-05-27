@@ -1,0 +1,4 @@
+{
+  assertBackgroundThread();
+  return httpClient.open(new URL(uri.toString()));
+}

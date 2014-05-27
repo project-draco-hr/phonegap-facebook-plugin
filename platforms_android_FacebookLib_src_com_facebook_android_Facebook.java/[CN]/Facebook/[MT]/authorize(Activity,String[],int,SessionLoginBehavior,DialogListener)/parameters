@@ -1,0 +1,5 @@
+Activity activity
+String[] permissions
+int activityCode
+SessionLoginBehavior behavior
+DialogListener listener

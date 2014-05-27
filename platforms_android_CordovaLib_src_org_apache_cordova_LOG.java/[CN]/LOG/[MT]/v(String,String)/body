@@ -1,0 +1,3 @@
+{
+  if (LOG.VERBOSE >= LOGLEVEL)   Log.v(tag,s);
+}

@@ -1,0 +1,5 @@
+{
+  Map<AccessTokenAppIdPair,SessionEventsState> map=new HashMap<AccessTokenAppIdPair,SessionEventsState>();
+  map.put(accessTokenAppId,eventsToPersist);
+  persistEvents(context,map);
+}

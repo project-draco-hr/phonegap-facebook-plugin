@@ -1,0 +1,5 @@
+Context context
+int requestMessage
+int replyMessage
+int protocolVersion
+String applicationId

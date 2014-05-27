@@ -1,0 +1,4 @@
+{
+  if (consoleMessage.message() != null)   LOG.d(TAG,"%s: Line %d : %s",consoleMessage.sourceId(),consoleMessage.lineNumber(),consoleMessage.message());
+  return super.onConsoleMessage(consoleMessage);
+}

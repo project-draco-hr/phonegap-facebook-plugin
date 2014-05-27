@@ -1,0 +1,5 @@
+{
+synchronized (this.lock) {
+    return (this.tokenInfo == null) ? null : this.tokenInfo.getExpires();
+  }
+}

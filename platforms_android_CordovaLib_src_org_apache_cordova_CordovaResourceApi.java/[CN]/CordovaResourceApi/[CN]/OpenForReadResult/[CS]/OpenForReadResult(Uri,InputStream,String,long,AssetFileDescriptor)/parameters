@@ -1,0 +1,5 @@
+Uri uri
+InputStream inputStream
+String mimeType
+long length
+AssetFileDescriptor assetFd

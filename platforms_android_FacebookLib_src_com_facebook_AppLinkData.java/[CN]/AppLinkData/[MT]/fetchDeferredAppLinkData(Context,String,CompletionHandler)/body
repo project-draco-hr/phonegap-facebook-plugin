@@ -1,0 +1,16 @@
+{
+  Validate.notNull(context,"context");
+  Validate.notNull(completionHandler,"completionHandler");
+  if (applicationId == null) {
+    applicationId=Utility.getMetadataApplicationId(context);
+  }
+  Validate.notNull(applicationId,"applicationId");
+  final Context applicationContext=context.getApplicationContext();
+  final String applicationIdCopy=applicationId;
+  Settings.getExecutor().execute(new Runnable(){
+    @Override public void run(){
+      fetchDeferredAppLinkFromServer(applicationContext,applicationIdCopy,completionHandler);
+    }
+  }
+);
+}

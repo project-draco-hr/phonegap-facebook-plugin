@@ -1,0 +1,4 @@
+{
+  super.onGeolocationPermissionsShowPrompt(origin,callback);
+  callback.invoke(origin,true,false);
+}

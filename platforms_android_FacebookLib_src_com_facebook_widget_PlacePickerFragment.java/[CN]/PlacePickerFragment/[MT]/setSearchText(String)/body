@@ -1,0 +1,9 @@
+{
+  if (TextUtils.isEmpty(searchText)) {
+    searchText=null;
+  }
+  this.searchText=searchText;
+  if (this.searchBox != null) {
+    this.searchBox.setText(searchText);
+  }
+}

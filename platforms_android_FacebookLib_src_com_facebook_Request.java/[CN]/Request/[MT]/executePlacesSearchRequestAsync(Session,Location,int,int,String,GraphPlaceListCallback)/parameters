@@ -1,0 +1,6 @@
+Session session
+Location location
+int radiusInMeters
+int resultsLimit
+String searchText
+GraphPlaceListCallback callback

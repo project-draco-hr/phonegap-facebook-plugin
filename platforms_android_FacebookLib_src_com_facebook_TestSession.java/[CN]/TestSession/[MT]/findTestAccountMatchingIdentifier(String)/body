@@ -1,0 +1,9 @@
+{
+  retrieveTestAccountsForAppIfNeeded();
+  for (  TestAccount testAccount : appTestAccounts.values()) {
+    if (testAccount.getName().contains(identifier)) {
+      return testAccount;
+    }
+  }
+  return null;
+}

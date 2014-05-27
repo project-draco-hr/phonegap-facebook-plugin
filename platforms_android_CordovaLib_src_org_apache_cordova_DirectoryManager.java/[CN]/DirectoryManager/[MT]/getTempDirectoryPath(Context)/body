@@ -1,0 +1,13 @@
+{
+  File cache=null;
+  if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+    cache=new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + ctx.getPackageName()+ "/cache/");
+  }
+ else {
+    cache=ctx.getCacheDir();
+  }
+  if (!cache.exists()) {
+    cache.mkdirs();
+  }
+  return cache.getAbsolutePath();
+}

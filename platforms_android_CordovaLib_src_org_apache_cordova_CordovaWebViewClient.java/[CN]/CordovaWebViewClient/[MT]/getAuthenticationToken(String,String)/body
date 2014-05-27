@@ -1,0 +1,14 @@
+{
+  AuthenticationToken token=null;
+  token=this.authenticationTokens.get(host.concat(realm));
+  if (token == null) {
+    token=this.authenticationTokens.get(host);
+    if (token == null) {
+      token=this.authenticationTokens.get(realm);
+    }
+    if (token == null) {
+      token=this.authenticationTokens.get("");
+    }
+  }
+  return token;
+}
