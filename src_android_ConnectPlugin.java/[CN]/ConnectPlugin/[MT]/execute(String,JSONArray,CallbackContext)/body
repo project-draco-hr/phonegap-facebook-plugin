@@ -1,5 +1,9 @@
 {
-  if (action.equals("login")) {
+  if (action.equals("init")) {
+    Log.d(TAG,"init FB, nop");
+    return true;
+  }
+ else   if (action.equals("login")) {
     Log.d(TAG,"login FB");
     String[] arrayPermissions=new String[args.length()];
     for (int i=0; i < args.length(); i++) {
