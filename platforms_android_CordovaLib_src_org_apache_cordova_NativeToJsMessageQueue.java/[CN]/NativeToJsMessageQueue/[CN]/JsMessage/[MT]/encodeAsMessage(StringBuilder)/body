@@ -1,0 +1,37 @@
+{
+  if (pluginResult == null) {
+    sb.append('J').append(jsPayloadOrCallbackId);
+    return;
+  }
+  int status=pluginResult.getStatus();
+  boolean noResult=status == PluginResult.Status.NO_RESULT.ordinal();
+  boolean resultOk=status == PluginResult.Status.OK.ordinal();
+  boolean keepCallback=pluginResult.getKeepCallback();
+  sb.append((noResult || resultOk) ? 'S' : 'F').append(keepCallback ? '1' : '0').append(status).append(' ').append(jsPayloadOrCallbackId).append(' ');
+switch (pluginResult.getMessageType()) {
+case PluginResult.MESSAGE_TYPE_BOOLEAN:
+    sb.append(pluginResult.getMessage().charAt(0));
+  break;
+case PluginResult.MESSAGE_TYPE_NULL:
+sb.append('N');
+break;
+case PluginResult.MESSAGE_TYPE_NUMBER:
+sb.append('n').append(pluginResult.getMessage());
+break;
+case PluginResult.MESSAGE_TYPE_STRING:
+sb.append('s');
+sb.append(pluginResult.getStrMessage());
+break;
+case PluginResult.MESSAGE_TYPE_BINARYSTRING:
+sb.append('S');
+sb.append(pluginResult.getMessage());
+break;
+case PluginResult.MESSAGE_TYPE_ARRAYBUFFER:
+sb.append('A');
+sb.append(pluginResult.getMessage());
+break;
+case PluginResult.MESSAGE_TYPE_JSON:
+default :
+sb.append(pluginResult.getMessage());
+}
+}

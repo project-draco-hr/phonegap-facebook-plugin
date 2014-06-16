@@ -1,0 +1,3 @@
+{
+  this(status,PluginResult.StatusMessages[status.ordinal()]);
+}

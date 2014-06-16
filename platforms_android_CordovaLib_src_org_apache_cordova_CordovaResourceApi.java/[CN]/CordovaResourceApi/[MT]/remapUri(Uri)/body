@@ -1,0 +1,5 @@
+{
+  assertNonRelative(uri);
+  Uri pluginUri=pluginManager.remapUri(uri);
+  return pluginUri != null ? pluginUri : uri;
+}

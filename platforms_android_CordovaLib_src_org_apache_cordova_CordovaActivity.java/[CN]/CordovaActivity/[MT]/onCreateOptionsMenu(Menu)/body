@@ -1,0 +1,4 @@
+{
+  this.postMessage("onCreateOptionsMenu",menu);
+  return super.onCreateOptionsMenu(menu);
+}

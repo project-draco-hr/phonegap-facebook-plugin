@@ -1,0 +1,14 @@
+{
+  if (!openSslSocketClass.isInstance(socket)) {
+    return null;
+  }
+  try {
+    return (byte[])getNpnSelectedProtocol.invoke(socket);
+  }
+ catch (  InvocationTargetException e) {
+    throw new RuntimeException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new AssertionError(e);
+  }
+}

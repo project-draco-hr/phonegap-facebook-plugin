@@ -1,0 +1,4 @@
+{
+  this.pluginManager=pluginManager;
+  this.jsMessageQueue=jsMessageQueue;
+}

@@ -1,0 +1,8 @@
+{
+synchronized (this) {
+    queue.add(message);
+    if (!paused && registeredListeners[activeListenerIndex] != null) {
+      registeredListeners[activeListenerIndex].onNativeToJsMessageAvailable();
+    }
+  }
+}

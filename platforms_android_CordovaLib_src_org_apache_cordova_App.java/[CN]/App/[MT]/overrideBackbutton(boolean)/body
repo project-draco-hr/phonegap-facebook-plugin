@@ -1,0 +1,4 @@
+{
+  LOG.i("App","WARNING: Back Button Default Behaviour will be overridden.  The backbutton event will be fired!");
+  webView.bindButton(override);
+}

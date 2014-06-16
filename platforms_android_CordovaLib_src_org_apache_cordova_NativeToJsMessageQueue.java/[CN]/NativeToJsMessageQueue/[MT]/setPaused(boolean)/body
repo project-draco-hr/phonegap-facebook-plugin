@@ -1,0 +1,13 @@
+{
+  if (paused && value) {
+    Log.e(LOG_TAG,"nested call to setPaused detected.",new Throwable());
+  }
+  paused=value;
+  if (!value) {
+synchronized (this) {
+      if (!queue.isEmpty() && registeredListeners[activeListenerIndex] != null) {
+        registeredListeners[activeListenerIndex].onNativeToJsMessageAvailable();
+      }
+    }
+  }
+}

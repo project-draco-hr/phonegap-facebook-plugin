@@ -1,0 +1,4 @@
+{
+  this.callbackId=callbackId;
+  this.webView=webView;
+}

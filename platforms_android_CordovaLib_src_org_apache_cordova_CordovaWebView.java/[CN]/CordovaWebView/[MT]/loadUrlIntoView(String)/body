@@ -1,0 +1,42 @@
+{
+  LOG.d(TAG,">>> loadUrl(" + url + ")");
+  this.url=url;
+  this.pluginManager.init();
+  final CordovaWebView me=this;
+  final int currentLoadUrlTimeout=me.loadUrlTimeout;
+  final int loadUrlTimeoutValue=Integer.parseInt(this.getProperty("LoadUrlTimeoutValue","20000"));
+  final Runnable loadError=new Runnable(){
+    public void run(){
+      me.stopLoading();
+      LOG.e(TAG,"CordovaWebView: TIMEOUT ERROR!");
+      if (viewClient != null) {
+        viewClient.onReceivedError(me,-6,"The connection to the server was unsuccessful.",url);
+      }
+    }
+  }
+;
+  final Runnable timeoutCheck=new Runnable(){
+    public void run(){
+      try {
+synchronized (this) {
+          wait(loadUrlTimeoutValue);
+        }
+      }
+ catch (      InterruptedException e) {
+        e.printStackTrace();
+      }
+      if (me.loadUrlTimeout == currentLoadUrlTimeout) {
+        me.cordova.getActivity().runOnUiThread(loadError);
+      }
+    }
+  }
+;
+  this.cordova.getActivity().runOnUiThread(new Runnable(){
+    public void run(){
+      Thread thread=new Thread(timeoutCheck);
+      thread.start();
+      me.loadUrlNow(url);
+    }
+  }
+);
+}

@@ -1,0 +1,12 @@
+{
+  boolean status;
+  if ((testSaveLocationExists()) && (!name.equals(""))) {
+    File path=Environment.getExternalStorageDirectory();
+    File newPath=constructFilePaths(path.toString(),name);
+    status=newPath.exists();
+  }
+ else {
+    status=false;
+  }
+  return status;
+}

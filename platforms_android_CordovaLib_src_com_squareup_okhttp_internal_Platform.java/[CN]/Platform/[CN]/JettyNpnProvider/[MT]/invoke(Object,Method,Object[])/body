@@ -1,0 +1,29 @@
+{
+  String methodName=method.getName();
+  Class<?> returnType=method.getReturnType();
+  if (args == null) {
+    args=Util.EMPTY_STRING_ARRAY;
+  }
+  if (methodName.equals("supports") && boolean.class == returnType) {
+    return true;
+  }
+ else   if (methodName.equals("unsupported") && void.class == returnType) {
+    this.unsupported=true;
+    return null;
+  }
+ else   if (methodName.equals("protocols") && args.length == 0) {
+    return protocols;
+  }
+ else   if (methodName.equals("selectProtocol") && String.class == returnType && args.length == 1 && (args[0] == null || args[0] instanceof List)) {
+    List<?> serverProtocols=(List)args[0];
+    this.selected=protocols.get(0);
+    return selected;
+  }
+ else   if (methodName.equals("protocolSelected") && args.length == 1) {
+    this.selected=(String)args[0];
+    return null;
+  }
+ else {
+    return method.invoke(this,args);
+  }
+}

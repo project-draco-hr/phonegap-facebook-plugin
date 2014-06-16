@@ -1,0 +1,9 @@
+{
+  if (uriHost == null)   throw new NullPointerException("uriHost == null");
+  if (uriPort <= 0)   throw new IllegalArgumentException("uriPort <= 0: " + uriPort);
+  this.proxy=proxy;
+  this.uriHost=uriHost;
+  this.uriPort=uriPort;
+  this.sslSocketFactory=sslSocketFactory;
+  this.hostnameVerifier=hostnameVerifier;
+}

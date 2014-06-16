@@ -1,0 +1,4 @@
+{
+  LOGLEVEL=logLevel;
+  Log.i("CordovaLog","Changing log level to " + logLevel);
+}

@@ -1,0 +1,7 @@
+{
+  this.appView.jsMessageQueue.reset();
+  this.appView.postMessage("onPageStarted",url);
+  if (this.appView.pluginManager != null) {
+    this.appView.pluginManager.onReset();
+  }
+}

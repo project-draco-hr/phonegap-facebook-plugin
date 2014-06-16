@@ -1,0 +1,18 @@
+{
+  for (  PluginEntry entry : this.entries.values()) {
+    List<String> urlFilters=urlMap.get(entry.service);
+    if (urlFilters != null) {
+      for (      String s : urlFilters) {
+        if (url.startsWith(s)) {
+          return getPlugin(entry.service).onOverrideUrlLoading(url);
+        }
+      }
+    }
+ else     if (entry.plugin != null) {
+      if (entry.plugin.onOverrideUrlLoading(url)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

@@ -1,0 +1,2 @@
+ValueCallback<Uri> uploadMsg
+String acceptType

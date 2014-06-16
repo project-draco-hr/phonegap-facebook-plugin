@@ -1,0 +1,25 @@
+{
+  Object webViewObject=webView;
+  Class webViewClass=WebView.class;
+  try {
+    Field f=webViewClass.getDeclaredField("mProvider");
+    f.setAccessible(true);
+    webViewObject=f.get(webView);
+    webViewClass=webViewObject.getClass();
+  }
+ catch (  Throwable e) {
+  }
+  try {
+    Field f=webViewClass.getDeclaredField("mWebViewCore");
+    f.setAccessible(true);
+    webViewCore=f.get(webViewObject);
+    if (webViewCore != null) {
+      sendMessageMethod=webViewCore.getClass().getDeclaredMethod("sendMessage",Message.class);
+      sendMessageMethod.setAccessible(true);
+    }
+  }
+ catch (  Throwable e) {
+    initFailed=true;
+    Log.e(LOG_TAG,"PrivateApiBridgeMode failed to find the expected APIs.",e);
+  }
+}

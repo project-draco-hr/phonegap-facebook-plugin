@@ -1,0 +1,21 @@
+{
+  super.onResume();
+  Config.init(this);
+  LOG.d(TAG,"Resuming the App");
+  String errorUrl=this.getStringProperty("ErrorUrl",null);
+  LOG.d(TAG,"CB-3064: The errorUrl is " + errorUrl);
+  if (this.activityState == ACTIVITY_STARTING) {
+    this.activityState=ACTIVITY_RUNNING;
+    return;
+  }
+  if (this.appView == null) {
+    return;
+  }
+  this.appView.handleResume(this.keepRunning,this.activityResultKeepRunning);
+  if (!this.keepRunning || this.activityResultKeepRunning) {
+    if (this.activityResultKeepRunning) {
+      this.keepRunning=this.activityResultKeepRunning;
+      this.activityResultKeepRunning=false;
+    }
+  }
+}

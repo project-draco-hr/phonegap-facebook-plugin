@@ -1,0 +1,5 @@
+String uriHost
+int uriPort
+SSLSocketFactory sslSocketFactory
+HostnameVerifier hostnameVerifier
+Proxy proxy

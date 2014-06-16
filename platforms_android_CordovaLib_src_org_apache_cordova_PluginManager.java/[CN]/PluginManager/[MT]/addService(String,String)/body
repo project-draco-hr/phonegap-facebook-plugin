@@ -1,0 +1,4 @@
+{
+  PluginEntry entry=new PluginEntry(service,className,false);
+  this.addService(entry);
+}

@@ -1,0 +1,37 @@
+{
+  AlertDialog.Builder dlg=new AlertDialog.Builder(this.cordova.getActivity());
+  dlg.setMessage(message);
+  dlg.setTitle("Confirm");
+  dlg.setCancelable(true);
+  dlg.setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      result.confirm();
+    }
+  }
+);
+  dlg.setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      result.cancel();
+    }
+  }
+);
+  dlg.setOnCancelListener(new DialogInterface.OnCancelListener(){
+    public void onCancel(    DialogInterface dialog){
+      result.cancel();
+    }
+  }
+);
+  dlg.setOnKeyListener(new DialogInterface.OnKeyListener(){
+    public boolean onKey(    DialogInterface dialog,    int keyCode,    KeyEvent event){
+      if (keyCode == KeyEvent.KEYCODE_BACK) {
+        result.cancel();
+        return false;
+      }
+ else       return true;
+    }
+  }
+);
+  dlg.create();
+  dlg.show();
+  return true;
+}

@@ -1,0 +1,12 @@
+{
+  WebBackForwardList currentList=this.copyBackForwardList();
+  WebHistoryItem item=currentList.getItemAtIndex(0);
+  if (item != null) {
+    String url=item.getUrl();
+    String currentUrl=this.getUrl();
+    LOG.d(TAG,"The current URL is: " + currentUrl);
+    LOG.d(TAG,"The URL at item 0 is: " + url);
+    return currentUrl.equals(url);
+  }
+  return false;
+}

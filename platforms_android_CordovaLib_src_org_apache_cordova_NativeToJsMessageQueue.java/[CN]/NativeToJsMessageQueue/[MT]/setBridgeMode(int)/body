@@ -1,0 +1,17 @@
+{
+  if (value < 0 || value >= registeredListeners.length) {
+    Log.d(LOG_TAG,"Invalid NativeToJsBridgeMode: " + value);
+  }
+ else {
+    if (value != activeListenerIndex) {
+      Log.d(LOG_TAG,"Set native->JS mode to " + value);
+synchronized (this) {
+        activeListenerIndex=value;
+        BridgeMode activeListener=registeredListeners[value];
+        if (!paused && !queue.isEmpty() && activeListener != null) {
+          activeListener.onNativeToJsMessageAvailable();
+        }
+      }
+    }
+  }
+}

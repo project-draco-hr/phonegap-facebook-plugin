@@ -1,0 +1,3 @@
+AuthenticationToken authenticationToken
+String host
+String realm

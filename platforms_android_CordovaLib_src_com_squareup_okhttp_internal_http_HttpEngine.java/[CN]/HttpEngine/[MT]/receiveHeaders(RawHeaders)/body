@@ -1,0 +1,6 @@
+{
+  CookieHandler cookieHandler=policy.cookieHandler;
+  if (cookieHandler != null) {
+    cookieHandler.put(uri,headers.toMultimap(true));
+  }
+}

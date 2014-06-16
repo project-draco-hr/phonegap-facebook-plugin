@@ -1,0 +1,33 @@
+{
+  LOG.d(TAG,"onMessage(" + id + ","+ data+ ")");
+  if ("splashscreen".equals(id)) {
+    if ("hide".equals(data.toString())) {
+      this.removeSplashScreen();
+    }
+ else {
+      if (this.splashDialog == null || !this.splashDialog.isShowing()) {
+        this.splashscreen=this.getIntegerProperty("SplashScreen",0);
+        this.showSplashScreen(this.splashscreenTime);
+      }
+    }
+  }
+ else   if ("spinner".equals(id)) {
+    if ("stop".equals(data.toString())) {
+      this.spinnerStop();
+      this.appView.setVisibility(View.VISIBLE);
+    }
+  }
+ else   if ("onReceivedError".equals(id)) {
+    JSONObject d=(JSONObject)data;
+    try {
+      this.onReceivedError(d.getInt("errorCode"),d.getString("description"),d.getString("url"));
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+  }
+ else   if ("exit".equals(id)) {
+    this.endActivity();
+  }
+  return null;
+}

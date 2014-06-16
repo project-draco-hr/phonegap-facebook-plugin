@@ -1,0 +1,4 @@
+{
+  String encoded=baseArgs.getString(index);
+  return Base64.decode(encoded,Base64.DEFAULT);
+}

@@ -1,0 +1,7 @@
+{
+  l=x;
+  y=t;
+  nl=nx;
+  nt=ny;
+  targetView=view;
+}

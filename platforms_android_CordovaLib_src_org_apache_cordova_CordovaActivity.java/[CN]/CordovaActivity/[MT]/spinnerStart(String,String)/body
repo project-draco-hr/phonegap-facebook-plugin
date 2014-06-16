@@ -1,0 +1,13 @@
+{
+  if (this.spinnerDialog != null) {
+    this.spinnerDialog.dismiss();
+    this.spinnerDialog=null;
+  }
+  final CordovaActivity me=this;
+  this.spinnerDialog=ProgressDialog.show(CordovaActivity.this,title,message,true,true,new DialogInterface.OnCancelListener(){
+    public void onCancel(    DialogInterface dialog){
+      me.spinnerDialog=null;
+    }
+  }
+);
+}

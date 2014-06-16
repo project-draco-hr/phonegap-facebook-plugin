@@ -1,0 +1,13 @@
+{
+  if ("startup".equals(action)) {
+    numPendingUiExecs.getAndIncrement();
+    ctx.getActivity().runOnUiThread(new Runnable(){
+      public void run(){
+        numPendingUiExecs.getAndDecrement();
+      }
+    }
+);
+    return true;
+  }
+  return false;
+}

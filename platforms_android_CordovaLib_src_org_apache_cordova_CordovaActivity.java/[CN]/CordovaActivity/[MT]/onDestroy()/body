@@ -1,0 +1,11 @@
+{
+  LOG.d(TAG,"CordovaActivity.onDestroy()");
+  super.onDestroy();
+  this.removeSplashScreen();
+  if (this.appView != null) {
+    appView.handleDestroy();
+  }
+ else {
+    this.activityState=ACTIVITY_EXITING;
+  }
+}

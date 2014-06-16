@@ -1,0 +1,3 @@
+{
+  this.jsMessageQueue.addPluginResult(result,callbackId);
+}

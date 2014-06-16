@@ -1,0 +1,8 @@
+{
+  if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB || android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+    this.setWebViewClient(new CordovaWebViewClient(this.cordova,this));
+  }
+ else {
+    this.setWebViewClient(new IceCreamCordovaWebViewClient(this.cordova,this));
+  }
+}

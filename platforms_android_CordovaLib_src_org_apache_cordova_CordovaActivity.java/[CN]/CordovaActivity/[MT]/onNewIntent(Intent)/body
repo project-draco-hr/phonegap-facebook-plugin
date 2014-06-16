@@ -1,0 +1,4 @@
+{
+  super.onNewIntent(intent);
+  if (this.appView != null)   this.appView.onNewIntent(intent);
+}

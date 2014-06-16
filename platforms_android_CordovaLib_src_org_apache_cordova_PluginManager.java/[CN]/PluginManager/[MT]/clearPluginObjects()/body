@@ -1,0 +1,5 @@
+{
+  for (  PluginEntry entry : this.entries.values()) {
+    entry.plugin=null;
+  }
+}

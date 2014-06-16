@@ -1,0 +1,28 @@
+{
+  final CordovaActivity me=this;
+  me.runOnUiThread(new Runnable(){
+    public void run(){
+      try {
+        AlertDialog.Builder dlg=new AlertDialog.Builder(me);
+        dlg.setMessage(message);
+        dlg.setTitle(title);
+        dlg.setCancelable(false);
+        dlg.setPositiveButton(button,new AlertDialog.OnClickListener(){
+          public void onClick(          DialogInterface dialog,          int which){
+            dialog.dismiss();
+            if (exit) {
+              me.endActivity();
+            }
+          }
+        }
+);
+        dlg.create();
+        dlg.show();
+      }
+ catch (      Exception e) {
+        finish();
+      }
+    }
+  }
+);
+}

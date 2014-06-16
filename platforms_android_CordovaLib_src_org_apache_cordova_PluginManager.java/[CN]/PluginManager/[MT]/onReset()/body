@@ -1,0 +1,9 @@
+{
+  Iterator<PluginEntry> it=this.entries.values().iterator();
+  while (it.hasNext()) {
+    CordovaPlugin plugin=it.next().plugin;
+    if (plugin != null) {
+      plugin.onReset();
+    }
+  }
+}

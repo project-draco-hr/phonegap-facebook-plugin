@@ -1,0 +1,14 @@
+{
+  LOG.d(TAG,"init()");
+  if (this.firstRun) {
+    this.loadPlugins();
+    this.firstRun=false;
+  }
+ else {
+    this.onPause(false);
+    this.onDestroy();
+    this.clearPluginObjects();
+  }
+  this.addService(new PluginEntry("PluginManager",new PluginManagerService()));
+  this.startupPlugins();
+}

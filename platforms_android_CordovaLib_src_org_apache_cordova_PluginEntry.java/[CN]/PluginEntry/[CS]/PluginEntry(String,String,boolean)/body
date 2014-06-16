@@ -1,0 +1,5 @@
+{
+  this.service=service;
+  this.pluginClass=pluginClass;
+  this.onload=onload;
+}

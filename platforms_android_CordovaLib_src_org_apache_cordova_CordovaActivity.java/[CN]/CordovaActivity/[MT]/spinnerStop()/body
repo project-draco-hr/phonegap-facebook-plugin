@@ -1,0 +1,6 @@
+{
+  if (this.spinnerDialog != null && this.spinnerDialog.isShowing()) {
+    this.spinnerDialog.dismiss();
+    this.spinnerDialog=null;
+  }
+}

@@ -1,0 +1,24 @@
+{
+  List<Challenge> challenges=parseChallenges(responseHeaders,challengeHeader);
+  if (challenges.isEmpty()) {
+    return null;
+  }
+  for (  Challenge challenge : challenges) {
+    PasswordAuthentication auth;
+    if (responseHeaders.getResponseCode() == HTTP_PROXY_AUTH) {
+      InetSocketAddress proxyAddress=(InetSocketAddress)proxy.address();
+      auth=Authenticator.requestPasswordAuthentication(proxyAddress.getHostName(),getConnectToInetAddress(proxy,url),proxyAddress.getPort(),url.getProtocol(),challenge.realm,challenge.scheme,url,Authenticator.RequestorType.PROXY);
+    }
+ else {
+      auth=Authenticator.requestPasswordAuthentication(url.getHost(),getConnectToInetAddress(proxy,url),url.getPort(),url.getProtocol(),challenge.realm,challenge.scheme,url,Authenticator.RequestorType.SERVER);
+    }
+    if (auth == null) {
+      continue;
+    }
+    String usernameAndPassword=auth.getUserName() + ":" + new String(auth.getPassword());
+    byte[] bytes=usernameAndPassword.getBytes("ISO-8859-1");
+    String encoded=Base64.encode(bytes);
+    return challenge.scheme + " " + encoded;
+  }
+  return null;
+}

@@ -1,0 +1,3 @@
+{
+  if (LOG.ERROR >= LOGLEVEL)   Log.e(tag,String.format(s,args));
+}

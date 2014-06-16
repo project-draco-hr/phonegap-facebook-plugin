@@ -1,0 +1,15 @@
+{
+  if (sendMessageMethod == null && !initFailed) {
+    initReflection();
+  }
+  if (sendMessageMethod != null) {
+    String js=popAndEncodeAsJs();
+    Message execJsMessage=Message.obtain(null,EXECUTE_JS,js);
+    try {
+      sendMessageMethod.invoke(webViewCore,execJsMessage);
+    }
+ catch (    Throwable e) {
+      Log.e(LOG_TAG,"Reflection message bridge failed.",e);
+    }
+  }
+}

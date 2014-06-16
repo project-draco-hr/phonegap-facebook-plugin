@@ -1,0 +1,13 @@
+{
+  String protocol=url.getProtocol();
+  OkHttpClient copy=copyWithDefaults();
+  if (protocol.equals("http")) {
+    return new HttpURLConnectionImpl(url,copy,copy.okResponseCache(),copy.failedRoutes);
+  }
+ else   if (protocol.equals("https")) {
+    return new HttpsURLConnectionImpl(url,copy,copy.okResponseCache(),copy.failedRoutes);
+  }
+ else {
+    throw new IllegalArgumentException("Unexpected protocol: " + protocol);
+  }
+}

@@ -1,0 +1,63 @@
+{
+  if (this.outFile == null) {
+    return;
+  }
+  if (this.aperture != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_APERTURE,this.aperture);
+  }
+  if (this.datetime != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_DATETIME,this.datetime);
+  }
+  if (this.exposureTime != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_EXPOSURE_TIME,this.exposureTime);
+  }
+  if (this.flash != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_FLASH,this.flash);
+  }
+  if (this.focalLength != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_FOCAL_LENGTH,this.focalLength);
+  }
+  if (this.gpsAltitude != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_ALTITUDE,this.gpsAltitude);
+  }
+  if (this.gpsAltitudeRef != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_ALTITUDE_REF,this.gpsAltitudeRef);
+  }
+  if (this.gpsDateStamp != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_DATESTAMP,this.gpsDateStamp);
+  }
+  if (this.gpsLatitude != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_LATITUDE,this.gpsLatitude);
+  }
+  if (this.gpsLatitudeRef != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_LATITUDE_REF,this.gpsLatitudeRef);
+  }
+  if (this.gpsLongitude != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_LONGITUDE,this.gpsLongitude);
+  }
+  if (this.gpsLongitudeRef != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF,this.gpsLongitudeRef);
+  }
+  if (this.gpsProcessingMethod != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_PROCESSING_METHOD,this.gpsProcessingMethod);
+  }
+  if (this.gpsTimestamp != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_GPS_TIMESTAMP,this.gpsTimestamp);
+  }
+  if (this.iso != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_ISO,this.iso);
+  }
+  if (this.make != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_MAKE,this.make);
+  }
+  if (this.model != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_MODEL,this.model);
+  }
+  if (this.orientation != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_ORIENTATION,this.orientation);
+  }
+  if (this.whiteBalance != null) {
+    this.outFile.setAttribute(ExifInterface.TAG_WHITE_BALANCE,this.whiteBalance);
+  }
+  this.outFile.saveAttributes();
+}

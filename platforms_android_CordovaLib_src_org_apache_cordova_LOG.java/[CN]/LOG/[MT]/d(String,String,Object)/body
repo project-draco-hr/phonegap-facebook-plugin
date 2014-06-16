@@ -1,0 +1,3 @@
+{
+  if (LOG.DEBUG >= LOGLEVEL)   Log.d(tag,String.format(s,args));
+}
