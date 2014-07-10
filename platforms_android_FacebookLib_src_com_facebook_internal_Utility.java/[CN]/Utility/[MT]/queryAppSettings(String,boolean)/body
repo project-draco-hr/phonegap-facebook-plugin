@@ -7,7 +7,7 @@
   Request request=Request.newGraphPathRequest(null,applicationId,null);
   request.setParameters(appSettingsParams);
   GraphObject supportResponse=request.executeAndWait().getGraphObject();
-  FetchedAppSettings result=new FetchedAppSettings(safeGetBooleanFromResponse(supportResponse,SUPPORTS_ATTRIBUTION),safeGetBooleanFromResponse(supportResponse,SUPPORTS_IMPLICIT_SDK_LOGGING));
+  FetchedAppSettings result=new FetchedAppSettings(safeGetBooleanFromResponse(supportResponse,SUPPORTS_ATTRIBUTION),safeGetBooleanFromResponse(supportResponse,SUPPORTS_IMPLICIT_SDK_LOGGING),safeGetStringFromResponse(supportResponse,NUX_CONTENT),safeGetBooleanFromResponse(supportResponse,NUX_ENABLED));
   fetchedAppSettings.put(applicationId,result);
   return result;
 }

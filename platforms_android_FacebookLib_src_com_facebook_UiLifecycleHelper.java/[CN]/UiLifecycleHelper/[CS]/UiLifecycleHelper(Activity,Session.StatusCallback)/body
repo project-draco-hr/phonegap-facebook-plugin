@@ -6,4 +6,5 @@
   this.callback=callback;
   this.receiver=new ActiveSessionBroadcastReceiver();
   this.broadcastManager=LocalBroadcastManager.getInstance(activity);
+  Settings.loadDefaultsFromMetadataIfNeeded(activity);
 }

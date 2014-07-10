@@ -1,0 +1,3 @@
+AccessToken token
+List<String> grantedPermissions
+List<String> declinedPermissions

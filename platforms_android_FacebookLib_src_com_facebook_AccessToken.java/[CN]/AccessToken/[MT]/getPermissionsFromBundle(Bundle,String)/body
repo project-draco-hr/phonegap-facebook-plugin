@@ -1,0 +1,11 @@
+{
+  List<String> originalPermissions=bundle.getStringArrayList(key);
+  List<String> permissions;
+  if (originalPermissions == null) {
+    permissions=Collections.emptyList();
+  }
+ else {
+    permissions=Collections.unmodifiableList(new ArrayList<String>(originalPermissions));
+  }
+  return permissions;
+}

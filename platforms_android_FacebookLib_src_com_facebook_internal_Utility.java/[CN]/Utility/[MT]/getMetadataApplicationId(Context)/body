@@ -1,12 +1,5 @@
 {
   Validate.notNull(context,"context");
-  try {
-    ApplicationInfo ai=context.getPackageManager().getApplicationInfo(context.getPackageName(),PackageManager.GET_META_DATA);
-    if (ai.metaData != null) {
-      return ai.metaData.getString(Session.APPLICATION_ID_PROPERTY);
-    }
-  }
- catch (  PackageManager.NameNotFoundException e) {
-  }
-  return null;
+  Settings.loadDefaultsFromMetadata(context);
+  return Settings.getApplicationId();
 }

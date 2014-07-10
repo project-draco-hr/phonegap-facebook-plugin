@@ -1,8 +1,3 @@
 {
-  this.request=request;
-  this.connection=connection;
-  this.graphObject=null;
-  this.graphObjectList=null;
-  this.isFromCache=false;
-  this.error=error;
+  this(request,connection,null,null,null,false,error);
 }

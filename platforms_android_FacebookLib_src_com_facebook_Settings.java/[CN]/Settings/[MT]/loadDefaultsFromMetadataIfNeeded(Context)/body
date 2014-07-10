@@ -1,0 +1,5 @@
+{
+  if (!defaultsLoaded) {
+    loadDefaultsFromMetadata(context);
+  }
+}

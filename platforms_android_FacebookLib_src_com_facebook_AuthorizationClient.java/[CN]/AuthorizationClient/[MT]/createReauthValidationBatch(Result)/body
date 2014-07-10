@@ -1,6 +1,7 @@
 {
   final ArrayList<String> fbids=new ArrayList<String>();
-  final ArrayList<String> tokenPermissions=new ArrayList<String>();
+  final ArrayList<String> grantedPermissions=new ArrayList<String>();
+  final ArrayList<String> declinedPermissions=new ArrayList<String>();
   final String newToken=pendingResult.token.getToken();
   Request.Callback meCallback=new Request.Callback(){
     @Override public void onCompleted(    Response response){
@@ -24,13 +25,10 @@
   requestCurrentTokenPermissions.setCallback(new Request.Callback(){
     @Override public void onCompleted(    Response response){
       try {
-        GraphMultiResult result=response.getGraphObjectAs(GraphMultiResult.class);
-        if (result != null) {
-          GraphObjectList<GraphObject> data=result.getData();
-          if (data != null && data.size() == 1) {
-            GraphObject permissions=data.get(0);
-            tokenPermissions.addAll(permissions.asMap().keySet());
-          }
+        Session.PermissionsPair permissionsPair=Session.handlePermissionResponse(response);
+        if (permissionsPair != null) {
+          grantedPermissions.addAll(permissionsPair.getGrantedPermissions());
+          declinedPermissions.addAll(permissionsPair.getDeclinedPermissions());
         }
       }
  catch (      Exception ex) {
@@ -45,7 +43,7 @@
       try {
         Result result=null;
         if (fbids.size() == 2 && fbids.get(0) != null && fbids.get(1) != null && fbids.get(0).equals(fbids.get(1))) {
-          AccessToken tokenWithPermissions=AccessToken.createFromTokenWithRefreshedPermissions(pendingResult.token,tokenPermissions);
+          AccessToken tokenWithPermissions=AccessToken.createFromTokenWithRefreshedPermissions(pendingResult.token,grantedPermissions,declinedPermissions);
           result=Result.createTokenResult(pendingRequest,tokenWithPermissions);
         }
  else {

@@ -14,16 +14,16 @@
     Object body=Utility.getStringPropertyAsJSON(jsonObject,BODY_KEY,NON_JSON_RESPONSE_PROPERTY);
     if (body instanceof JSONObject) {
       GraphObject graphObject=GraphObject.Factory.create((JSONObject)body);
-      return new Response(request,connection,graphObject,isFromCache);
+      return new Response(request,connection,body.toString(),graphObject,isFromCache);
     }
  else     if (body instanceof JSONArray) {
       GraphObjectList<GraphObject> graphObjectList=GraphObject.Factory.createList((JSONArray)body,GraphObject.class);
-      return new Response(request,connection,graphObjectList,isFromCache);
+      return new Response(request,connection,body.toString(),graphObjectList,isFromCache);
     }
     object=JSONObject.NULL;
   }
   if (object == JSONObject.NULL) {
-    return new Response(request,connection,(GraphObject)null,isFromCache);
+    return new Response(request,connection,object.toString(),(GraphObject)null,isFromCache);
   }
  else {
     throw new FacebookException("Got unexpected object type in response, class: " + object.getClass().getSimpleName());

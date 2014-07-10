@@ -1,0 +1,10 @@
+{
+  if (mPopupWindow != null && mPopupWindow.isShowing()) {
+    if (mPopupWindow.isAboveAnchor()) {
+      mPopupContent.showBottomArrow();
+    }
+ else {
+      mPopupContent.showTopArrow();
+    }
+  }
+}

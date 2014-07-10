@@ -1,0 +1,8 @@
+{
+  LayoutInflater inflater=LayoutInflater.from(getContext());
+  inflater.inflate(R.layout.com_facebook_tooltip_bubble,this);
+  topArrow=(ImageView)findViewById(R.id.com_facebook_tooltip_bubble_view_top_pointer);
+  bottomArrow=(ImageView)findViewById(R.id.com_facebook_tooltip_bubble_view_bottom_pointer);
+  bodyFrame=findViewById(R.id.com_facebook_body_frame);
+  xOut=(ImageView)findViewById(R.id.com_facebook_button_xout);
+}

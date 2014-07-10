@@ -1,0 +1,16 @@
+{
+  Request request=new Request(this,"me/permissions");
+  request.setCallback(new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      PermissionsPair permissionsPair=handlePermissionResponse(response);
+      if (permissionsPair != null) {
+synchronized (lock) {
+          tokenInfo=AccessToken.createFromTokenWithRefreshedPermissions(tokenInfo,permissionsPair.getGrantedPermissions(),permissionsPair.getDeclinedPermissions());
+          postStateChange(state,SessionState.OPENED_TOKEN_UPDATED,null);
+        }
+      }
+    }
+  }
+);
+  request.executeAsync();
+}

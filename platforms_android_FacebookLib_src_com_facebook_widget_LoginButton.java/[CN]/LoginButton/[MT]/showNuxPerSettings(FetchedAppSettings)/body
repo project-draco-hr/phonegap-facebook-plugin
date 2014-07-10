@@ -1,0 +1,6 @@
+{
+  if (settings != null && settings.getNuxEnabled() && getVisibility() == View.VISIBLE) {
+    String nuxString=settings.getNuxContent();
+    displayNux(nuxString);
+  }
+}

@@ -1,11 +1,5 @@
 {
-  List<String> originalPermissions=bundle.getStringArrayList(TokenCachingStrategy.PERMISSIONS_KEY);
-  List<String> permissions;
-  if (originalPermissions == null) {
-    permissions=Collections.emptyList();
-  }
- else {
-    permissions=Collections.unmodifiableList(new ArrayList<String>(originalPermissions));
-  }
-  return new AccessToken(bundle.getString(TokenCachingStrategy.TOKEN_KEY),TokenCachingStrategy.getDate(bundle,TokenCachingStrategy.EXPIRATION_DATE_KEY),permissions,TokenCachingStrategy.getSource(bundle),TokenCachingStrategy.getDate(bundle,TokenCachingStrategy.LAST_REFRESH_DATE_KEY));
+  List<String> permissions=getPermissionsFromBundle(bundle,TokenCachingStrategy.PERMISSIONS_KEY);
+  List<String> declinedPermissions=getPermissionsFromBundle(bundle,TokenCachingStrategy.DECLINED_PERMISSIONS_KEY);
+  return new AccessToken(bundle.getString(TokenCachingStrategy.TOKEN_KEY),TokenCachingStrategy.getDate(bundle,TokenCachingStrategy.EXPIRATION_DATE_KEY),permissions,declinedPermissions,TokenCachingStrategy.getSource(bundle),TokenCachingStrategy.getDate(bundle,TokenCachingStrategy.LAST_REFRESH_DATE_KEY));
 }
