@@ -1,0 +1,14 @@
+{
+  if (permissions == null) {
+    permissions=Collections.emptyList();
+  }
+  if (declinedPermissions == null) {
+    declinedPermissions=Collections.emptyList();
+  }
+  this.expires=expires;
+  this.permissions=Collections.unmodifiableList(permissions);
+  this.declinedPermissions=Collections.unmodifiableList(declinedPermissions);
+  this.token=token;
+  this.source=source;
+  this.lastRefresh=lastRefresh;
+}

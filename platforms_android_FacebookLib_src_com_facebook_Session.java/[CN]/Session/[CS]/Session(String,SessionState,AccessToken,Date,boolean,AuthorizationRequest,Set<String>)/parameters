@@ -1,0 +1,7 @@
+String applicationId
+SessionState state
+AccessToken tokenInfo
+Date lastAttemptedTokenExtendDate
+boolean shouldAutoPublish
+AuthorizationRequest pendingAuthorizationRequest
+Set<String> requestedPermissions

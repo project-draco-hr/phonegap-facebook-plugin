@@ -1,0 +1,8 @@
+{
+  try {
+    return json.getBoolean(propertyName);
+  }
+ catch (  JSONException e) {
+    return defaultValue;
+  }
+}

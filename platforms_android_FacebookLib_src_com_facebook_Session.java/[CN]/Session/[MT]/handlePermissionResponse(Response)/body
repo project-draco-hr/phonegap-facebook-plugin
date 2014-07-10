@@ -1,0 +1,43 @@
+{
+  if (response.getError() != null) {
+    return null;
+  }
+  GraphMultiResult result=response.getGraphObjectAs(GraphMultiResult.class);
+  if (result == null) {
+    return null;
+  }
+  GraphObjectList<GraphObject> data=result.getData();
+  if (data == null || data.size() == 0) {
+    return null;
+  }
+  List<String> grantedPermissions=new ArrayList<String>(data.size());
+  List<String> declinedPermissions=new ArrayList<String>(data.size());
+  GraphObject firstObject=data.get(0);
+  if (firstObject.getProperty("permission") != null) {
+    for (    GraphObject graphObject : data) {
+      String permission=(String)graphObject.getProperty("permission");
+      if (permission.equals("installed")) {
+        continue;
+      }
+      String status=(String)graphObject.getProperty("status");
+      if (status.equals("granted")) {
+        grantedPermissions.add(permission);
+      }
+ else       if (status.equals("declined")) {
+        declinedPermissions.add(permission);
+      }
+    }
+  }
+ else {
+    Map<String,Object> permissionsMap=firstObject.asMap();
+    for (    Map.Entry<String,Object> entry : permissionsMap.entrySet()) {
+      if (entry.getKey().equals("installed")) {
+        continue;
+      }
+      if ((Integer)entry.getValue() == 1) {
+        grantedPermissions.add(entry.getKey());
+      }
+    }
+  }
+  return new PermissionsPair(grantedPermissions,declinedPermissions);
+}

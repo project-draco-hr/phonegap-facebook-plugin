@@ -23,7 +23,7 @@
 ;
   e2e=getE2E();
   addLoggingExtra(ServerProtocol.DIALOG_PARAM_E2E,e2e);
-  WebDialog.Builder builder=new AuthDialogBuilder(getStartActivityDelegate().getActivityContext(),applicationId,parameters).setE2E(e2e).setOnCompleteListener(listener);
+  WebDialog.Builder builder=new AuthDialogBuilder(getStartActivityDelegate().getActivityContext(),applicationId,parameters).setE2E(e2e).setIsRerequest(request.isRerequest()).setOnCompleteListener(listener);
   loginDialog=builder.build();
   loginDialog.show();
   return true;

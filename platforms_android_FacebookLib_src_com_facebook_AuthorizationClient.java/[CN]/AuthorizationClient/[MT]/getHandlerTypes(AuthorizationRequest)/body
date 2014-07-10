@@ -4,7 +4,6 @@
   if (behavior.allowsKatanaAuth()) {
     if (!request.isLegacy()) {
       handlers.add(new GetTokenAuthHandler());
-      handlers.add(new KatanaLoginDialogAuthHandler());
     }
     handlers.add(new KatanaProxyAuthHandler());
   }

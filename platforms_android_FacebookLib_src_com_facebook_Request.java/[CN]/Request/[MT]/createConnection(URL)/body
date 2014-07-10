@@ -3,6 +3,7 @@
   connection=(HttpURLConnection)url.openConnection();
   connection.setRequestProperty(USER_AGENT_HEADER,getUserAgent());
   connection.setRequestProperty(CONTENT_TYPE_HEADER,getMimeContentType());
+  connection.setRequestProperty(ACCEPT_LANGUAGE_HEADER,Locale.getDefault().toString());
   connection.setChunkedStreamingMode(0);
   return connection;
 }

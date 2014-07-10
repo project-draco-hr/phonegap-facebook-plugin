@@ -9,6 +9,17 @@
       this.parameters.putString(ACCESS_TOKEN_PARAM,accessToken);
     }
   }
+ else   if (!this.parameters.containsKey(ACCESS_TOKEN_PARAM)) {
+    String appID=Settings.getApplicationId();
+    String clientToken=Settings.getClientToken();
+    if (!Utility.isNullOrEmpty(appID) && !Utility.isNullOrEmpty(clientToken)) {
+      String accessToken=appID + "|" + clientToken;
+      this.parameters.putString(ACCESS_TOKEN_PARAM,accessToken);
+    }
+ else {
+      Log.d(TAG,"Warning: Sessionless Request needs token but missing either application ID or client token.");
+    }
+  }
   this.parameters.putString(SDK_PARAM,SDK_ANDROID);
   this.parameters.putString(FORMAT_PARAM,FORMAT_JSON);
 }

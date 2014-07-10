@@ -1,0 +1,12 @@
+{
+  Validate.notNull(bundle,"bundle");
+  Validate.notNull(value,"value");
+  ArrayList<String> arrayList;
+  if (value instanceof ArrayList<?>) {
+    arrayList=(ArrayList<String>)value;
+  }
+ else {
+    arrayList=new ArrayList<String>(value);
+  }
+  bundle.putStringArrayList(DECLINED_PERMISSIONS_KEY,arrayList);
+}

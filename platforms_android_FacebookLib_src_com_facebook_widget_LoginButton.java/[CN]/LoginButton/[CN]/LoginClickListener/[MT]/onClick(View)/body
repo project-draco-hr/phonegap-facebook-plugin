@@ -58,4 +58,7 @@
   Bundle parameters=new Bundle();
   parameters.putInt("logging_in",(openSession != null) ? 0 : 1);
   logger.logSdkEvent(loginLogoutEventName,null,parameters);
+  if (listenerCallback != null) {
+    listenerCallback.onClick(v);
+  }
 }

@@ -1,0 +1,4 @@
+{
+  topArrow.setVisibility(View.VISIBLE);
+  bottomArrow.setVisibility(View.INVISIBLE);
+}

@@ -1,8 +1,0 @@
-{
-  if (Utility.isNullOrEmpty(audience)) {
-    return AUDIENCE_ME;
-  }
- else {
-    return audience;
-  }
-}

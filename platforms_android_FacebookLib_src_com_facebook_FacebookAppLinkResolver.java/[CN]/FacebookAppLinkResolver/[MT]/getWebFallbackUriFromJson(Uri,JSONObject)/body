@@ -1,0 +1,18 @@
+{
+  try {
+    JSONObject webTarget=urlData.getJSONObject(APP_LINK_WEB_TARGET_KEY);
+    boolean shouldFallback=tryGetBooleanFromJson(webTarget,APP_LINK_TARGET_SHOULD_FALLBACK_KEY,true);
+    if (!shouldFallback) {
+      return null;
+    }
+    String webTargetUrlString=tryGetStringFromJson(webTarget,APP_LINK_TARGET_URL_KEY,null);
+    Uri webUri=null;
+    if (webTargetUrlString != null) {
+      webUri=Uri.parse(webTargetUrlString);
+    }
+    return webUri != null ? webUri : sourceUrl;
+  }
+ catch (  JSONException e) {
+    return sourceUrl;
+  }
+}

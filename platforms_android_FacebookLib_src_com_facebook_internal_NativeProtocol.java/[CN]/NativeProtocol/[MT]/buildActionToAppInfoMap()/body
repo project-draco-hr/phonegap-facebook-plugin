@@ -1,7 +1,10 @@
 {
   Map<String,List<NativeAppInfo>> map=new HashMap<String,List<NativeAppInfo>>();
+  ArrayList<NativeAppInfo> messengerAppInfoList=new ArrayList<NativeAppInfo>();
+  messengerAppInfoList.add(new MessengerAppInfo());
   map.put(ACTION_OGACTIONPUBLISH_DIALOG,facebookAppInfoList);
   map.put(ACTION_FEED_DIALOG,facebookAppInfoList);
-  map.put(ACTION_LOGIN_DIALOG,facebookAppInfoList);
+  map.put(ACTION_MESSAGE_DIALOG,messengerAppInfoList);
+  map.put(ACTION_OGMESSAGEPUBLISH_DIALOG,messengerAppInfoList);
   return map;
 }

@@ -4,15 +4,17 @@
   }
   String baseUrl;
   if (this.restMethod != null) {
-    baseUrl=String.format("%s/%s",ServerProtocol.getRestUrlBase(),restMethod);
+    baseUrl=String.format("%s/%s",ServerProtocol.getRestUrlBase(),getRestPathWithVersion());
   }
  else {
+    String graphBaseUrlBase;
     if (this.getHttpMethod() == HttpMethod.POST && graphPath != null && graphPath.endsWith(VIDEOS_SUFFIX)) {
-      baseUrl=String.format("%s/%s",ServerProtocol.getGraphVideoUrlBase(),graphPath);
+      graphBaseUrlBase=ServerProtocol.getGraphVideoUrlBase();
     }
  else {
-      baseUrl=String.format("%s/%s",ServerProtocol.getGraphUrlBase(),graphPath);
+      graphBaseUrlBase=ServerProtocol.getGraphUrlBase();
     }
+    baseUrl=String.format("%s/%s",graphBaseUrlBase,getGraphPathWithVersion());
   }
   addCommonParameters();
   return appendParametersToBaseUrl(baseUrl);

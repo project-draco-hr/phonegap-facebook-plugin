@@ -1,0 +1,5 @@
+Request request
+HttpURLConnection connection
+String rawResponse
+GraphObjectList<GraphObject> graphObjects
+boolean isFromCache

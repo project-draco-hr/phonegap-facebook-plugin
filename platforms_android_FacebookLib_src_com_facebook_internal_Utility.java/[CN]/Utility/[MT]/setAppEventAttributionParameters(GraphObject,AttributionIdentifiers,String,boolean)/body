@@ -1,8 +1,8 @@
 {
-  if (attributionIdentifiers.getAttributionId() != null) {
+  if (attributionIdentifiers != null && attributionIdentifiers.getAttributionId() != null) {
     params.setProperty("attribution",attributionIdentifiers.getAttributionId());
   }
-  if (attributionIdentifiers.getAndroidAdvertiserId() != null) {
+  if (attributionIdentifiers != null && attributionIdentifiers.getAndroidAdvertiserId() != null) {
     params.setProperty("advertiser_id",attributionIdentifiers.getAndroidAdvertiserId());
     params.setProperty("advertiser_tracking_enabled",!attributionIdentifiers.isTrackingLimited());
   }

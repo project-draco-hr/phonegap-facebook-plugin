@@ -4,10 +4,10 @@
   }
   String baseUrl;
   if (this.restMethod != null) {
-    baseUrl=ServerProtocol.BATCHED_REST_METHOD_URL_BASE + this.restMethod;
+    baseUrl=getRestPathWithVersion();
   }
  else {
-    baseUrl=this.graphPath;
+    baseUrl=getGraphPathWithVersion();
   }
   addCommonParameters();
   return appendParametersToBaseUrl(baseUrl);

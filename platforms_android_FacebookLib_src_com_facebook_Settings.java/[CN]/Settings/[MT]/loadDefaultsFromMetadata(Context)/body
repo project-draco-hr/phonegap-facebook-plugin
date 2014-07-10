@@ -1,0 +1,22 @@
+{
+  defaultsLoaded=true;
+  if (context == null) {
+    return;
+  }
+  ApplicationInfo ai=null;
+  try {
+    ai=context.getPackageManager().getApplicationInfo(context.getPackageName(),PackageManager.GET_META_DATA);
+  }
+ catch (  PackageManager.NameNotFoundException e) {
+    return;
+  }
+  if (ai == null || ai.metaData == null) {
+    return;
+  }
+  if (applicationId == null) {
+    applicationId=ai.metaData.getString(APPLICATION_ID_PROPERTY);
+  }
+  if (appClientToken == null) {
+    appClientToken=ai.metaData.getString(CLIENT_TOKEN_PROPERTY);
+  }
+}

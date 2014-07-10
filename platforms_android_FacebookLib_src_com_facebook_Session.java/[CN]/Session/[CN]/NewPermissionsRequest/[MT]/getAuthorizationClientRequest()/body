@@ -1,0 +1,5 @@
+{
+  AuthorizationClient.AuthorizationRequest request=super.getAuthorizationClientRequest();
+  request.setRerequest(true);
+  return request;
+}

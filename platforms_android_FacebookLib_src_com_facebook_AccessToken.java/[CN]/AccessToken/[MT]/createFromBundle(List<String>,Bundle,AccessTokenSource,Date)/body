@@ -4,5 +4,5 @@
   if (Utility.isNullOrEmpty(token) || (expires == null)) {
     return null;
   }
-  return new AccessToken(token,expires,requestedPermissions,source,new Date());
+  return new AccessToken(token,expires,requestedPermissions,null,source,new Date());
 }
