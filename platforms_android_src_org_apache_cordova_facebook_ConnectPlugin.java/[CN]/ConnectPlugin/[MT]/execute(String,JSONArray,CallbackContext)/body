@@ -194,6 +194,9 @@
 ;
       cordova.getActivity().runOnUiThread(runnable);
     }
+ else     if (this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph")) {
+      cordova.getActivity().runOnUiThread(new WebDialogBuilderRunnable(me.cordova.getActivity(),Session.getActiveSession(),this.method,paramBundle,dialogCallback));
+    }
  else {
       callbackContext.error("Unsupported dialog method.");
     }
