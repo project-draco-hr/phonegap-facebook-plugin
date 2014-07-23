@@ -1,0 +1,4 @@
+{
+  super.onResume(multitasking);
+  AppEventsLogger.activateApp(cordova.getActivity());
+}

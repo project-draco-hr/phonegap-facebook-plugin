@@ -96,6 +96,46 @@
     }
     return true;
   }
+ else   if (action.equals("logEvent")) {
+    if (args.length() == 0) {
+      callbackContext.error("Invalid arguments");
+      return true;
+    }
+    String kEventName=args.getString(0);
+    if (args.length() == 1) {
+      logger.logEvent(kEventName);
+    }
+ else {
+      JSONObject params=args.getJSONObject(1);
+      Bundle parameters=new Bundle();
+      Iterator<?> iterator=params.keys();
+      while (iterator.hasNext()) {
+        try {
+          String value=params.getString((String)iterator.next());
+          parameters.putString((String)iterator.next(),value);
+        }
+ catch (        Exception e) {
+          Log.w(TAG,"Type in AppEvent parameters was not String for key: " + (String)iterator.next());
+          try {
+            int value=params.getInt((String)iterator.next());
+            parameters.putInt((String)iterator.next(),value);
+          }
+ catch (          Exception e2) {
+            Log.e(TAG,"Unsupported type in AppEvent parameters for key: " + (String)iterator.next());
+          }
+        }
+      }
+      if (args.length() == 2) {
+        logger.logEvent(kEventName,parameters);
+      }
+      if (args.length() == 3) {
+        double value=args.getDouble(2);
+        logger.logEvent(kEventName,value,parameters);
+      }
+    }
+    callbackContext.success();
+    return true;
+  }
  else   if (action.equals("showDialog")) {
     Bundle collect=new Bundle();
     JSONObject params=null;
