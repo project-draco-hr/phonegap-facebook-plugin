@@ -1,0 +1,5 @@
+{
+  AppEventsLogger appEventsLogger=AppEventsLogger.newLogger(context);
+  String eventName=BOLTS_MEASUREMENT_EVENT_PREFIX + intent.getStringExtra(MEASUREMENT_EVENT_NAME_KEY);
+  appEventsLogger.logEvent(eventName,intent.getBundleExtra(MEASUREMENT_EVENT_ARGS_KEY));
+}
