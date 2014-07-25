@@ -25,6 +25,9 @@
  else       if (jsonObject.has("url")) {
         processGraphObjectProperty(key,jsonObject.optString("url"),serializer,passByValue);
       }
+ else       if (jsonObject.has(NativeProtocol.OPEN_GRAPH_CREATE_OBJECT_KEY)) {
+        processGraphObjectProperty(key,jsonObject.toString(),serializer,passByValue);
+      }
     }
   }
  else   if (JSONArray.class.isAssignableFrom(valueClass)) {

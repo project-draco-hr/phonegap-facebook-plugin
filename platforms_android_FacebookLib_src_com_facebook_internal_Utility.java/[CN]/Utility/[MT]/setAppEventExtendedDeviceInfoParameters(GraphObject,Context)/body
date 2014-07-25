@@ -1,0 +1,18 @@
+{
+  JSONArray extraInfoArray=new JSONArray();
+  extraInfoArray.put(EXTRA_APP_EVENTS_INFO_FORMAT_VERSION);
+  String pkgName=appContext.getPackageName();
+  int versionCode=-1;
+  String versionName="";
+  try {
+    PackageInfo pi=appContext.getPackageManager().getPackageInfo(pkgName,0);
+    versionCode=pi.versionCode;
+    versionName=pi.versionName;
+  }
+ catch (  PackageManager.NameNotFoundException e) {
+  }
+  extraInfoArray.put(pkgName);
+  extraInfoArray.put(versionCode);
+  extraInfoArray.put(versionName);
+  params.setProperty("extinfo",extraInfoArray.toString());
+}

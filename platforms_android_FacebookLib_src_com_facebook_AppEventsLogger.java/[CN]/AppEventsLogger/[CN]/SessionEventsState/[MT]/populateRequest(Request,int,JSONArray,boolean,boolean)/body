@@ -7,6 +7,11 @@
   if (includeAttribution) {
     Utility.setAppEventAttributionParameters(publishParams,attributionIdentifiers,hashedDeviceAndAppId,limitEventUsage);
   }
+  try {
+    Utility.setAppEventExtendedDeviceInfoParameters(publishParams,applicationContext);
+  }
+ catch (  Exception e) {
+  }
   publishParams.setProperty("application_package_name",packageName);
   request.setGraphObject(publishParams);
   Bundle requestParameters=request.getParameters();

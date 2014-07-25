@@ -1,0 +1,10 @@
+{
+  Matcher matcher=versionPattern.matcher(path);
+  if (matcher.matches()) {
+    path=matcher.group(1);
+  }
+  if (path.startsWith("me/") || path.startsWith("/me/")) {
+    return true;
+  }
+  return false;
+}

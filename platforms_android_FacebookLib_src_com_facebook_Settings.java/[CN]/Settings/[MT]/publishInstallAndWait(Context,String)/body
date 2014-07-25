@@ -1,4 +1,0 @@
-{
-  Response response=publishInstallAndWaitForResponse(context,applicationId);
-  return response != null && response.getError() == null;
-}
