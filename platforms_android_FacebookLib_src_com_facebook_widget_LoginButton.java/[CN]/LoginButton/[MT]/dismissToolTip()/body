@@ -1,0 +1,6 @@
+{
+  if (nuxPopup != null) {
+    nuxPopup.dismiss();
+    nuxPopup=null;
+  }
+}

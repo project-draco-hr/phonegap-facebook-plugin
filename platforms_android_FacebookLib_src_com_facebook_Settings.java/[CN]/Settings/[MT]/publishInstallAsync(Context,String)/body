@@ -1,3 +1,0 @@
-{
-  publishInstallAsync(context,applicationId,null);
-}

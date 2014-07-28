@@ -1,0 +1,7 @@
+{
+  Matcher matcher=versionPattern.matcher(this.restMethod);
+  if (matcher.matches()) {
+    return this.restMethod;
+  }
+  return String.format("%s/%s/%s",this.version,ServerProtocol.REST_METHOD_BASE,this.restMethod);
+}

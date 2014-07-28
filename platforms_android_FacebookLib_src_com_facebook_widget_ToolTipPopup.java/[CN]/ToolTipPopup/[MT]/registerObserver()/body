@@ -1,0 +1,6 @@
+{
+  unregisterObserver();
+  if (mAnchorViewRef.get() != null) {
+    mAnchorViewRef.get().getViewTreeObserver().addOnScrollChangedListener(mScrollListener);
+  }
+}

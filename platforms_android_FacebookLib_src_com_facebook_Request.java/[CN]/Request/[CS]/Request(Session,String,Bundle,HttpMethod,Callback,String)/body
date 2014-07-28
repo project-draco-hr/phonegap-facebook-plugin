@@ -1,0 +1,16 @@
+{
+  this.session=session;
+  this.graphPath=graphPath;
+  this.callback=callback;
+  this.version=version;
+  setHttpMethod(httpMethod);
+  if (parameters != null) {
+    this.parameters=new Bundle(parameters);
+  }
+ else {
+    this.parameters=new Bundle();
+  }
+  if (this.version == null) {
+    this.version=ServerProtocol.getAPIVersion();
+  }
+}

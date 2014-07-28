@@ -12,7 +12,8 @@
     return false;
   }
   for (  Signature signature : packageInfo.signatures) {
-    if (signature.toCharsString().equals(this.getSignature())) {
+    String hashedSignature=Utility.sha1hash(signature.toByteArray());
+    if (validAppSignatureHashes.contains(hashedSignature)) {
       return true;
     }
   }

@@ -1,4 +1,0 @@
-Request request
-HttpURLConnection connection
-GraphObject graphObject
-boolean isFromCache

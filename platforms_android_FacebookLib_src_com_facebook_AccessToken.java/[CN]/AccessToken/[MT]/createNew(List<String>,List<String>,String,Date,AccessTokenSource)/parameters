@@ -1,0 +1,5 @@
+List<String> grantedPermissions
+List<String> declinedPermissions
+String accessToken
+Date expires
+AccessTokenSource source

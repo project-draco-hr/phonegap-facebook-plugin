@@ -1,0 +1,6 @@
+{
+  nuxPopup=new ToolTipPopup(nuxString,this);
+  nuxPopup.setStyle(nuxStyle);
+  nuxPopup.setNuxDisplayTime(nuxDisplayTime);
+  nuxPopup.show();
+}

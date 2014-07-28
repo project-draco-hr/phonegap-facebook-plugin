@@ -78,7 +78,7 @@
     return true;
   }
  else   if (action.equals("getLoginStatus")) {
-    callbackContext.success(Session.getActiveSession().getState().toString());
+    callbackContext.success(getResponse());
     return true;
   }
  else   if (action.equals("getAccessToken")) {
@@ -94,6 +94,57 @@
  else {
       callbackContext.error("No valid session found, must call init and login before logout.");
     }
+    return true;
+  }
+ else   if (action.equals("logEvent")) {
+    if (args.length() == 0) {
+      callbackContext.error("Invalid arguments");
+      return true;
+    }
+    String eventName=args.getString(0);
+    if (args.length() == 1) {
+      logger.logEvent(eventName);
+    }
+ else {
+      JSONObject params=args.getJSONObject(1);
+      Bundle parameters=new Bundle();
+      Iterator<?> iterator=params.keys();
+      while (iterator.hasNext()) {
+        try {
+          String value=params.getString((String)iterator.next());
+          parameters.putString((String)iterator.next(),value);
+        }
+ catch (        Exception e) {
+          Log.w(TAG,"Type in AppEvent parameters was not String for key: " + (String)iterator.next());
+          try {
+            int value=params.getInt((String)iterator.next());
+            parameters.putInt((String)iterator.next(),value);
+          }
+ catch (          Exception e2) {
+            Log.e(TAG,"Unsupported type in AppEvent parameters for key: " + (String)iterator.next());
+          }
+        }
+      }
+      if (args.length() == 2) {
+        logger.logEvent(eventName,parameters);
+      }
+      if (args.length() == 3) {
+        double value=args.getDouble(2);
+        logger.logEvent(eventName,value,parameters);
+      }
+    }
+    callbackContext.success();
+    return true;
+  }
+ else   if (action.equals("logPurchase")) {
+    if (args.length() != 2) {
+      callbackContext.error("Invalid arguments");
+      return true;
+    }
+    int value=args.getInt(0);
+    String currency=args.getString(1);
+    logger.logPurchase(BigDecimal.valueOf(value),Currency.getInstance(currency));
+    callbackContext.success();
     return true;
   }
  else   if (action.equals("showDialog")) {
@@ -193,6 +244,9 @@
       }
 ;
       cordova.getActivity().runOnUiThread(runnable);
+    }
+ else     if (this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph")) {
+      cordova.getActivity().runOnUiThread(new WebDialogBuilderRunnable(me.cordova.getActivity(),Session.getActiveSession(),this.method,paramBundle,dialogCallback));
     }
  else {
       callbackContext.error("Unsupported dialog method.");

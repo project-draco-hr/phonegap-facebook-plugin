@@ -19,7 +19,7 @@
     Date now=new Date();
     if ((cachedExpirationDate == null) || cachedExpirationDate.before(now)) {
       tokenCachingStrategy.clear();
-      this.tokenInfo=AccessToken.createEmptyToken(Collections.<String>emptyList());
+      this.tokenInfo=AccessToken.createEmptyToken();
     }
  else {
       this.tokenInfo=AccessToken.createFromCache(tokenState);
@@ -27,6 +27,6 @@
     }
   }
  else {
-    this.tokenInfo=AccessToken.createEmptyToken(Collections.<String>emptyList());
+    this.tokenInfo=AccessToken.createEmptyToken();
   }
 }

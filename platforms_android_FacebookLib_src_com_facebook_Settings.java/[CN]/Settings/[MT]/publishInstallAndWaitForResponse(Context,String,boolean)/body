@@ -32,7 +32,7 @@
         return Response.createResponsesFromString("true",null,new RequestBatch(publishRequest),true).get(0);
       }
  else {
-        return new Response(null,null,graphObject,true);
+        return new Response(null,null,null,graphObject,true);
       }
     }
  else     if (identifiers.getAndroidAdvertiserId() == null && identifiers.getAttributionId() == null) {

@@ -8,5 +8,5 @@
   if (accessTokenSource == null) {
     accessTokenSource=DEFAULT_ACCESS_TOKEN_SOURCE;
   }
-  return new AccessToken(accessToken,expirationTime,permissions,accessTokenSource,lastRefreshTime);
+  return new AccessToken(accessToken,expirationTime,permissions,null,accessTokenSource,lastRefreshTime);
 }

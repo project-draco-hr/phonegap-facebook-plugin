@@ -1,0 +1,20 @@
+{
+  if (nuxMode == ToolTipMode.DISPLAY_ALWAYS) {
+    String nuxString=getResources().getString(R.string.com_facebook_tooltip_default);
+    displayNux(nuxString);
+  }
+ else {
+    final String appId=Utility.getMetadataApplicationId(getContext());
+    AsyncTask<Void,Void,FetchedAppSettings> task=new AsyncTask<Void,Void,Utility.FetchedAppSettings>(){
+      @Override protected FetchedAppSettings doInBackground(      Void... params){
+        FetchedAppSettings settings=Utility.queryAppSettings(appId,false);
+        return settings;
+      }
+      @Override protected void onPostExecute(      FetchedAppSettings result){
+        showNuxPerSettings(result);
+      }
+    }
+;
+    task.execute((Void[])null);
+  }
+}

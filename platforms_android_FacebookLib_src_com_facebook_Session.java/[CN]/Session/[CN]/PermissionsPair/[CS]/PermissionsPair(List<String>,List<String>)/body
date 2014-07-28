@@ -1,0 +1,4 @@
+{
+  this.grantedPermissions=grantedPermissions;
+  this.declinedPermissions=declinedPermissions;
+}

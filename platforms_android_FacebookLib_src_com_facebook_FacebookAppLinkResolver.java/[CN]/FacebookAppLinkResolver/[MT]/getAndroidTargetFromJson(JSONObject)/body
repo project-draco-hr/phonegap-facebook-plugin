@@ -1,0 +1,14 @@
+{
+  String packageName=tryGetStringFromJson(targetJson,APP_LINK_TARGET_PACKAGE_KEY,null);
+  if (packageName == null) {
+    return null;
+  }
+  String className=tryGetStringFromJson(targetJson,APP_LINK_TARGET_CLASS_KEY,null);
+  String appName=tryGetStringFromJson(targetJson,APP_LINK_TARGET_APP_NAME_KEY,null);
+  String targetUrlString=tryGetStringFromJson(targetJson,APP_LINK_TARGET_URL_KEY,null);
+  Uri targetUri=null;
+  if (targetUrlString != null) {
+    targetUri=Uri.parse(targetUrlString);
+  }
+  return new AppLink.Target(packageName,className,targetUri,appName);
+}

@@ -1,6 +1,6 @@
 {
   boolean isOGAction=false;
-  if (path.startsWith("me/") || path.startsWith("/me/")) {
+  if (isMeRequest(path)) {
     int colonLocation=path.indexOf(":");
     int questionMarkLocation=path.indexOf("?");
     isOGAction=colonLocation > 3 && (questionMarkLocation == -1 || colonLocation < questionMarkLocation);

@@ -1,15 +1,3 @@
 {
-  this.session=session;
-  this.graphPath=graphPath;
-  this.callback=callback;
-  setHttpMethod(httpMethod);
-  if (parameters != null) {
-    this.parameters=new Bundle(parameters);
-  }
- else {
-    this.parameters=new Bundle();
-  }
-  if (!this.parameters.containsKey(MIGRATION_BUNDLE_PARAM)) {
-    this.parameters.putString(MIGRATION_BUNDLE_PARAM,FacebookSdkVersion.MIGRATION_BUNDLE);
-  }
+  this(session,graphPath,parameters,httpMethod,callback,null);
 }

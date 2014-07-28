@@ -1,0 +1,9 @@
+{
+  this.request=request;
+  this.connection=connection;
+  this.rawResponse=rawResponse;
+  this.graphObject=graphObject;
+  this.graphObjectList=graphObjects;
+  this.isFromCache=isFromCache;
+  this.error=error;
+}

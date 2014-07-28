@@ -1,6 +1,6 @@
 {
   if (loader != null) {
-    loader.startLoading(request,true);
+    loader.startLoading(request,canSkipRoundTripIfCached());
     onStartLoading(loader,request);
   }
 }

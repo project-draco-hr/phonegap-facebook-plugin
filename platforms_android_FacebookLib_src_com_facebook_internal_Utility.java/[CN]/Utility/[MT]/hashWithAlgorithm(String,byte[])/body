@@ -1,0 +1,10 @@
+{
+  MessageDigest hash;
+  try {
+    hash=MessageDigest.getInstance(algorithm);
+  }
+ catch (  NoSuchAlgorithmException e) {
+    return null;
+  }
+  return hashBytes(hash,bytes);
+}

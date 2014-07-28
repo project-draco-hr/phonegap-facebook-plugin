@@ -3,7 +3,7 @@
     return;
   }
   if (newState.isClosed()) {
-    this.tokenInfo=AccessToken.createEmptyToken(Collections.<String>emptyList());
+    this.tokenInfo=AccessToken.createEmptyToken();
   }
   Runnable runCallbacks=new Runnable(){
     public void run(){
