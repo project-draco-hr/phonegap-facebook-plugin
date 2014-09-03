@@ -184,23 +184,22 @@
     showDialogContext.sendPluginResult(pr);
     final OnCompleteListener dialogCallback=new OnCompleteListener(){
       @Override public void onComplete(      Bundle values,      FacebookException exception){
-        String errMsg;
         if (exception != null) {
+          String errMsg="Facebook error: " + exception.getMessage();
           if (exception instanceof FacebookOperationCanceledException) {
             errMsg="User cancelled dialog";
-            Log.e(TAG,errMsg);
-            showDialogContext.error(errMsg);
           }
  else           if (exception instanceof FacebookDialogException) {
             errMsg="Dialog error: " + exception.getMessage();
-            Log.e(TAG,errMsg);
-            showDialogContext.error(errMsg);
           }
- else {
-            errMsg="Facebook error: " + exception.getMessage();
-            Log.e(TAG,errMsg);
-            showDialogContext.error(errMsg);
+ else           if (exception instanceof FacebookServiceException) {
+            FacebookRequestError error=((FacebookServiceException)exception).getRequestError();
+            if (error.getErrorCode() == 4201) {
+              errMsg="User cancelled dialog";
+            }
           }
+          Log.e(TAG,errMsg);
+          showDialogContext.error(errMsg);
         }
  else {
           if (values.size() > 0) {
@@ -217,9 +216,8 @@
             showDialogContext.success(response);
           }
  else {
-            errMsg="User cancelled dialog";
-            Log.e(TAG,errMsg);
-            showDialogContext.error(errMsg);
+            Log.e(TAG,"User cancelled dialog");
+            showDialogContext.error("User cancelled dialog");
           }
         }
       }
