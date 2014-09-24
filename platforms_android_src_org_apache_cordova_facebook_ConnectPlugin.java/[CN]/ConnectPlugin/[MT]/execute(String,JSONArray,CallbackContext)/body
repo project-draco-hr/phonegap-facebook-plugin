@@ -185,40 +185,10 @@
     final OnCompleteListener dialogCallback=new OnCompleteListener(){
       @Override public void onComplete(      Bundle values,      FacebookException exception){
         if (exception != null) {
-          String errMsg="Facebook error: " + exception.getMessage();
-          if (exception instanceof FacebookOperationCanceledException) {
-            errMsg="User cancelled dialog";
-          }
- else           if (exception instanceof FacebookDialogException) {
-            errMsg="Dialog error: " + exception.getMessage();
-          }
- else           if (exception instanceof FacebookServiceException) {
-            FacebookRequestError error=((FacebookServiceException)exception).getRequestError();
-            if (error.getErrorCode() == 4201) {
-              errMsg="User cancelled dialog";
-            }
-          }
-          Log.e(TAG,errMsg);
-          showDialogContext.error(errMsg);
+          handleError(exception);
         }
  else {
-          if (values.size() > 0) {
-            JSONObject response=new JSONObject();
-            try {
-              Set<String> keys=values.keySet();
-              for (              String key : keys) {
-                response.put(key,values.get(key));
-              }
-            }
- catch (            JSONException e) {
-              e.printStackTrace();
-            }
-            showDialogContext.success(response);
-          }
- else {
-            Log.e(TAG,"User cancelled dialog");
-            showDialogContext.error("User cancelled dialog");
-          }
+          handleSuccess(values);
         }
       }
     }
@@ -244,7 +214,27 @@
       cordova.getActivity().runOnUiThread(runnable);
     }
  else     if (this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph")) {
-      cordova.getActivity().runOnUiThread(new WebDialogBuilderRunnable(me.cordova.getActivity(),Session.getActiveSession(),this.method,paramBundle,dialogCallback));
+      if (FacebookDialog.canPresentShareDialog(me.cordova.getActivity(),FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
+        Runnable runnable=new Runnable(){
+          public void run(){
+            FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("link")).setPicture(paramBundle.getString("picture")).build();
+            uiHelper.trackPendingDialogCall(shareDialog.present());
+          }
+        }
+;
+        this.trackingPendingCall=true;
+        cordova.getActivity().runOnUiThread(runnable);
+      }
+ else {
+        Runnable runnable=new Runnable(){
+          public void run(){
+            WebDialog feedDialog=(new WebDialog.FeedDialogBuilder(me.cordova.getActivity(),Session.getActiveSession(),paramBundle)).setOnCompleteListener(dialogCallback).build();
+            feedDialog.show();
+          }
+        }
+;
+        cordova.getActivity().runOnUiThread(runnable);
+      }
     }
  else {
       callbackContext.error("Unsupported dialog method.");
