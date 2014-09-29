@@ -1,4 +1,5 @@
 {
+  uiHelper=new UiLifecycleHelper(cordova.getActivity(),null);
   logger=AppEventsLogger.newLogger(cordova.getActivity());
   int appResId=cordova.getActivity().getResources().getIdentifier("fb_app_id","string",cordova.getActivity().getPackageName());
   applicationId=cordova.getActivity().getString(appResId);
