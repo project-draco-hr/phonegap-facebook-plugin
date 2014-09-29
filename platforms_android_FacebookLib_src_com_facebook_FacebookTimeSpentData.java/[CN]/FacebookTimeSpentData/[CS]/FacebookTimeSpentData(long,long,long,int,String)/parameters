@@ -1,0 +1,5 @@
+long lastResumeTime
+long lastSuspendTime
+long millisecondsSpentInSession
+int interruptionCount
+String firstOpenSourceApplication

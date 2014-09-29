@@ -1,0 +1,7 @@
+{
+  int quantaIndex=0;
+  while (quantaIndex < INACTIVE_SECONDS_QUANTA.length && INACTIVE_SECONDS_QUANTA[quantaIndex] < timeBetweenSessions) {
+    ++quantaIndex;
+  }
+  return quantaIndex;
+}

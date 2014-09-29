@@ -1,0 +1,22 @@
+{
+  int version=getProtocolVersionFromIntent(intent);
+  String callIdString=null;
+  if (isVersionCompatibleWithBucketedIntent(version)) {
+    Bundle bridgeArgs=intent.getBundleExtra(EXTRA_PROTOCOL_BRIDGE_ARGS);
+    if (bridgeArgs != null) {
+      callIdString=bridgeArgs.getString(BRIDGE_ARG_ACTION_ID_STRING);
+    }
+  }
+ else {
+    callIdString=intent.getStringExtra(EXTRA_PROTOCOL_CALL_ID);
+  }
+  UUID callId=null;
+  if (callIdString != null) {
+    try {
+      callId=UUID.fromString(callIdString);
+    }
+ catch (    IllegalArgumentException exception) {
+    }
+  }
+  return callId;
+}

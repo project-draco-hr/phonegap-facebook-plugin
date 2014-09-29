@@ -1,0 +1,7 @@
+{
+synchronized (staticLock) {
+    FacebookTimeSpentData timeSpentData=getTimeSpentData(context,accessTokenAppId);
+    timeSpentData.onSuspend(logger,eventTime);
+    onTimeSpentDataUpdate();
+  }
+}

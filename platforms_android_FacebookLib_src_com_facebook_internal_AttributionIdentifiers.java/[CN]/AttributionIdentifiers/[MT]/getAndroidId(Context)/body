@@ -1,6 +1,9 @@
 {
   AttributionIdentifiers identifiers=new AttributionIdentifiers();
   try {
+    if (Looper.myLooper() == Looper.getMainLooper()) {
+      throw new FacebookException("getAndroidId cannot be called on the main thread.");
+    }
     Method isGooglePlayServicesAvailable=Utility.getMethodQuietly("com.google.android.gms.common.GooglePlayServicesUtil","isGooglePlayServicesAvailable",Context.class);
     if (isGooglePlayServicesAvailable == null) {
       return identifiers;

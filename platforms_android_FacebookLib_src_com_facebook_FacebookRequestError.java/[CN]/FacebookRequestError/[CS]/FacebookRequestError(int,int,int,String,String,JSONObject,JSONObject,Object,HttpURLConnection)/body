@@ -1,3 +1,0 @@
-{
-  this(requestStatusCode,errorCode,subErrorCode,errorType,errorMessage,requestResultBody,requestResult,batchRequestResult,connection,null);
-}

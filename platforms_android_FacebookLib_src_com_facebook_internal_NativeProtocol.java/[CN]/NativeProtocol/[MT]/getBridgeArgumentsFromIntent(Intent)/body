@@ -1,0 +1,7 @@
+{
+  int version=getProtocolVersionFromIntent(intent);
+  if (!isVersionCompatibleWithBucketedIntent(version)) {
+    return null;
+  }
+  return intent.getBundleExtra(EXTRA_PROTOCOL_BRIDGE_ARGS);
+}

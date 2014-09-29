@@ -23,9 +23,8 @@ synchronized (cachedAppLinks) {
   }
   final Task<Map<Uri,AppLink>>.TaskCompletionSource taskCompletionSource=Task.create();
   Bundle appLinkRequestParameters=new Bundle();
-  appLinkRequestParameters.putString("type","al");
   appLinkRequestParameters.putString("ids",graphRequestFields.toString());
-  appLinkRequestParameters.putString("fields",String.format("%s,%s",APP_LINK_ANDROID_TARGET_KEY,APP_LINK_WEB_TARGET_KEY));
+  appLinkRequestParameters.putString("fields",String.format("%s.fields(%s,%s)",APP_LINK_KEY,APP_LINK_ANDROID_TARGET_KEY,APP_LINK_WEB_TARGET_KEY));
   Request appLinkRequest=new Request(null,"",appLinkRequestParameters,null,new Request.Callback(){
     @Override public void onCompleted(    Response response){
       FacebookRequestError error=response.getError();
@@ -47,7 +46,8 @@ synchronized (cachedAppLinks) {
         JSONObject urlData=null;
         try {
           urlData=responseJson.getJSONObject(uri.toString());
-          JSONArray rawTargets=urlData.getJSONArray(APP_LINK_ANDROID_TARGET_KEY);
+          JSONObject appLinkData=urlData.getJSONObject(APP_LINK_KEY);
+          JSONArray rawTargets=appLinkData.getJSONArray(APP_LINK_ANDROID_TARGET_KEY);
           int targetsCount=rawTargets.length();
           List<AppLink.Target> targets=new ArrayList<AppLink.Target>(targetsCount);
           for (int i=0; i < targetsCount; i++) {
@@ -56,7 +56,7 @@ synchronized (cachedAppLinks) {
               targets.add(target);
             }
           }
-          Uri webFallbackUrl=getWebFallbackUriFromJson(uri,urlData);
+          Uri webFallbackUrl=getWebFallbackUriFromJson(uri,appLinkData);
           AppLink appLink=new AppLink(uri,targets,webFallbackUrl);
           appLinkResults.put(uri,appLink);
 synchronized (cachedAppLinks) {

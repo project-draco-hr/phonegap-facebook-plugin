@@ -35,7 +35,7 @@
         return new Response(null,null,null,graphObject,true);
       }
     }
- else     if (identifiers.getAndroidAdvertiserId() == null && identifiers.getAttributionId() == null) {
+ else     if (identifiers == null || (identifiers.getAndroidAdvertiserId() == null && identifiers.getAttributionId() == null)) {
       throw new FacebookException("No attribution id available to send to server.");
     }
  else {
