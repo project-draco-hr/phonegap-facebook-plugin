@@ -1,0 +1,10 @@
+{
+  String response="{" + "\"errorCode\": \"" + error.getErrorCode() + "\","+ "\"errorType\": \""+ error.getErrorType()+ "\","+ "\"errorMessage\": \""+ error.getErrorMessage()+ "\","+ "\"errorUserMessage\": \""+ cordova.getActivity().getResources().getString(error.getUserActionMessageId())+ "\""+ "}";
+  try {
+    return new JSONObject(response);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return new JSONObject();
+}
