@@ -1,0 +1,20 @@
+{
+  if (error instanceof FacebookServiceException) {
+    return getFacebookRequestErrorResponse(((FacebookServiceException)error).getRequestError());
+  }
+  String response="{";
+  if (error instanceof FacebookDialogException) {
+    response+="\"errorCode\": \"" + ((FacebookDialogException)error).getErrorCode() + "\",";
+  }
+  if (message == null) {
+    message=error.getMessage();
+  }
+  response+="\"errorMessage\": \"" + message + "\"}";
+  try {
+    return new JSONObject(response);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return new JSONObject();
+}

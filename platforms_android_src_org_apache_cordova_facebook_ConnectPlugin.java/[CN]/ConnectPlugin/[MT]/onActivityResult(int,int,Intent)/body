@@ -5,7 +5,7 @@
     uiHelper.onActivityResult(requestCode,resultCode,intent,new FacebookDialog.Callback(){
       @Override public void onError(      FacebookDialog.PendingCall pendingCall,      Exception error,      Bundle data){
         Log.e("Activity",String.format("Error: %s",error.toString()));
-        handleError(error);
+        handleError(error,showDialogContext);
       }
       @Override public void onComplete(      FacebookDialog.PendingCall pendingCall,      Bundle data){
         Log.i("Activity","Success!");

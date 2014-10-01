@@ -1,11 +1,18 @@
 {
-  final Session session=Session.getActiveSession();
-  if (state.isOpened()) {
+  if (exception != null) {
     if (loginContext != null) {
-      getUserInfo(session);
+      handleError(exception,loginContext);
     }
- else     if (graphContext != null) {
-      makeGraphCall();
+  }
+ else {
+    final Session session=Session.getActiveSession();
+    if (state.isOpened()) {
+      if (loginContext != null) {
+        getUserInfo(session);
+      }
+ else       if (graphContext != null) {
+        makeGraphCall();
+      }
     }
   }
 }

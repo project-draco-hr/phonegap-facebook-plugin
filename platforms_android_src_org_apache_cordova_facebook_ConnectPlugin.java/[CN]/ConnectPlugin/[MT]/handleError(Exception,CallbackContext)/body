@@ -12,6 +12,6 @@
       errMsg="User cancelled dialog";
     }
   }
-  Log.e(TAG,errMsg);
-  showDialogContext.error(errMsg);
+  Log.e(TAG,exception.toString());
+  context.error(getErrorResponse(exception,errMsg));
 }

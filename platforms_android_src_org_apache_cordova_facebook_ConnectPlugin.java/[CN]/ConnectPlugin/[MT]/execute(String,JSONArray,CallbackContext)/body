@@ -185,7 +185,7 @@
     final OnCompleteListener dialogCallback=new OnCompleteListener(){
       @Override public void onComplete(      Bundle values,      FacebookException exception){
         if (exception != null) {
-          handleError(exception);
+          handleError(exception,showDialogContext);
         }
  else {
           handleSuccess(values);
