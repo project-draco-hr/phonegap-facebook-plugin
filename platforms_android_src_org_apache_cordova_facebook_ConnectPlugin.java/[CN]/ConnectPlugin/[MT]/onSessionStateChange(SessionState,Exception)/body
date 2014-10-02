@@ -1,8 +1,7 @@
 {
-  if (exception != null) {
-    if (loginContext != null) {
-      handleError(exception,loginContext);
-    }
+  if (exception != null && exception instanceof FacebookOperationCanceledException) {
+    Log.e(TAG,"exception:" + exception.toString());
+    handleError(exception,loginContext);
   }
  else {
     final Session session=Session.getActiveSession();
