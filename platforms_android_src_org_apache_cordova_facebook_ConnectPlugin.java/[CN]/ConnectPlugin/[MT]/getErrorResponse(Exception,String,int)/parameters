@@ -1,2 +1,3 @@
 Exception error
 String message
+int errorCode

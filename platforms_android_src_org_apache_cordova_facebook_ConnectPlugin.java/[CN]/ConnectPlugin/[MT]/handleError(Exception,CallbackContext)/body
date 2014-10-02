@@ -1,17 +1,13 @@
 {
   String errMsg="Facebook error: " + exception.getMessage();
+  int errorCode=INVALID_ERROR_CODE;
   if (exception instanceof FacebookOperationCanceledException) {
     errMsg="User cancelled dialog";
+    errorCode=4201;
   }
  else   if (exception instanceof FacebookDialogException) {
     errMsg="Dialog error: " + exception.getMessage();
   }
- else   if (exception instanceof FacebookServiceException) {
-    FacebookRequestError error=((FacebookServiceException)exception).getRequestError();
-    if (error.getErrorCode() == 4201) {
-      errMsg="User cancelled dialog";
-    }
-  }
   Log.e(TAG,exception.toString());
-  context.error(getErrorResponse(exception,errMsg));
+  context.error(getErrorResponse(exception,errMsg,errorCode));
 }

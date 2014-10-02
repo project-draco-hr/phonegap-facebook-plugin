@@ -4,7 +4,10 @@
   }
   String response="{";
   if (error instanceof FacebookDialogException) {
-    response+="\"errorCode\": \"" + ((FacebookDialogException)error).getErrorCode() + "\",";
+    errorCode=((FacebookDialogException)error).getErrorCode();
+  }
+  if (errorCode != INVALID_ERROR_CODE) {
+    response+="\"errorCode\": \"" + errorCode + "\",";
   }
   if (message == null) {
     message=error.getMessage();

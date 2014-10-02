@@ -1,5 +1,14 @@
 {
-  String response="{" + "\"errorCode\": \"" + error.getErrorCode() + "\","+ "\"errorType\": \""+ error.getErrorType()+ "\","+ "\"errorMessage\": \""+ error.getErrorMessage()+ "\","+ "\"errorUserMessage\": \""+ cordova.getActivity().getResources().getString(error.getUserActionMessageId())+ "\""+ "}";
+  String response="{" + "\"errorCode\": \"" + error.getErrorCode() + "\","+ "\"errorType\": \""+ error.getErrorType()+ "\","+ "\"errorMessage\": \""+ error.getErrorMessage()+ "\"";
+  int messageId=error.getUserActionMessageId();
+  String errorUserMessage=null;
+  if (messageId != 0) {
+    errorUserMessage=cordova.getActivity().getResources().getString(messageId);
+  }
+  if (errorUserMessage != null) {
+    response+=",\"errorUserMessage\": \"" + cordova.getActivity().getResources().getString(error.getUserActionMessageId()) + "\"";
+  }
+  response+="}";
   try {
     return new JSONObject(response);
   }
