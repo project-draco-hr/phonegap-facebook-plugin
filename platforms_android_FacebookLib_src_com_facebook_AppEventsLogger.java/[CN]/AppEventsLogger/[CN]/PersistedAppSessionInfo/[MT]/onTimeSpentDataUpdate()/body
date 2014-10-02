@@ -1,0 +1,6 @@
+{
+  if (!hasChanges) {
+    hasChanges=true;
+    backgroundExecutor.schedule(appSessionInfoFlushRunnable,FLUSH_APP_SESSION_INFO_IN_SECONDS,TimeUnit.SECONDS);
+  }
+}

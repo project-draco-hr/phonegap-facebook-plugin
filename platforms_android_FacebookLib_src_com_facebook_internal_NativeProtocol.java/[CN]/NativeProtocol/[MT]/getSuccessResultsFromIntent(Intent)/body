@@ -1,0 +1,8 @@
+{
+  int version=getProtocolVersionFromIntent(resultIntent);
+  Bundle extras=resultIntent.getExtras();
+  if (!isVersionCompatibleWithBucketedIntent(version) || extras == null) {
+    return extras;
+  }
+  return extras.getBundle(EXTRA_PROTOCOL_METHOD_RESULTS);
+}

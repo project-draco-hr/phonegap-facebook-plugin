@@ -1,3 +1,0 @@
-{
-  return String.format(REST_URL_FORMAT,Settings.getFacebookDomain());
-}

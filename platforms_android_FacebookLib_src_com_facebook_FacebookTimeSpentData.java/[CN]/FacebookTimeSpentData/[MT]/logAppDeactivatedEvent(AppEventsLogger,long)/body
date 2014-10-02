@@ -1,0 +1,8 @@
+{
+  Bundle eventParams=new Bundle();
+  eventParams.putInt(AppEventsConstants.EVENT_NAME_SESSION_INTERRUPTIONS,interruptionCount);
+  eventParams.putInt(AppEventsConstants.EVENT_NAME_TIME_BETWEEN_SESSIONS,getQuantaIndex(interruptionDurationMillis));
+  eventParams.putString(AppEventsConstants.EVENT_PARAM_SOURCE_APPLICATION,firstOpenSourceApplication);
+  logger.logEvent(AppEventsConstants.EVENT_NAME_DEACTIVATED_APP,(millisecondsSpentInSession / DateUtils.SECOND_IN_MILLIS),eventParams);
+  resetSession();
+}

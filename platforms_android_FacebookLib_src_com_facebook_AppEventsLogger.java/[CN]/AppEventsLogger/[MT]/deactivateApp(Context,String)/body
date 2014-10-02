@@ -1,0 +1,14 @@
+{
+  if (context == null || applicationId == null) {
+    throw new IllegalArgumentException("Both context and applicationId must be non-null");
+  }
+  resetSourceApplication();
+  final AppEventsLogger logger=new AppEventsLogger(context,applicationId,null);
+  final long eventTime=System.currentTimeMillis();
+  backgroundExecutor.execute(new Runnable(){
+    @Override public void run(){
+      logger.logAppSessionSuspendEvent(eventTime);
+    }
+  }
+);
+}

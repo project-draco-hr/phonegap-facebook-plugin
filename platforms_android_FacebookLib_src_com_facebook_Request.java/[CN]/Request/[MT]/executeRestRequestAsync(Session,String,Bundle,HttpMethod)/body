@@ -1,3 +1,0 @@
-{
-  return newRestRequest(session,restMethod,parameters,httpMethod).executeAsync();
-}

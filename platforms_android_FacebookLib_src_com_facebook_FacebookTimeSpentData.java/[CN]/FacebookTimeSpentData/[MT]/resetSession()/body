@@ -1,0 +1,7 @@
+{
+  isAppActive=false;
+  lastResumeTime=FIRST_TIME_LOAD_RESUME_TIME;
+  lastSuspendTime=FIRST_TIME_LOAD_RESUME_TIME;
+  interruptionCount=0;
+  millisecondsSpentInSession=0;
+}

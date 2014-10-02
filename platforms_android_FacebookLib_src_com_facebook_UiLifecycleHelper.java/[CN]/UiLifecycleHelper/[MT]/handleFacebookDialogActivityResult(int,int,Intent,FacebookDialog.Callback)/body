@@ -6,15 +6,7 @@
     cancelPendingAppCall(facebookDialogCallback);
     return true;
   }
-  String callIdString=data.getStringExtra(NativeProtocol.EXTRA_PROTOCOL_CALL_ID);
-  UUID callId=null;
-  if (callIdString != null) {
-    try {
-      callId=UUID.fromString(callIdString);
-    }
- catch (    IllegalArgumentException exception) {
-    }
-  }
+  UUID callId=NativeProtocol.getCallIdFromIntent(data);
   if (callId != null && pendingFacebookDialogCall.getCallId().equals(callId)) {
     FacebookDialog.handleActivityResult(activity,pendingFacebookDialogCall,requestCode,data,facebookDialogCallback);
   }

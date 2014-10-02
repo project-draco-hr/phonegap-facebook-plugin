@@ -1,0 +1,10 @@
+{
+  restoreAppSessionInformation(context);
+  FacebookTimeSpentData result=null;
+  result=appSessionInfoMap.get(accessTokenAppId);
+  if (result == null) {
+    result=new FacebookTimeSpentData();
+    appSessionInfoMap.put(accessTokenAppId,result);
+  }
+  return result;
+}
