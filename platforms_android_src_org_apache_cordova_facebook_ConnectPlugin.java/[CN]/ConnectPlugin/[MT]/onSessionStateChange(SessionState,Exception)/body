@@ -1,6 +1,6 @@
 {
   Log.d(TAG,"State is: " + state);
-  if (state == SessionState.OPENED) {
+  if (state.isOpened()) {
     if (loginContext != null) {
       Session session=Session.getActiveSession();
       getUserInfo(session,new Request.GraphUserCallback(){
