@@ -16,7 +16,7 @@
 );
     session.openForRead(openRequest);
   }
-  if (session != null && session.isOpened()) {
+  if (checkActiveSession(session)) {
     onSessionStateChange(session.getState(),null);
   }
   super.initialize(cordova,webView);
