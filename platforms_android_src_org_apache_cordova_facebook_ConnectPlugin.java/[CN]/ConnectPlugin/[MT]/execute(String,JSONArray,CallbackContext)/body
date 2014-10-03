@@ -276,8 +276,6 @@
     for (int i=0; i < arr.length(); i++) {
       permissionsList.add(arr.getString(i));
     }
-    final Session session=Session.getActiveSession();
-    final ConnectPlugin me=this;
     boolean publishPermissions=false;
     boolean readPermissions=false;
     if (permissionsList.size() > 0) {
@@ -296,12 +294,13 @@
         graphContext.error("Cannot ask for both read and publish permissions.");
       }
  else {
+        Session session=Session.getActiveSession();
         if (session.getPermissions().containsAll(permissionsList)) {
           makeGraphCall();
         }
  else {
           Session.NewPermissionsRequest newPermissionsRequest=new Session.NewPermissionsRequest(cordova.getActivity(),permissionsList);
-          cordova.setActivityResultCallback(me);
+          cordova.setActivityResultCallback(this);
           if (publishPermissions) {
             session.requestNewPublishPermissions(newPermissionsRequest);
           }
