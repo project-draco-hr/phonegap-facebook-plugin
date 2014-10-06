@@ -1,0 +1,32 @@
+{
+  applicationId=request.getApplicationId();
+  Bundle parameters=new Bundle();
+  if (!Utility.isNullOrEmpty(request.getPermissions())) {
+    String scope=TextUtils.join(",",request.getPermissions());
+    parameters.putString(ServerProtocol.DIALOG_PARAM_SCOPE,scope);
+    addLoggingExtra(ServerProtocol.DIALOG_PARAM_SCOPE,scope);
+  }
+  SessionDefaultAudience audience=request.getDefaultAudience();
+  parameters.putString(ServerProtocol.DIALOG_PARAM_DEFAULT_AUDIENCE,audience.getNativeProtocolAudience());
+  String previousToken=request.getPreviousAccessToken();
+  if (!Utility.isNullOrEmpty(previousToken) && (previousToken.equals(loadCookieToken()))) {
+    parameters.putString(ServerProtocol.DIALOG_PARAM_ACCESS_TOKEN,previousToken);
+    addLoggingExtra(ServerProtocol.DIALOG_PARAM_ACCESS_TOKEN,AppEventsConstants.EVENT_PARAM_VALUE_YES);
+  }
+ else {
+    Utility.clearFacebookCookies(context);
+    addLoggingExtra(ServerProtocol.DIALOG_PARAM_ACCESS_TOKEN,AppEventsConstants.EVENT_PARAM_VALUE_NO);
+  }
+  WebDialog.OnCompleteListener listener=new WebDialog.OnCompleteListener(){
+    @Override public void onComplete(    Bundle values,    FacebookException error){
+      onWebDialogComplete(request,values,error);
+    }
+  }
+;
+  e2e=getE2E();
+  addLoggingExtra(ServerProtocol.DIALOG_PARAM_E2E,e2e);
+  WebDialog.Builder builder=new AuthDialogBuilder(getStartActivityDelegate().getActivityContext(),applicationId,parameters).setE2E(e2e).setIsRerequest(request.isRerequest()).setOnCompleteListener(listener);
+  loginDialog=builder.build();
+  loginDialog.show();
+  return true;
+}

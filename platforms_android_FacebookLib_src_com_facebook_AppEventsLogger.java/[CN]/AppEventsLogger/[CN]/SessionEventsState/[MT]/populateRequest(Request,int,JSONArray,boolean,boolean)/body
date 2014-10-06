@@ -1,0 +1,27 @@
+{
+  GraphObject publishParams=GraphObject.Factory.create();
+  publishParams.setProperty("event","CUSTOM_APP_EVENTS");
+  if (numSkippedEventsDueToFullBuffer > 0) {
+    publishParams.setProperty("num_skipped_events",numSkipped);
+  }
+  if (includeAttribution) {
+    Utility.setAppEventAttributionParameters(publishParams,attributionIdentifiers,hashedDeviceAndAppId,limitEventUsage);
+  }
+  try {
+    Utility.setAppEventExtendedDeviceInfoParameters(publishParams,applicationContext);
+  }
+ catch (  Exception e) {
+  }
+  publishParams.setProperty("application_package_name",packageName);
+  request.setGraphObject(publishParams);
+  Bundle requestParameters=request.getParameters();
+  if (requestParameters == null) {
+    requestParameters=new Bundle();
+  }
+  String jsonString=events.toString();
+  if (jsonString != null) {
+    requestParameters.putByteArray("custom_events_file",getStringAsByteArray(jsonString));
+    request.setTag(jsonString);
+  }
+  request.setParameters(requestParameters);
+}

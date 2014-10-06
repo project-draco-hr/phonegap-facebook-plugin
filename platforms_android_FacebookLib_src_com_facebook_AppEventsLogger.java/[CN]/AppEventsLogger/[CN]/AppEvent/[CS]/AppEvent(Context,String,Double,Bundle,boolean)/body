@@ -1,0 +1,42 @@
+{
+  try {
+    validateIdentifier(eventName);
+    this.name=eventName;
+    isImplicit=isImplicitlyLogged;
+    jsonObject=new JSONObject();
+    jsonObject.put("_eventName",eventName);
+    jsonObject.put("_logTime",System.currentTimeMillis() / 1000);
+    jsonObject.put("_ui",Utility.getActivityName(context));
+    if (valueToSum != null) {
+      jsonObject.put("_valueToSum",valueToSum.doubleValue());
+    }
+    if (isImplicit) {
+      jsonObject.put("_implicitlyLogged","1");
+    }
+    String appVersion=Settings.getAppVersion();
+    if (appVersion != null) {
+      jsonObject.put("_appVersion",appVersion);
+    }
+    if (parameters != null) {
+      for (      String key : parameters.keySet()) {
+        validateIdentifier(key);
+        Object value=parameters.get(key);
+        if (!(value instanceof String) && !(value instanceof Number)) {
+          throw new FacebookException(String.format("Parameter value '%s' for key '%s' should be a string or a numeric type.",value,key));
+        }
+        jsonObject.put(key,value.toString());
+      }
+    }
+    if (!isImplicit) {
+      Logger.log(LoggingBehavior.APP_EVENTS,"AppEvents","Created app event '%s'",jsonObject.toString());
+    }
+  }
+ catch (  JSONException jsonException) {
+    Logger.log(LoggingBehavior.APP_EVENTS,"AppEvents","JSON encoding for app event failed: '%s'",jsonException.toString());
+    jsonObject=null;
+  }
+catch (  FacebookException e) {
+    Logger.log(LoggingBehavior.APP_EVENTS,"AppEvents","Invalid app event name or parameter:",e.toString());
+    jsonObject=null;
+  }
+}

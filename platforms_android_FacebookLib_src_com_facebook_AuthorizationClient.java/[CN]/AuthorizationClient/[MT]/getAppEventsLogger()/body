@@ -1,0 +1,6 @@
+{
+  if (appEventsLogger == null || !appEventsLogger.getApplicationId().equals(pendingRequest.getApplicationId())) {
+    appEventsLogger=AppEventsLogger.newLogger(context,pendingRequest.getApplicationId());
+  }
+  return appEventsLogger;
+}

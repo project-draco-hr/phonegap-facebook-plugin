@@ -1,0 +1,29 @@
+{
+  if (pluginResult == null) {
+    return jsPayloadOrCallbackId.length() + 1;
+  }
+  int statusLen=String.valueOf(pluginResult.getStatus()).length();
+  int ret=2 + statusLen + 1+ jsPayloadOrCallbackId.length()+ 1;
+switch (pluginResult.getMessageType()) {
+case PluginResult.MESSAGE_TYPE_BOOLEAN:
+case PluginResult.MESSAGE_TYPE_NULL:
+    ret+=1;
+  break;
+case PluginResult.MESSAGE_TYPE_NUMBER:
+ret+=1 + pluginResult.getMessage().length();
+break;
+case PluginResult.MESSAGE_TYPE_STRING:
+ret+=1 + pluginResult.getStrMessage().length();
+break;
+case PluginResult.MESSAGE_TYPE_BINARYSTRING:
+ret+=1 + pluginResult.getMessage().length();
+break;
+case PluginResult.MESSAGE_TYPE_ARRAYBUFFER:
+ret+=1 + pluginResult.getMessage().length();
+break;
+case PluginResult.MESSAGE_TYPE_JSON:
+default :
+ret+=pluginResult.getMessage().length();
+}
+return ret;
+}

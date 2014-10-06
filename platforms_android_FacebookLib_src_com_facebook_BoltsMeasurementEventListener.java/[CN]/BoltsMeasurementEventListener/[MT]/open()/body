@@ -1,0 +1,4 @@
+{
+  LocalBroadcastManager broadcastManager=LocalBroadcastManager.getInstance(applicationContext);
+  broadcastManager.registerReceiver(this,new IntentFilter(MEASUREMENT_EVENT_NOTIFICATION_NAME));
+}

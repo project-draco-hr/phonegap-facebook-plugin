@@ -1,0 +1,8 @@
+{
+  super.setOnClickListener(new LoginClickListener());
+  setButtonText();
+  if (!isInEditMode()) {
+    sessionTracker=new SessionTracker(getContext(),new LoginButtonCallback(),null,false);
+    fetchUserInfo();
+  }
+}

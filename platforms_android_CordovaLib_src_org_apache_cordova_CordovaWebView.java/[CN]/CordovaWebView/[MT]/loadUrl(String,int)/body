@@ -1,0 +1,9 @@
+{
+  String initUrl=this.getProperty("url",null);
+  if (initUrl == null) {
+    this.loadUrlIntoView(url,time);
+  }
+ else {
+    this.loadUrlIntoView(initUrl);
+  }
+}

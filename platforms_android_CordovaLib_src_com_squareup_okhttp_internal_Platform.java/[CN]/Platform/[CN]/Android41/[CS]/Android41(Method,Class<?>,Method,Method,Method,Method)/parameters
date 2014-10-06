@@ -1,0 +1,6 @@
+Method getMtu
+Class<?> openSslSocketClass
+Method setUseSessionTickets
+Method setHostname
+Method setNpnProtocols
+Method getNpnSelectedProtocol

@@ -1,0 +1,78 @@
+{
+  this.setInitialScale(0);
+  this.setVerticalScrollBarEnabled(false);
+  if (shouldRequestFocusOnInit()) {
+    this.requestFocusFromTouch();
+  }
+  WebSettings settings=this.getSettings();
+  settings.setJavaScriptEnabled(true);
+  settings.setJavaScriptCanOpenWindowsAutomatically(true);
+  settings.setLayoutAlgorithm(LayoutAlgorithm.NORMAL);
+  try {
+    Method gingerbread_getMethod=WebSettings.class.getMethod("setNavDump",new Class[]{boolean.class});
+    String manufacturer=android.os.Build.MANUFACTURER;
+    Log.d(TAG,"CordovaWebView is running on device made by: " + manufacturer);
+    if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB && android.os.Build.MANUFACTURER.contains("HTC")) {
+      gingerbread_getMethod.invoke(settings,true);
+    }
+  }
+ catch (  NoSuchMethodException e) {
+    Log.d(TAG,"We are on a modern version of Android, we will deprecate HTC 2.3 devices in 2.8");
+  }
+catch (  IllegalArgumentException e) {
+    Log.d(TAG,"Doing the NavDump failed with bad arguments");
+  }
+catch (  IllegalAccessException e) {
+    Log.d(TAG,"This should never happen: IllegalAccessException means this isn't Android anymore");
+  }
+catch (  InvocationTargetException e) {
+    Log.d(TAG,"This should never happen: InvocationTargetException means this isn't Android anymore.");
+  }
+  settings.setSaveFormData(false);
+  settings.setSavePassword(false);
+  if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)   Level16Apis.enableUniversalAccess(settings);
+  String databasePath=this.cordova.getActivity().getApplicationContext().getDir("database",Context.MODE_PRIVATE).getPath();
+  settings.setDatabaseEnabled(true);
+  settings.setDatabasePath(databasePath);
+  try {
+    final String packageName=this.cordova.getActivity().getPackageName();
+    final PackageManager pm=this.cordova.getActivity().getPackageManager();
+    ApplicationInfo appInfo;
+    appInfo=pm.getApplicationInfo(packageName,PackageManager.GET_META_DATA);
+    if ((appInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0 && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+      setWebContentsDebuggingEnabled(true);
+    }
+  }
+ catch (  IllegalArgumentException e) {
+    Log.d(TAG,"You have one job! To turn on Remote Web Debugging! YOU HAVE FAILED! ");
+    e.printStackTrace();
+  }
+catch (  NameNotFoundException e) {
+    Log.d(TAG,"This should never happen: Your application's package can't be found.");
+    e.printStackTrace();
+  }
+  settings.setGeolocationDatabasePath(databasePath);
+  settings.setDomStorageEnabled(true);
+  settings.setGeolocationEnabled(true);
+  settings.setAppCacheMaxSize(5 * 1048576);
+  String pathToCache=this.cordova.getActivity().getApplicationContext().getDir("database",Context.MODE_PRIVATE).getPath();
+  settings.setAppCachePath(pathToCache);
+  settings.setAppCacheEnabled(true);
+  this.updateUserAgentString();
+  IntentFilter intentFilter=new IntentFilter();
+  intentFilter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
+  if (this.receiver == null) {
+    this.receiver=new BroadcastReceiver(){
+      @Override public void onReceive(      Context context,      Intent intent){
+        updateUserAgentString();
+      }
+    }
+;
+    this.cordova.getActivity().registerReceiver(this.receiver,intentFilter);
+  }
+  pluginManager=new PluginManager(this,this.cordova);
+  jsMessageQueue=new NativeToJsMessageQueue(this,cordova);
+  exposedJsApi=new ExposedJsApi(pluginManager,jsMessageQueue);
+  resourceApi=new CordovaResourceApi(this.getContext(),pluginManager);
+  exposeJsInterface();
+}

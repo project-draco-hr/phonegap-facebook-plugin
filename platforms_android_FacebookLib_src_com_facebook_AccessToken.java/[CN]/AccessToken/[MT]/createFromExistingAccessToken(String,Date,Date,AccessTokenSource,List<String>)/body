@@ -1,0 +1,12 @@
+{
+  if (expirationTime == null) {
+    expirationTime=DEFAULT_EXPIRATION_TIME;
+  }
+  if (lastRefreshTime == null) {
+    lastRefreshTime=DEFAULT_LAST_REFRESH_TIME;
+  }
+  if (accessTokenSource == null) {
+    accessTokenSource=DEFAULT_ACCESS_TOKEN_SOURCE;
+  }
+  return new AccessToken(accessToken,expirationTime,permissions,null,accessTokenSource,lastRefreshTime);
+}

@@ -1,0 +1,12 @@
+{
+  super(url);
+  this.followProtocolRedirects=client.getFollowProtocolRedirects();
+  this.failedRoutes=failedRoutes;
+  this.requestedProxy=client.getProxy();
+  this.proxySelector=client.getProxySelector();
+  this.cookieHandler=client.getCookieHandler();
+  this.connectionPool=client.getConnectionPool();
+  this.sslSocketFactory=client.getSslSocketFactory();
+  this.hostnameVerifier=client.getHostnameVerifier();
+  this.responseCache=responseCache;
+}

@@ -1,0 +1,5 @@
+{
+  AccessToken currentToken=getTokenInfo();
+  setTokenInfo(new AccessToken(currentToken.getToken(),new Date(),currentToken.getPermissions(),currentToken.getDeclinedPermissions(),AccessTokenSource.TEST_USER,new Date(0)));
+  setLastAttemptedTokenExtendDate(new Date(0));
+}

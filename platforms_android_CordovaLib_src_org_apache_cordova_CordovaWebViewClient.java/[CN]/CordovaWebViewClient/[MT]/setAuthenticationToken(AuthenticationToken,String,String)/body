@@ -1,0 +1,9 @@
+{
+  if (host == null) {
+    host="";
+  }
+  if (realm == null) {
+    realm="";
+  }
+  this.authenticationTokens.put(host.concat(realm),authenticationToken);
+}

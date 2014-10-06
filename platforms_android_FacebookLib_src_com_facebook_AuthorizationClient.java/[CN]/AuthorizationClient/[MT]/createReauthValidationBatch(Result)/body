@@ -1,0 +1,64 @@
+{
+  final ArrayList<String> fbids=new ArrayList<String>();
+  final ArrayList<String> grantedPermissions=new ArrayList<String>();
+  final ArrayList<String> declinedPermissions=new ArrayList<String>();
+  final String newToken=pendingResult.token.getToken();
+  Request.Callback meCallback=new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      try {
+        GraphUser user=response.getGraphObjectAs(GraphUser.class);
+        if (user != null) {
+          fbids.add(user.getId());
+        }
+      }
+ catch (      Exception ex) {
+      }
+    }
+  }
+;
+  String validateSameFbidAsToken=pendingRequest.getPreviousAccessToken();
+  Request requestCurrentTokenMe=createGetProfileIdRequest(validateSameFbidAsToken);
+  requestCurrentTokenMe.setCallback(meCallback);
+  Request requestNewTokenMe=createGetProfileIdRequest(newToken);
+  requestNewTokenMe.setCallback(meCallback);
+  Request requestCurrentTokenPermissions=createGetPermissionsRequest(validateSameFbidAsToken);
+  requestCurrentTokenPermissions.setCallback(new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      try {
+        Session.PermissionsPair permissionsPair=Session.handlePermissionResponse(response);
+        if (permissionsPair != null) {
+          grantedPermissions.addAll(permissionsPair.getGrantedPermissions());
+          declinedPermissions.addAll(permissionsPair.getDeclinedPermissions());
+        }
+      }
+ catch (      Exception ex) {
+      }
+    }
+  }
+);
+  RequestBatch batch=new RequestBatch(requestCurrentTokenMe,requestNewTokenMe,requestCurrentTokenPermissions);
+  batch.setBatchApplicationId(pendingRequest.getApplicationId());
+  batch.addCallback(new RequestBatch.Callback(){
+    @Override public void onBatchCompleted(    RequestBatch batch){
+      try {
+        Result result=null;
+        if (fbids.size() == 2 && fbids.get(0) != null && fbids.get(1) != null && fbids.get(0).equals(fbids.get(1))) {
+          AccessToken tokenWithPermissions=AccessToken.createFromTokenWithRefreshedPermissions(pendingResult.token,grantedPermissions,declinedPermissions);
+          result=Result.createTokenResult(pendingRequest,tokenWithPermissions);
+        }
+ else {
+          result=Result.createErrorResult(pendingRequest,"User logged in as different Facebook user.",null);
+        }
+        complete(result);
+      }
+ catch (      Exception ex) {
+        complete(Result.createErrorResult(pendingRequest,"Caught exception",ex.getMessage()));
+      }
+ finally {
+        notifyBackgroundProcessingStop();
+      }
+    }
+  }
+);
+  return batch;
+}

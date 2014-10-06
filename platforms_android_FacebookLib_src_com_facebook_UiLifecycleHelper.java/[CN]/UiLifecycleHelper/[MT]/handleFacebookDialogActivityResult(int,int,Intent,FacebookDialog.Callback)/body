@@ -1,0 +1,18 @@
+{
+  if (pendingFacebookDialogCall == null || pendingFacebookDialogCall.getRequestCode() != requestCode) {
+    return false;
+  }
+  if (data == null) {
+    cancelPendingAppCall(facebookDialogCallback);
+    return true;
+  }
+  UUID callId=NativeProtocol.getCallIdFromIntent(data);
+  if (callId != null && pendingFacebookDialogCall.getCallId().equals(callId)) {
+    FacebookDialog.handleActivityResult(activity,pendingFacebookDialogCall,requestCode,data,facebookDialogCallback);
+  }
+ else {
+    cancelPendingAppCall(facebookDialogCallback);
+  }
+  pendingFacebookDialogCall=null;
+  return true;
+}

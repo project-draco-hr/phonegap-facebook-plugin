@@ -1,9 +1,0 @@
-{
-  View view=createGraphObjectView(null);
-  ImageView picture=(ImageView)view.findViewById(R.id.com_facebook_picker_image);
-  if (picture == null) {
-    return null;
-  }
-  ViewGroup.LayoutParams layoutParams=picture.getLayoutParams();
-  return String.format("picture.height(%d).width(%d)",layoutParams.height,layoutParams.width);
-}

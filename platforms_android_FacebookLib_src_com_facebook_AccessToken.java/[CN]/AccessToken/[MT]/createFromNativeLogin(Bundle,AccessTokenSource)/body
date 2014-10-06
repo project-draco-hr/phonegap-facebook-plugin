@@ -1,0 +1,6 @@
+{
+  Date expires=getBundleLongAsDate(bundle,NativeProtocol.EXTRA_EXPIRES_SECONDS_SINCE_EPOCH,new Date(0));
+  ArrayList<String> permissions=bundle.getStringArrayList(NativeProtocol.EXTRA_PERMISSIONS);
+  String token=bundle.getString(NativeProtocol.EXTRA_ACCESS_TOKEN);
+  return createNew(permissions,null,token,expires,source);
+}

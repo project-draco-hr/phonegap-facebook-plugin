@@ -1,4 +1,0 @@
-{
-  AppEvent event=new AppEvent(eventName,valueToSum,parameters,isImplicitlyLogged);
-  logEvent(context,event,accessTokenAppId);
-}

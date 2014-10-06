@@ -1,0 +1,17 @@
+{
+  if (CordovaResourceApi.getUriType(uri) != CordovaResourceApi.URI_TYPE_ASSET) {
+    return false;
+  }
+  if (uri.getQuery() != null || uri.getFragment() != null) {
+    return true;
+  }
+  if (!uri.toString().contains("%")) {
+    return false;
+  }
+switch (android.os.Build.VERSION.SDK_INT) {
+case android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH:
+case android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1:
+    return true;
+}
+return false;
+}

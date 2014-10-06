@@ -1,0 +1,26 @@
+{
+  Log.d(TAG,"State is: " + state);
+  if (state.isOpened()) {
+    if (loginContext != null) {
+      Session session=Session.getActiveSession();
+      getUserInfo(session,new Request.GraphUserCallback(){
+        @Override public void onCompleted(        GraphUser user,        Response response){
+          if (loginContext != null) {
+            GraphObject graphObject=response.getGraphObject();
+            Log.d(TAG,"returning login object " + graphObject.getInnerJSONObject().toString());
+            userID=user.getId();
+            loginContext.success(getResponse());
+            loginContext=null;
+          }
+ else {
+            userID=user.getId();
+          }
+        }
+      }
+);
+    }
+ else     if (graphContext != null) {
+      makeGraphCall();
+    }
+  }
+}

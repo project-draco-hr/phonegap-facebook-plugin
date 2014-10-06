@@ -1,0 +1,11 @@
+{
+  if (context == null) {
+    return "null";
+  }
+ else   if (context == context.getApplicationContext()) {
+    return "unknown";
+  }
+ else {
+    return context.getClass().getSimpleName();
+  }
+}

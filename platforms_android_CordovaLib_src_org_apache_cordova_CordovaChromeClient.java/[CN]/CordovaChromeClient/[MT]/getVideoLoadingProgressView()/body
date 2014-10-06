@@ -1,0 +1,16 @@
+{
+  if (mVideoProgressView == null) {
+    LinearLayout layout=new LinearLayout(this.appView.getContext());
+    layout.setOrientation(LinearLayout.VERTICAL);
+    RelativeLayout.LayoutParams layoutParams=new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+    layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+    layout.setLayoutParams(layoutParams);
+    ProgressBar bar=new ProgressBar(this.appView.getContext());
+    LinearLayout.LayoutParams barLayoutParams=new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+    barLayoutParams.gravity=Gravity.CENTER;
+    bar.setLayoutParams(barLayoutParams);
+    layout.addView(bar);
+    mVideoProgressView=layout;
+  }
+  return mVideoProgressView;
+}

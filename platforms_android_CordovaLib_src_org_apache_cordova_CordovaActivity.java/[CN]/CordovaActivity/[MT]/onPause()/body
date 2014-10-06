@@ -1,0 +1,14 @@
+{
+  super.onPause();
+  LOG.d(TAG,"Paused the application!");
+  if (this.activityState == ACTIVITY_EXITING) {
+    return;
+  }
+  if (this.appView == null) {
+    return;
+  }
+ else {
+    this.appView.handlePause(this.keepRunning);
+  }
+  this.removeSplashScreen();
+}

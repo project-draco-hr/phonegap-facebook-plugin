@@ -1,0 +1,46 @@
+{
+  try {
+    if (singleResult.has(CODE_KEY)) {
+      int responseCode=singleResult.getInt(CODE_KEY);
+      Object body=Utility.getStringPropertyAsJSON(singleResult,BODY_KEY,Response.NON_JSON_RESPONSE_PROPERTY);
+      if (body != null && body instanceof JSONObject) {
+        JSONObject jsonBody=(JSONObject)body;
+        String errorType=null;
+        String errorMessage=null;
+        String errorUserMessage=null;
+        String errorUserTitle=null;
+        boolean errorIsTransient=false;
+        int errorCode=INVALID_ERROR_CODE;
+        int errorSubCode=INVALID_ERROR_CODE;
+        boolean hasError=false;
+        if (jsonBody.has(ERROR_KEY)) {
+          JSONObject error=(JSONObject)Utility.getStringPropertyAsJSON(jsonBody,ERROR_KEY,null);
+          errorType=error.optString(ERROR_TYPE_FIELD_KEY,null);
+          errorMessage=error.optString(ERROR_MESSAGE_FIELD_KEY,null);
+          errorCode=error.optInt(ERROR_CODE_FIELD_KEY,INVALID_ERROR_CODE);
+          errorSubCode=error.optInt(ERROR_SUB_CODE_KEY,INVALID_ERROR_CODE);
+          errorUserMessage=error.optString(ERROR_USER_MSG_KEY,null);
+          errorUserTitle=error.optString(ERROR_USER_TITLE_KEY,null);
+          errorIsTransient=error.optBoolean(ERROR_IS_TRANSIENT_KEY,false);
+          hasError=true;
+        }
+ else         if (jsonBody.has(ERROR_CODE_KEY) || jsonBody.has(ERROR_MSG_KEY) || jsonBody.has(ERROR_REASON_KEY)) {
+          errorType=jsonBody.optString(ERROR_REASON_KEY,null);
+          errorMessage=jsonBody.optString(ERROR_MSG_KEY,null);
+          errorCode=jsonBody.optInt(ERROR_CODE_KEY,INVALID_ERROR_CODE);
+          errorSubCode=jsonBody.optInt(ERROR_SUB_CODE_KEY,INVALID_ERROR_CODE);
+          hasError=true;
+        }
+        if (hasError) {
+          return new FacebookRequestError(responseCode,errorCode,errorSubCode,errorType,errorMessage,errorUserTitle,errorUserMessage,errorIsTransient,jsonBody,singleResult,batchResult,connection);
+        }
+      }
+      if (!HTTP_RANGE_SUCCESS.contains(responseCode)) {
+        return new FacebookRequestError(responseCode,INVALID_ERROR_CODE,INVALID_ERROR_CODE,null,null,null,null,false,singleResult.has(BODY_KEY) ? (JSONObject)Utility.getStringPropertyAsJSON(singleResult,BODY_KEY,Response.NON_JSON_RESPONSE_PROPERTY) : null,singleResult,batchResult,connection);
+      }
+    }
+  }
+ catch (  JSONException e) {
+  }
+  return null;
+}

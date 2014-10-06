@@ -1,0 +1,11 @@
+{
+  String sDCardStatus=Environment.getExternalStorageState();
+  boolean status;
+  if (sDCardStatus.equals(Environment.MEDIA_MOUNTED)) {
+    status=true;
+  }
+ else {
+    status=false;
+  }
+  return status;
+}

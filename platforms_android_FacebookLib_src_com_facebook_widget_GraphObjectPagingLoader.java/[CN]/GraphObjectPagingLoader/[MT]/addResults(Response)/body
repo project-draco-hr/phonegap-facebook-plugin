@@ -1,0 +1,26 @@
+{
+  SimpleGraphObjectCursor<T> cursorToModify=(cursor == null || !appendResults) ? new SimpleGraphObjectCursor<T>() : new SimpleGraphObjectCursor<T>(cursor);
+  PagedResults result=response.getGraphObjectAs(PagedResults.class);
+  boolean fromCache=response.getIsFromCache();
+  GraphObjectList<T> data=result.getData().castToListOf(graphObjectClass);
+  boolean haveData=data.size() > 0;
+  if (haveData) {
+    nextRequest=response.getRequestForPagedResults(Response.PagingDirection.NEXT);
+    cursorToModify.addGraphObjects(data,fromCache);
+    if (nextRequest != null) {
+      cursorToModify.setMoreObjectsAvailable(true);
+    }
+ else {
+      cursorToModify.setMoreObjectsAvailable(false);
+    }
+  }
+  if (!haveData) {
+    cursorToModify.setMoreObjectsAvailable(false);
+    cursorToModify.setFromCache(fromCache);
+    nextRequest=null;
+  }
+  if (!fromCache) {
+    skipRoundtripIfCached=false;
+  }
+  deliverResult(cursorToModify);
+}

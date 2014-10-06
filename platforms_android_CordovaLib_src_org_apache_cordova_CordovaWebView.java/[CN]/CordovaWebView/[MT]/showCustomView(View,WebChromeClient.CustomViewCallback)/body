@@ -1,0 +1,14 @@
+{
+  Log.d(TAG,"showing Custom View");
+  if (mCustomView != null) {
+    callback.onCustomViewHidden();
+    return;
+  }
+  mCustomView=view;
+  mCustomViewCallback=callback;
+  ViewGroup parent=(ViewGroup)this.getParent();
+  parent.addView(view,COVER_SCREEN_GRAVITY_CENTER);
+  this.setVisibility(View.GONE);
+  parent.setVisibility(View.VISIBLE);
+  parent.bringToFront();
+}

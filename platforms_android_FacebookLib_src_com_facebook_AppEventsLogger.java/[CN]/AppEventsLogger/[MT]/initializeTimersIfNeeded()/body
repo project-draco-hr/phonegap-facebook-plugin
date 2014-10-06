@@ -1,0 +1,32 @@
+{
+synchronized (staticLock) {
+    if (backgroundExecutor != null) {
+      return;
+    }
+    backgroundExecutor=new ScheduledThreadPoolExecutor(1);
+  }
+  final Runnable flushRunnable=new Runnable(){
+    @Override public void run(){
+      if (getFlushBehavior() != FlushBehavior.EXPLICIT_ONLY) {
+        flushAndWait(FlushReason.TIMER);
+      }
+    }
+  }
+;
+  backgroundExecutor.scheduleAtFixedRate(flushRunnable,0,FLUSH_PERIOD_IN_SECONDS,TimeUnit.SECONDS);
+  final Runnable attributionRecheckRunnable=new Runnable(){
+    @Override public void run(){
+      Set<String> applicationIds=new HashSet<String>();
+synchronized (staticLock) {
+        for (        AccessTokenAppIdPair accessTokenAppId : stateMap.keySet()) {
+          applicationIds.add(accessTokenAppId.getApplicationId());
+        }
+      }
+      for (      String applicationId : applicationIds) {
+        Utility.queryAppSettings(applicationId,true);
+      }
+    }
+  }
+;
+  backgroundExecutor.scheduleAtFixedRate(attributionRecheckRunnable,0,APP_SUPPORTS_ATTRIBUTION_ID_RECHECK_PERIOD_IN_SECONDS,TimeUnit.SECONDS);
+}

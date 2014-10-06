@@ -1,0 +1,6 @@
+{
+  if (this.appView == null) {
+    this.init();
+  }
+  this.appView.clearCache(true);
+}

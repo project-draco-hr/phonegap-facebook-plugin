@@ -1,0 +1,14 @@
+{
+  if (url.equals("about:blank") || url.startsWith("javascript:")) {
+    this.loadUrlNow(url);
+  }
+ else {
+    String initUrl=this.getProperty("url",null);
+    if (initUrl == null) {
+      this.loadUrlIntoView(url);
+    }
+ else {
+      this.loadUrlIntoView(initUrl);
+    }
+  }
+}

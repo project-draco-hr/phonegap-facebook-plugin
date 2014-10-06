@@ -1,0 +1,10 @@
+{
+  Object result="";
+  if (response != null) {
+    result=response.getProperty(propertyName);
+  }
+  if (!(result instanceof String)) {
+    result="";
+  }
+  return (String)result;
+}

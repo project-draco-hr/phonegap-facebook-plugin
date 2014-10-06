@@ -1,6 +1,0 @@
-{
-  if (loader != null) {
-    loader.startLoading(request,true);
-    onStartLoading(loader,request);
-  }
-}

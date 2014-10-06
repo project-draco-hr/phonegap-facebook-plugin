@@ -1,0 +1,31 @@
+{
+  ComponentName callingApplication=activity.getCallingActivity();
+  if (callingApplication != null) {
+    String callingApplicationPackage=callingApplication.getPackageName();
+    if (callingApplicationPackage.equals(activity.getPackageName())) {
+      resetSourceApplication();
+      return;
+    }
+    sourceApplication=callingApplicationPackage;
+  }
+  Intent openIntent=activity.getIntent();
+  if (openIntent == null || openIntent.getBooleanExtra(SOURCE_APPLICATION_HAS_BEEN_SET_BY_THIS_INTENT,false)) {
+    resetSourceApplication();
+    return;
+  }
+  Bundle applinkData=AppLinks.getAppLinkData(openIntent);
+  if (applinkData == null) {
+    resetSourceApplication();
+    return;
+  }
+  isOpenedByApplink=true;
+  Bundle applinkReferrerData=applinkData.getBundle("referer_app_link");
+  if (applinkReferrerData == null) {
+    sourceApplication=null;
+    return;
+  }
+  String applinkReferrerPackage=applinkReferrerData.getString("package");
+  sourceApplication=applinkReferrerPackage;
+  openIntent.putExtra(SOURCE_APPLICATION_HAS_BEEN_SET_BY_THIS_INTENT,true);
+  return;
+}

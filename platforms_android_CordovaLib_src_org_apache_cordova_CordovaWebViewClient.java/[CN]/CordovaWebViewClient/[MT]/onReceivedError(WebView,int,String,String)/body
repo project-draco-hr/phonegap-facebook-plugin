@@ -1,0 +1,14 @@
+{
+  LOG.d(TAG,"CordovaWebViewClient.onReceivedError: Error code=%s Description=%s URL=%s",errorCode,description,failingUrl);
+  this.appView.loadUrlTimeout++;
+  JSONObject data=new JSONObject();
+  try {
+    data.put("errorCode",errorCode);
+    data.put("description",description);
+    data.put("url",failingUrl);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  this.appView.postMessage("onReceivedError",data);
+}

@@ -1,0 +1,24 @@
+{
+  super.onActivityResult(requestCode,resultCode,intent);
+  Log.d(TAG,"activity result in plugin");
+  if (trackingPendingCall) {
+    uiHelper.onActivityResult(requestCode,resultCode,intent,new FacebookDialog.Callback(){
+      @Override public void onError(      FacebookDialog.PendingCall pendingCall,      Exception error,      Bundle data){
+        Log.e("Activity",String.format("Error: %s",error.toString()));
+        handleError(error);
+      }
+      @Override public void onComplete(      FacebookDialog.PendingCall pendingCall,      Bundle data){
+        Log.i("Activity","Success!");
+        handleSuccess(data);
+      }
+    }
+);
+  }
+ else {
+    Session session=Session.getActiveSession();
+    if (session != null && loginContext != null) {
+      session.onActivityResult(cordova.getActivity(),requestCode,resultCode,intent);
+    }
+  }
+  trackingPendingCall=false;
+}

@@ -1,0 +1,22 @@
+{
+  if (context == null || applicationId == null) {
+    throw new IllegalArgumentException("Both context and applicationId must be non-null");
+  }
+  if ((context instanceof Activity)) {
+    setSourceApplication((Activity)context);
+  }
+ else {
+    resetSourceApplication();
+    Log.d(AppEventsLogger.class.getName(),"To set source application the context of activateApp must be an instance of Activity");
+  }
+  Settings.publishInstallAsync(context,applicationId,null);
+  final AppEventsLogger logger=new AppEventsLogger(context,applicationId,null);
+  final long eventTime=System.currentTimeMillis();
+  final String sourceApplicationInfo=getSourceApplication();
+  backgroundExecutor.execute(new Runnable(){
+    @Override public void run(){
+      logger.logAppSessionResumeEvent(eventTime,sourceApplicationInfo);
+    }
+  }
+);
+}

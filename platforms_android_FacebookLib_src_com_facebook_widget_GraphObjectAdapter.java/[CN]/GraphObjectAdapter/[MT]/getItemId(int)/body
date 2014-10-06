@@ -1,0 +1,14 @@
+{
+  SectionAndItem<T> sectionAndItem=getSectionAndItem(position);
+  if (sectionAndItem != null && sectionAndItem.graphObject != null) {
+    String id=getIdOfGraphObject(sectionAndItem.graphObject);
+    if (id != null) {
+      try {
+        return Long.parseLong(id);
+      }
+ catch (      NumberFormatException e) {
+      }
+    }
+  }
+  return 0;
+}

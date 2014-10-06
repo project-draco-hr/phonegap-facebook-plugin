@@ -1,0 +1,4 @@
+{
+  this.postMessage("onPrepareOptionsMenu",menu);
+  return true;
+}

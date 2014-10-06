@@ -1,0 +1,7 @@
+{
+  applicationId=request.getApplicationId();
+  String e2e=getE2E();
+  Intent intent=NativeProtocol.createProxyAuthIntent(context,request.getApplicationId(),request.getPermissions(),e2e,request.isRerequest(),request.getDefaultAudience());
+  addLoggingExtra(ServerProtocol.DIALOG_PARAM_E2E,e2e);
+  return tryIntent(intent,request.getRequestCode());
+}

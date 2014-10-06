@@ -1,0 +1,5 @@
+{
+  int messageLen=message.calculateEncodedLength();
+  String messageLenStr=String.valueOf(messageLen);
+  return messageLenStr.length() + messageLen + 1;
+}

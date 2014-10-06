@@ -1,0 +1,25 @@
+{
+  String loading=null;
+  if ((this.appView == null) || !this.appView.canGoBack()) {
+    loading=this.getStringProperty("LoadingDialog",null);
+  }
+ else {
+    loading=this.getStringProperty("LoadingPageDialog",null);
+  }
+  if (loading != null) {
+    String title="";
+    String message="Loading Application...";
+    if (loading.length() > 0) {
+      int comma=loading.indexOf(',');
+      if (comma > 0) {
+        title=loading.substring(0,comma);
+        message=loading.substring(comma + 1);
+      }
+ else {
+        title="";
+        message=loading;
+      }
+    }
+    this.spinnerStart(title,message);
+  }
+}

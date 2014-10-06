@@ -1,0 +1,15 @@
+{
+  final String toReplace="\\.[]{}()^$?+|";
+  StringBuilder regex=new StringBuilder();
+  for (int i=0; i < pattern.length(); i++) {
+    char c=pattern.charAt(i);
+    if (c == '*' && allowWildcards) {
+      regex.append(".");
+    }
+ else     if (toReplace.indexOf(c) > -1) {
+      regex.append('\\');
+    }
+    regex.append(c);
+  }
+  return regex.toString();
+}

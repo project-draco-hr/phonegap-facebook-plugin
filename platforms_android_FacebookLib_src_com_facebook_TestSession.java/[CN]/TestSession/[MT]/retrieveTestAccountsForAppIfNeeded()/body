@@ -1,0 +1,27 @@
+{
+  if (appTestAccounts != null) {
+    return;
+  }
+  appTestAccounts=new HashMap<String,TestAccount>();
+  Request.setDefaultBatchApplicationId(testApplicationId);
+  Bundle parameters=new Bundle();
+  parameters.putString("access_token",getAppAccessToken());
+  Request requestTestUsers=new Request(null,"app/accounts/test-users",parameters,null);
+  requestTestUsers.setBatchEntryName("testUsers");
+  requestTestUsers.setBatchEntryOmitResultOnSuccess(false);
+  Bundle testUserNamesParam=new Bundle();
+  testUserNamesParam.putString("access_token",getAppAccessToken());
+  testUserNamesParam.putString("ids","{result=testUsers:$.data.*.id}");
+  testUserNamesParam.putString("fields","name");
+  Request requestTestUserNames=new Request(null,"",testUserNamesParam,null);
+  requestTestUserNames.setBatchEntryDependsOn("testUsers");
+  List<Response> responses=Request.executeBatchAndWait(requestTestUsers,requestTestUserNames);
+  if (responses == null || responses.size() != 2) {
+    throw new FacebookException("Unexpected number of results from TestUsers batch query");
+  }
+  TestAccountsResponse testAccountsResponse=responses.get(0).getGraphObjectAs(TestAccountsResponse.class);
+  GraphObjectList<TestAccount> testAccounts=testAccountsResponse.getData();
+  GraphObject userAccountsMap=responses.get(1).getGraphObject();
+  populateTestAccounts(testAccounts,userAccountsMap);
+  return;
+}

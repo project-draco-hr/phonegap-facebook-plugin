@@ -1,0 +1,14 @@
+{
+  Date expires=getBundleLongAsDate(bundle,EXPIRES_IN_KEY,new Date());
+  String token=bundle.getString(ACCESS_TOKEN_KEY);
+  String grantedPermissions=bundle.getString("granted_scopes");
+  if (!Utility.isNullOrEmpty(grantedPermissions)) {
+    requestedPermissions=new ArrayList<String>(Arrays.asList(grantedPermissions.split(",")));
+  }
+  String deniedPermissions=bundle.getString("denied_scopes");
+  List<String> declinedPermissions=null;
+  if (!Utility.isNullOrEmpty(deniedPermissions)) {
+    declinedPermissions=new ArrayList<String>(Arrays.asList(deniedPermissions.split(",")));
+  }
+  return createNew(requestedPermissions,declinedPermissions,token,expires,source);
+}

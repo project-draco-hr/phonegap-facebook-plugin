@@ -1,0 +1,10 @@
+{
+  Route failedRoute=connection.getRoute();
+  if (failedRoute.getProxy().type() != Proxy.Type.DIRECT && proxySelector != null) {
+    proxySelector.connectFailed(uri,failedRoute.getProxy().address(),failure);
+  }
+  failedRoutes.add(failedRoute);
+  if (!(failure instanceof SSLHandshakeException)) {
+    failedRoutes.add(failedRoute.flipTlsMode());
+  }
+}

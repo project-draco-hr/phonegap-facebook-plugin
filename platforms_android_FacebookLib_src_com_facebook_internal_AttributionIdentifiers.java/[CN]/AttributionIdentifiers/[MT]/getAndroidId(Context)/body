@@ -1,0 +1,35 @@
+{
+  AttributionIdentifiers identifiers=new AttributionIdentifiers();
+  try {
+    if (Looper.myLooper() == Looper.getMainLooper()) {
+      throw new FacebookException("getAndroidId cannot be called on the main thread.");
+    }
+    Method isGooglePlayServicesAvailable=Utility.getMethodQuietly("com.google.android.gms.common.GooglePlayServicesUtil","isGooglePlayServicesAvailable",Context.class);
+    if (isGooglePlayServicesAvailable == null) {
+      return identifiers;
+    }
+    Object connectionResult=Utility.invokeMethodQuietly(null,isGooglePlayServicesAvailable,context);
+    if (!(connectionResult instanceof Integer) || (Integer)connectionResult != CONNECTION_RESULT_SUCCESS) {
+      return identifiers;
+    }
+    Method getAdvertisingIdInfo=Utility.getMethodQuietly("com.google.android.gms.ads.identifier.AdvertisingIdClient","getAdvertisingIdInfo",Context.class);
+    if (getAdvertisingIdInfo == null) {
+      return identifiers;
+    }
+    Object advertisingInfo=Utility.invokeMethodQuietly(null,getAdvertisingIdInfo,context);
+    if (advertisingInfo == null) {
+      return identifiers;
+    }
+    Method getId=Utility.getMethodQuietly(advertisingInfo.getClass(),"getId");
+    Method isLimitAdTrackingEnabled=Utility.getMethodQuietly(advertisingInfo.getClass(),"isLimitAdTrackingEnabled");
+    if (getId == null || isLimitAdTrackingEnabled == null) {
+      return identifiers;
+    }
+    identifiers.androidAdvertiserId=(String)Utility.invokeMethodQuietly(advertisingInfo,getId);
+    identifiers.limitTracking=(Boolean)Utility.invokeMethodQuietly(advertisingInfo,isLimitAdTrackingEnabled);
+  }
+ catch (  Exception e) {
+    Utility.logd("android_id",e);
+  }
+  return identifiers;
+}

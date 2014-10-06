@@ -1,0 +1,11 @@
+{
+  for (  PluginEntry entry : this.entries.values()) {
+    if (entry.plugin != null) {
+      Uri ret=entry.plugin.remapUri(uri);
+      if (ret != null) {
+        return ret;
+      }
+    }
+  }
+  return null;
+}

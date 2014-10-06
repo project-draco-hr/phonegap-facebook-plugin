@@ -1,3 +1,0 @@
-{
-  return new AccessToken("",ALREADY_EXPIRED_EXPIRATION_TIME,permissions,AccessTokenSource.NONE,DEFAULT_LAST_REFRESH_TIME);
-}

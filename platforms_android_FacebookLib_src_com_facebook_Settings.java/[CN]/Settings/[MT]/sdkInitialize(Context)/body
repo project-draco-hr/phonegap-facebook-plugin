@@ -1,0 +1,7 @@
+{
+  if (sdkInitialized == true) {
+    return;
+  }
+  BoltsMeasurementEventListener.getInstance(context.getApplicationContext());
+  sdkInitialized=true;
+}

@@ -1,0 +1,8 @@
+{
+  this.loadUrl("javascript:try{cordova.fireDocumentEvent('resume');}catch(e){console.log('exception firing resume event from native');};");
+  if (this.pluginManager != null) {
+    this.pluginManager.onResume(keepRunning);
+  }
+  this.resumeTimers();
+  paused=false;
+}

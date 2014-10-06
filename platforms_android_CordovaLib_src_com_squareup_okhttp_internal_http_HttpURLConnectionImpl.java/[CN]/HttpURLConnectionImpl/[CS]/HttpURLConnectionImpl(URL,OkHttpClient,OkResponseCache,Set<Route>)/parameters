@@ -1,0 +1,4 @@
+URL url
+OkHttpClient client
+OkResponseCache responseCache
+Set<Route> failedRoutes

@@ -1,0 +1,11 @@
+{
+  PluginEntry entry=this.entries.get(service);
+  if (entry == null) {
+    return null;
+  }
+  CordovaPlugin plugin=entry.plugin;
+  if (plugin == null) {
+    plugin=entry.createPlugin(this.app,this.ctx);
+  }
+  return plugin;
+}

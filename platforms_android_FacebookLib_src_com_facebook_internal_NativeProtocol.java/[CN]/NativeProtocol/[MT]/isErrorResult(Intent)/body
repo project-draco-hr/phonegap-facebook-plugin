@@ -1,0 +1,9 @@
+{
+  Bundle bridgeArgs=getBridgeArgumentsFromIntent(resultIntent);
+  if (bridgeArgs != null) {
+    return bridgeArgs.containsKey(BRIDGE_ARG_ERROR_BUNDLE);
+  }
+ else {
+    return resultIntent.hasExtra(STATUS_ERROR_TYPE);
+  }
+}

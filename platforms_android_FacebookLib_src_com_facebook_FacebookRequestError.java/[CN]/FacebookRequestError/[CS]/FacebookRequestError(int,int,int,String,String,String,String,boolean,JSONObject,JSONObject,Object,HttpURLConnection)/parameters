@@ -1,0 +1,12 @@
+int requestStatusCode
+int errorCode
+int subErrorCode
+String errorType
+String errorMessage
+String errorUserTitle
+String errorUserMessage
+boolean errorIsTransient
+JSONObject requestResultBody
+JSONObject requestResult
+Object batchRequestResult
+HttpURLConnection connection

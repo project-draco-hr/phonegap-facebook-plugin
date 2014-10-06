@@ -1,0 +1,10 @@
+{
+  Bundle bundle=new Bundle();
+  bundle.putString(TokenCachingStrategy.TOKEN_KEY,this.token);
+  TokenCachingStrategy.putDate(bundle,TokenCachingStrategy.EXPIRATION_DATE_KEY,expires);
+  bundle.putStringArrayList(TokenCachingStrategy.PERMISSIONS_KEY,new ArrayList<String>(permissions));
+  bundle.putStringArrayList(TokenCachingStrategy.DECLINED_PERMISSIONS_KEY,new ArrayList<String>(declinedPermissions));
+  bundle.putSerializable(TokenCachingStrategy.TOKEN_SOURCE_KEY,source);
+  TokenCachingStrategy.putDate(bundle,TokenCachingStrategy.LAST_REFRESH_DATE_KEY,lastRefresh);
+  return bundle;
+}

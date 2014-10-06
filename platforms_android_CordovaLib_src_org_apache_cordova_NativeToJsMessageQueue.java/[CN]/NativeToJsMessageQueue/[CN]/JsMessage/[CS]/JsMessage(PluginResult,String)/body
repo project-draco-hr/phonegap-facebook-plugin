@@ -1,0 +1,7 @@
+{
+  if (callbackId == null || pluginResult == null) {
+    throw new NullPointerException();
+  }
+  jsPayloadOrCallbackId=callbackId;
+  this.pluginResult=pluginResult;
+}

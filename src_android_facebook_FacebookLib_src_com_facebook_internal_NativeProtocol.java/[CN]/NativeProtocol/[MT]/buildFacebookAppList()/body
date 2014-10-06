@@ -1,8 +1,0 @@
-{
-  List<NativeAppInfo> list=new ArrayList<NativeAppInfo>();
-  list.add(FACEBOOK_APP_INFO);
-  if (BuildConfig.DEBUG) {
-    list.add(new WakizashiAppInfo());
-  }
-  return list;
-}

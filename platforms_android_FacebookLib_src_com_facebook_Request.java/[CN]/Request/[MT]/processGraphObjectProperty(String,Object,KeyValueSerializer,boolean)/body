@@ -1,0 +1,49 @@
+{
+  Class<?> valueClass=value.getClass();
+  if (GraphObject.class.isAssignableFrom(valueClass)) {
+    value=((GraphObject)value).getInnerJSONObject();
+    valueClass=value.getClass();
+  }
+ else   if (GraphObjectList.class.isAssignableFrom(valueClass)) {
+    value=((GraphObjectList<?>)value).getInnerJSONArray();
+    valueClass=value.getClass();
+  }
+  if (JSONObject.class.isAssignableFrom(valueClass)) {
+    JSONObject jsonObject=(JSONObject)value;
+    if (passByValue) {
+      @SuppressWarnings("unchecked") Iterator<String> keys=jsonObject.keys();
+      while (keys.hasNext()) {
+        String propertyName=keys.next();
+        String subKey=String.format("%s[%s]",key,propertyName);
+        processGraphObjectProperty(subKey,jsonObject.opt(propertyName),serializer,passByValue);
+      }
+    }
+ else {
+      if (jsonObject.has("id")) {
+        processGraphObjectProperty(key,jsonObject.optString("id"),serializer,passByValue);
+      }
+ else       if (jsonObject.has("url")) {
+        processGraphObjectProperty(key,jsonObject.optString("url"),serializer,passByValue);
+      }
+ else       if (jsonObject.has(NativeProtocol.OPEN_GRAPH_CREATE_OBJECT_KEY)) {
+        processGraphObjectProperty(key,jsonObject.toString(),serializer,passByValue);
+      }
+    }
+  }
+ else   if (JSONArray.class.isAssignableFrom(valueClass)) {
+    JSONArray jsonArray=(JSONArray)value;
+    int length=jsonArray.length();
+    for (int i=0; i < length; ++i) {
+      String subKey=String.format("%s[%d]",key,i);
+      processGraphObjectProperty(subKey,jsonArray.opt(i),serializer,passByValue);
+    }
+  }
+ else   if (String.class.isAssignableFrom(valueClass) || Number.class.isAssignableFrom(valueClass) || Boolean.class.isAssignableFrom(valueClass)) {
+    serializer.writeString(key,value.toString());
+  }
+ else   if (Date.class.isAssignableFrom(valueClass)) {
+    Date date=(Date)value;
+    final SimpleDateFormat iso8601DateFormat=new SimpleDateFormat(ISO_8601_FORMAT_STRING,Locale.US);
+    serializer.writeString(key,iso8601DateFormat.format(date));
+  }
+}

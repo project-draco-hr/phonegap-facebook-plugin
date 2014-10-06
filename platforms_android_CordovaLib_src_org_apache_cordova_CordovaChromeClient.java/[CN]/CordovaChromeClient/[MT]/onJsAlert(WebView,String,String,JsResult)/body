@@ -1,0 +1,31 @@
+{
+  AlertDialog.Builder dlg=new AlertDialog.Builder(this.cordova.getActivity());
+  dlg.setMessage(message);
+  dlg.setTitle("Alert");
+  dlg.setCancelable(true);
+  dlg.setPositiveButton(android.R.string.ok,new AlertDialog.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      result.confirm();
+    }
+  }
+);
+  dlg.setOnCancelListener(new DialogInterface.OnCancelListener(){
+    public void onCancel(    DialogInterface dialog){
+      result.cancel();
+    }
+  }
+);
+  dlg.setOnKeyListener(new DialogInterface.OnKeyListener(){
+    public boolean onKey(    DialogInterface dialog,    int keyCode,    KeyEvent event){
+      if (keyCode == KeyEvent.KEYCODE_BACK) {
+        result.confirm();
+        return false;
+      }
+ else       return true;
+    }
+  }
+);
+  dlg.create();
+  dlg.show();
+  return true;
+}

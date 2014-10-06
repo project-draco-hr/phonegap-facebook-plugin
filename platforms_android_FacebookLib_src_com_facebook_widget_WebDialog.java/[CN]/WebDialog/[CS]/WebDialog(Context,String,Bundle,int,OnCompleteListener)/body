@@ -1,0 +1,11 @@
+{
+  super(context,theme);
+  if (parameters == null) {
+    parameters=new Bundle();
+  }
+  parameters.putString(ServerProtocol.DIALOG_PARAM_REDIRECT_URI,REDIRECT_URI);
+  parameters.putString(ServerProtocol.DIALOG_PARAM_DISPLAY,DISPLAY_TOUCH);
+  Uri uri=Utility.buildUri(ServerProtocol.getDialogAuthority(),ServerProtocol.getAPIVersion() + "/" + ServerProtocol.DIALOG_PATH+ action,parameters);
+  this.url=uri.toString();
+  onCompleteListener=listener;
+}

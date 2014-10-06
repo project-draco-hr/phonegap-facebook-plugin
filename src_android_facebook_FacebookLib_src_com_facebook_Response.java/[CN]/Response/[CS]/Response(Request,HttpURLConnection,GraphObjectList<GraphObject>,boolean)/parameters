@@ -1,4 +1,0 @@
-Request request
-HttpURLConnection connection
-GraphObjectList<GraphObject> graphObjects
-boolean isFromCache

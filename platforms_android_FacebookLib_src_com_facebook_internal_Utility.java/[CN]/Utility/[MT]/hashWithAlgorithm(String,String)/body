@@ -1,0 +1,3 @@
+{
+  return hashWithAlgorithm(algorithm,key.getBytes());
+}

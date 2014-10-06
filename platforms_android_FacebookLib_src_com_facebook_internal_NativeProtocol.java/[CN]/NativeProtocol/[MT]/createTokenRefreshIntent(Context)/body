@@ -1,0 +1,10 @@
+{
+  for (  NativeAppInfo appInfo : facebookAppInfoList) {
+    Intent intent=new Intent().setClassName(appInfo.getPackage(),FACEBOOK_TOKEN_REFRESH_ACTIVITY);
+    intent=validateServiceIntent(context,intent,appInfo);
+    if (intent != null) {
+      return intent;
+    }
+  }
+  return null;
+}

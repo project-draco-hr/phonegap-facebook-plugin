@@ -1,0 +1,15 @@
+{
+  SessionEventsState state=stateMap.get(accessTokenAppId);
+  AttributionIdentifiers attributionIdentifiers=null;
+  if (state == null) {
+    attributionIdentifiers=AttributionIdentifiers.getAttributionIdentifiers(context);
+  }
+synchronized (staticLock) {
+    state=stateMap.get(accessTokenAppId);
+    if (state == null) {
+      state=new SessionEventsState(attributionIdentifiers,context.getPackageName(),hashedDeviceAndAppId);
+      stateMap.put(accessTokenAppId,state);
+    }
+    return state;
+  }
+}

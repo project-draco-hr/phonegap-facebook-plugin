@@ -1,0 +1,10 @@
+{
+  Settings.getExecutor().execute(new Runnable(){
+    @Override public void run(){
+      SessionEventsState state=getSessionEventsState(context,accessTokenAppId);
+      state.addEvent(event);
+      flushIfNecessary();
+    }
+  }
+);
+}

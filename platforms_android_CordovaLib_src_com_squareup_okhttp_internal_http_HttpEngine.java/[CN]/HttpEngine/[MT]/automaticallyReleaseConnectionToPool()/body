@@ -1,0 +1,7 @@
+{
+  automaticallyReleaseConnectionToPool=true;
+  if (connection != null && connectionReleased) {
+    policy.connectionPool.recycle(connection);
+    connection=null;
+  }
+}

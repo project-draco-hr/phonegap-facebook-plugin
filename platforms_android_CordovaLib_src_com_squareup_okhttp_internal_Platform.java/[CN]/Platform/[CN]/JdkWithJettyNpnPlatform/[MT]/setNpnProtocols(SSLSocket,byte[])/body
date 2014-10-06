@@ -1,0 +1,21 @@
+{
+  try {
+    List<String> strings=new ArrayList<String>();
+    for (int i=0; i < npnProtocols.length; ) {
+      int length=npnProtocols[i++];
+      strings.add(new String(npnProtocols,i,length,"US-ASCII"));
+      i+=length;
+    }
+    Object provider=Proxy.newProxyInstance(Platform.class.getClassLoader(),new Class[]{clientProviderClass,serverProviderClass},new JettyNpnProvider(strings));
+    putMethod.invoke(null,socket,provider);
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new AssertionError(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new AssertionError(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new AssertionError(e);
+  }
+}

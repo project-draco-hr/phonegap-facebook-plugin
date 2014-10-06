@@ -1,0 +1,19 @@
+{
+  if (values.size() > 0) {
+    JSONObject response=new JSONObject();
+    try {
+      Set<String> keys=values.keySet();
+      for (      String key : keys) {
+        response.put(key,values.get(key));
+      }
+    }
+ catch (    JSONException e) {
+      e.printStackTrace();
+    }
+    showDialogContext.success(response);
+  }
+ else {
+    Log.e(TAG,"User cancelled dialog");
+    showDialogContext.error("User cancelled dialog");
+  }
+}

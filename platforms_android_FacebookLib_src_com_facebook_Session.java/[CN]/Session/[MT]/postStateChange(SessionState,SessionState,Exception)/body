@@ -1,0 +1,35 @@
+{
+  if ((oldState == newState) && (oldState != SessionState.OPENED_TOKEN_UPDATED) && (exception == null)) {
+    return;
+  }
+  if (newState.isClosed()) {
+    this.tokenInfo=AccessToken.createEmptyToken();
+  }
+  Runnable runCallbacks=new Runnable(){
+    public void run(){
+synchronized (callbacks) {
+        for (        final StatusCallback callback : callbacks) {
+          Runnable closure=new Runnable(){
+            public void run(){
+              callback.call(Session.this,newState,exception);
+            }
+          }
+;
+          runWithHandlerOrExecutor(handler,closure);
+        }
+      }
+    }
+  }
+;
+  runWithHandlerOrExecutor(handler,runCallbacks);
+  if (this == Session.activeSession) {
+    if (oldState.isOpened() != newState.isOpened()) {
+      if (newState.isOpened()) {
+        postActiveSessionAction(Session.ACTION_ACTIVE_SESSION_OPENED);
+      }
+ else {
+        postActiveSessionAction(Session.ACTION_ACTIVE_SESSION_CLOSED);
+      }
+    }
+  }
+}

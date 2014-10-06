@@ -1,0 +1,5 @@
+{
+  int len=message.calculateEncodedLength();
+  sb.append(len).append(' ');
+  message.encodeAsMessage(sb);
+}

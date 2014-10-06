@@ -1,0 +1,7 @@
+{
+  List<String> grantedPermissions=getPermissions();
+  if (grantedPermissions != null) {
+    return grantedPermissions.contains(permission);
+  }
+  return false;
+}

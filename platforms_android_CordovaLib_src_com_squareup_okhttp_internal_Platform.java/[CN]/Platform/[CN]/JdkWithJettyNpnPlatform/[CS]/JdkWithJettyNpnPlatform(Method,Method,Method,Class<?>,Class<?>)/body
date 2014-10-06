@@ -1,0 +1,7 @@
+{
+  super(getMtu);
+  this.putMethod=putMethod;
+  this.getMethod=getMethod;
+  this.clientProviderClass=clientProviderClass;
+  this.serverProviderClass=serverProviderClass;
+}

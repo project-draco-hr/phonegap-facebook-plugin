@@ -1,0 +1,5 @@
+{
+  super.onScrollChanged(l,t,oldl,oldt);
+  ScrollEvent myEvent=new ScrollEvent(l,t,oldl,oldt,this);
+  this.postMessage("onScrollChanged",myEvent);
+}

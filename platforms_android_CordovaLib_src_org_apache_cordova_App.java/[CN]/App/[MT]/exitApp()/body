@@ -1,0 +1,3 @@
+{
+  this.webView.postMessage("exit",null);
+}

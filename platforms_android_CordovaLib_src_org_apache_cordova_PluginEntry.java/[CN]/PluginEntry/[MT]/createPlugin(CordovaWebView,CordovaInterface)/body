@@ -1,0 +1,18 @@
+{
+  if (this.plugin != null) {
+    return this.plugin;
+  }
+  try {
+    @SuppressWarnings("rawtypes") Class c=getClassByName(this.pluginClass);
+    if (isCordovaPlugin(c)) {
+      this.plugin=(CordovaPlugin)c.newInstance();
+      this.plugin.initialize(ctx,webView);
+      return plugin;
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    System.out.println("Error adding plugin " + this.pluginClass + ".");
+  }
+  return null;
+}

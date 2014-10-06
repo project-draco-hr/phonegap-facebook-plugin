@@ -1,0 +1,8 @@
+{
+  if ("VERBOSE".equals(logLevel))   LOGLEVEL=VERBOSE;
+ else   if ("DEBUG".equals(logLevel))   LOGLEVEL=DEBUG;
+ else   if ("INFO".equals(logLevel))   LOGLEVEL=INFO;
+ else   if ("WARN".equals(logLevel))   LOGLEVEL=WARN;
+ else   if ("ERROR".equals(logLevel))   LOGLEVEL=ERROR;
+  Log.i("CordovaLog","Changing log level to " + logLevel + "("+ LOGLEVEL+ ")");
+}

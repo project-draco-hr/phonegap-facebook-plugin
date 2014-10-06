@@ -1,0 +1,7 @@
+{
+  for (  TestAccount testAccount : testAccounts) {
+    GraphUser testUser=userAccountsMap.getPropertyAs(testAccount.getId(),GraphUser.class);
+    testAccount.setName(testUser.getName());
+    storeTestAccount(testAccount);
+  }
+}

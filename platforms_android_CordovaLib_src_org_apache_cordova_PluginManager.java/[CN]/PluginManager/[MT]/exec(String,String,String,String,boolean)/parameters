@@ -1,0 +1,5 @@
+String service
+String action
+String callbackId
+String jsonArgs
+boolean async

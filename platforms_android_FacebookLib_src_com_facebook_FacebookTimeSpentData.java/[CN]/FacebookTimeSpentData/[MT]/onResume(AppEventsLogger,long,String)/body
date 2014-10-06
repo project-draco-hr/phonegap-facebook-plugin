@@ -1,0 +1,31 @@
+{
+  long now=eventTime;
+  if (isColdLaunch() || ((now - lastActivateEventLoggedTime) > APP_ACTIVATE_SUPPRESSION_PERIOD_IN_MILLISECONDS)) {
+    Bundle eventParams=new Bundle();
+    eventParams.putString(AppEventsConstants.EVENT_PARAM_SOURCE_APPLICATION,sourceApplicationInfo);
+    logger.logEvent(AppEventsConstants.EVENT_NAME_ACTIVATED_APP,eventParams);
+    lastActivateEventLoggedTime=now;
+  }
+  if (isAppActive) {
+    Logger.log(LoggingBehavior.APP_EVENTS,TAG,"Resume for active app");
+    return;
+  }
+  long interruptionDurationMillis=wasSuspendedEver() ? now - lastSuspendTime : 0;
+  if (interruptionDurationMillis < 0) {
+    Logger.log(LoggingBehavior.APP_EVENTS,TAG,"Clock skew detected");
+    interruptionDurationMillis=0;
+  }
+  if (interruptionDurationMillis > NUM_MILLISECONDS_IDLE_TO_BE_NEW_SESSION) {
+    logAppDeactivatedEvent(logger,interruptionDurationMillis);
+  }
+ else {
+    if (interruptionDurationMillis > INTERRUPTION_THRESHOLD_MILLISECONDS) {
+      interruptionCount++;
+    }
+  }
+  if (interruptionCount == 0) {
+    firstOpenSourceApplication=sourceApplicationInfo;
+  }
+  lastResumeTime=now;
+  isAppActive=true;
+}

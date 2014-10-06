@@ -1,0 +1,15 @@
+{
+  this.loadUrl("javascript:try{cordova.require('cordova/channel').onDestroy.fire();}catch(e){console.log('exception firing destroy event from native');};");
+  this.loadUrl("about:blank");
+  if (this.pluginManager != null) {
+    this.pluginManager.onDestroy();
+  }
+  if (this.receiver != null) {
+    try {
+      this.cordova.getActivity().unregisterReceiver(this.receiver);
+    }
+ catch (    Exception e) {
+      Log.e(TAG,"Error unregistering configuration receiver: " + e.getMessage(),e);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  this(requestStatusCode,errorCode,subErrorCode,errorType,errorMessage,errorUserTitle,errorUserMessage,errorIsTransient,requestResultBody,requestResult,batchRequestResult,connection,null);
+}

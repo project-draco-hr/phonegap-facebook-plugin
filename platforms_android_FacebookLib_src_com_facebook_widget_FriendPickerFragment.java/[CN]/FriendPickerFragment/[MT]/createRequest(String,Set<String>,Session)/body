@@ -1,0 +1,14 @@
+{
+  Request request=Request.newGraphPathRequest(session,userID + friendPickerType.getRequestPath(),null);
+  Set<String> fields=new HashSet<String>(extraFields);
+  String[] requiredFields=new String[]{ID,NAME};
+  fields.addAll(Arrays.asList(requiredFields));
+  String pictureField=adapter.getPictureFieldSpecifier();
+  if (pictureField != null) {
+    fields.add(pictureField);
+  }
+  Bundle parameters=request.getParameters();
+  parameters.putString("fields",TextUtils.join(",",fields));
+  request.setParameters(parameters);
+  return request;
+}

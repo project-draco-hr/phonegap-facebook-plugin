@@ -1,0 +1,32 @@
+{
+  super.onPageFinished(view,url);
+  LOG.d(TAG,"onPageFinished(" + url + ")");
+  if (this.doClearHistory) {
+    view.clearHistory();
+    this.doClearHistory=false;
+  }
+  this.appView.loadUrlTimeout++;
+  this.appView.postMessage("onPageFinished",url);
+  if (this.appView.getVisibility() == View.INVISIBLE) {
+    Thread t=new Thread(new Runnable(){
+      public void run(){
+        try {
+          Thread.sleep(2000);
+          cordova.getActivity().runOnUiThread(new Runnable(){
+            public void run(){
+              appView.postMessage("spinner","stop");
+            }
+          }
+);
+        }
+ catch (        InterruptedException e) {
+        }
+      }
+    }
+);
+    t.start();
+  }
+  if (url.equals("about:blank")) {
+    appView.postMessage("exit",null);
+  }
+}

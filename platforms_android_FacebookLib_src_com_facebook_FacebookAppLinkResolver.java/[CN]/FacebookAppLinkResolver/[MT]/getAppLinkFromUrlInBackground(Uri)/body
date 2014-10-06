@@ -1,0 +1,11 @@
+{
+  ArrayList<Uri> uris=new ArrayList<Uri>();
+  uris.add(uri);
+  Task<Map<Uri,AppLink>> resolveTask=getAppLinkFromUrlsInBackground(uris);
+  return resolveTask.onSuccess(new Continuation<Map<Uri,AppLink>,AppLink>(){
+    @Override public AppLink then(    Task<Map<Uri,AppLink>> resolveUrisTask) throws Exception {
+      return resolveUrisTask.getResult().get(uri);
+    }
+  }
+);
+}

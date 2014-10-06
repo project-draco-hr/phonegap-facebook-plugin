@@ -1,0 +1,25 @@
+{
+  final CordovaActivity me=this;
+  final String errorUrl=me.getStringProperty("errorUrl",null);
+  if ((errorUrl != null) && (errorUrl.startsWith("file://") || Config.isUrlWhiteListed(errorUrl)) && (!failingUrl.equals(errorUrl))) {
+    me.runOnUiThread(new Runnable(){
+      public void run(){
+        me.spinnerStop();
+        me.appView.showWebPage(errorUrl,false,true,null);
+      }
+    }
+);
+  }
+ else {
+    final boolean exit=!(errorCode == WebViewClient.ERROR_HOST_LOOKUP);
+    me.runOnUiThread(new Runnable(){
+      public void run(){
+        if (exit) {
+          me.appView.setVisibility(View.GONE);
+          me.displayError("Application Error",description + " (" + failingUrl+ ")","OK",exit);
+        }
+      }
+    }
+);
+  }
+}

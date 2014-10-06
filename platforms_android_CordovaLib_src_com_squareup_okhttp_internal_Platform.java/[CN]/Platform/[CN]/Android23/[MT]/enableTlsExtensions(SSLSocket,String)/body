@@ -1,0 +1,15 @@
+{
+  super.enableTlsExtensions(socket,uriHost);
+  if (openSslSocketClass.isInstance(socket)) {
+    try {
+      setUseSessionTickets.invoke(socket,true);
+      setHostname.invoke(socket,uriHost);
+    }
+ catch (    InvocationTargetException e) {
+      throw new RuntimeException(e);
+    }
+catch (    IllegalAccessException e) {
+      throw new AssertionError(e);
+    }
+  }
+}

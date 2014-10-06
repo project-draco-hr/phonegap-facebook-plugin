@@ -1,0 +1,25 @@
+{
+  Config.init(this);
+  LOG.d(TAG,"CordovaActivity.onCreate()");
+  super.onCreate(savedInstanceState);
+  if (savedInstanceState != null) {
+    initCallbackClass=savedInstanceState.getString("callbackClass");
+  }
+  if (!this.getBooleanProperty("ShowTitle",false)) {
+    getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+  }
+  if (this.getBooleanProperty("SetFullscreen",false)) {
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  }
+ else {
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN,WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+  }
+  Display display=getWindowManager().getDefaultDisplay();
+  int width=display.getWidth();
+  int height=display.getHeight();
+  root=new LinearLayoutSoftKeyboardDetect(this,width,height);
+  root.setOrientation(LinearLayout.VERTICAL);
+  root.setBackgroundColor(this.backgroundColor);
+  root.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT,0.0F));
+  setVolumeControlStream(AudioManager.STREAM_MUSIC);
+}

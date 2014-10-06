@@ -1,0 +1,6 @@
+{
+  List<NativeAppInfo> list=new ArrayList<NativeAppInfo>();
+  list.add(FACEBOOK_APP_INFO);
+  list.add(new WakizashiAppInfo());
+  return list;
+}

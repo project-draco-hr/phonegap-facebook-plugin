@@ -1,0 +1,4 @@
+{
+  Settings.sdkInitialize(context);
+  activateApp(context,Utility.getMetadataApplicationId(context));
+}

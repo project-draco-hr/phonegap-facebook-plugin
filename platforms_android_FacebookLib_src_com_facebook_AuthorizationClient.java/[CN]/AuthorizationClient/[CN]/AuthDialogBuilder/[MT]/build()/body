@@ -1,0 +1,12 @@
+{
+  Bundle parameters=getParameters();
+  parameters.putString(ServerProtocol.DIALOG_PARAM_REDIRECT_URI,REDIRECT_URI);
+  parameters.putString(ServerProtocol.DIALOG_PARAM_CLIENT_ID,getApplicationId());
+  parameters.putString(ServerProtocol.DIALOG_PARAM_E2E,e2e);
+  parameters.putString(ServerProtocol.DIALOG_PARAM_RESPONSE_TYPE,ServerProtocol.DIALOG_RESPONSE_TYPE_TOKEN);
+  parameters.putString(ServerProtocol.DIALOG_PARAM_RETURN_SCOPES,ServerProtocol.DIALOG_RETURN_SCOPES_TRUE);
+  if (isRerequest && !Settings.getPlatformCompatibilityEnabled()) {
+    parameters.putString(ServerProtocol.DIALOG_PARAM_AUTH_TYPE,ServerProtocol.DIALOG_REREQUEST_AUTH_TYPE);
+  }
+  return new WebDialog(getContext(),OAUTH_DIALOG,parameters,getTheme(),getListener());
+}

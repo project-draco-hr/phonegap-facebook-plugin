@@ -1,0 +1,5 @@
+{
+synchronized (loggingBehaviors) {
+    return Settings.isLoggingEnabled() && loggingBehaviors.contains(behavior);
+  }
+}

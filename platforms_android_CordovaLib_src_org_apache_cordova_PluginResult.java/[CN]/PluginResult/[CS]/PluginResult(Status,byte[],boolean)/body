@@ -1,0 +1,5 @@
+{
+  this.status=status.ordinal();
+  this.messageType=binaryString ? MESSAGE_TYPE_BINARYSTRING : MESSAGE_TYPE_ARRAYBUFFER;
+  this.encodedMessage=Base64.encodeToString(data,Base64.NO_WRAP);
+}

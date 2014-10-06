@@ -1,0 +1,3 @@
+{
+  return (requestedProxy != null && requestedProxy.type() != Proxy.Type.DIRECT);
+}

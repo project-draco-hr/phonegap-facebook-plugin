@@ -1,0 +1,5 @@
+{
+  if (!uri.isAbsolute()) {
+    throw new IllegalArgumentException("Relative URIs are not supported.");
+  }
+}

@@ -1,0 +1,32 @@
+{
+  if ((context != null) && (applicationId == null)) {
+    applicationId=Utility.getMetadataApplicationId(context);
+  }
+  Validate.notNull(applicationId,"applicationId");
+  initializeStaticContext(context);
+  if (tokenCachingStrategy == null) {
+    tokenCachingStrategy=new SharedPreferencesTokenCachingStrategy(staticContext);
+  }
+  this.applicationId=applicationId;
+  this.tokenCachingStrategy=tokenCachingStrategy;
+  this.state=SessionState.CREATED;
+  this.pendingAuthorizationRequest=null;
+  this.callbacks=new ArrayList<StatusCallback>();
+  this.handler=new Handler(Looper.getMainLooper());
+  Bundle tokenState=loadTokenFromCache ? tokenCachingStrategy.load() : null;
+  if (TokenCachingStrategy.hasTokenInformation(tokenState)) {
+    Date cachedExpirationDate=TokenCachingStrategy.getDate(tokenState,TokenCachingStrategy.EXPIRATION_DATE_KEY);
+    Date now=new Date();
+    if ((cachedExpirationDate == null) || cachedExpirationDate.before(now)) {
+      tokenCachingStrategy.clear();
+      this.tokenInfo=AccessToken.createEmptyToken();
+    }
+ else {
+      this.tokenInfo=AccessToken.createFromCache(tokenState);
+      this.state=SessionState.CREATED_TOKEN_LOADED;
+    }
+  }
+ else {
+    this.tokenInfo=AccessToken.createEmptyToken();
+  }
+}

@@ -1,0 +1,4 @@
+{
+  CordovaWebView webView=makeWebView();
+  this.init(webView,makeWebViewClient(webView),makeChromeClient(webView));
+}

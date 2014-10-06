@@ -1,0 +1,21 @@
+{
+  String brand=Build.BRAND;
+  int applicationFlags=context.getApplicationInfo().flags;
+  if (brand.startsWith("generic") && (applicationFlags & ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
+    return true;
+  }
+  PackageInfo packageInfo=null;
+  try {
+    packageInfo=context.getPackageManager().getPackageInfo(packageName,PackageManager.GET_SIGNATURES);
+  }
+ catch (  PackageManager.NameNotFoundException e) {
+    return false;
+  }
+  for (  Signature signature : packageInfo.signatures) {
+    String hashedSignature=Utility.sha1hash(signature.toByteArray());
+    if (validAppSignatureHashes.contains(hashedSignature)) {
+      return true;
+    }
+  }
+  return false;
+}

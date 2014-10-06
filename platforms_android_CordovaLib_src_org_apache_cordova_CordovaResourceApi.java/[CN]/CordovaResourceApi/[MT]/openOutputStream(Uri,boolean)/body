@@ -1,0 +1,21 @@
+{
+  assertBackgroundThread();
+switch (getUriType(uri)) {
+case URI_TYPE_FILE:
+{
+      File localFile=new File(uri.getPath());
+      File parent=localFile.getParentFile();
+      if (parent != null) {
+        parent.mkdirs();
+      }
+      return new FileOutputStream(localFile,append);
+    }
+case URI_TYPE_CONTENT:
+case URI_TYPE_RESOURCE:
+{
+    AssetFileDescriptor assetFd=contentResolver.openAssetFileDescriptor(uri,append ? "wa" : "w");
+    return assetFd.createOutputStream();
+  }
+}
+throw new FileNotFoundException("URI not supported by CordovaResourceApi: " + uri);
+}

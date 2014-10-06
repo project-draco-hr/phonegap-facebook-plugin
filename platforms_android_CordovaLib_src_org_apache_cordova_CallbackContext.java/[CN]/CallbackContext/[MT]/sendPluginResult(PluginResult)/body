@@ -1,0 +1,12 @@
+{
+synchronized (this) {
+    if (finished) {
+      Log.w(LOG_TAG,"Attempted to send a second callback for ID: " + callbackId + "\nResult was: "+ pluginResult.getMessage());
+      return;
+    }
+ else {
+      finished=!pluginResult.getKeepCallback();
+    }
+  }
+  webView.sendPluginResult(pluginResult,callbackId);
+}

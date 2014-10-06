@@ -1,0 +1,5 @@
+{
+  if (this.appView != null) {
+    this.appView.postMessage(id,data);
+  }
+}

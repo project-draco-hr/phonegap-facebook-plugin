@@ -1,0 +1,5 @@
+{
+  if (Settings.isLoggingEnabled() && tag != null && e != null) {
+    Log.d(tag,e.getClass().getSimpleName() + ": " + e.getMessage());
+  }
+}

@@ -1,5 +1,0 @@
-{
-synchronized (loggingBehaviors) {
-    return BuildConfig.DEBUG && loggingBehaviors.contains(behavior);
-  }
-}

@@ -1,0 +1,59 @@
+{
+  if (!skipThreadCheck) {
+    assertBackgroundThread();
+  }
+switch (getUriType(uri)) {
+case URI_TYPE_FILE:
+{
+      FileInputStream inputStream=new FileInputStream(uri.getPath());
+      String mimeType=getMimeTypeFromPath(uri.getPath());
+      long length=inputStream.getChannel().size();
+      return new OpenForReadResult(uri,inputStream,mimeType,length,null);
+    }
+case URI_TYPE_ASSET:
+{
+    String assetPath=uri.getPath().substring(15);
+    AssetFileDescriptor assetFd=null;
+    InputStream inputStream;
+    long length=-1;
+    try {
+      assetFd=assetManager.openFd(assetPath);
+      inputStream=assetFd.createInputStream();
+      length=assetFd.getLength();
+    }
+ catch (    FileNotFoundException e) {
+      inputStream=assetManager.open(assetPath);
+    }
+    String mimeType=getMimeTypeFromPath(assetPath);
+    return new OpenForReadResult(uri,inputStream,mimeType,length,assetFd);
+  }
+case URI_TYPE_CONTENT:
+case URI_TYPE_RESOURCE:
+{
+  String mimeType=contentResolver.getType(uri);
+  AssetFileDescriptor assetFd=contentResolver.openAssetFileDescriptor(uri,"r");
+  InputStream inputStream=assetFd.createInputStream();
+  long length=assetFd.getLength();
+  return new OpenForReadResult(uri,inputStream,mimeType,length,assetFd);
+}
+case URI_TYPE_DATA:
+{
+OpenForReadResult ret=readDataUri(uri);
+if (ret == null) {
+  break;
+}
+return ret;
+}
+case URI_TYPE_HTTP:
+case URI_TYPE_HTTPS:
+{
+HttpURLConnection conn=httpClient.open(new URL(uri.toString()));
+conn.setDoInput(true);
+String mimeType=conn.getHeaderField("Content-Type");
+int length=conn.getContentLength();
+InputStream inputStream=conn.getInputStream();
+return new OpenForReadResult(uri,inputStream,mimeType,length,null);
+}
+}
+throw new FileNotFoundException("URI not supported by CordovaResourceApi: " + uri);
+}

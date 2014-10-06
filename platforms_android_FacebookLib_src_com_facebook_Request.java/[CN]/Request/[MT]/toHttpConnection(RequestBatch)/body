@@ -1,0 +1,27 @@
+{
+  URL url=null;
+  try {
+    if (requests.size() == 1) {
+      Request request=requests.get(0);
+      url=new URL(request.getUrlForSingleRequest());
+    }
+ else {
+      url=new URL(ServerProtocol.getGraphUrlBase());
+    }
+  }
+ catch (  MalformedURLException e) {
+    throw new FacebookException("could not construct URL for request",e);
+  }
+  HttpURLConnection connection;
+  try {
+    connection=createConnection(url);
+    serializeToUrlConnection(requests,connection);
+  }
+ catch (  IOException e) {
+    throw new FacebookException("could not construct request body",e);
+  }
+catch (  JSONException e) {
+    throw new FacebookException("could not construct request body",e);
+  }
+  return connection;
+}

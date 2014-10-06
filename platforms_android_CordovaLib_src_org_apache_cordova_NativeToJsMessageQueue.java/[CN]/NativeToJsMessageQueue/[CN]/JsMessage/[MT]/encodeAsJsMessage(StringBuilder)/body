@@ -1,0 +1,10 @@
+{
+  if (pluginResult == null) {
+    sb.append(jsPayloadOrCallbackId);
+  }
+ else {
+    int status=pluginResult.getStatus();
+    boolean success=(status == PluginResult.Status.OK.ordinal()) || (status == PluginResult.Status.NO_RESULT.ordinal());
+    sb.append("cordova.callbackFromNative('").append(jsPayloadOrCallbackId).append("',").append(success).append(",").append(status).append(",[").append(pluginResult.getMessage()).append("],").append(pluginResult.getKeepCallback()).append(");");
+  }
+}

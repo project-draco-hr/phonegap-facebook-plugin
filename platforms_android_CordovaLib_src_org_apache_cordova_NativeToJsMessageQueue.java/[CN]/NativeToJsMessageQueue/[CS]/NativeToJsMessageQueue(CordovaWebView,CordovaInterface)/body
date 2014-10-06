@@ -1,0 +1,10 @@
+{
+  this.cordova=cordova;
+  this.webView=webView;
+  registeredListeners=new BridgeMode[4];
+  registeredListeners[0]=null;
+  registeredListeners[1]=new LoadUrlBridgeMode();
+  registeredListeners[2]=new OnlineEventsBridgeMode();
+  registeredListeners[3]=new PrivateApiBridgeMode();
+  reset();
+}

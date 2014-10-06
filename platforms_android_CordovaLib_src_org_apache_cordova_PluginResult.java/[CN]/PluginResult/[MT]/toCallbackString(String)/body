@@ -1,0 +1,9 @@
+{
+  if ((status == PluginResult.Status.NO_RESULT.ordinal()) && keepCallback) {
+    return null;
+  }
+  if ((status == PluginResult.Status.OK.ordinal()) || (status == PluginResult.Status.NO_RESULT.ordinal())) {
+    return toSuccessCallbackString(callbackId);
+  }
+  return toErrorCallbackString(callbackId);
+}

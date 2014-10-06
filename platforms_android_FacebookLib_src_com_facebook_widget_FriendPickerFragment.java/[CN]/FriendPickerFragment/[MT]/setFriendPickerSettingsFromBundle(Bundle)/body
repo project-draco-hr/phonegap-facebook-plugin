@@ -1,0 +1,15 @@
+{
+  if (inState != null) {
+    if (inState.containsKey(USER_ID_BUNDLE_KEY)) {
+      setUserId(inState.getString(USER_ID_BUNDLE_KEY));
+    }
+    setMultiSelect(inState.getBoolean(MULTI_SELECT_BUNDLE_KEY,multiSelect));
+    if (inState.containsKey(FRIEND_PICKER_TYPE_KEY)) {
+      try {
+        friendPickerType=FriendPickerType.valueOf(inState.getString(FRIEND_PICKER_TYPE_KEY));
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

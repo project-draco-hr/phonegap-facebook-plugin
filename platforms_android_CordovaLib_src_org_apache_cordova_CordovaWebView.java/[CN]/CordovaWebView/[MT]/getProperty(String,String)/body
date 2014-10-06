@@ -1,0 +1,12 @@
+{
+  Bundle bundle=this.cordova.getActivity().getIntent().getExtras();
+  if (bundle == null) {
+    return defaultValue;
+  }
+  name=name.toLowerCase(Locale.getDefault());
+  Object p=bundle.get(name);
+  if (p == null) {
+    return defaultValue;
+  }
+  return p.toString();
+}

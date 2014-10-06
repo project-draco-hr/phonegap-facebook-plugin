@@ -1,0 +1,29 @@
+{
+  if (connection != null) {
+    return;
+  }
+  if (routeSelector == null) {
+    String uriHost=uri.getHost();
+    if (uriHost == null) {
+      throw new UnknownHostException(uri.toString());
+    }
+    SSLSocketFactory sslSocketFactory=null;
+    HostnameVerifier hostnameVerifier=null;
+    if (uri.getScheme().equalsIgnoreCase("https")) {
+      sslSocketFactory=policy.sslSocketFactory;
+      hostnameVerifier=policy.hostnameVerifier;
+    }
+    Address address=new Address(uriHost,getEffectivePort(uri),sslSocketFactory,hostnameVerifier,policy.requestedProxy);
+    routeSelector=new RouteSelector(address,uri,policy.proxySelector,policy.connectionPool,Dns.DEFAULT,policy.getFailedRoutes());
+  }
+  connection=routeSelector.next();
+  if (!connection.isConnected()) {
+    connection.connect(policy.getConnectTimeout(),policy.getReadTimeout(),getTunnelConfig());
+    policy.connectionPool.maybeShare(connection);
+    policy.getFailedRoutes().remove(connection.getRoute());
+  }
+  connected(connection);
+  if (connection.getRoute().getProxy() != policy.requestedProxy) {
+    requestHeaders.getHeaders().setRequestLine(getRequestLine());
+  }
+}

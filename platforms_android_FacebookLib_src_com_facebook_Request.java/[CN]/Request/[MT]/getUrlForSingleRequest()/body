@@ -1,0 +1,15 @@
+{
+  if (overriddenURL != null) {
+    return overriddenURL.toString();
+  }
+  String graphBaseUrlBase;
+  if (this.getHttpMethod() == HttpMethod.POST && graphPath != null && graphPath.endsWith(VIDEOS_SUFFIX)) {
+    graphBaseUrlBase=ServerProtocol.getGraphVideoUrlBase();
+  }
+ else {
+    graphBaseUrlBase=ServerProtocol.getGraphUrlBase();
+  }
+  String baseUrl=String.format("%s/%s",graphBaseUrlBase,getGraphPathWithVersion());
+  addCommonParameters();
+  return appendParametersToBaseUrl(baseUrl);
+}

@@ -1,0 +1,8 @@
+{
+  if (_instance != null) {
+    return _instance;
+  }
+  _instance=new BoltsMeasurementEventListener(context);
+  _instance.open();
+  return _instance;
+}

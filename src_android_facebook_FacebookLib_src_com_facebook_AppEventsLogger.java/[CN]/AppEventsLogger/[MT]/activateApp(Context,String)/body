@@ -1,8 +1,0 @@
-{
-  if (context == null || applicationId == null) {
-    throw new IllegalArgumentException("Both context and applicationId must be non-null");
-  }
-  Settings.publishInstallAsync(context,applicationId);
-  AppEventsLogger logger=new AppEventsLogger(context,applicationId,null);
-  logger.logEvent(AppEventsConstants.EVENT_NAME_ACTIVATED_APP);
-}

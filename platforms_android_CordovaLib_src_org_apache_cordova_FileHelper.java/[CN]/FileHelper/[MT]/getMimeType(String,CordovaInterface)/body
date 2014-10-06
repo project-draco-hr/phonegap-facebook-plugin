@@ -1,0 +1,11 @@
+{
+  String mimeType=null;
+  Uri uri=Uri.parse(uriString);
+  if (uriString.startsWith("content://")) {
+    mimeType=cordova.getActivity().getContentResolver().getType(uri);
+  }
+ else {
+    mimeType=getMimeTypeForExtension(uri.getPath());
+  }
+  return mimeType;
+}

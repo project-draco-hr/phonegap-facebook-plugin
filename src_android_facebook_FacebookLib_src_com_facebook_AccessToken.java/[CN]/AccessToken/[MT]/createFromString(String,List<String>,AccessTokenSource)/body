@@ -1,3 +1,0 @@
-{
-  return new AccessToken(token,DEFAULT_EXPIRATION_TIME,permissions,source,DEFAULT_LAST_REFRESH_TIME);
-}

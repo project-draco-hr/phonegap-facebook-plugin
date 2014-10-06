@@ -1,0 +1,8 @@
+{
+  String token=bundle.getString(ACCESS_TOKEN_KEY);
+  Date expires=getBundleLongAsDate(bundle,EXPIRES_IN_KEY,expirationBase);
+  if (Utility.isNullOrEmpty(token) || (expires == null)) {
+    return null;
+  }
+  return new AccessToken(token,expires,requestedPermissions,null,source,new Date());
+}

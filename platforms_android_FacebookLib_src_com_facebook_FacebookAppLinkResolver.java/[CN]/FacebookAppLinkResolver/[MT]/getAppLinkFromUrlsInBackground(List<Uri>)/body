@@ -1,0 +1,76 @@
+{
+  final Map<Uri,AppLink> appLinkResults=new HashMap<Uri,AppLink>();
+  final HashSet<Uri> urisToRequest=new HashSet<Uri>();
+  StringBuilder graphRequestFields=new StringBuilder();
+  for (  Uri uri : uris) {
+    AppLink appLink=null;
+synchronized (cachedAppLinks) {
+      appLink=cachedAppLinks.get(uri);
+    }
+    if (appLink != null) {
+      appLinkResults.put(uri,appLink);
+    }
+ else {
+      if (!urisToRequest.isEmpty()) {
+        graphRequestFields.append(',');
+      }
+      graphRequestFields.append(uri.toString());
+      urisToRequest.add(uri);
+    }
+  }
+  if (urisToRequest.isEmpty()) {
+    return Task.forResult(appLinkResults);
+  }
+  final Task<Map<Uri,AppLink>>.TaskCompletionSource taskCompletionSource=Task.create();
+  Bundle appLinkRequestParameters=new Bundle();
+  appLinkRequestParameters.putString("ids",graphRequestFields.toString());
+  appLinkRequestParameters.putString("fields",String.format("%s.fields(%s,%s)",APP_LINK_KEY,APP_LINK_ANDROID_TARGET_KEY,APP_LINK_WEB_TARGET_KEY));
+  Request appLinkRequest=new Request(null,"",appLinkRequestParameters,null,new Request.Callback(){
+    @Override public void onCompleted(    Response response){
+      FacebookRequestError error=response.getError();
+      if (error != null) {
+        taskCompletionSource.setError(error.getException());
+        return;
+      }
+      GraphObject responseObject=response.getGraphObject();
+      JSONObject responseJson=responseObject != null ? responseObject.getInnerJSONObject() : null;
+      if (responseJson == null) {
+        taskCompletionSource.setResult(appLinkResults);
+        return;
+      }
+      for (      Uri uri : urisToRequest) {
+        String uriString=uri.toString();
+        if (!responseJson.has(uriString)) {
+          continue;
+        }
+        JSONObject urlData=null;
+        try {
+          urlData=responseJson.getJSONObject(uri.toString());
+          JSONObject appLinkData=urlData.getJSONObject(APP_LINK_KEY);
+          JSONArray rawTargets=appLinkData.getJSONArray(APP_LINK_ANDROID_TARGET_KEY);
+          int targetsCount=rawTargets.length();
+          List<AppLink.Target> targets=new ArrayList<AppLink.Target>(targetsCount);
+          for (int i=0; i < targetsCount; i++) {
+            AppLink.Target target=getAndroidTargetFromJson(rawTargets.getJSONObject(i));
+            if (target != null) {
+              targets.add(target);
+            }
+          }
+          Uri webFallbackUrl=getWebFallbackUriFromJson(uri,appLinkData);
+          AppLink appLink=new AppLink(uri,targets,webFallbackUrl);
+          appLinkResults.put(uri,appLink);
+synchronized (cachedAppLinks) {
+            cachedAppLinks.put(uri,appLink);
+          }
+        }
+ catch (        JSONException e) {
+          continue;
+        }
+      }
+      taskCompletionSource.setResult(appLinkResults);
+    }
+  }
+);
+  appLinkRequest.executeAsync();
+  return taskCompletionSource.getTask();
+}
