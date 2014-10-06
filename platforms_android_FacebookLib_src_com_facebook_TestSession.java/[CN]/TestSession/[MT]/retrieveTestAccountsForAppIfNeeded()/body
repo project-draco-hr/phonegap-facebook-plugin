@@ -3,32 +3,25 @@
     return;
   }
   appTestAccounts=new HashMap<String,TestAccount>();
-  String testAccountQuery=String.format("SELECT id,access_token FROM test_account WHERE app_id = %s",testApplicationId);
-  String userQuery="SELECT uid,name FROM user WHERE uid IN (SELECT id FROM #test_accounts)";
+  Request.setDefaultBatchApplicationId(testApplicationId);
   Bundle parameters=new Bundle();
-  JSONObject multiquery;
-  try {
-    multiquery=new JSONObject();
-    multiquery.put("test_accounts",testAccountQuery);
-    multiquery.put("users",userQuery);
-  }
- catch (  JSONException exception) {
-    throw new FacebookException(exception);
-  }
-  parameters.putString("q",multiquery.toString());
   parameters.putString("access_token",getAppAccessToken());
-  Request request=new Request(null,"fql",parameters,null);
-  Response response=request.executeAndWait();
-  if (response.getError() != null) {
-    throw response.getError().getException();
+  Request requestTestUsers=new Request(null,"app/accounts/test-users",parameters,null);
+  requestTestUsers.setBatchEntryName("testUsers");
+  requestTestUsers.setBatchEntryOmitResultOnSuccess(false);
+  Bundle testUserNamesParam=new Bundle();
+  testUserNamesParam.putString("access_token",getAppAccessToken());
+  testUserNamesParam.putString("ids","{result=testUsers:$.data.*.id}");
+  testUserNamesParam.putString("fields","name");
+  Request requestTestUserNames=new Request(null,"",testUserNamesParam,null);
+  requestTestUserNames.setBatchEntryDependsOn("testUsers");
+  List<Response> responses=Request.executeBatchAndWait(requestTestUsers,requestTestUserNames);
+  if (responses == null || responses.size() != 2) {
+    throw new FacebookException("Unexpected number of results from TestUsers batch query");
   }
-  FqlResponse fqlResponse=response.getGraphObjectAs(FqlResponse.class);
-  GraphObjectList<FqlResult> fqlResults=fqlResponse.getData();
-  if (fqlResults == null || fqlResults.size() != 2) {
-    throw new FacebookException("Unexpected number of results from FQL query");
-  }
-  Collection<TestAccount> testAccounts=fqlResults.get(0).getFqlResultSet().castToListOf(TestAccount.class);
-  Collection<UserAccount> userAccounts=fqlResults.get(1).getFqlResultSet().castToListOf(UserAccount.class);
-  populateTestAccounts(testAccounts,userAccounts);
+  TestAccountsResponse testAccountsResponse=responses.get(0).getGraphObjectAs(TestAccountsResponse.class);
+  GraphObjectList<TestAccount> testAccounts=testAccountsResponse.getData();
+  GraphObject userAccountsMap=responses.get(1).getGraphObject();
+  populateTestAccounts(testAccounts,userAccountsMap);
   return;
 }

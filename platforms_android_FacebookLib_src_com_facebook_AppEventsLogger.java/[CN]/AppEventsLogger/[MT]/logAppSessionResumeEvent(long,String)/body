@@ -1,0 +1,3 @@
+{
+  PersistedAppSessionInfo.onResume(applicationContext,accessTokenAppId,this,eventTime,sourceApplicationInfo);
+}

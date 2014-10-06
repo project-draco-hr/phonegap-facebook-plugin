@@ -1,0 +1,19 @@
+{
+  ObjectOutputStream oos=null;
+synchronized (staticLock) {
+    if (hasChanges) {
+      try {
+        oos=new ObjectOutputStream(new BufferedOutputStream(context.openFileOutput(PERSISTED_SESSION_INFO_FILENAME,Context.MODE_PRIVATE)));
+        oos.writeObject(appSessionInfoMap);
+        hasChanges=false;
+        Logger.log(LoggingBehavior.APP_EVENTS,"AppEvents","App session info saved");
+      }
+ catch (      Exception e) {
+        Log.d(TAG,"Got unexpected exception: " + e.toString());
+      }
+ finally {
+        Utility.closeQuietly(oos);
+      }
+    }
+  }
+}

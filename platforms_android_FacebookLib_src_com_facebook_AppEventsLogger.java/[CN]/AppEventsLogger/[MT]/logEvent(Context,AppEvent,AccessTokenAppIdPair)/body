@@ -1,8 +1,10 @@
 {
-  if (shouldSuppressEvent(event)) {
-    return;
+  Settings.getExecutor().execute(new Runnable(){
+    @Override public void run(){
+      SessionEventsState state=getSessionEventsState(context,accessTokenAppId);
+      state.addEvent(event);
+      flushIfNecessary();
+    }
   }
-  SessionEventsState state=getSessionEventsState(context,accessTokenAppId);
-  state.addEvent(event);
-  flushIfNecessary();
+);
 }

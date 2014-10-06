@@ -1,4 +1,5 @@
 {
+  Log.d(TAG,"onSessionStateChange:" + state.toString());
   if (exception != null && exception instanceof FacebookOperationCanceledException) {
     Log.e(TAG,"exception:" + exception.toString());
     handleError(exception,loginContext);
@@ -7,7 +8,26 @@
     final Session session=Session.getActiveSession();
     if (state.isOpened()) {
       if (loginContext != null) {
-        getUserInfo(session);
+        getUserInfo(session,new Request.GraphUserCallback(){
+          @Override public void onCompleted(          GraphUser user,          Response response){
+            if (loginContext != null) {
+              if (response.getError() != null) {
+                loginContext.error(getFacebookRequestErrorResponse(response.getError()));
+              }
+ else {
+                GraphObject graphObject=response.getGraphObject();
+                Log.d(TAG,"returning login object " + graphObject.getInnerJSONObject().toString());
+                userID=user.getId();
+                loginContext.success(getResponse());
+                loginContext=null;
+              }
+            }
+ else {
+              userID=user.getId();
+            }
+          }
+        }
+);
       }
  else       if (graphContext != null) {
         makeGraphCall();

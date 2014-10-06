@@ -6,6 +6,8 @@
     parameters.putString(ServerProtocol.DIALOG_PARAM_SCOPE,scope);
     addLoggingExtra(ServerProtocol.DIALOG_PARAM_SCOPE,scope);
   }
+  SessionDefaultAudience audience=request.getDefaultAudience();
+  parameters.putString(ServerProtocol.DIALOG_PARAM_DEFAULT_AUDIENCE,audience.getNativeProtocolAudience());
   String previousToken=request.getPreviousAccessToken();
   if (!Utility.isNullOrEmpty(previousToken) && (previousToken.equals(loadCookieToken()))) {
     parameters.putString(ServerProtocol.DIALOG_PARAM_ACCESS_TOKEN,previousToken);

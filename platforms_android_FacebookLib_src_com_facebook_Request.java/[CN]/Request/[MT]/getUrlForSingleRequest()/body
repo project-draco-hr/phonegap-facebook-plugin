@@ -2,20 +2,14 @@
   if (overriddenURL != null) {
     return overriddenURL.toString();
   }
-  String baseUrl;
-  if (this.restMethod != null) {
-    baseUrl=String.format("%s/%s",ServerProtocol.getRestUrlBase(),getRestPathWithVersion());
+  String graphBaseUrlBase;
+  if (this.getHttpMethod() == HttpMethod.POST && graphPath != null && graphPath.endsWith(VIDEOS_SUFFIX)) {
+    graphBaseUrlBase=ServerProtocol.getGraphVideoUrlBase();
   }
  else {
-    String graphBaseUrlBase;
-    if (this.getHttpMethod() == HttpMethod.POST && graphPath != null && graphPath.endsWith(VIDEOS_SUFFIX)) {
-      graphBaseUrlBase=ServerProtocol.getGraphVideoUrlBase();
-    }
- else {
-      graphBaseUrlBase=ServerProtocol.getGraphUrlBase();
-    }
-    baseUrl=String.format("%s/%s",graphBaseUrlBase,getGraphPathWithVersion());
+    graphBaseUrlBase=ServerProtocol.getGraphUrlBase();
   }
+  String baseUrl=String.format("%s/%s",graphBaseUrlBase,getGraphPathWithVersion());
   addCommonParameters();
   return appendParametersToBaseUrl(baseUrl);
 }

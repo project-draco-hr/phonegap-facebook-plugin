@@ -1,0 +1,26 @@
+{
+  ObjectInputStream ois=null;
+synchronized (staticLock) {
+    if (!isLoaded) {
+      try {
+        ois=new ObjectInputStream(context.openFileInput(PERSISTED_SESSION_INFO_FILENAME));
+        appSessionInfoMap=(HashMap<AccessTokenAppIdPair,FacebookTimeSpentData>)ois.readObject();
+        Logger.log(LoggingBehavior.APP_EVENTS,"AppEvents","App session info loaded");
+      }
+ catch (      FileNotFoundException fex) {
+      }
+catch (      Exception e) {
+        Log.d(TAG,"Got unexpected exception: " + e.toString());
+      }
+ finally {
+        Utility.closeQuietly(ois);
+        context.deleteFile(PERSISTED_SESSION_INFO_FILENAME);
+        if (appSessionInfoMap == null) {
+          appSessionInfoMap=new HashMap<AccessTokenAppIdPair,FacebookTimeSpentData>();
+        }
+        isLoaded=true;
+        hasChanges=false;
+      }
+    }
+  }
+}

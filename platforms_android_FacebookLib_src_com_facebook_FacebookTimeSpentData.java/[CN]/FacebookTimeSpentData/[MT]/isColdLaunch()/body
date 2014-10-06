@@ -1,0 +1,5 @@
+{
+  boolean result=!isWarmLaunch;
+  isWarmLaunch=true;
+  return result;
+}

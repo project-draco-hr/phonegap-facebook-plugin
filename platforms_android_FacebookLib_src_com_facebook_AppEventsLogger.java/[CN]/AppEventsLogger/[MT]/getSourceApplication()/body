@@ -1,0 +1,10 @@
+{
+  String openType="Unclassified";
+  if (isOpenedByApplink) {
+    openType="Applink";
+  }
+  if (sourceApplication != null) {
+    return openType + "(" + sourceApplication+ ")";
+  }
+  return openType;
+}

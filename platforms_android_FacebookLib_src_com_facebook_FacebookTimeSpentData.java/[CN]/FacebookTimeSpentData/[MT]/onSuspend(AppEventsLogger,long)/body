@@ -1,0 +1,15 @@
+{
+  if (!isAppActive) {
+    Logger.log(LoggingBehavior.APP_EVENTS,TAG,"Suspend for inactive app");
+    return;
+  }
+  long now=eventTime;
+  long delta=(now - lastResumeTime);
+  if (delta < 0) {
+    Logger.log(LoggingBehavior.APP_EVENTS,TAG,"Clock skew detected");
+    delta=0;
+  }
+  millisecondsSpentInSession+=delta;
+  lastSuspendTime=now;
+  isAppActive=false;
+}

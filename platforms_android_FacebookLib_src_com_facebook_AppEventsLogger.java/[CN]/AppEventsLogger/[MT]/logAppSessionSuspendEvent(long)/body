@@ -1,0 +1,3 @@
+{
+  PersistedAppSessionInfo.onSuspend(applicationContext,accessTokenAppId,this,eventTime);
+}

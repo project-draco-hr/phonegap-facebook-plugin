@@ -1,0 +1,5 @@
+Context context
+AccessTokenAppIdPair accessTokenAppId
+AppEventsLogger logger
+long eventTime
+String sourceApplicationInfo
