@@ -241,7 +241,7 @@
       if (FacebookDialog.canPresentShareDialog(me.cordova.getActivity(),FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
         Runnable runnable=new Runnable(){
           public void run(){
-            FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("link")).setPicture(paramBundle.getString("picture")).build();
+            FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("href")).setPicture(paramBundle.getString("picture")).build();
             uiHelper.trackPendingDialogCall(shareDialog.present());
           }
         }
