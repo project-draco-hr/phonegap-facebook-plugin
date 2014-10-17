@@ -4,7 +4,7 @@
     @Override public void onCompleted(    Response response){
       if (graphContext != null) {
         if (response.getError() != null) {
-          graphContext.error(response.getError().getErrorMessage());
+          graphContext.error(getFacebookRequestErrorResponse(response.getError()));
         }
  else {
           GraphObject graphObject=response.getGraphObject();

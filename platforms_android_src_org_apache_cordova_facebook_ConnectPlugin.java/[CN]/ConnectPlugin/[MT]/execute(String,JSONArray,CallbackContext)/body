@@ -84,13 +84,13 @@
       final CallbackContext _callbackContext=callbackContext;
       getUserInfo(session,new GraphUserCallback(){
         @Override public void onCompleted(        GraphUser user,        Response response){
-          FacebookRequestError error=response.getError();
-          if (error != null) {
-            _callbackContext.error(error.getErrorMessage());
-            return;
+          if (response.getError() != null) {
+            _callbackContext.error(getFacebookRequestErrorResponse(response.getError()));
           }
-          userID=user.getId();
-          _callbackContext.success(getResponse());
+ else {
+            userID=user.getId();
+            _callbackContext.success(getResponse());
+          }
         }
       }
 );
@@ -209,7 +209,7 @@
     final OnCompleteListener dialogCallback=new OnCompleteListener(){
       @Override public void onComplete(      Bundle values,      FacebookException exception){
         if (exception != null) {
-          handleError(exception);
+          handleError(exception,showDialogContext);
         }
  else {
           handleSuccess(values);
