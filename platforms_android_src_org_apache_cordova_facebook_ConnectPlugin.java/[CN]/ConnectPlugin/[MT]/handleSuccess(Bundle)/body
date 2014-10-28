@@ -4,7 +4,22 @@
     try {
       Set<String> keys=values.keySet();
       for (      String key : keys) {
-        response.put(key,values.get(key));
+        int beginArrayCharIndex=key.indexOf("[");
+        if (beginArrayCharIndex >= 0) {
+          String normalizedKey=key.substring(0,beginArrayCharIndex);
+          ArrayList<String> result;
+          if (response.has(normalizedKey)) {
+            result=(ArrayList<String>)response.get(normalizedKey);
+          }
+ else {
+            result=new ArrayList<String>();
+            response.put(normalizedKey,result);
+          }
+          result.add((String)values.get(key));
+        }
+ else {
+          response.put(key,values.get(key));
+        }
       }
     }
  catch (    JSONException e) {
