@@ -7,15 +7,15 @@
         int beginArrayCharIndex=key.indexOf("[");
         if (beginArrayCharIndex >= 0) {
           String normalizedKey=key.substring(0,beginArrayCharIndex);
-          ArrayList<String> result;
+          JSONArray result;
           if (response.has(normalizedKey)) {
-            result=(ArrayList<String>)response.get(normalizedKey);
+            result=(JSONArray)response.get(normalizedKey);
           }
  else {
-            result=new ArrayList<String>();
+            result=new JSONArray();
             response.put(normalizedKey,result);
           }
-          result.add((String)values.get(key));
+          result.put(result.length(),values.get(key));
         }
  else {
           response.put(key,values.get(key));
