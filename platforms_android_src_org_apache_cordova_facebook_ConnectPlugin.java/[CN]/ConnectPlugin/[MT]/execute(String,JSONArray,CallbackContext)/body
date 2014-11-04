@@ -14,7 +14,7 @@
     PluginResult pr=new PluginResult(PluginResult.Status.NO_RESULT);
     pr.setKeepCallback(true);
     loginContext.sendPluginResult(pr);
-    if (session != null && session.isOpened()) {
+    if (checkActiveSession(session)) {
       boolean publishPermissions=false;
       boolean readPermissions=false;
       if (permissions == null) {
@@ -47,6 +47,7 @@
     }
  else {
       session=new Session.Builder(cordova.getActivity()).setApplicationId(applicationId).build();
+      cordova.setActivityResultCallback(this);
       Session.setActiveSession(session);
       Session.OpenRequest openRequest=new Session.OpenRequest(cordova.getActivity());
       openRequest.setPermissions(permissions);
@@ -62,37 +63,55 @@
   }
  else   if (action.equals("logout")) {
     Session session=Session.getActiveSession();
-    if (session != null) {
-      if (session.isOpened()) {
-        session.closeAndClearTokenInformation();
-        userID=null;
-        callbackContext.success();
-      }
- else {
-        callbackContext.error("Session not open.");
-      }
+    if (checkActiveSession(session)) {
+      session.closeAndClearTokenInformation();
+      userID=null;
+      callbackContext.success();
     }
  else {
-      callbackContext.error("No valid session found, must call init and login before logout.");
+      if (session != null) {
+        callbackContext.error("Session not open.");
+      }
+ else {
+        callbackContext.error("No valid session found, must call init and login before logout.");
+      }
     }
     return true;
   }
  else   if (action.equals("getLoginStatus")) {
-    callbackContext.success(getResponse());
+    Session session=Session.getActiveSession();
+    if (userID == null && Session.getActiveSession() != null && session.isOpened()) {
+      final CallbackContext _callbackContext=callbackContext;
+      getUserInfo(session,new GraphUserCallback(){
+        @Override public void onCompleted(        GraphUser user,        Response response){
+          if (response.getError() != null) {
+            _callbackContext.error(getFacebookRequestErrorResponse(response.getError()));
+          }
+ else {
+            userID=user.getId();
+            _callbackContext.success(getResponse());
+          }
+        }
+      }
+);
+    }
+ else {
+      callbackContext.success(getResponse());
+    }
     return true;
   }
  else   if (action.equals("getAccessToken")) {
     Session session=Session.getActiveSession();
-    if (session != null) {
-      if (session.isOpened()) {
-        callbackContext.success(session.getAccessToken());
+    if (checkActiveSession(session)) {
+      callbackContext.success(session.getAccessToken());
+    }
+ else {
+      if (session == null) {
+        callbackContext.error("No valid session found, must call init and login before logout.");
       }
  else {
         callbackContext.error("Session not open.");
       }
-    }
- else {
-      callbackContext.error("No valid session found, must call init and login before logout.");
     }
     return true;
   }
@@ -111,14 +130,16 @@
       Iterator<?> iterator=params.keys();
       while (iterator.hasNext()) {
         try {
-          String value=params.getString((String)iterator.next());
-          parameters.putString((String)iterator.next(),value);
+          String key=(String)iterator.next();
+          String value=params.getString(key);
+          parameters.putString(key,value);
         }
  catch (        Exception e) {
           Log.w(TAG,"Type in AppEvent parameters was not String for key: " + (String)iterator.next());
           try {
-            int value=params.getInt((String)iterator.next());
-            parameters.putInt((String)iterator.next(),value);
+            String key=(String)iterator.next();
+            int value=params.getInt(key);
+            parameters.putInt(key,value);
           }
  catch (          Exception e2) {
             Log.e(TAG,"Unsupported type in AppEvent parameters for key: " + (String)iterator.next());
@@ -148,6 +169,11 @@
     return true;
   }
  else   if (action.equals("showDialog")) {
+    Session session=Session.getActiveSession();
+    if (!checkActiveSession(session)) {
+      callbackContext.error("No active session");
+      return true;
+    }
     Bundle collect=new Bundle();
     JSONObject params=null;
     try {
@@ -185,7 +211,7 @@
     final OnCompleteListener dialogCallback=new OnCompleteListener(){
       @Override public void onComplete(      Bundle values,      FacebookException exception){
         if (exception != null) {
-          handleError(exception);
+          handleError(exception,showDialogContext);
         }
  else {
           handleSuccess(values);
@@ -217,7 +243,7 @@
       if (FacebookDialog.canPresentShareDialog(me.cordova.getActivity(),FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
         Runnable runnable=new Runnable(){
           public void run(){
-            FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("link")).setPicture(paramBundle.getString("picture")).build();
+            FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("href")).setPicture(paramBundle.getString("picture")).build();
             uiHelper.trackPendingDialogCall(shareDialog.present());
           }
         }
@@ -252,8 +278,6 @@
     for (int i=0; i < arr.length(); i++) {
       permissionsList.add(arr.getString(i));
     }
-    final Session session=Session.getActiveSession();
-    final ConnectPlugin me=this;
     boolean publishPermissions=false;
     boolean readPermissions=false;
     if (permissionsList.size() > 0) {
@@ -272,12 +296,13 @@
         graphContext.error("Cannot ask for both read and publish permissions.");
       }
  else {
+        Session session=Session.getActiveSession();
         if (session.getPermissions().containsAll(permissionsList)) {
           makeGraphCall();
         }
  else {
           Session.NewPermissionsRequest newPermissionsRequest=new Session.NewPermissionsRequest(cordova.getActivity(),permissionsList);
-          cordova.setActivityResultCallback(me);
+          cordova.setActivityResultCallback(this);
           if (publishPermissions) {
             session.requestNewPublishPermissions(newPermissionsRequest);
           }

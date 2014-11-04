@@ -15,7 +15,7 @@
       final long tapTimeUtc=jsonResponse.optLong(DEFERRED_APP_LINK_CLICK_TIME_FIELD,-1);
       final String appLinkClassName=jsonResponse.optString(DEFERRED_APP_LINK_CLASS_FIELD);
       final String appLinkUrl=jsonResponse.optString(DEFERRED_APP_LINK_URL_FIELD);
-      if (appLinkArgsJsonString != null && appLinkArgsJsonString != "") {
+      if (!TextUtils.isEmpty(appLinkArgsJsonString)) {
         appLinkData=createFromJson(appLinkArgsJsonString);
         if (tapTimeUtc != -1) {
           try {

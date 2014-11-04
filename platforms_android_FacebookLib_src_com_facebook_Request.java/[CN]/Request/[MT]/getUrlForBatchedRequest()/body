@@ -2,13 +2,7 @@
   if (overriddenURL != null) {
     throw new FacebookException("Can't override URL for a batch request");
   }
-  String baseUrl;
-  if (this.restMethod != null) {
-    baseUrl=getRestPathWithVersion();
-  }
- else {
-    baseUrl=getGraphPathWithVersion();
-  }
+  String baseUrl=getGraphPathWithVersion();
   addCommonParameters();
   return appendParametersToBaseUrl(baseUrl);
 }

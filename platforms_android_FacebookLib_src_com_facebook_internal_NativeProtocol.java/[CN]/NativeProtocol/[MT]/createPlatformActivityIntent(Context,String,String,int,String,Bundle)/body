@@ -1,0 +1,22 @@
+{
+  Intent intent=findActivityIntent(context,INTENT_ACTION_PLATFORM_ACTIVITY,action);
+  if (intent == null) {
+    return null;
+  }
+  String applicationId=Utility.getMetadataApplicationId(context);
+  intent.putExtra(EXTRA_PROTOCOL_VERSION,version).putExtra(EXTRA_PROTOCOL_ACTION,action).putExtra(EXTRA_APPLICATION_ID,applicationId);
+  if (isVersionCompatibleWithBucketedIntent(version)) {
+    Bundle bridgeArguments=new Bundle();
+    bridgeArguments.putString(BRIDGE_ARG_ACTION_ID_STRING,callId);
+    bridgeArguments.putString(BRIDGE_ARG_APP_NAME_STRING,applicationName);
+    intent.putExtra(EXTRA_PROTOCOL_BRIDGE_ARGS,bridgeArguments);
+    Bundle methodArguments=extras == null ? new Bundle() : extras;
+    intent.putExtra(EXTRA_PROTOCOL_METHOD_ARGS,methodArguments);
+  }
+ else {
+    intent.putExtra(EXTRA_PROTOCOL_CALL_ID,callId);
+    intent.putExtra(EXTRA_APPLICATION_NAME,applicationName);
+    intent.putExtras(extras);
+  }
+  return intent;
+}

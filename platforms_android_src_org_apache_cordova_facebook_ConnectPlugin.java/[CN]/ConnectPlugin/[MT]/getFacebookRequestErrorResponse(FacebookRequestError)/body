@@ -1,0 +1,18 @@
+{
+  String response="{" + "\"errorCode\": \"" + error.getErrorCode() + "\","+ "\"errorType\": \""+ error.getErrorType()+ "\","+ "\"errorMessage\": \""+ error.getErrorMessage()+ "\"";
+  int messageId=error.getUserActionMessageId();
+  if (messageId != 0) {
+    String errorUserMessage=cordova.getActivity().getResources().getString(messageId);
+    if (errorUserMessage != null) {
+      response+=",\"errorUserMessage\": \"" + cordova.getActivity().getResources().getString(error.getUserActionMessageId()) + "\"";
+    }
+  }
+  response+="}";
+  try {
+    return new JSONObject(response);
+  }
+ catch (  JSONException e) {
+    e.printStackTrace();
+  }
+  return new JSONObject();
+}

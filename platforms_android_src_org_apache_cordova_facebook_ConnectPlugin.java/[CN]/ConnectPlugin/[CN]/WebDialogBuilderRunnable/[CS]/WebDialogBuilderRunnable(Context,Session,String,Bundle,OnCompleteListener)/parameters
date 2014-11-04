@@ -1,5 +1,0 @@
-Context context
-Session session
-String method
-Bundle paramBundle
-OnCompleteListener dialogCallback

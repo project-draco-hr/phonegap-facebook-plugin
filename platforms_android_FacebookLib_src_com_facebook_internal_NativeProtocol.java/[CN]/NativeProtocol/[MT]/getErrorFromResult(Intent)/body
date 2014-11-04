@@ -2,10 +2,12 @@
   if (!isErrorResult(resultIntent)) {
     return null;
   }
-  String type=resultIntent.getStringExtra(STATUS_ERROR_TYPE);
-  String description=resultIntent.getStringExtra(STATUS_ERROR_DESCRIPTION);
-  if (type.equalsIgnoreCase(ERROR_USER_CANCELED)) {
-    return new FacebookOperationCanceledException(description);
+  Bundle bridgeArgs=getBridgeArgumentsFromIntent(resultIntent);
+  if (bridgeArgs != null) {
+    Bundle errorBundle=bridgeArgs.getBundle(BRIDGE_ARG_ERROR_BUNDLE);
+    if (errorBundle != null) {
+      return getErrorFromResult(errorBundle);
+    }
   }
-  return new FacebookException(description);
+  return getErrorFromResult(resultIntent.getExtras());
 }

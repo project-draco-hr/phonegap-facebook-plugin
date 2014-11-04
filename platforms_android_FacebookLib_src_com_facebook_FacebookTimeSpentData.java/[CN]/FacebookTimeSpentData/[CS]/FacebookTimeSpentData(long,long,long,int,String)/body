@@ -1,0 +1,8 @@
+{
+  resetSession();
+  this.lastResumeTime=lastResumeTime;
+  this.lastSuspendTime=lastSuspendTime;
+  this.millisecondsSpentInSession=millisecondsSpentInSession;
+  this.interruptionCount=interruptionCount;
+  this.firstOpenSourceApplication=firstOpenSourceApplication;
+}

@@ -1,7 +1,4 @@
 {
-  for (  Request request : requests) {
-    request.validate();
-  }
   URL url=null;
   try {
     if (requests.size() == 1) {

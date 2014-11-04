@@ -1,0 +1,5 @@
+{
+  if (cordova != null) {
+    Request.newMeRequest(session,graphUserCb).executeAsync();
+  }
+}

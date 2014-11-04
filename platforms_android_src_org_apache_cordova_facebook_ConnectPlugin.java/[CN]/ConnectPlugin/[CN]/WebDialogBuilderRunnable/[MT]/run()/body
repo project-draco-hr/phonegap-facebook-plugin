@@ -1,4 +1,0 @@
-{
-  WebDialog shareDialog=(new WebDialog.Builder(context,session,method,paramBundle)).setOnCompleteListener(dialogCallback).build();
-  shareDialog.show();
-}
