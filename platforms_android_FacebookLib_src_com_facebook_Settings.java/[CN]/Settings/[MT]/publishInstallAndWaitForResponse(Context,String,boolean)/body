@@ -49,7 +49,7 @@
       if (publishResponse.getGraphObject() != null && publishResponse.getGraphObject().getInnerJSONObject() != null) {
         editor.putString(jsonKey,publishResponse.getGraphObject().getInnerJSONObject().toString());
       }
-      editor.commit();
+      editor.apply();
       return publishResponse;
     }
   }

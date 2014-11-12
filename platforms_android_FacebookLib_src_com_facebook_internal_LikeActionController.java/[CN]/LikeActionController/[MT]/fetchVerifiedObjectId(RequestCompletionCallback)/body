@@ -1,0 +1,31 @@
+{
+  if (!Utility.isNullOrEmpty(verifiedObjectId)) {
+    if (completionHandler != null) {
+      completionHandler.onComplete();
+    }
+    return;
+  }
+  final GetOGObjectIdRequestWrapper objectIdRequest=new GetOGObjectIdRequestWrapper(objectId);
+  final GetPageIdRequestWrapper pageIdRequest=new GetPageIdRequestWrapper(objectId);
+  RequestBatch requestBatch=new RequestBatch();
+  objectIdRequest.addToBatch(requestBatch);
+  pageIdRequest.addToBatch(requestBatch);
+  requestBatch.addCallback(new RequestBatch.Callback(){
+    @Override public void onBatchCompleted(    RequestBatch batch){
+      verifiedObjectId=objectIdRequest.verifiedObjectId;
+      if (Utility.isNullOrEmpty(verifiedObjectId)) {
+        verifiedObjectId=pageIdRequest.verifiedObjectId;
+        objectIsPage=pageIdRequest.objectIsPage;
+      }
+      if (Utility.isNullOrEmpty(verifiedObjectId)) {
+        Logger.log(LoggingBehavior.DEVELOPER_ERRORS,TAG,"Unable to verify the FB id for '%s'. Verify that it is a valid FB object or page",objectId);
+        logAppEventForError("get_verified_id",pageIdRequest.error != null ? pageIdRequest.error : objectIdRequest.error);
+      }
+      if (completionHandler != null) {
+        completionHandler.onComplete();
+      }
+    }
+  }
+);
+  requestBatch.executeAsync();
+}

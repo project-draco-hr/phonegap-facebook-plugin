@@ -1,4 +1,11 @@
 {
+  if (isDismissed) {
+    return;
+  }
+  isDismissed=true;
+  if (!listenerCalled) {
+    sendCancelToListener();
+  }
   if (webView != null) {
     webView.stopLoading();
   }

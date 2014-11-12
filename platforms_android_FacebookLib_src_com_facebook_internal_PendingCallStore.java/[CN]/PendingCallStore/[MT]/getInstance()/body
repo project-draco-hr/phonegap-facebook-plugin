@@ -1,0 +1,6 @@
+{
+  if (mInstance == null) {
+    createInstance();
+  }
+  return mInstance;
+}

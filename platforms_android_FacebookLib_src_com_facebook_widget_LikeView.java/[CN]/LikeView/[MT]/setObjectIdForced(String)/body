@@ -1,0 +1,9 @@
+{
+  tearDownObjectAssociations();
+  objectId=newObjectId;
+  if (Utility.isNullOrEmpty(newObjectId)) {
+    return;
+  }
+  creationCallback=new LikeActionControllerCreationCallback();
+  LikeActionController.getControllerForObjectId(getContext(),newObjectId,creationCallback);
+}

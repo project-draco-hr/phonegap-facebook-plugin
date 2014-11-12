@@ -1,0 +1,4 @@
+{
+  List<NativeAppInfo> appInfoList=actionToAppInfoMap.get(action);
+  return getLatestAvailableProtocolVersionForAppInfoList(context,appInfoList,versionSpec);
+}

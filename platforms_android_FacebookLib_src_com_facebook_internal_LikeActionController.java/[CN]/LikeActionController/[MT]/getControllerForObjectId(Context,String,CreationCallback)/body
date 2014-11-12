@@ -1,0 +1,12 @@
+{
+  if (!isInitialized) {
+    performFirstInitialize(context);
+  }
+  LikeActionController controllerForObject=getControllerFromInMemoryCache(objectId);
+  if (controllerForObject != null) {
+    invokeCallbackWithController(callback,controllerForObject);
+  }
+ else {
+    diskIOWorkQueue.addActiveWorkItem(new CreateLikeActionControllerWorkItem(context,objectId,callback));
+  }
+}

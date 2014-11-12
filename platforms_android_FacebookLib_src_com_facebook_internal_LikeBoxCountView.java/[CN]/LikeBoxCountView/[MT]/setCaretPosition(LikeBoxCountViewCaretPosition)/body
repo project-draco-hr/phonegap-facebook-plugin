@@ -1,0 +1,17 @@
+{
+  this.caretPosition=caretPosition;
+switch (caretPosition) {
+case LEFT:
+    setAdditionalTextPadding(additionalTextPadding,0,0,0);
+  break;
+case TOP:
+setAdditionalTextPadding(0,additionalTextPadding,0,0);
+break;
+case RIGHT:
+setAdditionalTextPadding(0,0,additionalTextPadding,0);
+break;
+case BOTTOM:
+setAdditionalTextPadding(0,0,0,additionalTextPadding);
+break;
+}
+}

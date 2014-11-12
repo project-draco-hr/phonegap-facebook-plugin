@@ -1,0 +1,30 @@
+{
+  if (context == null) {
+    return null;
+  }
+  PackageManager packageManager=context.getPackageManager();
+  if (packageManager == null) {
+    return null;
+  }
+  String packageName=context.getPackageName();
+  PackageInfo pInfo;
+  try {
+    pInfo=packageManager.getPackageInfo(packageName,PackageManager.GET_SIGNATURES);
+  }
+ catch (  PackageManager.NameNotFoundException e) {
+    return null;
+  }
+  Signature[] signatures=pInfo.signatures;
+  if (signatures == null || signatures.length == 0) {
+    return null;
+  }
+  MessageDigest md;
+  try {
+    md=MessageDigest.getInstance("SHA-1");
+  }
+ catch (  NoSuchAlgorithmException e) {
+    return null;
+  }
+  md.update(pInfo.signatures[0].toByteArray());
+  return Base64.encodeToString(md.digest(),Base64.URL_SAFE | Base64.NO_PADDING);
+}

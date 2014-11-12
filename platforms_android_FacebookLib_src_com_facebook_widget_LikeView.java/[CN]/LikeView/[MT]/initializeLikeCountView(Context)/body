@@ -1,0 +1,5 @@
+{
+  likeBoxCountView=new LikeBoxCountView(context);
+  LinearLayout.LayoutParams likeCountViewLayout=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+  likeBoxCountView.setLayoutParams(likeCountViewLayout);
+}

@@ -1,4 +1,7 @@
 {
+  if (intent == null) {
+    return null;
+  }
   int version=getProtocolVersionFromIntent(intent);
   String callIdString=null;
   if (isVersionCompatibleWithBucketedIntent(version)) {

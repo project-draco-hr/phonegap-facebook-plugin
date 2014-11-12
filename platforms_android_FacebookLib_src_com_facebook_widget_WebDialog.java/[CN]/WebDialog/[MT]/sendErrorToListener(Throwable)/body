@@ -9,5 +9,6 @@
       facebookException=new FacebookException(error);
     }
     onCompleteListener.onComplete(null,facebookException);
+    dismiss();
   }
 }

@@ -1,0 +1,23 @@
+{
+  isPendingLikeOrUnlike=true;
+  RequestBatch requestBatch=new RequestBatch();
+  final PublishUnlikeRequestWrapper unlikeRequest=new PublishUnlikeRequestWrapper(unlikeToken);
+  unlikeRequest.addToBatch(requestBatch);
+  requestBatch.addCallback(new RequestBatch.Callback(){
+    @Override public void onBatchCompleted(    RequestBatch batch){
+      isPendingLikeOrUnlike=false;
+      if (unlikeRequest.error != null) {
+        updateState(true,likeCountStringWithLike,likeCountStringWithoutLike,socialSentenceWithLike,socialSentenceWithoutLike,unlikeToken);
+        presentLikeDialog(activity,analyticsParameters);
+      }
+ else {
+        unlikeToken=null;
+        isObjectLikedOnServer=false;
+        appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_UNLIKE,null,analyticsParameters);
+        toggleAgainIfNeeded(activity,analyticsParameters);
+      }
+    }
+  }
+);
+  requestBatch.executeAsync();
+}

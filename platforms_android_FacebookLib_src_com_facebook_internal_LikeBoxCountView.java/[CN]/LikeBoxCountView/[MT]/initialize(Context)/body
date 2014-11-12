@@ -1,0 +1,13 @@
+{
+  setWillNotDraw(false);
+  caretHeight=getResources().getDimension(R.dimen.com_facebook_likeboxcountview_caret_height);
+  caretWidth=getResources().getDimension(R.dimen.com_facebook_likeboxcountview_caret_width);
+  borderRadius=getResources().getDimension(R.dimen.com_facebook_likeboxcountview_border_radius);
+  borderPaint=new Paint();
+  borderPaint.setColor(getResources().getColor(R.color.com_facebook_likeboxcountview_border_color));
+  borderPaint.setStrokeWidth(getResources().getDimension(R.dimen.com_facebook_likeboxcountview_border_width));
+  borderPaint.setStyle(Paint.Style.STROKE);
+  initializeLikeCountLabel(context);
+  addView(likeCountLabel);
+  setCaretPosition(this.caretPosition);
+}

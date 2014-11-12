@@ -1,0 +1,8 @@
+{
+  for (  AuxiliaryViewPosition auxViewPosition : values()) {
+    if (auxViewPosition.getValue() == enumValue) {
+      return auxViewPosition;
+    }
+  }
+  return null;
+}

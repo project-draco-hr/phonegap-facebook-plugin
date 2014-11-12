@@ -1,0 +1,7 @@
+{
+  auxiliaryViewPosition=auxiliaryViewPosition != null ? auxiliaryViewPosition : AuxiliaryViewPosition.DEFAULT;
+  if (this.auxiliaryViewPosition != auxiliaryViewPosition) {
+    this.auxiliaryViewPosition=auxiliaryViewPosition;
+    updateLayout();
+  }
+}

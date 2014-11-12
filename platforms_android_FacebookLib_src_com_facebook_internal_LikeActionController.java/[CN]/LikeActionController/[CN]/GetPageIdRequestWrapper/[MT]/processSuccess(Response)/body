@@ -1,0 +1,7 @@
+{
+  JSONObject results=Utility.tryGetJSONObjectFromResponse(response.getGraphObject(),objectId);
+  if (results != null) {
+    verifiedObjectId=results.optString("id");
+    objectIsPage=!Utility.isNullOrEmpty(verifiedObjectId);
+  }
+}

@@ -1,0 +1,34 @@
+{
+  isPendingLikeOrUnlike=true;
+  fetchVerifiedObjectId(new RequestCompletionCallback(){
+    @Override public void onComplete(){
+      if (Utility.isNullOrEmpty(verifiedObjectId)) {
+        Bundle errorBundle=new Bundle();
+        errorBundle.putString(NativeProtocol.STATUS_ERROR_DESCRIPTION,ERROR_INVALID_OBJECT_ID);
+        broadcastAction(context,LikeActionController.this,ACTION_LIKE_ACTION_CONTROLLER_DID_ERROR,errorBundle);
+        return;
+      }
+      RequestBatch requestBatch=new RequestBatch();
+      final PublishLikeRequestWrapper likeRequest=new PublishLikeRequestWrapper(verifiedObjectId);
+      likeRequest.addToBatch(requestBatch);
+      requestBatch.addCallback(new RequestBatch.Callback(){
+        @Override public void onBatchCompleted(        RequestBatch batch){
+          isPendingLikeOrUnlike=false;
+          if (likeRequest.error != null) {
+            updateState(false,likeCountStringWithLike,likeCountStringWithoutLike,socialSentenceWithLike,socialSentenceWithoutLike,unlikeToken);
+            presentLikeDialog(activity,analyticsParameters);
+          }
+ else {
+            unlikeToken=Utility.coerceValueIfNullOrEmpty(likeRequest.unlikeToken,null);
+            isObjectLikedOnServer=true;
+            appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_LIKE,null,analyticsParameters);
+            toggleAgainIfNeeded(activity,analyticsParameters);
+          }
+        }
+      }
+);
+      requestBatch.executeAsync();
+    }
+  }
+);
+}

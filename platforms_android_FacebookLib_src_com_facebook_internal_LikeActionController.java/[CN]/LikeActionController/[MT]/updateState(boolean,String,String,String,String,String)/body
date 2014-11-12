@@ -1,0 +1,19 @@
+{
+  likeCountStringWithLike=Utility.coerceValueIfNullOrEmpty(likeCountStringWithLike,null);
+  likeCountStringWithoutLike=Utility.coerceValueIfNullOrEmpty(likeCountStringWithoutLike,null);
+  socialSentenceWithLike=Utility.coerceValueIfNullOrEmpty(socialSentenceWithLike,null);
+  socialSentenceWithoutLike=Utility.coerceValueIfNullOrEmpty(socialSentenceWithoutLike,null);
+  unlikeToken=Utility.coerceValueIfNullOrEmpty(unlikeToken,null);
+  boolean stateChanged=isObjectLiked != this.isObjectLiked || !Utility.areObjectsEqual(likeCountStringWithLike,this.likeCountStringWithLike) || !Utility.areObjectsEqual(likeCountStringWithoutLike,this.likeCountStringWithoutLike) || !Utility.areObjectsEqual(socialSentenceWithLike,this.socialSentenceWithLike) || !Utility.areObjectsEqual(socialSentenceWithoutLike,this.socialSentenceWithoutLike) || !Utility.areObjectsEqual(unlikeToken,this.unlikeToken);
+  if (!stateChanged) {
+    return;
+  }
+  this.isObjectLiked=isObjectLiked;
+  this.likeCountStringWithLike=likeCountStringWithLike;
+  this.likeCountStringWithoutLike=likeCountStringWithoutLike;
+  this.socialSentenceWithLike=socialSentenceWithLike;
+  this.socialSentenceWithoutLike=socialSentenceWithoutLike;
+  this.unlikeToken=unlikeToken;
+  serializeToDiskAsync(this);
+  broadcastAction(context,this,ACTION_LIKE_ACTION_CONTROLLER_UPDATED);
+}

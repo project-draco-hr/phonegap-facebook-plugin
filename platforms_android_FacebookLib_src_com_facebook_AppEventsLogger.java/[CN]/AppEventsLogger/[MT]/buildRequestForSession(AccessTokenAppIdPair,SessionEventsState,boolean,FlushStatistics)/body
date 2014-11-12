@@ -8,6 +8,9 @@
   }
   requestParameters.putString("access_token",accessTokenAppId.getAccessToken());
   postRequest.setParameters(requestParameters);
+  if (fetchedAppSettings == null) {
+    return null;
+  }
   int numEvents=sessionEventsState.populateRequest(postRequest,fetchedAppSettings.supportsImplicitLogging(),fetchedAppSettings.supportsAttribution(),limitEventUsage);
   if (numEvents == 0) {
     return null;

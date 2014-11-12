@@ -1,0 +1,6 @@
+{
+  Bundle logParams=new Bundle(parameters);
+  logParams.putString(AnalyticsEvents.PARAMETER_LIKE_VIEW_OBJECT_ID,objectId);
+  logParams.putString(AnalyticsEvents.PARAMETER_LIKE_VIEW_CURRENT_ACTION,action);
+  appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_ERROR,null,logParams);
+}

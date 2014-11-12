@@ -1,0 +1,20 @@
+{
+  super.onDraw(canvas);
+  int top=getPaddingTop(), left=getPaddingLeft();
+  int right=getWidth() - getPaddingRight(), bottom=getHeight() - getPaddingBottom();
+switch (caretPosition) {
+case BOTTOM:
+    bottom-=caretHeight;
+  break;
+case LEFT:
+left+=caretHeight;
+break;
+case TOP:
+top+=caretHeight;
+break;
+case RIGHT:
+right-=caretHeight;
+break;
+}
+drawBorder(canvas,left,top,right,bottom);
+}

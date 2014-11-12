@@ -1,0 +1,24 @@
+{
+  String intentAction=intent.getAction();
+  Bundle extras=intent.getExtras();
+  boolean shouldRespond=true;
+  if (extras != null) {
+    String broadcastObjectId=extras.getString(LikeActionController.ACTION_OBJECT_ID_KEY);
+    shouldRespond=Utility.isNullOrEmpty(broadcastObjectId) || Utility.areObjectsEqual(objectId,broadcastObjectId);
+  }
+  if (!shouldRespond) {
+    return;
+  }
+  if (LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_UPDATED.equals(intentAction)) {
+    updateLikeStateAndLayout();
+  }
+ else   if (LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_DID_ERROR.equals(intentAction)) {
+    if (onErrorListener != null) {
+      onErrorListener.onError(extras);
+    }
+  }
+ else   if (LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_DID_RESET.equals(intentAction)) {
+    setObjectIdForced(objectId);
+    updateLikeStateAndLayout();
+  }
+}

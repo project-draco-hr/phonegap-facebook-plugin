@@ -1,0 +1,13 @@
+{
+  if (canUseOGPublish(shouldLikeObject)) {
+    if (shouldLikeObject) {
+      publishLikeAsync(activity,analyticsParameters);
+    }
+ else {
+      publishUnlikeAsync(activity,analyticsParameters);
+    }
+  }
+ else {
+    presentLikeDialog(activity,analyticsParameters);
+  }
+}

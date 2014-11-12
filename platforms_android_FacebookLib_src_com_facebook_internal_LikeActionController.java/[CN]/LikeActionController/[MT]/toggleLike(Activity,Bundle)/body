@@ -1,0 +1,12 @@
+{
+  appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_TAP,null,analyticsParameters);
+  boolean shouldLikeObject=!this.isObjectLiked;
+  if (canUseOGPublish(shouldLikeObject)) {
+    updateState(shouldLikeObject,this.likeCountStringWithLike,this.likeCountStringWithoutLike,this.socialSentenceWithLike,this.socialSentenceWithoutLike,this.unlikeToken);
+    if (isPendingLikeOrUnlike) {
+      appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_UNDO_QUICKLY,null,analyticsParameters);
+      return;
+    }
+  }
+  performLikeOrUnlike(activity,shouldLikeObject,analyticsParameters);
+}

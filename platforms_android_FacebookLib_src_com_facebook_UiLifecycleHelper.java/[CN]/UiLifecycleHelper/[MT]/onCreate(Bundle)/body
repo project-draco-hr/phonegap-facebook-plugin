@@ -10,6 +10,10 @@
     Session.setActiveSession(session);
   }
   if (savedInstanceState != null) {
-    pendingFacebookDialogCall=savedInstanceState.getParcelable(DIALOG_CALL_BUNDLE_SAVE_KEY);
+    String callIdString=savedInstanceState.getString(DIALOG_CALL_ID_SAVE_KEY);
+    if (callIdString != null) {
+      pendingFacebookDialogCallId=UUID.fromString(callIdString);
+    }
+    pendingFacebookDialogCallStore.restoreFromSavedInstanceState(savedInstanceState);
   }
 }

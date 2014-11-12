@@ -1,0 +1,10 @@
+{
+  Bundle logParams=new Bundle();
+  if (error != null) {
+    JSONObject requestResult=error.getRequestResult();
+    if (requestResult != null) {
+      logParams.putString(AnalyticsEvents.PARAMETER_LIKE_VIEW_ERROR_JSON,requestResult.toString());
+    }
+  }
+  logAppEventForError(action,logParams);
+}

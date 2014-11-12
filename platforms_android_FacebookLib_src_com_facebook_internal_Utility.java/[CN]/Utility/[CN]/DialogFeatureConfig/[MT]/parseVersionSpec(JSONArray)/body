@@ -1,0 +1,24 @@
+{
+  int[] versionSpec=null;
+  if (versionsJSON != null) {
+    int numVersions=versionsJSON.length();
+    versionSpec=new int[numVersions];
+    for (int i=0; i < numVersions; i++) {
+      int version=versionsJSON.optInt(i,NativeProtocol.NO_PROTOCOL_AVAILABLE);
+      if (version == NativeProtocol.NO_PROTOCOL_AVAILABLE) {
+        String versionString=versionsJSON.optString(i);
+        if (!isNullOrEmpty(versionString)) {
+          try {
+            version=Integer.parseInt(versionString);
+          }
+ catch (          NumberFormatException nfe) {
+            logd(LOG_TAG,nfe);
+            version=NativeProtocol.NO_PROTOCOL_AVAILABLE;
+          }
+        }
+      }
+      versionSpec[i]=version;
+    }
+  }
+  return versionSpec;
+}

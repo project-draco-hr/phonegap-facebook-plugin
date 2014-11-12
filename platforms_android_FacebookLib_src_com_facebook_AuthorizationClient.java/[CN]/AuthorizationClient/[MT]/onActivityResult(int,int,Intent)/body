@@ -1,5 +1,5 @@
 {
-  if (requestCode == pendingRequest.getRequestCode()) {
+  if (pendingRequest != null && requestCode == pendingRequest.getRequestCode()) {
     return currentHandler.onActivityResult(requestCode,resultCode,data);
   }
   return false;

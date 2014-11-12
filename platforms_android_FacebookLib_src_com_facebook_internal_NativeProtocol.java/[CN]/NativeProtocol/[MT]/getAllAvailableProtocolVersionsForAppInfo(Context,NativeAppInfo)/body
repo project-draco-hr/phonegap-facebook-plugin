@@ -1,0 +1,22 @@
+{
+  TreeSet<Integer> allAvailableVersions=new TreeSet<Integer>();
+  ContentResolver contentResolver=context.getContentResolver();
+  String[] projection=new String[]{PLATFORM_PROVIDER_VERSION_COLUMN};
+  Uri uri=buildPlatformProviderVersionURI(appInfo);
+  Cursor c=null;
+  try {
+    c=contentResolver.query(uri,projection,null,null,null);
+    if (c != null) {
+      while (c.moveToNext()) {
+        int version=c.getInt(c.getColumnIndex(PLATFORM_PROVIDER_VERSION_COLUMN));
+        allAvailableVersions.add(version);
+      }
+    }
+  }
+  finally {
+    if (c != null) {
+      c.close();
+    }
+  }
+  return allAvailableVersions;
+}

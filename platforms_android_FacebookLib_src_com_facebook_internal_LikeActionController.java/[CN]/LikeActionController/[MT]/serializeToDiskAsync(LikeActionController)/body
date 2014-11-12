@@ -1,0 +1,7 @@
+{
+  String controllerJson=serializeToJson(controller);
+  String cacheKey=getCacheKeyForObjectId(controller.objectId);
+  if (!Utility.isNullOrEmpty(controllerJson) && !Utility.isNullOrEmpty(cacheKey)) {
+    diskIOWorkQueue.addActiveWorkItem(new SerializeToDiskWorkItem(cacheKey,controllerJson));
+  }
+}
