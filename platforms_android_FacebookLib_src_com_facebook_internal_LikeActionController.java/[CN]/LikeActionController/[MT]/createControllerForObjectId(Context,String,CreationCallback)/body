@@ -1,0 +1,21 @@
+{
+  LikeActionController controllerForObject=getControllerFromInMemoryCache(objectId);
+  if (controllerForObject != null) {
+    invokeCallbackWithController(callback,controllerForObject);
+    return;
+  }
+  controllerForObject=deserializeFromDiskSynchronously(context,objectId);
+  if (controllerForObject == null) {
+    controllerForObject=new LikeActionController(context,Session.getActiveSession(),objectId);
+    serializeToDiskAsync(controllerForObject);
+  }
+  putControllerInMemoryCache(objectId,controllerForObject);
+  final LikeActionController controllerToRefresh=controllerForObject;
+  handler.post(new Runnable(){
+    @Override public void run(){
+      controllerToRefresh.refreshStatusAsync();
+    }
+  }
+);
+  invokeCallbackWithController(callback,controllerToRefresh);
+}

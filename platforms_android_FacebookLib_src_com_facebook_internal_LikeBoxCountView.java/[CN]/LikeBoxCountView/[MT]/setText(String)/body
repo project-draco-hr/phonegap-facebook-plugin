@@ -1,0 +1,3 @@
+{
+  likeCountLabel.setText(text);
+}

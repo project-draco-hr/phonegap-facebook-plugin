@@ -1,5 +1,9 @@
 {
-  if (pendingFacebookDialogCall == null || pendingFacebookDialogCall.getRequestCode() != requestCode) {
+  if (pendingFacebookDialogCallId == null) {
+    return false;
+  }
+  FacebookDialog.PendingCall pendingCall=pendingFacebookDialogCallStore.getPendingCallById(pendingFacebookDialogCallId);
+  if (pendingCall == null || pendingCall.getRequestCode() != requestCode) {
     return false;
   }
   if (data == null) {
@@ -7,12 +11,12 @@
     return true;
   }
   UUID callId=NativeProtocol.getCallIdFromIntent(data);
-  if (callId != null && pendingFacebookDialogCall.getCallId().equals(callId)) {
-    FacebookDialog.handleActivityResult(activity,pendingFacebookDialogCall,requestCode,data,facebookDialogCallback);
+  if (callId != null && pendingFacebookDialogCallId.equals(callId)) {
+    FacebookDialog.handleActivityResult(activity,pendingCall,requestCode,data,facebookDialogCallback);
   }
  else {
     cancelPendingAppCall(facebookDialogCallback);
   }
-  pendingFacebookDialogCall=null;
+  stopTrackingPendingAppCall();
   return true;
 }

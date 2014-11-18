@@ -10,8 +10,5 @@
       return;
     }
   }
-  boolean successfulCommit=editor.commit();
-  if (!successfulCommit) {
-    Logger.log(LoggingBehavior.CACHE,Log.WARN,TAG,"SharedPreferences.Editor.commit() was not successful");
-  }
+  editor.apply();
 }

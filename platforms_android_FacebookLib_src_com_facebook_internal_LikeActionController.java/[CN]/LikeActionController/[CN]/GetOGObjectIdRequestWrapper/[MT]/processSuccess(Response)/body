@@ -1,0 +1,9 @@
+{
+  JSONObject results=Utility.tryGetJSONObjectFromResponse(response.getGraphObject(),objectId);
+  if (results != null) {
+    JSONObject ogObject=results.optJSONObject("og_object");
+    if (ogObject != null) {
+      verifiedObjectId=ogObject.optString("id");
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  likeButton=new LikeButton(context,likeActionController != null ? likeActionController.isObjectLiked() : false);
+  likeButton.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      toggleLike();
+    }
+  }
+);
+  LinearLayout.LayoutParams buttonLayout=new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+  likeButton.setLayoutParams(buttonLayout);
+}

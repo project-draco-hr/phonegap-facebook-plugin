@@ -1,0 +1,10 @@
+{
+  if (response == null) {
+    return null;
+  }
+  Object property=response.getProperty(propertyKey);
+  if (!(property instanceof JSONObject)) {
+    return null;
+  }
+  return (JSONObject)property;
+}

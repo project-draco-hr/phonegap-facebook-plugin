@@ -1,0 +1,23 @@
+{
+  String dialogNameWithFeature=dialogConfigJSON.optString(DIALOG_CONFIG_NAME_KEY);
+  if (Utility.isNullOrEmpty(dialogNameWithFeature)) {
+    return null;
+  }
+  String[] components=dialogNameWithFeature.split(DIALOG_CONFIG_DIALOG_NAME_FEATURE_NAME_SEPARATOR);
+  if (components.length != 2) {
+    return null;
+  }
+  String dialogName=components[0];
+  String featureName=components[1];
+  if (isNullOrEmpty(dialogName) || isNullOrEmpty(featureName)) {
+    return null;
+  }
+  String urlString=dialogConfigJSON.optString(DIALOG_CONFIG_URL_KEY);
+  Uri fallbackUri=null;
+  if (!Utility.isNullOrEmpty(urlString)) {
+    fallbackUri=Uri.parse(urlString);
+  }
+  JSONArray versionsJSON=dialogConfigJSON.optJSONArray(DIALOG_CONFIG_VERSIONS_KEY);
+  int[] featureVersionSpec=parseVersionSpec(versionsJSON);
+  return new DialogFeatureConfig(dialogName,featureName,fallbackUri,featureVersionSpec);
+}

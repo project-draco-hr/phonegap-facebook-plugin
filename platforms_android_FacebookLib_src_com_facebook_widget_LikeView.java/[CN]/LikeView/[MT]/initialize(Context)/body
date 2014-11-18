@@ -1,0 +1,20 @@
+{
+  edgePadding=getResources().getDimensionPixelSize(R.dimen.com_facebook_likeview_edge_padding);
+  internalPadding=getResources().getDimensionPixelSize(R.dimen.com_facebook_likeview_internal_padding);
+  if (foregroundColor == NO_FOREGROUND_COLOR) {
+    foregroundColor=getResources().getColor(R.color.com_facebook_likeview_text_color);
+  }
+  setBackgroundColor(Color.TRANSPARENT);
+  containerView=new LinearLayout(context);
+  LayoutParams containerViewLayoutParams=new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+  containerView.setLayoutParams(containerViewLayoutParams);
+  initializeLikeButton(context);
+  initializeSocialSentenceView(context);
+  initializeLikeCountView(context);
+  containerView.addView(likeButton);
+  containerView.addView(socialSentenceView);
+  containerView.addView(likeBoxCountView);
+  addView(containerView);
+  setObjectIdForced(this.objectId);
+  updateLikeStateAndLayout();
+}

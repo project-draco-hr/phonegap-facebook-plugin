@@ -9,7 +9,7 @@
       this.parameters.putString(ACCESS_TOKEN_PARAM,accessToken);
     }
   }
- else   if (!this.parameters.containsKey(ACCESS_TOKEN_PARAM)) {
+ else   if (!skipClientToken && !this.parameters.containsKey(ACCESS_TOKEN_PARAM)) {
     String appID=Settings.getApplicationId();
     String clientToken=Settings.getClientToken();
     if (!Utility.isNullOrEmpty(appID) && !Utility.isNullOrEmpty(clientToken)) {

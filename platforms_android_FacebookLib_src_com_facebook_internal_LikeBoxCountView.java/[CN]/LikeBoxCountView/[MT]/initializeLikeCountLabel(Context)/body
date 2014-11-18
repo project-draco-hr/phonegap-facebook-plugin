@@ -1,0 +1,10 @@
+{
+  likeCountLabel=new TextView(context);
+  LayoutParams likeCountLabelLayoutParams=new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+  likeCountLabel.setLayoutParams(likeCountLabelLayoutParams);
+  likeCountLabel.setGravity(Gravity.CENTER);
+  likeCountLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.com_facebook_likeboxcountview_text_size));
+  likeCountLabel.setTextColor(getResources().getColor(R.color.com_facebook_likeboxcountview_text_color));
+  textPadding=getResources().getDimensionPixelSize(R.dimen.com_facebook_likeboxcountview_text_padding);
+  additionalTextPadding=getResources().getDimensionPixelSize(R.dimen.com_facebook_likeboxcountview_caret_height);
+}

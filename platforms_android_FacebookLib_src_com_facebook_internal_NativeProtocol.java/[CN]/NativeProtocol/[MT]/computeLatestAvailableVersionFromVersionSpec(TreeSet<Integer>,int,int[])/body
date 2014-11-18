@@ -1,0 +1,19 @@
+{
+  int versionSpecIndex=versionSpec.length - 1;
+  Iterator<Integer> fbAppVersionsIterator=allAvailableFacebookAppVersions.descendingIterator();
+  int latestFacebookAppVersion=-1;
+  while (fbAppVersionsIterator.hasNext()) {
+    int fbAppVersion=fbAppVersionsIterator.next();
+    latestFacebookAppVersion=Math.max(latestFacebookAppVersion,fbAppVersion);
+    while (versionSpecIndex >= 0 && versionSpec[versionSpecIndex] > fbAppVersion) {
+      versionSpecIndex--;
+    }
+    if (versionSpecIndex < 0) {
+      return NO_PROTOCOL_AVAILABLE;
+    }
+    if (versionSpec[versionSpecIndex] == fbAppVersion) {
+      return (versionSpecIndex % 2 == 0 ? Math.min(latestFacebookAppVersion,latestSdkVersion) : NO_PROTOCOL_AVAILABLE);
+    }
+  }
+  return NO_PROTOCOL_AVAILABLE;
+}

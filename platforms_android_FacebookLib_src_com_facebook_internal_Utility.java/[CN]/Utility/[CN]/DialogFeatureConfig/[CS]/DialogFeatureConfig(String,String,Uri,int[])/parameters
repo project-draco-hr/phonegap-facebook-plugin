@@ -1,0 +1,4 @@
+String dialogName
+String featureName
+Uri fallbackUrl
+int[] featureVersionSpec

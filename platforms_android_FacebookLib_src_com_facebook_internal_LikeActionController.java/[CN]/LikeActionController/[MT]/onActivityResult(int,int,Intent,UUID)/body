@@ -1,0 +1,12 @@
+{
+  if (pendingCallId == null || !pendingCallId.equals(callId)) {
+    return false;
+  }
+  FacebookDialog.PendingCall pendingCall=PendingCallStore.getInstance().getPendingCallById(pendingCallId);
+  if (pendingCall == null) {
+    return false;
+  }
+  FacebookDialog.handleActivityResult(context,pendingCall,requestCode,data,getFacebookDialogCallback(pendingCallAnalyticsBundle));
+  stopTrackingPendingCall();
+  return true;
+}

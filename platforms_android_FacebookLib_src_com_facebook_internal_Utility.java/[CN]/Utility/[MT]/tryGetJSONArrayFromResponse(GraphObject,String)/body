@@ -1,0 +1,10 @@
+{
+  if (response == null) {
+    return null;
+  }
+  Object property=response.getProperty(propertyKey);
+  if (!(property instanceof JSONArray)) {
+    return null;
+  }
+  return (JSONArray)property;
+}

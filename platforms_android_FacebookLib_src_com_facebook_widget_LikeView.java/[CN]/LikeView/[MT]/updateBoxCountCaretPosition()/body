@@ -1,0 +1,13 @@
+{
+switch (auxiliaryViewPosition) {
+case TOP:
+    likeBoxCountView.setCaretPosition(LikeBoxCountView.LikeBoxCountViewCaretPosition.BOTTOM);
+  break;
+case BOTTOM:
+likeBoxCountView.setCaretPosition(LikeBoxCountView.LikeBoxCountViewCaretPosition.TOP);
+break;
+case INLINE:
+likeBoxCountView.setCaretPosition(horizontalAlignment == HorizontalAlignment.RIGHT ? LikeBoxCountView.LikeBoxCountViewCaretPosition.RIGHT : LikeBoxCountView.LikeBoxCountViewCaretPosition.LEFT);
+break;
+}
+}

@@ -1,6 +1,3 @@
 {
-  if (!forceReload && loadingStrategy.isDataPresentOrLoading()) {
-    return;
-  }
-  loadDataSkippingRoundTripIfCached();
+  loadData(forceReload,null);
 }

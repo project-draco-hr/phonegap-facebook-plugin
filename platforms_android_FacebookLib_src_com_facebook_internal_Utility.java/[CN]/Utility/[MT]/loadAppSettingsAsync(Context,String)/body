@@ -1,0 +1,36 @@
+{
+  if (Utility.isNullOrEmpty(applicationId) || fetchedAppSettings.containsKey(applicationId) || initialAppSettingsLoadTask != null) {
+    return;
+  }
+  final String settingsKey=String.format(APP_SETTINGS_PREFS_KEY_FORMAT,applicationId);
+  initialAppSettingsLoadTask=new AsyncTask<Void,Void,GraphObject>(){
+    @Override protected GraphObject doInBackground(    Void... params){
+      return getAppSettingsQueryResponse(applicationId);
+    }
+    @Override protected void onPostExecute(    GraphObject result){
+      if (result != null) {
+        JSONObject resultJSON=result.getInnerJSONObject();
+        parseAppSettingsFromJSON(applicationId,resultJSON);
+        SharedPreferences sharedPrefs=context.getSharedPreferences(APP_SETTINGS_PREFS_STORE,Context.MODE_PRIVATE);
+        sharedPrefs.edit().putString(settingsKey,resultJSON.toString()).apply();
+      }
+      initialAppSettingsLoadTask=null;
+    }
+  }
+;
+  initialAppSettingsLoadTask.execute((Void[])null);
+  SharedPreferences sharedPrefs=context.getSharedPreferences(APP_SETTINGS_PREFS_STORE,Context.MODE_PRIVATE);
+  String settingsJSONString=sharedPrefs.getString(settingsKey,null);
+  if (!isNullOrEmpty(settingsJSONString)) {
+    JSONObject settingsJSON=null;
+    try {
+      settingsJSON=new JSONObject(settingsJSONString);
+    }
+ catch (    JSONException je) {
+      logd(LOG_TAG,je);
+    }
+    if (settingsJSON != null) {
+      parseAppSettingsFromJSON(applicationId,settingsJSON);
+    }
+  }
+}

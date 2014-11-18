@@ -1,0 +1,6 @@
+{
+  if (isNullOrEmpty(s)) {
+    return valueIfNullOrEmpty;
+  }
+  return s;
+}

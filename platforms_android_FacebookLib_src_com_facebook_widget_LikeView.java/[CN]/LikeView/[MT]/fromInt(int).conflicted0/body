@@ -1,0 +1,8 @@
+{
+  for (  HorizontalAlignment horizontalAlignment : values()) {
+    if (horizontalAlignment.getValue() == enumValue) {
+      return horizontalAlignment;
+    }
+  }
+  return null;
+}

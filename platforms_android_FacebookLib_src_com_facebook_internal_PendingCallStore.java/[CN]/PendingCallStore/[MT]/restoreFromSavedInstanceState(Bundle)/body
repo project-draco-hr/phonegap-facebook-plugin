@@ -1,0 +1,12 @@
+{
+  ArrayList<String> callIds=savedInstanceState.getStringArrayList(CALL_ID_ARRAY_KEY);
+  if (callIds != null) {
+    for (    String callId : callIds) {
+      String stateKey=getSavedStateKeyForPendingCallId(callId);
+      FacebookDialog.PendingCall pendingCall=savedInstanceState.getParcelable(stateKey);
+      if (pendingCall != null) {
+        pendingCallMap.put(pendingCall.getCallId().toString(),pendingCall);
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  WebView webView=getWebView();
+  if (isListenerCalled() || webView == null || !webView.isShown()) {
+    super.dismiss();
+    return;
+  }
+  if (waitingForDialogToClose) {
+    return;
+  }
+  waitingForDialogToClose=true;
+  String eventJS="(function() {" + "  var event = document.createEvent('Event');" + "  event.initEvent('fbPlatformDialogMustClose',true,true);"+ "  document.dispatchEvent(event);"+ "})();";
+  webView.loadUrl("javascript:" + eventJS);
+  Handler handler=new Handler(Looper.getMainLooper());
+  handler.postDelayed(new Runnable(){
+    @Override public void run(){
+      if (!isListenerCalled()) {
+        sendCancelToListener();
+      }
+    }
+  }
+,OS_BACK_BUTTON_RESPONSE_TIMEOUT_MILLISECONDS);
+}

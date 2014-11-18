@@ -1,5 +1,4 @@
 {
   super.onReceivedError(view,errorCode,description,failingUrl);
   sendErrorToListener(new FacebookDialogException(description,errorCode,failingUrl));
-  WebDialog.this.dismiss();
 }

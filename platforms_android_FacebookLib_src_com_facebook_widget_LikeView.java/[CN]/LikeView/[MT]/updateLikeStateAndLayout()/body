@@ -1,0 +1,13 @@
+{
+  if (likeActionController == null) {
+    likeButton.setLikeState(false);
+    socialSentenceView.setText(null);
+    likeBoxCountView.setText(null);
+  }
+ else {
+    likeButton.setLikeState(likeActionController.isObjectLiked());
+    socialSentenceView.setText(likeActionController.getSocialSentence());
+    likeBoxCountView.setText(likeActionController.getLikeCountString());
+  }
+  updateLayout();
+}

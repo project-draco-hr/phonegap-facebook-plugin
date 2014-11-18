@@ -1,0 +1,16 @@
+{
+  LikeDialogBuilder likeDialogBuilder=new LikeDialogBuilder(activity,objectId);
+  if (likeDialogBuilder.canPresent()) {
+    trackPendingCall(likeDialogBuilder.build().present(),analyticsParameters);
+    appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_PRESENT_DIALOG,null,analyticsParameters);
+  }
+ else {
+    String webFallbackUrl=likeDialogBuilder.getWebFallbackUrl();
+    if (!Utility.isNullOrEmpty(webFallbackUrl)) {
+      boolean webFallbackShown=FacebookWebFallbackDialog.presentWebFallback(activity,webFallbackUrl,likeDialogBuilder.getApplicationId(),likeDialogBuilder.getAppCall(),getFacebookDialogCallback(analyticsParameters));
+      if (webFallbackShown) {
+        appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DID_PRESENT_FALLBACK,null,analyticsParameters);
+      }
+    }
+  }
+}

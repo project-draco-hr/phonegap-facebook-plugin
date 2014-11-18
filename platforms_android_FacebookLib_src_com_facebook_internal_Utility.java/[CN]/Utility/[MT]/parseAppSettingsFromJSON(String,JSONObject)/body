@@ -1,0 +1,5 @@
+{
+  FetchedAppSettings result=new FetchedAppSettings(settingsJSON.optBoolean(APP_SETTING_SUPPORTS_ATTRIBUTION,false),settingsJSON.optBoolean(APP_SETTING_SUPPORTS_IMPLICIT_SDK_LOGGING,false),settingsJSON.optString(APP_SETTING_NUX_CONTENT,""),settingsJSON.optBoolean(APP_SETTING_NUX_ENABLED,false),parseDialogConfigurations(settingsJSON.optJSONObject(APP_SETTING_DIALOG_CONFIGS)));
+  fetchedAppSettings.put(applicationId,result);
+  return result;
+}

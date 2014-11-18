@@ -1,7 +1,10 @@
 {
-  if (pendingFacebookDialogCall != null) {
+  if (pendingFacebookDialogCallId != null) {
     Log.i("Facebook","Tracking new app call while one is still pending; canceling pending call.");
     cancelPendingAppCall(null);
   }
-  pendingFacebookDialogCall=pendingCall;
+  if (pendingCall != null) {
+    pendingFacebookDialogCallId=pendingCall.getCallId();
+    pendingFacebookDialogCallStore.trackPendingCall(pendingCall);
+  }
 }

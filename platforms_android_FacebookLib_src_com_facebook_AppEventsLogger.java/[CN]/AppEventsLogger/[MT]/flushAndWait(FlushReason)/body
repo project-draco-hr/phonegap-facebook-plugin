@@ -13,7 +13,7 @@ synchronized (staticLock) {
     flushResults=buildAndExecuteRequests(reason,keysToFlush);
   }
  catch (  Exception e) {
-    Log.d(TAG,"Caught unexpected exception while flushing: " + e.toString());
+    Utility.logd(TAG,"Caught unexpected exception while flushing: ",e);
   }
 synchronized (staticLock) {
     requestInFlight=false;

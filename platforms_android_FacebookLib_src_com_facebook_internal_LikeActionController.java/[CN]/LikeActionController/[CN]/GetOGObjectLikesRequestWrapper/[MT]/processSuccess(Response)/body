@@ -1,0 +1,17 @@
+{
+  JSONArray dataSet=Utility.tryGetJSONArrayFromResponse(response.getGraphObject(),"data");
+  if (dataSet != null) {
+    for (int i=0; i < dataSet.length(); i++) {
+      JSONObject data=dataSet.optJSONObject(i);
+      if (data != null) {
+        objectIsLiked=true;
+        JSONObject appData=data.optJSONObject("application");
+        if (appData != null) {
+          if (Utility.areObjectsEqual(session.getApplicationId(),appData.optString("id"))) {
+            unlikeToken=data.optString("id");
+          }
+        }
+      }
+    }
+  }
+}

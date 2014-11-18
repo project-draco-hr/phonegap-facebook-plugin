@@ -1,0 +1,5 @@
+{
+  if (isObjectLiked != isObjectLikedOnServer) {
+    performLikeOrUnlike(activity,isObjectLiked,analyticsParameters);
+  }
+}

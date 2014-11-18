@@ -1,5 +1,5 @@
 {
 synchronized (loggingBehaviors) {
-    return Settings.isLoggingEnabled() && loggingBehaviors.contains(behavior);
+    return Settings.isDebugEnabled() && loggingBehaviors.contains(behavior);
   }
 }

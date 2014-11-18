@@ -1,0 +1,4 @@
+{
+  Logger.log(LoggingBehavior.REQUESTS,TAG,"Error unliking object with unlike token '%s' : %s",unlikeToken,error);
+  logAppEventForError("publish_unlike",error);
+}

@@ -1,0 +1,8 @@
+{
+  for (  Style style : values()) {
+    if (style.getValue() == enumValue) {
+      return style;
+    }
+  }
+  return null;
+}

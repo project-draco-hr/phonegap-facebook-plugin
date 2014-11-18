@@ -1,0 +1,11 @@
+{
+  if (callback == null) {
+    return;
+  }
+  handler.post(new Runnable(){
+    @Override public void run(){
+      callback.onComplete(controller);
+    }
+  }
+);
+}
