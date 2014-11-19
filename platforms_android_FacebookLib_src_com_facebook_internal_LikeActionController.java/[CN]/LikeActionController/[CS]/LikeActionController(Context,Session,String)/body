@@ -1,0 +1,6 @@
+{
+  this.context=context;
+  this.session=session;
+  this.objectId=objectId;
+  appEventsLogger=AppEventsLogger.newLogger(context,session);
+}

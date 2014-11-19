@@ -1,0 +1,2 @@
+boolean forceReload
+Set<String> selectIds

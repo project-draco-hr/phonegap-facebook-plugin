@@ -28,14 +28,19 @@ bitmap=BitmapFactory.decodeStream(stream);
 break;
 default :
 stream=connection.getErrorStream();
+StringBuilder errorMessageBuilder=new StringBuilder();
+if (stream != null) {
 InputStreamReader reader=new InputStreamReader(stream);
 char[] buffer=new char[128];
 int bufferLength;
-StringBuilder errorMessageBuilder=new StringBuilder();
 while ((bufferLength=reader.read(buffer,0,buffer.length)) > 0) {
 errorMessageBuilder.append(buffer,0,bufferLength);
 }
 Utility.closeQuietly(reader);
+}
+ else {
+errorMessageBuilder.append(context.getString(R.string.com_facebook_image_download_unknown_error));
+}
 error=new FacebookException(errorMessageBuilder.toString());
 break;
 }

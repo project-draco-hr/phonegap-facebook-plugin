@@ -1,0 +1,27 @@
+{
+  if (session == null || session.isClosed() || SessionState.CREATED.equals(session.getState())) {
+    refreshStatusViaService();
+    return;
+  }
+  fetchVerifiedObjectId(new RequestCompletionCallback(){
+    @Override public void onComplete(){
+      final GetOGObjectLikesRequestWrapper objectLikesRequest=new GetOGObjectLikesRequestWrapper(verifiedObjectId);
+      final GetEngagementRequestWrapper engagementRequest=new GetEngagementRequestWrapper(verifiedObjectId);
+      RequestBatch requestBatch=new RequestBatch();
+      objectLikesRequest.addToBatch(requestBatch);
+      engagementRequest.addToBatch(requestBatch);
+      requestBatch.addCallback(new RequestBatch.Callback(){
+        @Override public void onBatchCompleted(        RequestBatch batch){
+          if (objectLikesRequest.error != null || engagementRequest.error != null) {
+            Logger.log(LoggingBehavior.REQUESTS,TAG,"Unable to refresh like state for id: '%s'",objectId);
+            return;
+          }
+          updateState(objectLikesRequest.objectIsLiked,engagementRequest.likeCountStringWithLike,engagementRequest.likeCountStringWithoutLike,engagementRequest.socialSentenceStringWithLike,engagementRequest.socialSentenceStringWithoutLike,objectLikesRequest.unlikeToken);
+        }
+      }
+);
+      requestBatch.executeAsync();
+    }
+  }
+);
+}

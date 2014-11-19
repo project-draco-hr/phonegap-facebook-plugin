@@ -1,0 +1,20 @@
+{
+  final UUID callId=NativeProtocol.getCallIdFromIntent(data);
+  if (callId == null) {
+    return false;
+  }
+  if (Utility.isNullOrEmpty(objectIdForPendingController)) {
+    SharedPreferences sharedPreferences=context.getSharedPreferences(LIKE_ACTION_CONTROLLER_STORE,Context.MODE_PRIVATE);
+    objectIdForPendingController=sharedPreferences.getString(LIKE_ACTION_CONTROLLER_STORE_PENDING_OBJECT_ID_KEY,null);
+  }
+  if (Utility.isNullOrEmpty(objectIdForPendingController)) {
+    return false;
+  }
+  getControllerForObjectId(context,objectIdForPendingController,new CreationCallback(){
+    @Override public void onComplete(    LikeActionController likeActionController){
+      likeActionController.onActivityResult(requestCode,resultCode,data,callId);
+    }
+  }
+);
+  return true;
+}

@@ -1,0 +1,4 @@
+{
+  Logger.log(LoggingBehavior.REQUESTS,TAG,"Error fetching like status for object '%s' : %s",objectId,error);
+  logAppEventForError("get_og_object_like",error);
+}

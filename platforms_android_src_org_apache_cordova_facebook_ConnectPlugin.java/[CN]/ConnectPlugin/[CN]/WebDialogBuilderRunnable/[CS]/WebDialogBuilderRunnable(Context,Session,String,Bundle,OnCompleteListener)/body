@@ -1,7 +1,0 @@
-{
-  this.context=context;
-  this.session=session;
-  this.method=method;
-  this.paramBundle=paramBundle;
-  this.dialogCallback=dialogCallback;
-}

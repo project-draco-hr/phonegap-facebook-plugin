@@ -1,6 +1,0 @@
-{
-  this.supportsAttribution=supportsAttribution;
-  this.supportsImplicitLogging=supportsImplicitLogging;
-  this.nuxContent=nuxContent;
-  this.nuxEnabled=nuxEnabled;
-}

@@ -1,0 +1,4 @@
+{
+  objectIdForPendingController=objectId;
+  context.getSharedPreferences(LIKE_ACTION_CONTROLLER_STORE,Context.MODE_PRIVATE).edit().putString(LIKE_ACTION_CONTROLLER_STORE_PENDING_OBJECT_ID_KEY,objectIdForPendingController).apply();
+}

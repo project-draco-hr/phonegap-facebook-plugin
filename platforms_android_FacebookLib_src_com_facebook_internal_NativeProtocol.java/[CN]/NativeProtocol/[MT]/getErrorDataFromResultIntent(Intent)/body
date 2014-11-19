@@ -1,0 +1,10 @@
+{
+  if (!isErrorResult(resultIntent)) {
+    return null;
+  }
+  Bundle bridgeArgs=getBridgeArgumentsFromIntent(resultIntent);
+  if (bridgeArgs != null) {
+    return bridgeArgs.getBundle(BRIDGE_ARG_ERROR_BUNDLE);
+  }
+  return resultIntent.getExtras();
+}

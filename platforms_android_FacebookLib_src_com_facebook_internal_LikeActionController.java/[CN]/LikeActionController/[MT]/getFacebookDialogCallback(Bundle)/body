@@ -1,0 +1,25 @@
+{
+  return new FacebookDialog.Callback(){
+    @Override public void onComplete(    FacebookDialog.PendingCall pendingCall,    Bundle data){
+      if (!data.containsKey(LIKE_DIALOG_RESPONSE_OBJECT_IS_LIKED_KEY)) {
+        return;
+      }
+      boolean isObjectLiked=data.getBoolean(LIKE_DIALOG_RESPONSE_OBJECT_IS_LIKED_KEY);
+      String likeCountString=data.getString(LIKE_DIALOG_RESPONSE_LIKE_COUNT_STRING_KEY);
+      String socialSentence=data.getString(LIKE_DIALOG_RESPONSE_SOCIAL_SENTENCE_KEY);
+      String unlikeToken=data.getString(LIKE_DIALOG_RESPONSE_UNLIKE_TOKEN_KEY);
+      Bundle logParams=(analyticsParameters == null) ? new Bundle() : analyticsParameters;
+      logParams.putString(AnalyticsEvents.PARAMETER_CALL_ID,pendingCall.getCallId().toString());
+      appEventsLogger.logSdkEvent(AnalyticsEvents.EVENT_LIKE_VIEW_DIALOG_DID_SUCCEED,null,logParams);
+      updateState(isObjectLiked,likeCountString,likeCountString,socialSentence,socialSentence,unlikeToken);
+    }
+    @Override public void onError(    FacebookDialog.PendingCall pendingCall,    Exception error,    Bundle data){
+      Logger.log(LoggingBehavior.REQUESTS,TAG,"Like Dialog failed with error : %s",error);
+      Bundle logParams=analyticsParameters == null ? new Bundle() : analyticsParameters;
+      logParams.putString(AnalyticsEvents.PARAMETER_CALL_ID,pendingCall.getCallId().toString());
+      logAppEventForError("present_dialog",logParams);
+      broadcastAction(context,LikeActionController.this,ACTION_LIKE_ACTION_CONTROLLER_DID_ERROR,data);
+    }
+  }
+;
+}

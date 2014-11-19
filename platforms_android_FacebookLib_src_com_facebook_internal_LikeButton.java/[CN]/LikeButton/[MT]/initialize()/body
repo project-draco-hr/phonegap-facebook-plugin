@@ -1,0 +1,9 @@
+{
+  this.setGravity(Gravity.CENTER_VERTICAL);
+  this.setTextColor(getResources().getColor(R.color.com_facebook_likebutton_text_color));
+  this.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.com_facebook_likebutton_text_size));
+  this.setTypeface(Typeface.DEFAULT_BOLD);
+  this.setCompoundDrawablePadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_likebutton_compound_drawable_padding));
+  this.setPadding(getResources().getDimensionPixelSize(R.dimen.com_facebook_likebutton_padding_left),getResources().getDimensionPixelSize(R.dimen.com_facebook_likebutton_padding_top),getResources().getDimensionPixelSize(R.dimen.com_facebook_likebutton_padding_right),getResources().getDimensionPixelSize(R.dimen.com_facebook_likebutton_padding_bottom));
+  updateForLikeStatus();
+}

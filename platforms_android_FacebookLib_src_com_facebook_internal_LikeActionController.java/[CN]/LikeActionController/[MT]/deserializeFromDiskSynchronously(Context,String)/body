@@ -1,0 +1,24 @@
+{
+  LikeActionController controller=null;
+  InputStream inputStream=null;
+  try {
+    String cacheKey=getCacheKeyForObjectId(objectId);
+    inputStream=controllerDiskCache.get(cacheKey);
+    if (inputStream != null) {
+      String controllerJsonString=Utility.readStreamToString(inputStream);
+      if (!Utility.isNullOrEmpty(controllerJsonString)) {
+        controller=deserializeFromJson(context,controllerJsonString);
+      }
+    }
+  }
+ catch (  IOException e) {
+    Log.e(TAG,"Unable to deserialize controller from disk",e);
+    controller=null;
+  }
+ finally {
+    if (inputStream != null) {
+      Utility.closeQuietly(inputStream);
+    }
+  }
+  return controller;
+}

@@ -1,0 +1,11 @@
+{
+  String accessTokenPortion=null;
+  Session activeSession=Session.getActiveSession();
+  if (activeSession != null && activeSession.isOpened()) {
+    accessTokenPortion=activeSession.getAccessToken();
+  }
+  if (accessTokenPortion != null) {
+    accessTokenPortion=Utility.md5hash(accessTokenPortion);
+  }
+  return String.format("%s|%s|com.fb.sdk.like|%d",objectId,Utility.coerceValueIfNullOrEmpty(accessTokenPortion,""),objectSuffix);
+}

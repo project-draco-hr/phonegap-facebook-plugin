@@ -1,0 +1,4 @@
+{
+  setObjectId(null);
+  super.onDetachedFromWindow();
+}

@@ -1,0 +1,27 @@
+{
+  JSONObject controllerJson=new JSONObject();
+  try {
+    controllerJson.put(JSON_INT_VERSION_KEY,LIKE_ACTION_CONTROLLER_VERSION);
+    controllerJson.put(JSON_STRING_OBJECT_ID_KEY,controller.objectId);
+    controllerJson.put(JSON_STRING_LIKE_COUNT_WITH_LIKE_KEY,controller.likeCountStringWithLike);
+    controllerJson.put(JSON_STRING_LIKE_COUNT_WITHOUT_LIKE_KEY,controller.likeCountStringWithoutLike);
+    controllerJson.put(JSON_STRING_SOCIAL_SENTENCE_WITH_LIKE_KEY,controller.socialSentenceWithLike);
+    controllerJson.put(JSON_STRING_SOCIAL_SENTENCE_WITHOUT_LIKE_KEY,controller.socialSentenceWithoutLike);
+    controllerJson.put(JSON_BOOL_IS_OBJECT_LIKED_KEY,controller.isObjectLiked);
+    controllerJson.put(JSON_STRING_UNLIKE_TOKEN_KEY,controller.unlikeToken);
+    if (controller.pendingCallId != null) {
+      controllerJson.put(JSON_STRING_PENDING_CALL_ID_KEY,controller.pendingCallId.toString());
+    }
+    if (controller.pendingCallAnalyticsBundle != null) {
+      JSONObject analyticsJSON=BundleJSONConverter.convertToJSON(controller.pendingCallAnalyticsBundle);
+      if (analyticsJSON != null) {
+        controllerJson.put(JSON_BUNDLE_PENDING_CALL_ANALYTICS_BUNDLE,analyticsJSON);
+      }
+    }
+  }
+ catch (  JSONException e) {
+    Log.e(TAG,"Unable to serialize controller to JSON",e);
+    return null;
+  }
+  return controllerJson.toString();
+}

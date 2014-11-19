@@ -1,0 +1,21 @@
+{
+  Bundle bundle=new Bundle();
+  @SuppressWarnings("unchecked") Iterator<String> jsonIterator=jsonObject.keys();
+  while (jsonIterator.hasNext()) {
+    String key=jsonIterator.next();
+    Object value=jsonObject.get(key);
+    if (value == null || value == JSONObject.NULL) {
+      continue;
+    }
+    if (value instanceof JSONObject) {
+      bundle.putBundle(key,convertToBundle((JSONObject)value));
+      continue;
+    }
+    Setter setter=SETTERS.get(value.getClass());
+    if (setter == null) {
+      throw new IllegalArgumentException("Unsupported type: " + value.getClass());
+    }
+    setter.setOnBundle(bundle,key,value);
+  }
+  return bundle;
+}

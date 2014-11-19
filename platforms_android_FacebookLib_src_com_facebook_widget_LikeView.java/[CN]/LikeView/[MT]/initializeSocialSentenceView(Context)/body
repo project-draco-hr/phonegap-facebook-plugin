@@ -1,0 +1,9 @@
+{
+  socialSentenceView=new TextView(context);
+  socialSentenceView.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimension(R.dimen.com_facebook_likeview_text_size));
+  socialSentenceView.setMaxLines(2);
+  socialSentenceView.setTextColor(foregroundColor);
+  socialSentenceView.setGravity(Gravity.CENTER);
+  LinearLayout.LayoutParams socialSentenceViewLayout=new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.MATCH_PARENT);
+  socialSentenceView.setLayoutParams(socialSentenceViewLayout);
+}

@@ -1,0 +1,10 @@
+{
+  int errorCode=error.getErrorCode();
+  if (errorCode == ERROR_CODE_OBJECT_ALREADY_LIKED) {
+    this.error=null;
+  }
+ else {
+    Logger.log(LoggingBehavior.REQUESTS,TAG,"Error liking object '%s' : %s",objectId,error);
+    logAppEventForError("publish_like",error);
+  }
+}

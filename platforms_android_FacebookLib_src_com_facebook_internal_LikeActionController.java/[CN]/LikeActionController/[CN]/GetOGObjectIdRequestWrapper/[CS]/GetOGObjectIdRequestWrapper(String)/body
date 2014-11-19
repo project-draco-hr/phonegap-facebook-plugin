@@ -1,0 +1,7 @@
+{
+  super(objectId);
+  Bundle objectIdRequestParams=new Bundle();
+  objectIdRequestParams.putString("fields","og_object.fields(id)");
+  objectIdRequestParams.putString("ids",objectId);
+  setRequest(new Request(session,"",objectIdRequestParams,HttpMethod.GET));
+}

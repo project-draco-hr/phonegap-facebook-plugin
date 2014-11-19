@@ -6,6 +6,6 @@
   this.callback=callback;
   this.receiver=new ActiveSessionBroadcastReceiver();
   this.broadcastManager=LocalBroadcastManager.getInstance(activity);
+  this.pendingFacebookDialogCallStore=PendingCallStore.getInstance();
   Settings.sdkInitialize(activity);
-  Settings.loadDefaultsFromMetadataIfNeeded(activity);
 }

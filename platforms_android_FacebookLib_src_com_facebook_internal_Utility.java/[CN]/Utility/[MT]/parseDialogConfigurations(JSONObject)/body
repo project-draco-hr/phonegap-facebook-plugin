@@ -1,0 +1,22 @@
+{
+  HashMap<String,Map<String,DialogFeatureConfig>> dialogConfigMap=new HashMap<String,Map<String,DialogFeatureConfig>>();
+  if (dialogConfigResponse != null) {
+    JSONArray dialogConfigData=dialogConfigResponse.optJSONArray("data");
+    if (dialogConfigData != null) {
+      for (int i=0; i < dialogConfigData.length(); i++) {
+        DialogFeatureConfig dialogConfig=DialogFeatureConfig.parseDialogConfig(dialogConfigData.optJSONObject(i));
+        if (dialogConfig == null) {
+          continue;
+        }
+        String dialogName=dialogConfig.getDialogName();
+        Map<String,DialogFeatureConfig> featureMap=dialogConfigMap.get(dialogName);
+        if (featureMap == null) {
+          featureMap=new HashMap<String,DialogFeatureConfig>();
+          dialogConfigMap.put(dialogName,featureMap);
+        }
+        featureMap.put(dialogConfig.getFeatureName(),dialogConfig);
+      }
+    }
+  }
+  return dialogConfigMap;
+}

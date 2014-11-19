@@ -1,0 +1,6 @@
+{
+  this.dialogName=dialogName;
+  this.featureName=featureName;
+  this.fallbackUrl=fallbackUrl;
+  this.featureVersionSpec=featureVersionSpec;
+}

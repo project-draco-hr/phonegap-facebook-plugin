@@ -1,0 +1,12 @@
+{
+  if (appInfoList == null) {
+    return NO_PROTOCOL_AVAILABLE;
+  }
+  for (  NativeAppInfo appInfo : appInfoList) {
+    int protocolVersion=getLatestAvailableProtocolVersionForAppInfo(context,appInfo,versionSpec);
+    if (protocolVersion != NO_PROTOCOL_AVAILABLE) {
+      return protocolVersion;
+    }
+  }
+  return NO_PROTOCOL_AVAILABLE;
+}

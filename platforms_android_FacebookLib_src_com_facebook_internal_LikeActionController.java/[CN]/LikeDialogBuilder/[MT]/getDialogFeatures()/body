@@ -1,0 +1,3 @@
+{
+  return EnumSet.of(LikeDialogFeature.LIKE_DIALOG);
+}

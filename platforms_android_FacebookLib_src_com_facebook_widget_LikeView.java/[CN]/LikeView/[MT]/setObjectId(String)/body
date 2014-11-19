@@ -1,0 +1,7 @@
+{
+  objectId=Utility.coerceValueIfNullOrEmpty(objectId,null);
+  if (!Utility.areObjectsEqual(objectId,this.objectId)) {
+    setObjectIdForced(objectId);
+    updateLikeStateAndLayout();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (callId != null) {
+    pendingCallMap.remove(callId.toString());
+  }
+}

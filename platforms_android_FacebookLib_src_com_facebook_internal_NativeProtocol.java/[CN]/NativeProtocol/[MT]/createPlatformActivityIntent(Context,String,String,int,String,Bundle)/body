@@ -10,7 +10,7 @@
     bridgeArguments.putString(BRIDGE_ARG_ACTION_ID_STRING,callId);
     bridgeArguments.putString(BRIDGE_ARG_APP_NAME_STRING,applicationName);
     intent.putExtra(EXTRA_PROTOCOL_BRIDGE_ARGS,bridgeArguments);
-    Bundle methodArguments=extras == null ? new Bundle() : extras;
+    Bundle methodArguments=(extras == null) ? new Bundle() : extras;
     intent.putExtra(EXTRA_PROTOCOL_METHOD_ARGS,methodArguments);
   }
  else {

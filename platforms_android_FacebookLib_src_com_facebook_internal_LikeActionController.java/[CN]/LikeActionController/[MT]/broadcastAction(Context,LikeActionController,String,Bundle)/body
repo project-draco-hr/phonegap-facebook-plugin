@@ -1,0 +1,13 @@
+{
+  Intent broadcastIntent=new Intent(action);
+  if (controller != null) {
+    if (data == null) {
+      data=new Bundle();
+    }
+    data.putString(ACTION_OBJECT_ID_KEY,controller.getObjectId());
+  }
+  if (data != null) {
+    broadcastIntent.putExtras(data);
+  }
+  LocalBroadcastManager.getInstance(context.getApplicationContext()).sendBroadcast(broadcastIntent);
+}

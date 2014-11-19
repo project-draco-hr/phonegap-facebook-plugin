@@ -1,0 +1,15 @@
+{
+  OutputStream outputStream=null;
+  try {
+    outputStream=controllerDiskCache.openPutStream(cacheKey);
+    outputStream.write(controllerJson.getBytes());
+  }
+ catch (  IOException e) {
+    Log.e(TAG,"Unable to serialize controller to disk",e);
+  }
+ finally {
+    if (outputStream != null) {
+      Utility.closeQuietly(outputStream);
+    }
+  }
+}

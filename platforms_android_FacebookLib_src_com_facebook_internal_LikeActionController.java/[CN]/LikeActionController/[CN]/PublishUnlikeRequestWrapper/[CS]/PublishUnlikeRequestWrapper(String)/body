@@ -1,0 +1,5 @@
+{
+  super(null);
+  this.unlikeToken=unlikeToken;
+  setRequest(new Request(session,unlikeToken,null,HttpMethod.DELETE));
+}

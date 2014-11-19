@@ -1,0 +1,6 @@
+{
+  if (callId == null) {
+    return null;
+  }
+  return pendingCallMap.get(callId.toString());
+}

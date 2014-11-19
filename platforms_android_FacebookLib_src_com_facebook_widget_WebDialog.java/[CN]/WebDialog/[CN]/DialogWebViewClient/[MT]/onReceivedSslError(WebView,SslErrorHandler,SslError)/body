@@ -4,8 +4,7 @@
   }
  else {
     super.onReceivedSslError(view,handler,error);
-    sendErrorToListener(new FacebookDialogException(null,ERROR_FAILED_SSL_HANDSHAKE,null));
     handler.cancel();
-    WebDialog.this.dismiss();
+    sendErrorToListener(new FacebookDialogException(null,ERROR_FAILED_SSL_HANDSHAKE,null));
   }
 }

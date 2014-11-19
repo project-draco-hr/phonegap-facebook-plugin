@@ -1,0 +1,7 @@
+{
+  horizontalAlignment=horizontalAlignment != null ? horizontalAlignment : HorizontalAlignment.DEFAULT;
+  if (this.horizontalAlignment != horizontalAlignment) {
+    this.horizontalAlignment=horizontalAlignment;
+    updateLayout();
+  }
+}

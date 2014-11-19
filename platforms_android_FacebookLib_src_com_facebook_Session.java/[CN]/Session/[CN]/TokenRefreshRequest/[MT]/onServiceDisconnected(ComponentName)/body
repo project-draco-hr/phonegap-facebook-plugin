@@ -1,4 +1,8 @@
 {
   cleanup();
-  staticContext.unbindService(TokenRefreshRequest.this);
+  try {
+    staticContext.unbindService(TokenRefreshRequest.this);
+  }
+ catch (  IllegalArgumentException ex) {
+  }
 }

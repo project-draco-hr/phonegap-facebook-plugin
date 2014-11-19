@@ -1,0 +1,7 @@
+{
+  PendingCallStore.getInstance().trackPendingCall(pendingCall);
+  pendingCallId=pendingCall.getCallId();
+  storeObjectIdForPendingController(objectId);
+  pendingCallAnalyticsBundle=analyticsParameters;
+  serializeToDiskAsync(this);
+}

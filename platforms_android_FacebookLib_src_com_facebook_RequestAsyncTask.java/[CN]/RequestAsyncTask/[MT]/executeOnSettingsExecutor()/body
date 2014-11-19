@@ -1,14 +1,15 @@
 {
-  try {
-    if (executeOnExecutorMethod != null) {
+  if (executeOnExecutorMethod != null) {
+    try {
       executeOnExecutorMethod.invoke(this,Settings.getExecutor(),null);
-      return this;
+    }
+ catch (    InvocationTargetException e) {
+    }
+catch (    IllegalAccessException e) {
     }
   }
- catch (  InvocationTargetException e) {
+ else {
+    this.execute();
   }
-catch (  IllegalAccessException e) {
-  }
-  this.execute();
   return this;
 }

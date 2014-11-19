@@ -1,0 +1,10 @@
+{
+  this.likeActionController=likeActionController;
+  this.broadcastReceiver=new LikeControllerBroadcastReceiver();
+  LocalBroadcastManager localBroadcastManager=LocalBroadcastManager.getInstance(getContext());
+  IntentFilter filter=new IntentFilter();
+  filter.addAction(LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_UPDATED);
+  filter.addAction(LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_DID_ERROR);
+  filter.addAction(LikeActionController.ACTION_LIKE_ACTION_CONTROLLER_DID_RESET);
+  localBroadcastManager.registerReceiver(broadcastReceiver,filter);
+}

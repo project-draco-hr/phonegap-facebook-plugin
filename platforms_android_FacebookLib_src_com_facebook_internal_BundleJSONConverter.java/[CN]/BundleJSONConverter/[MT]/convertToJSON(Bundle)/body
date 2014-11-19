@@ -1,0 +1,28 @@
+{
+  JSONObject json=new JSONObject();
+  for (  String key : bundle.keySet()) {
+    Object value=bundle.get(key);
+    if (value == null) {
+      continue;
+    }
+    if (value instanceof List<?>) {
+      JSONArray jsonArray=new JSONArray();
+      @SuppressWarnings("unchecked") List<String> listValue=(List<String>)value;
+      for (      String stringValue : listValue) {
+        jsonArray.put(stringValue);
+      }
+      json.put(key,jsonArray);
+      continue;
+    }
+    if (value instanceof Bundle) {
+      json.put(key,convertToJSON((Bundle)value));
+      continue;
+    }
+    Setter setter=SETTERS.get(value.getClass());
+    if (setter == null) {
+      throw new IllegalArgumentException("Unsupported type: " + value.getClass());
+    }
+    setter.setOnJSON(json,key,value);
+  }
+  return json;
+}

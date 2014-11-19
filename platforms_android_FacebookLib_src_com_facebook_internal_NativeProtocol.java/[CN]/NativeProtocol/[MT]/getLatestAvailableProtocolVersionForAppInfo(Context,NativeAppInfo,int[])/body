@@ -1,0 +1,4 @@
+{
+  TreeSet<Integer> fbAppVersions=getAllAvailableProtocolVersionsForAppInfo(context,appInfo);
+  return computeLatestAvailableVersionFromVersionSpec(fbAppVersions,getLatestKnownVersion(),versionSpec);
+}

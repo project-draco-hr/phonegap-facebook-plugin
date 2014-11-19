@@ -1,0 +1,17 @@
+{
+  if (Utility.isNullOrEmpty(dialogUrl)) {
+    return false;
+  }
+  String redirectUrl=String.format("fb%s://bridge/",applicationId);
+  FacebookWebFallbackDialog fallbackWebDialog=new FacebookWebFallbackDialog(context,dialogUrl,redirectUrl);
+  fallbackWebDialog.setOnCompleteListener(new WebDialog.OnCompleteListener(){
+    @Override public void onComplete(    Bundle values,    FacebookException error){
+      Intent dummyIntent=new Intent();
+      dummyIntent.putExtras(values == null ? new Bundle() : values);
+      FacebookDialog.handleActivityResult(context,appCall,appCall.getRequestCode(),dummyIntent,callback);
+    }
+  }
+);
+  fallbackWebDialog.show();
+  return true;
+}

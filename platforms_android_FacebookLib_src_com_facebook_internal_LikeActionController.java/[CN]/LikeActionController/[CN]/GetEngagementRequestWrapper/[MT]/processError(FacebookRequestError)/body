@@ -1,0 +1,4 @@
+{
+  Logger.log(LoggingBehavior.REQUESTS,TAG,"Error fetching engagement for object '%s' : %s",objectId,error);
+  logAppEventForError("get_engagement",error);
+}

@@ -1,0 +1,21 @@
+{
+  Bundle params=new Bundle();
+  if (!isNullOrEmpty(queryString)) {
+    String array[]=queryString.split("&");
+    for (    String parameter : array) {
+      String keyValuePair[]=parameter.split("=");
+      try {
+        if (keyValuePair.length == 2) {
+          params.putString(URLDecoder.decode(keyValuePair[0],UTF8),URLDecoder.decode(keyValuePair[1],UTF8));
+        }
+ else         if (keyValuePair.length == 1) {
+          params.putString(URLDecoder.decode(keyValuePair[0],UTF8),"");
+        }
+      }
+ catch (      UnsupportedEncodingException e) {
+        logd(LOG_TAG,e);
+      }
+    }
+  }
+  return params;
+}

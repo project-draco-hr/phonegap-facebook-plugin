@@ -1,5 +1,9 @@
 {
   sender=null;
-  context.unbindService(this);
+  try {
+    context.unbindService(this);
+  }
+ catch (  IllegalArgumentException ex) {
+  }
   callback(null);
 }
