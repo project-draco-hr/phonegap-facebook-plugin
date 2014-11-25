@@ -1,0 +1,11 @@
+{
+  if (errorData == null) {
+    return null;
+  }
+  String type=errorData.getString(STATUS_ERROR_TYPE);
+  String description=errorData.getString(STATUS_ERROR_DESCRIPTION);
+  if (type != null && type.equalsIgnoreCase(ERROR_USER_CANCELED)) {
+    return new FacebookOperationCanceledException(description);
+  }
+  return new FacebookException(description);
+}

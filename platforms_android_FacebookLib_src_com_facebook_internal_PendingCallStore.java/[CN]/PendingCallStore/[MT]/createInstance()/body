@@ -1,0 +1,5 @@
+{
+  if (mInstance == null) {
+    mInstance=new PendingCallStore();
+  }
+}

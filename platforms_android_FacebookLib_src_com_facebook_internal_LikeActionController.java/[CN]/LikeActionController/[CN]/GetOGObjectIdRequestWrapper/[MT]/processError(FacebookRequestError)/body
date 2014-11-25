@@ -1,0 +1,8 @@
+{
+  if (error.getErrorMessage().contains("og_object")) {
+    this.error=null;
+  }
+ else {
+    Logger.log(LoggingBehavior.REQUESTS,TAG,"Error getting the FB id for object '%s' : %s",objectId,error);
+  }
+}

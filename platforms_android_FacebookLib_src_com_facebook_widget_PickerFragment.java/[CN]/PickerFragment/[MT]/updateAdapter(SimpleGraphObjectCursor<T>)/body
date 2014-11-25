@@ -17,5 +17,30 @@
     if (dataChanged && onDataChangedListener != null) {
       onDataChangedListener.onDataChanged(PickerFragment.this);
     }
+    if (selectionHint != null && !selectionHint.isEmpty() && data != null) {
+      data.moveToFirst();
+      boolean changed=false;
+      for (int i=0; i < data.getCount(); i++) {
+        data.moveToPosition(i);
+        T graphObject=data.getGraphObject();
+        if (!graphObject.asMap().containsKey("id"))         continue;
+        Object obj=graphObject.getProperty("id");
+        if (!(obj instanceof String)) {
+          continue;
+        }
+        String id=(String)obj;
+        if (selectionHint.contains(id)) {
+          selectionStrategy.toggleSelection(id);
+          selectionHint.remove(id);
+          changed=true;
+        }
+        if (selectionHint.isEmpty()) {
+          break;
+        }
+      }
+      if (onSelectionChangedListener != null && changed) {
+        onSelectionChangedListener.onSelectionChanged(PickerFragment.this);
+      }
+    }
   }
 }

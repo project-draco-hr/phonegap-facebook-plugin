@@ -1,0 +1,8 @@
+{
+  String cacheKey=getCacheKeyForObjectId(objectId);
+  LikeActionController controller=cache.get(cacheKey);
+  if (controller != null) {
+    mruCacheWorkQueue.addActiveWorkItem(new MRUCacheWorkItem(cacheKey,false));
+  }
+  return controller;
+}

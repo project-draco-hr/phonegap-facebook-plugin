@@ -1,6 +1,15 @@
 {
   LinearLayout webViewContainer=new LinearLayout(getContext());
-  webView=new WebView(getContext());
+  webView=new WebView(getContext()){
+    @Override public void onWindowFocusChanged(    boolean hasWindowFocus){
+      try {
+        super.onWindowFocusChanged(hasWindowFocus);
+      }
+ catch (      NullPointerException e) {
+      }
+    }
+  }
+;
   webView.setVerticalScrollBarEnabled(false);
   webView.setHorizontalScrollBarEnabled(false);
   webView.setWebViewClient(new DialogWebViewClient());

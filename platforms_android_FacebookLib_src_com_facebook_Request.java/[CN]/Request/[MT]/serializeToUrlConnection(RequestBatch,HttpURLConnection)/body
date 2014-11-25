@@ -35,7 +35,9 @@
     processRequest(requests,logger,numRequests,url,outputStream);
   }
   finally {
-    outputStream.close();
+    if (outputStream != null) {
+      outputStream.close();
+    }
   }
   logger.log();
 }

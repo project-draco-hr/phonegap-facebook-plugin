@@ -1,0 +1,33 @@
+{
+  Path borderPath=new Path();
+  float ovalSize=2.0f * borderRadius;
+  borderPath.addArc(new RectF(left,top,left + ovalSize,top + ovalSize),-180,90);
+  if (caretPosition == LikeBoxCountViewCaretPosition.TOP) {
+    borderPath.lineTo(left + (right - left - caretWidth) / 2,top);
+    borderPath.lineTo(left + (right - left) / 2,top - caretHeight);
+    borderPath.lineTo(left + (right - left + caretWidth) / 2,top);
+  }
+  borderPath.lineTo(right - borderRadius,top);
+  borderPath.addArc(new RectF(right - ovalSize,top,right,top + ovalSize),-90,90);
+  if (caretPosition == LikeBoxCountViewCaretPosition.RIGHT) {
+    borderPath.lineTo(right,top + (bottom - top - caretWidth) / 2);
+    borderPath.lineTo(right + caretHeight,top + (bottom - top) / 2);
+    borderPath.lineTo(right,top + (bottom - top + caretWidth) / 2);
+  }
+  borderPath.lineTo(right,bottom - borderRadius);
+  borderPath.addArc(new RectF(right - ovalSize,bottom - ovalSize,right,bottom),0,90);
+  if (caretPosition == LikeBoxCountViewCaretPosition.BOTTOM) {
+    borderPath.lineTo(left + (right - left + caretWidth) / 2,bottom);
+    borderPath.lineTo(left + (right - left) / 2,bottom + caretHeight);
+    borderPath.lineTo(left + (right - left - caretWidth) / 2,bottom);
+  }
+  borderPath.lineTo(left + borderRadius,bottom);
+  borderPath.addArc(new RectF(left,bottom - ovalSize,left + ovalSize,bottom),90,90);
+  if (caretPosition == LikeBoxCountViewCaretPosition.LEFT) {
+    borderPath.lineTo(left,top + (bottom - top + caretWidth) / 2);
+    borderPath.lineTo(left - caretHeight,top + (bottom - top) / 2);
+    borderPath.lineTo(left,top + (bottom - top - caretWidth) / 2);
+  }
+  borderPath.lineTo(left,top + borderRadius);
+  canvas.drawPath(borderPath,borderPaint);
+}

@@ -1,0 +1,67 @@
+{
+  if (range1 == null) {
+    return range2;
+  }
+ else   if (range2 == null) {
+    return range1;
+  }
+  int[] outputRange=new int[range1.length + range2.length];
+  int outputIndex=0;
+  int index1=0, lower1, upper1;
+  int index2=0, lower2, upper2;
+  while (index1 < range1.length && index2 < range2.length) {
+    int newRangeLower=Integer.MIN_VALUE, newRangeUpper=Integer.MAX_VALUE;
+    lower1=range1[index1];
+    upper1=Integer.MAX_VALUE;
+    lower2=range2[index2];
+    upper2=Integer.MAX_VALUE;
+    if (index1 < range1.length - 1) {
+      upper1=range1[index1 + 1];
+    }
+    if (index2 < range2.length - 1) {
+      upper2=range2[index2 + 1];
+    }
+    if (lower1 < lower2) {
+      if (upper1 > lower2) {
+        newRangeLower=lower2;
+        if (upper1 > upper2) {
+          newRangeUpper=upper2;
+          index2+=2;
+        }
+ else {
+          newRangeUpper=upper1;
+          index1+=2;
+        }
+      }
+ else {
+        index1+=2;
+      }
+    }
+ else {
+      if (upper2 > lower1) {
+        newRangeLower=lower1;
+        if (upper2 > upper1) {
+          newRangeUpper=upper1;
+          index1+=2;
+        }
+ else {
+          newRangeUpper=upper2;
+          index2+=2;
+        }
+      }
+ else {
+        index2+=2;
+      }
+    }
+    if (newRangeLower != Integer.MIN_VALUE) {
+      outputRange[outputIndex++]=newRangeLower;
+      if (newRangeUpper != Integer.MAX_VALUE) {
+        outputRange[outputIndex++]=newRangeUpper;
+      }
+ else {
+        break;
+      }
+    }
+  }
+  return Arrays.copyOf(outputRange,outputIndex);
+}

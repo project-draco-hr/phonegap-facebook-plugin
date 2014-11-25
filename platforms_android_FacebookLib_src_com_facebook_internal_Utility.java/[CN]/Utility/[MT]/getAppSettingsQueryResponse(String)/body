@@ -1,0 +1,9 @@
+{
+  Bundle appSettingsParams=new Bundle();
+  appSettingsParams.putString(APPLICATION_FIELDS,TextUtils.join(",",APP_SETTING_FIELDS));
+  Request request=Request.newGraphPathRequest(null,applicationId,null);
+  request.setSkipClientToken(true);
+  request.setParameters(appSettingsParams);
+  GraphObject response=request.executeAndWait().getGraphObject();
+  return response;
+}

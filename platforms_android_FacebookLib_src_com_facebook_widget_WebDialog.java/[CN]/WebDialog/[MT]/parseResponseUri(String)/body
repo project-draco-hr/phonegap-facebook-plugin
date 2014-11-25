@@ -1,0 +1,6 @@
+{
+  Uri u=Uri.parse(urlString);
+  Bundle b=Utility.parseUrlQueryString(u.getQuery());
+  b.putAll(Utility.parseUrlQueryString(u.getFragment()));
+  return b;
+}

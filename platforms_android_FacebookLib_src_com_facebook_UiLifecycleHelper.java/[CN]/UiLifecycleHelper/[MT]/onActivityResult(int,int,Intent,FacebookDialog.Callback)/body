@@ -3,5 +3,8 @@
   if (session != null) {
     session.onActivityResult(activity,requestCode,resultCode,data);
   }
+  if (LikeActionController.handleOnActivityResult(activity,requestCode,resultCode,data)) {
+    return;
+  }
   handleFacebookDialogActivityResult(requestCode,resultCode,data,facebookDialogCallback);
 }

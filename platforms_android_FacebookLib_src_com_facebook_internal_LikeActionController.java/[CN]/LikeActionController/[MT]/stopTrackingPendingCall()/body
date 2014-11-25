@@ -1,0 +1,6 @@
+{
+  PendingCallStore.getInstance().stopTrackingPendingCall(pendingCallId);
+  pendingCallId=null;
+  pendingCallAnalyticsBundle=null;
+  storeObjectIdForPendingController(null);
+}

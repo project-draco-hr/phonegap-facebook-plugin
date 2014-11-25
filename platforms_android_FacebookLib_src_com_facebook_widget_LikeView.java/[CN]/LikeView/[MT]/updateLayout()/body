@@ -1,0 +1,48 @@
+{
+  LayoutParams containerViewLayoutParams=(LayoutParams)containerView.getLayoutParams();
+  LinearLayout.LayoutParams buttonLayoutParams=(LinearLayout.LayoutParams)likeButton.getLayoutParams();
+  int viewGravity=horizontalAlignment == HorizontalAlignment.LEFT ? Gravity.LEFT : horizontalAlignment == HorizontalAlignment.CENTER ? Gravity.CENTER_HORIZONTAL : Gravity.RIGHT;
+  containerViewLayoutParams.gravity=viewGravity | Gravity.TOP;
+  buttonLayoutParams.gravity=viewGravity;
+  socialSentenceView.setVisibility(GONE);
+  likeBoxCountView.setVisibility(GONE);
+  View auxView;
+  if (likeViewStyle == Style.STANDARD && likeActionController != null && !Utility.isNullOrEmpty(likeActionController.getSocialSentence())) {
+    auxView=socialSentenceView;
+  }
+ else   if (likeViewStyle == Style.BOX_COUNT && likeActionController != null && !Utility.isNullOrEmpty(likeActionController.getLikeCountString())) {
+    updateBoxCountCaretPosition();
+    auxView=likeBoxCountView;
+  }
+ else {
+    return;
+  }
+  auxView.setVisibility(VISIBLE);
+  LinearLayout.LayoutParams auxViewLayoutParams=(LinearLayout.LayoutParams)auxView.getLayoutParams();
+  auxViewLayoutParams.gravity=viewGravity;
+  containerView.setOrientation(auxiliaryViewPosition == AuxiliaryViewPosition.INLINE ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+  if (auxiliaryViewPosition == AuxiliaryViewPosition.TOP || (auxiliaryViewPosition == AuxiliaryViewPosition.INLINE && horizontalAlignment == HorizontalAlignment.RIGHT)) {
+    containerView.removeView(likeButton);
+    containerView.addView(likeButton);
+  }
+ else {
+    containerView.removeView(auxView);
+    containerView.addView(auxView);
+  }
+switch (auxiliaryViewPosition) {
+case TOP:
+    auxView.setPadding(edgePadding,edgePadding,edgePadding,internalPadding);
+  break;
+case BOTTOM:
+auxView.setPadding(edgePadding,internalPadding,edgePadding,edgePadding);
+break;
+case INLINE:
+if (horizontalAlignment == HorizontalAlignment.RIGHT) {
+auxView.setPadding(edgePadding,edgePadding,internalPadding,edgePadding);
+}
+ else {
+auxView.setPadding(internalPadding,edgePadding,edgePadding,edgePadding);
+}
+break;
+}
+}

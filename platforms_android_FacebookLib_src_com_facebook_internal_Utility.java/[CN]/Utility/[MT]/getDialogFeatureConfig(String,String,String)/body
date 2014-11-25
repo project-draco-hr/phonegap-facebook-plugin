@@ -1,0 +1,13 @@
+{
+  if (Utility.isNullOrEmpty(actionName) || Utility.isNullOrEmpty(featureName)) {
+    return null;
+  }
+  FetchedAppSettings settings=fetchedAppSettings.get(applicationId);
+  if (settings != null) {
+    Map<String,DialogFeatureConfig> featureMap=settings.getDialogConfigurations().get(actionName);
+    if (featureMap != null) {
+      return featureMap.get(featureName);
+    }
+  }
+  return null;
+}

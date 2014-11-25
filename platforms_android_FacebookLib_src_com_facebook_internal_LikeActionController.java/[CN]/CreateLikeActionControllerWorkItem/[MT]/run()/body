@@ -1,0 +1,3 @@
+{
+  createControllerForObjectId(context,objectId,callback);
+}

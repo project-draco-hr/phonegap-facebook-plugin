@@ -1,4 +1,8 @@
 {
   serviceListener.onError(new Error("Service disconnected"));
-  applicationsContext.unbindService(TokenRefreshServiceConnection.this);
+  try {
+    applicationsContext.unbindService(TokenRefreshServiceConnection.this);
+  }
+ catch (  IllegalArgumentException ex) {
+  }
 }

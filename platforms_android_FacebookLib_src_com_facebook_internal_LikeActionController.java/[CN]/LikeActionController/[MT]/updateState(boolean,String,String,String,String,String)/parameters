@@ -1,0 +1,6 @@
+boolean isObjectLiked
+String likeCountStringWithLike
+String likeCountStringWithoutLike
+String socialSentenceWithLike
+String socialSentenceWithoutLike
+String unlikeToken

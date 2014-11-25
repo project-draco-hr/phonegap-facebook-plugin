@@ -1,0 +1,30 @@
+{
+  LikeActionController controller;
+  try {
+    JSONObject controllerJson=new JSONObject(controllerJsonString);
+    int version=controllerJson.optInt(JSON_INT_VERSION_KEY,-1);
+    if (version != LIKE_ACTION_CONTROLLER_VERSION) {
+      return null;
+    }
+    controller=new LikeActionController(context,Session.getActiveSession(),controllerJson.getString(JSON_STRING_OBJECT_ID_KEY));
+    controller.likeCountStringWithLike=controllerJson.optString(JSON_STRING_LIKE_COUNT_WITH_LIKE_KEY,null);
+    controller.likeCountStringWithoutLike=controllerJson.optString(JSON_STRING_LIKE_COUNT_WITHOUT_LIKE_KEY,null);
+    controller.socialSentenceWithLike=controllerJson.optString(JSON_STRING_SOCIAL_SENTENCE_WITH_LIKE_KEY,null);
+    controller.socialSentenceWithoutLike=controllerJson.optString(JSON_STRING_SOCIAL_SENTENCE_WITHOUT_LIKE_KEY,null);
+    controller.isObjectLiked=controllerJson.optBoolean(JSON_BOOL_IS_OBJECT_LIKED_KEY);
+    controller.unlikeToken=controllerJson.optString(JSON_STRING_UNLIKE_TOKEN_KEY,null);
+    String pendingCallIdString=controllerJson.optString(JSON_STRING_PENDING_CALL_ID_KEY,null);
+    if (!Utility.isNullOrEmpty(pendingCallIdString)) {
+      controller.pendingCallId=UUID.fromString(pendingCallIdString);
+    }
+    JSONObject analyticsJSON=controllerJson.optJSONObject(JSON_BUNDLE_PENDING_CALL_ANALYTICS_BUNDLE);
+    if (analyticsJSON != null) {
+      controller.pendingCallAnalyticsBundle=BundleJSONConverter.convertToBundle(analyticsJSON);
+    }
+  }
+ catch (  JSONException e) {
+    Log.e(TAG,"Unable to deserialize controller from JSON",e);
+    controller=null;
+  }
+  return controller;
+}

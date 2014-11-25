@@ -1,0 +1,6 @@
+{
+  if (likeActionController != null) {
+    Activity activity=(Activity)getContext();
+    likeActionController.toggleLike(activity,getAnalyticsParameters());
+  }
+}

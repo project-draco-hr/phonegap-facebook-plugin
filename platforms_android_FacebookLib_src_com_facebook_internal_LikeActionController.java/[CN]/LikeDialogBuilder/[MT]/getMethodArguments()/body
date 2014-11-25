@@ -1,0 +1,5 @@
+{
+  Bundle methodArgs=new Bundle();
+  methodArgs.putString(NativeProtocol.METHOD_ARGS_OBJECT_ID,objectId);
+  return methodArgs;
+}

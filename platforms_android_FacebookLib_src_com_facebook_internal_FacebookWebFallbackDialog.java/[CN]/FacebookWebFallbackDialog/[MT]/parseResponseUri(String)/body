@@ -1,0 +1,34 @@
+{
+  Uri responseUri=Uri.parse(url);
+  Bundle queryParams=Utility.parseUrlQueryString(responseUri.getQuery());
+  String bridgeArgsJSONString=queryParams.getString(ServerProtocol.FALLBACK_DIALOG_PARAM_BRIDGE_ARGS);
+  queryParams.remove(ServerProtocol.FALLBACK_DIALOG_PARAM_BRIDGE_ARGS);
+  if (!Utility.isNullOrEmpty(bridgeArgsJSONString)) {
+    Bundle bridgeArgs;
+    try {
+      JSONObject bridgeArgsJSON=new JSONObject(bridgeArgsJSONString);
+      bridgeArgs=BundleJSONConverter.convertToBundle(bridgeArgsJSON);
+      queryParams.putBundle(NativeProtocol.EXTRA_PROTOCOL_BRIDGE_ARGS,bridgeArgs);
+    }
+ catch (    JSONException je) {
+      Utility.logd(TAG,"Unable to parse bridge_args JSON",je);
+    }
+  }
+  String methodResultsJSONString=queryParams.getString(ServerProtocol.FALLBACK_DIALOG_PARAM_METHOD_RESULTS);
+  queryParams.remove(ServerProtocol.FALLBACK_DIALOG_PARAM_METHOD_RESULTS);
+  if (!Utility.isNullOrEmpty(methodResultsJSONString)) {
+    methodResultsJSONString=Utility.isNullOrEmpty(methodResultsJSONString) ? "{}" : methodResultsJSONString;
+    Bundle methodResults;
+    try {
+      JSONObject methodArgsJSON=new JSONObject(methodResultsJSONString);
+      methodResults=BundleJSONConverter.convertToBundle(methodArgsJSON);
+      queryParams.putBundle(NativeProtocol.EXTRA_PROTOCOL_METHOD_RESULTS,methodResults);
+    }
+ catch (    JSONException je) {
+      Utility.logd(TAG,"Unable to parse bridge_args JSON",je);
+    }
+  }
+  queryParams.remove(ServerProtocol.FALLBACK_DIALOG_PARAM_VERSION);
+  queryParams.putInt(NativeProtocol.EXTRA_PROTOCOL_VERSION,NativeProtocol.getLatestKnownVersion());
+  return queryParams;
+}

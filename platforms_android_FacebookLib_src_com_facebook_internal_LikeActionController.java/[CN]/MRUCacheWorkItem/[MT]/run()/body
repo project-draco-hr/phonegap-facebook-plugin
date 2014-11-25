@@ -1,0 +1,13 @@
+{
+  if (cacheItem != null) {
+    mruCachedItems.remove(cacheItem);
+    mruCachedItems.add(0,cacheItem);
+  }
+  if (shouldTrim && mruCachedItems.size() >= MAX_CACHE_SIZE) {
+    int targetSize=MAX_CACHE_SIZE / 2;
+    while (targetSize < mruCachedItems.size()) {
+      String cacheKey=mruCachedItems.remove(mruCachedItems.size() - 1);
+      cache.remove(cacheKey);
+    }
+  }
+}

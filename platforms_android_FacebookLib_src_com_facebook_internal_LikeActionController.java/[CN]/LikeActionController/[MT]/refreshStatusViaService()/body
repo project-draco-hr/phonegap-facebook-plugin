@@ -1,0 +1,22 @@
+{
+  LikeStatusClient likeStatusClient=new LikeStatusClient(context,Settings.getApplicationId(),objectId);
+  if (!likeStatusClient.start()) {
+    return;
+  }
+  LikeStatusClient.CompletedListener callback=new LikeStatusClient.CompletedListener(){
+    @Override public void completed(    Bundle result){
+      if (result == null || !result.containsKey(NativeProtocol.EXTRA_OBJECT_IS_LIKED)) {
+        return;
+      }
+      boolean objectIsLiked=result.getBoolean(NativeProtocol.EXTRA_OBJECT_IS_LIKED);
+      String likeCountWithLike=result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITH_LIKE);
+      String likeCountWithoutLike=result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITHOUT_LIKE);
+      String socialSentenceWithLike=result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITH_LIKE);
+      String socialSentenceWithoutLike=result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITHOUT_LIKE);
+      String unlikeToken=result.getString(NativeProtocol.EXTRA_UNLIKE_TOKEN);
+      updateState(objectIsLiked,likeCountWithLike,likeCountWithoutLike,socialSentenceWithLike,socialSentenceWithoutLike,unlikeToken);
+    }
+  }
+;
+  likeStatusClient.setCompletedListener(callback);
+}

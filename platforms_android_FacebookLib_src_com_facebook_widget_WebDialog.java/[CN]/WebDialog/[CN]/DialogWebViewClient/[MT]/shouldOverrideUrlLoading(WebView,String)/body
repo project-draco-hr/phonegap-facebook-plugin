@@ -1,7 +1,7 @@
 {
   Utility.logd(LOG_TAG,"Redirect URL: " + url);
-  if (url.startsWith(WebDialog.REDIRECT_URI)) {
-    Bundle values=Util.parseUrl(url);
+  if (url.startsWith(WebDialog.this.expectedRedirectUrl)) {
+    Bundle values=parseResponseUri(url);
     String error=values.getString("error");
     if (error == null) {
       error=values.getString("error_type");
@@ -26,16 +26,17 @@
  else     if (error != null && (error.equals("access_denied") || error.equals("OAuthAccessDeniedException"))) {
       sendCancelToListener();
     }
+ else     if (errorCode == API_EC_DIALOG_CANCEL) {
+      sendCancelToListener();
+    }
  else {
       FacebookRequestError requestError=new FacebookRequestError(errorCode,error,errorMessage);
       sendErrorToListener(new FacebookServiceException(requestError,errorMessage));
     }
-    WebDialog.this.dismiss();
     return true;
   }
  else   if (url.startsWith(WebDialog.CANCEL_URI)) {
     sendCancelToListener();
-    WebDialog.this.dismiss();
     return true;
   }
  else   if (url.contains(DISPLAY_TOUCH)) {

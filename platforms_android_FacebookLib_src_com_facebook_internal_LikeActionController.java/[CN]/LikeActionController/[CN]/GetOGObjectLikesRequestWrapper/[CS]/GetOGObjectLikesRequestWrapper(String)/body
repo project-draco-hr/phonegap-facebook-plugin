@@ -1,0 +1,7 @@
+{
+  super(objectId);
+  Bundle requestParams=new Bundle();
+  requestParams.putString("fields","id,application");
+  requestParams.putString("object",objectId);
+  setRequest(new Request(session,"me/og.likes",requestParams,HttpMethod.GET));
+}

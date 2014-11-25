@@ -1,0 +1,11 @@
+{
+  if (isInitialized) {
+    return;
+  }
+  handler=new Handler(Looper.getMainLooper());
+  SharedPreferences sharedPreferences=context.getSharedPreferences(LIKE_ACTION_CONTROLLER_STORE,Context.MODE_PRIVATE);
+  objectSuffix=sharedPreferences.getInt(LIKE_ACTION_CONTROLLER_STORE_OBJECT_SUFFIX_KEY,1);
+  controllerDiskCache=new FileLruCache(context,TAG,new FileLruCache.Limits());
+  registerSessionBroadcastReceivers(context);
+  isInitialized=true;
+}

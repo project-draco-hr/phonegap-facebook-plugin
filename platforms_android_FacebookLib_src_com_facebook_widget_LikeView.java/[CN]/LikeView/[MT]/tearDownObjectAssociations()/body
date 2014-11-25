@@ -1,0 +1,12 @@
+{
+  if (broadcastReceiver != null) {
+    LocalBroadcastManager localBroadcastManager=LocalBroadcastManager.getInstance(getContext());
+    localBroadcastManager.unregisterReceiver(broadcastReceiver);
+    broadcastReceiver=null;
+  }
+  if (creationCallback != null) {
+    creationCallback.cancel();
+    creationCallback=null;
+  }
+  likeActionController=null;
+}

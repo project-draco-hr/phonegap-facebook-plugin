@@ -1,0 +1,3 @@
+{
+  return CALL_KEY_PREFIX + pendingCallId;
+}

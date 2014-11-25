@@ -2,6 +2,8 @@
   if (sdkInitialized == true) {
     return;
   }
+  Settings.loadDefaultsFromMetadataIfNeeded(context);
+  Utility.loadAppSettingsAsync(context,Settings.getApplicationId());
   BoltsMeasurementEventListener.getInstance(context.getApplicationContext());
   sdkInitialized=true;
 }
