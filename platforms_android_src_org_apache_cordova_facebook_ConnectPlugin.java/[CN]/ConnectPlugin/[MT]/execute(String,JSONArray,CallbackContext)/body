@@ -169,11 +169,6 @@
     return true;
   }
  else   if (action.equals("showDialog")) {
-    Session session=Session.getActiveSession();
-    if (!checkActiveSession(session)) {
-      callbackContext.error("No active session");
-      return true;
-    }
     Bundle collect=new Bundle();
     JSONObject params=null;
     try {
@@ -204,6 +199,14 @@
       }
     }
     this.paramBundle=new Bundle(collect);
+    boolean isShareDialog=this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph");
+    if (!isShareDialog) {
+      Session session=Session.getActiveSession();
+      if (!checkActiveSession(session)) {
+        callbackContext.error("No active session");
+        return true;
+      }
+    }
     showDialogContext=callbackContext;
     PluginResult pr=new PluginResult(PluginResult.Status.NO_RESULT);
     pr.setKeepCallback(true);
