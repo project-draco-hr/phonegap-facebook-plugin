@@ -200,7 +200,9 @@
     }
     this.paramBundle=new Bundle(collect);
     boolean isShareDialog=this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph");
-    if (!isShareDialog) {
+    boolean canPresentShareDialog=isShareDialog && (FacebookDialog.canPresentShareDialog(me.cordova.getActivity(),FacebookDialog.ShareDialogFeature.SHARE_DIALOG));
+    boolean requiresAnActiveSession=(!isShareDialog) || (!canPresentShareDialog);
+    if (requiresAnActiveSession) {
       Session session=Session.getActiveSession();
       if (!checkActiveSession(session)) {
         callbackContext.error("No active session");
@@ -242,8 +244,8 @@
 ;
       cordova.getActivity().runOnUiThread(runnable);
     }
- else     if (this.method.equalsIgnoreCase("share") || this.method.equalsIgnoreCase("share_open_graph")) {
-      if (FacebookDialog.canPresentShareDialog(me.cordova.getActivity(),FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
+ else     if (isShareDialog) {
+      if (canPresentShareDialog) {
         Runnable runnable=new Runnable(){
           public void run(){
             FacebookDialog shareDialog=new FacebookDialog.ShareDialogBuilder(me.cordova.getActivity()).setName(paramBundle.getString("name")).setCaption(paramBundle.getString("caption")).setDescription(paramBundle.getString("description")).setLink(paramBundle.getString("href")).setPicture(paramBundle.getString("picture")).build();
