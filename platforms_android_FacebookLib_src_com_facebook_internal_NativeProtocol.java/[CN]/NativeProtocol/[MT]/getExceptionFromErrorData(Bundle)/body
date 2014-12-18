@@ -2,8 +2,14 @@
   if (errorData == null) {
     return null;
   }
-  String type=errorData.getString(STATUS_ERROR_TYPE);
-  String description=errorData.getString(STATUS_ERROR_DESCRIPTION);
+  String type=errorData.getString(BRIDGE_ARG_ERROR_TYPE);
+  if (type == null) {
+    type=errorData.getString(STATUS_ERROR_TYPE);
+  }
+  String description=errorData.getString(BRIDGE_ARG_ERROR_DESCRIPTION);
+  if (description == null) {
+    description=errorData.getString(STATUS_ERROR_DESCRIPTION);
+  }
   if (type != null && type.equalsIgnoreCase(ERROR_USER_CANCELED)) {
     return new FacebookOperationCanceledException(description);
   }
