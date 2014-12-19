@@ -9,11 +9,11 @@
         return;
       }
       boolean objectIsLiked=result.getBoolean(NativeProtocol.EXTRA_OBJECT_IS_LIKED);
-      String likeCountWithLike=result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITH_LIKE);
-      String likeCountWithoutLike=result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITHOUT_LIKE);
-      String socialSentenceWithLike=result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITH_LIKE);
-      String socialSentenceWithoutLike=result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITHOUT_LIKE);
-      String unlikeToken=result.getString(NativeProtocol.EXTRA_UNLIKE_TOKEN);
+      String likeCountWithLike=result.containsKey(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITH_LIKE) ? result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITH_LIKE) : LikeActionController.this.likeCountStringWithLike;
+      String likeCountWithoutLike=result.containsKey(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITHOUT_LIKE) ? result.getString(NativeProtocol.EXTRA_LIKE_COUNT_STRING_WITHOUT_LIKE) : LikeActionController.this.likeCountStringWithoutLike;
+      String socialSentenceWithLike=result.containsKey(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITH_LIKE) ? result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITH_LIKE) : LikeActionController.this.socialSentenceWithLike;
+      String socialSentenceWithoutLike=result.containsKey(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITHOUT_LIKE) ? result.getString(NativeProtocol.EXTRA_SOCIAL_SENTENCE_WITHOUT_LIKE) : LikeActionController.this.socialSentenceWithoutLike;
+      String unlikeToken=result.containsKey(NativeProtocol.EXTRA_UNLIKE_TOKEN) ? result.getString(NativeProtocol.EXTRA_UNLIKE_TOKEN) : LikeActionController.this.unlikeToken;
       updateState(objectIsLiked,likeCountWithLike,likeCountWithoutLike,socialSentenceWithLike,socialSentenceWithoutLike,unlikeToken);
     }
   }

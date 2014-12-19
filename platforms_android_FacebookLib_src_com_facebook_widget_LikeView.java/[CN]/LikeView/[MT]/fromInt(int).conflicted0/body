@@ -1,7 +1,7 @@
 {
-  for (  HorizontalAlignment horizontalAlignment : values()) {
-    if (horizontalAlignment.getValue() == enumValue) {
-      return horizontalAlignment;
+  for (  Style style : values()) {
+    if (style.getValue() == enumValue) {
+      return style;
     }
   }
   return null;
