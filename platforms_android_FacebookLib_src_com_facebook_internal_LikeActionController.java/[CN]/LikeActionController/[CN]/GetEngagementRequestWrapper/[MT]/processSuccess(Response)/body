@@ -1,9 +1,9 @@
 {
   JSONObject engagementResults=Utility.tryGetJSONObjectFromResponse(response.getGraphObject(),"engagement");
   if (engagementResults != null) {
-    likeCountStringWithLike=engagementResults.optString("count_string_with_like");
-    likeCountStringWithoutLike=engagementResults.optString("count_string_without_like");
-    socialSentenceStringWithLike=engagementResults.optString("social_sentence_with_like");
-    socialSentenceStringWithoutLike=engagementResults.optString("social_sentence_without_like");
+    likeCountStringWithLike=engagementResults.optString("count_string_with_like",likeCountStringWithLike);
+    likeCountStringWithoutLike=engagementResults.optString("count_string_without_like",likeCountStringWithoutLike);
+    socialSentenceStringWithLike=engagementResults.optString("social_sentence_with_like",socialSentenceStringWithLike);
+    socialSentenceStringWithoutLike=engagementResults.optString("social_sentence_without_like",socialSentenceStringWithoutLike);
   }
 }

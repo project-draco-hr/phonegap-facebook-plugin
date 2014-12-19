@@ -1,9 +1,9 @@
 {
   Validate.notNull(context,"context");
   Validate.notNull(callId,"callId");
-  Validate.containsNoNulls(imageAttachmentFiles.values(),"imageAttachmentFiles");
-  Validate.containsNoNullOrEmpty(imageAttachmentFiles.keySet(),"imageAttachmentFiles");
-  addAttachments(context,callId,imageAttachmentFiles,new ProcessAttachment<File>(){
+  Validate.containsNoNulls(mediaAttachmentFiles.values(),"mediaAttachmentFiles");
+  Validate.containsNoNullOrEmpty(mediaAttachmentFiles.keySet(),"mediaAttachmentFiles");
+  addAttachments(context,callId,mediaAttachmentFiles,new ProcessAttachment<File>(){
     @Override public void processAttachment(    File attachment,    File outputFile) throws IOException {
       FileOutputStream outputStream=new FileOutputStream(outputFile);
       FileInputStream inputStream=null;
